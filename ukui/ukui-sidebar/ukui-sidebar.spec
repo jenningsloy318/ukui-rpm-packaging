@@ -37,12 +37,12 @@ cp %{SOURCE1} .
 patch -p0 < plugin-path.patch
  
 %build
-  %{qmake_qt5} %_qt5_qmake_flags CONFIG+=enable-by-default  ukui-sidebar.pro
-  %make_build
+  %{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ukui-sidebar.pro
+  %{make_build}
 
 %install
 rm -rf %{buildroot}
-%make_install  INSTALL_ROOT=%{buildroot} 
+%{make_install}  INSTALL_ROOT=%{buildroot} 
 mkdir -p %{buildroot}/usr/share/doc/ukui-desktop-environment/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-desktop-environment/
 gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-desktop-environment/changelog.gz
