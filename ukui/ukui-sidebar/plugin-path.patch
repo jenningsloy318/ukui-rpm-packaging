@@ -1,0 +1,61 @@
+diff --git src/plugins/Clock_deamon/Clock.pro src/plugins/Clock_deamon/Clock.pro
+index 8aaacaf..ef33ba3 100644
+--- src/plugins/Clock_deamon/Clock.pro
++++ src/plugins/Clock_deamon/Clock.pro
+@@ -46,6 +46,6 @@ RESOURCES += \
+ RC_FILE = clock.rc
+ 
+ unix {
+-    target.path = /usr/lib/ukui-sidebar/sidebarSmallPlugins
++    target.path = /usr/lib64/ukui-sidebar/sidebarSmallPlugins
+     INSTALLS += target
+ }
+diff --git src/plugins/clipboardPlugin/clipboardPlugin.pro src/plugins/clipboardPlugin/clipboardPlugin.pro
+index 77e4e72..f8434cf 100644
+--- src/plugins/clipboardPlugin/clipboardPlugin.pro
++++ src/plugins/clipboardPlugin/clipboardPlugin.pro
+@@ -47,6 +47,6 @@ DISTFILES += clipboardPlugin.json
+ TRANSLATIONS += test_zh_CN.ts
+ 
+ unix {
+-    target.path = /usr/lib/ukui-sidebar/sidebar_clipboardPlugin_plugins
++    target.path = /usr/lib64/ukui-sidebar/sidebar_clipboardPlugin_plugins
+     INSTALLS += target
+ }
+diff --git src/plugins/feedback/feedback.pro src/plugins/feedback/feedback.pro
+index 025afa9..4e5f284 100644
+--- src/plugins/feedback/feedback.pro
++++ src/plugins/feedback/feedback.pro
+@@ -54,6 +54,6 @@ RESOURCES += \
+ DISTFILES +=
+ 
+ unix {
+-    target.path = /usr/lib/ukui-sidebar/sidebarSmallPlugins
++    target.path = /usr/lib64/ukui-sidebar/sidebarSmallPlugins
+     INSTALLS += target
+ }
+diff --git src/plugins/notification_plugin/notification_plugin.pro src/plugins/notification_plugin/notification_plugin.pro
+index f89e009..d3dee97 100644
+--- src/plugins/notification_plugin/notification_plugin.pro
++++ src/plugins/notification_plugin/notification_plugin.pro
+@@ -48,7 +48,7 @@ HEADERS += \
+ DISTFILES += notification_plugin.json  
+ 
+ unix {
+-    target.path = /usr/lib/ukui-sidebar/notification
++    target.path = /usr/lib64/ukui-sidebar/notification
+     INSTALLS += target
+ 
+     translation.path = /usr/share/ukui-sidebar-notification
+diff --git src/plugins/ukui_notebook/ukui_notebook.pro src/plugins/ukui_notebook/ukui_notebook.pro
+index 0835ea0..7d0d751 100644
+--- src/plugins/ukui_notebook/ukui_notebook.pro
++++ src/plugins/ukui_notebook/ukui_notebook.pro
+@@ -58,6 +58,6 @@ RESOURCES += \
+     ukui_notebook.qrc
+ 
+ unix {
+-    target.path = /usr/lib/ukui-sidebar/sidebarSmallPlugins
++    target.path = /usr/lib64/ukui-sidebar/sidebarSmallPlugins
+     INSTALLS += target
+ }

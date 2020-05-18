@@ -17,6 +17,8 @@ BuildRequires:  qt5-qtbase-devel
 BuildRequires:  qt5-qtmultimedia-devel
 BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  kf5-kidletime-devel
+BuildRequires:  qt5-qttools-devel 
+BuildRequires:  qt5-qttools
 BuildRequires:  qt5-linguist
 BuildRequires:  gsettings-qt-devel
 BuildRequires:  libXtst-devel
@@ -38,14 +40,20 @@ Provides: x-session-manager
 %setup -q
 
 %build
-%cmake
+%cmake3
 
 %install
 %make_install INSTALL_ROOT=%{buildroot}
+mkdir -p %{buildroot}/etc/X11/Xsession.d/  %{buildroot}/usr/share/doc/ukui-desktop-environment/
+cp debian/99ukui-environment %{buildroot}/etc/X11/Xsession.d/
+cp debian/copyright  %{buildroot}/usr/share/doc/ukui-desktop-environment/
+gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-desktop-environment/changelog.gz
 
 %files
 %{_datadir}/ukui/translations/ukui-session-manager/
 %{_datadir}/xsessions/ukui.desktop
 %{_datadir}/glib-2.0/schemas/org.ukui.session.gschema.xml
+%{_datadir}/doc/ukui-desktop-environment
 %{_bindir}/ukui-session
 %{_bindir}/ukui-session-tools
+%{_sysconfdir}/X11/Xsession.d/
