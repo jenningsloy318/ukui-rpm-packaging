@@ -9,4 +9,4 @@
 
 
  echo "build rpm package"
-rpmbuild --define  "_tmppath /root/tmp/" -ba /root/peony.spec   
+rpmbuild  -ba /root/peony.spec   
