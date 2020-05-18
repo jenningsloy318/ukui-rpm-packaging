@@ -53,7 +53,8 @@ gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-desktop-environment/cha
 %{_datadir}/ukui/translations/ukui-session-manager/
 %{_datadir}/xsessions/ukui.desktop
 %{_datadir}/glib-2.0/schemas/org.ukui.session.gschema.xml
-%{_datadir}/doc/ukui-desktop-environment
 %{_bindir}/ukui-session
 %{_bindir}/ukui-session-tools
 %{_sysconfdir}/X11/Xsession.d/
+%{_datadir}/doc/ukui-desktop-environment/changelog.gz
+%{_datadir}/doc/ukui-desktop-environment/copyright

@@ -119,11 +119,14 @@ gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-desktop-environment/cha
 cp debian/ukui-ubuntu.gschema.override %{buildroot}/usr/share/glib-2.0/schemas/
 
 %files 
-%{_docdir}
+%{_datadir}/doc/ukui-desktop-environment/changelog.gz
+%{_datadir}/doc/ukui-desktop-environment/copyright
 
 %files core
 %{_datadir}/glib-2.0/
-%{_docdir}
+%{_datadir}/doc/ukui-desktop-environment/changelog.gz
+%{_datadir}/doc/ukui-desktop-environment/copyright
 
 %files extras
-%{_docdir}
+%{_datadir}/doc/ukui-desktop-environment/changelog.gz
+%{_datadir}/doc/ukui-desktop-environment/copyright
