@@ -52,4 +52,5 @@ gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-desktop-environment/cha
 %{_bindir}/ukui-sidebar
 %{_libdir}/ukui-sidebar
 %{_datadir}/ukui-sidebar-notification
-%{_datadir}/doc
+%{_datadir}/doc/ukui-desktop-environment/changelog.gz
+%{_datadir}/doc/ukui-desktop-environment/copyright
