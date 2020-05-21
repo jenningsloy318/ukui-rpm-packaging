@@ -12,7 +12,7 @@ Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{na
 
 BuildArch:      x86_64
 
-Requires: libpeony-qt
+Requires: peony-libs
 Requires: peony-common
 Requires: kf5-kwindowsystem
 
@@ -49,7 +49,7 @@ Summary: file manager for the UKUI desktop (common files)
 
 
 
-%package -n libpeony2
+%package libs
 
 Summary: libraries for Peony components
 
@@ -63,7 +63,7 @@ BuildRequires:  poppler-qt5-devel
 BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  qt5-qtbase-private-devel
 
-%description -n libpeony2
+%description libs
  Peony is the official file manager for the UKUI desktop. It allows one
  to browse directories, preview files and launch applications associated
  with them. It is also responsible for handling the icons on the UKUI
@@ -73,14 +73,14 @@ BuildRequires:  qt5-qtbase-private-devel
  extensions.
 
 
-%package -n libpeony-devel
+%package devel
 
 Summary: libraries for Peony components (development files)
 
 
-Requires: libpeony2
+Requires: peony-libs
 
-%description -n libpeony-devel
+%description devel
  Peony is the official file manager for the UKUI desktop. It allows one
  to browse directories, preview files and launch applications associated
  with them. It is also responsible for handling the icons on the UKUI
@@ -101,22 +101,27 @@ Requires: libpeony2
 %install
 rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir -p %{buildroot}/usr/share/doc/peony/
-cp debian/copyright  %{buildroot}/usr/share/doc/peony/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/peony/changelog.gz
+mkdir  -p %{buildroot}/usr/share/man/man1/ %{buildroot}/usr/share/dbus-1/interfaces/ %{buildroot}/usr/share/dbus-1/services/
+cp peony-qt-desktop/freedesktop-dbus-interfaces.xml %{buildroot}/usr/share/dbus-1/interfaces/freedesktop-dbus-interfaces.xml
+cp peony-qt-desktop/org.ukui.freedesktop.FileManager1.service %{buildroot}/usr/share/dbus-1/services/org.ukui.freedesktop.FileManager1.service
+gzip src/man/peony.1 > %{buildroot}/usr/share/man/man1/peony.1.gz
+gzip peony-qt-desktop/man/peony-qt-desktop.1 > %{buildroot}/usr/share/man/man1/peony-qt-desktop.1.gz
 
 %files
 %{_bindir}/peony
 %{_bindir}/peony-qt-desktop
 %{_datadir}/applications/peony.desktop
-%{_datadir}/peony-qt/peony-qt_zh_CN.ts
-%{_datadir}/peony-qt-desktop/peony-qt-desktop_zh_CN.ts
 
 %files common 
-%{_datadir}/doc/peony
+%{_mandir}/man1/peony-qt-desktop.1.gz
+%{_mandir}/man1/peony.1.gz
+%{_datadir}/peony-qt/peony-qt_zh_CN.ts
+%{_datadir}/peony-qt-desktop/peony-qt-desktop_zh_CN.ts
+%{_datadir}/dbus-1/interfaces/freedesktop-dbus-interfaces.xml
+%{_datadir}/dbus-1/services/org.ukui.freedesktop.FileManager1.service
 
-%files -n  libpeony2
-%{_datadir}/doc
+
+%files libs
 %{_libdir}/libpeony.so
 %{_libdir}/libpeony.so.2
 %{_libdir}/libpeony.so.2.1
@@ -125,5 +130,5 @@ gzip  debian/changelog > %{buildroot}/usr/share/doc/peony/changelog.gz
 %{_datadir}/libpeony-qt/libpeony-qt_zh_CN.ts
 
 
-%files -n libpeony-devel
+%files devel
 %{_includedir}/peony-qt
