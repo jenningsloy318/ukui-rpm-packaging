@@ -7,12 +7,12 @@ Release:        1%{?dist}
 Summary:        file Manager for the UKUI desktop
 
 License:        GPLv2+
-URL:            https://github.com/ukui/ukui-session-manager
+URL:            https://github.com/ukui/%{name}
 Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 
-Requires: peony-libpeony-qt
+Requires: libpeony-qt
 Requires: peony-common
 Requires: kf5-kwindowsystem
 
@@ -49,7 +49,7 @@ Summary: file manager for the UKUI desktop (common files)
 
 
 
-%package libpeony-qt
+%package -n libpeony2
 
 Summary: libraries for Peony components
 
@@ -63,7 +63,7 @@ BuildRequires:  poppler-qt5-devel
 BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  qt5-qtbase-private-devel
 
-%description libpeony-qt
+%description -n libpeony2
  Peony is the official file manager for the UKUI desktop. It allows one
  to browse directories, preview files and launch applications associated
  with them. It is also responsible for handling the icons on the UKUI
@@ -73,14 +73,14 @@ BuildRequires:  qt5-qtbase-private-devel
  extensions.
 
 
-%package libpeony-qt-devel
+%package -n libpeony-devel
 
 Summary: libraries for Peony components (development files)
 
 
-Requires: libpeony-qt
+Requires: libpeony2
 
-%description libpeony-qt-devel
+%description -n libpeony-devel
  Peony is the official file manager for the UKUI desktop. It allows one
  to browse directories, preview files and launch applications associated
  with them. It is also responsible for handling the icons on the UKUI
@@ -101,35 +101,29 @@ Requires: libpeony-qt
 %install
 rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir -p %{buildroot}/usr/share/doc/ukui-desktop-environment/
-cp debian/copyright  %{buildroot}/usr/share/doc/ukui-desktop-environment/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-desktop-environment/changelog.gz
+mkdir -p %{buildroot}/usr/share/doc/peony/
+cp debian/copyright  %{buildroot}/usr/share/doc/peony/
+gzip  debian/changelog > %{buildroot}/usr/share/doc/peony/changelog.gz
 
 %files
 %{_bindir}/peony
 %{_bindir}/peony-qt-desktop
-%{_datadir}/doc/ukui-desktop-environment/changelog.gz
-%{_datadir}/doc/ukui-desktop-environment/copyright
 %{_datadir}/applications/peony.desktop
 %{_datadir}/peony-qt/peony-qt_zh_CN.ts
 %{_datadir}/peony-qt-desktop/peony-qt-desktop_zh_CN.ts
 
 %files common 
-%{_datadir}/doc
+%{_datadir}/doc/peony
 
-%files libpeony-qt
+%files -n  libpeony2
 %{_datadir}/doc
 %{_libdir}/libpeony.so
 %{_libdir}/libpeony.so.2
 %{_libdir}/libpeony.so.2.1
 %{_libdir}/libpeony.so.2.1.0
 %{_libdir}/pkgconfig/peony.pc
-%{_datadir}/doc/ukui-desktop-environment/changelog.gz
-%{_datadir}/doc/ukui-desktop-environment/copyright
 %{_datadir}/libpeony-qt/libpeony-qt_zh_CN.ts
 
 
-%files libpeony-qt-devel
-%{_datadir}/doc/ukui-desktop-environment/changelog.gz
-%{_datadir}/doc/ukui-desktop-environment/copyright
+%files -n libpeony-devel
 %{_includedir}/peony-qt
