@@ -60,7 +60,7 @@ Suggests: ukui-window-switch
 %build
 mkdir build 
 cd build 
-%{cmake3} .
+%{cmake3} ..
 
 
 %install
