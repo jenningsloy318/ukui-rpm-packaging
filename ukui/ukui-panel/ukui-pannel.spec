@@ -12,7 +12,7 @@ URL:            https://github.com/ukui/%{name}
 Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
-
+BuildRequires:  peony-devel
 BuildRequires:  SAASound-devel
 BuildRequires:  dbusmenu-qt5-devel
 BuildRequires:  glib2-devel
@@ -91,4 +91,5 @@ gzip man/ukui-flash-disk.1 > %{buildroot}/usr/share/man/man1/ukui-flash-disk.1.g
 %{_datadir}/ukui-panel/
 %{_datadir}/ukui/panel.conf
 %{_datadir}/ukui/panel.qss
+%{_datadir}/ukui/ukui-panel_zh_CN.qm
 %{_datadir}/ukui/ukui-panel/
