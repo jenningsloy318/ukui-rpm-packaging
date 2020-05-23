@@ -59,12 +59,17 @@ find . -name "*.pro" | xargs sed -i '/inst2.path/s/lib/lib64/g'
 
 %build
   %{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ukui-control-center.pro	
-  make
+  %{make_build}
+
 %install
 rm -rf %{buildroot} 
 %{make_install}  INSTALL_ROOT=%{buildroot} 
+mkdir -p %{buildroot}/usr/share/dbus-1/system-services/ %{buildroot}/etc/dbus-1/system.d/
+cp registeredQDbus/conf/com.control.center.qt.systemdbus.service %{buildroot}/usr/share/dbus-1/system-services/
+cp registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{buildroot}/etc/dbus-1/system.d/
 
 %files
+%{_sysconfdir}/dbus-1/system.d/com.control.center.qt.systemdbus.conf
 %{_bindir}/launchSysDbus
 %{_bindir}/ukui-control-center
 %{_libdir}/control-center/pluginlibs
@@ -75,4 +80,5 @@ rm -rf %{buildroot}
 %{_datadir}/glib-2.0/schemas/org.ukui.control-center.panel.plugins.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.ukui.control-center.wifi.switch.gschema.xml
 %{_datadir}/applications/ukui-control-center.desktop
+%{_datadir}/dbus-1/system-services/com.control.center.qt.systemdbus.service
 %{_datadir}/ukui/faces/
