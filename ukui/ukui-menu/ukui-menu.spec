@@ -45,12 +45,13 @@ Requires:  libX11
 %install
 rm -rf $RPM_BUILD_ROOT
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir -p %{buildroot}/usr/share/doc/ukui-desktop-environment/
-cp debian/copyright  %{buildroot}/usr/share/doc/ukui-desktop-environment/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-desktop-environment/changelog.gz
-
+mkdir -p %{buildroot}/usr/share/doc/ukui-menu/ %{buildroot}/usr/share/man/man1/
+cp debian/copyright  %{buildroot}/usr/share/doc/ukui-menu/
+gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-menu/changelog.gz
+gzip man/ukui-menu.1  > %{buildroot}/usr/share/man/man1/ukui-menu.1.gz
 %files
 %{_sysconfdir}/xdg/autostart/ukui-menu.desktop
 %{_bindir}/ukui-menu
-%{_datadir}/doc/ukui-desktop-environment/changelog.gz
-%{_datadir}/doc/ukui-desktop-environment/copyright
+%{_datadir}/doc/ukui-menu/changelog.gz
+%{_datadir}/doc/ukui-menu/copyright
+%{_datadir}/man/man1/ukui-menu.1.gz
