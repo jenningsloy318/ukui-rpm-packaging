@@ -44,10 +44,12 @@ Provides: x-session-manager
 
 %install
 %make_install INSTALL_ROOT=%{buildroot}
-mkdir -p %{buildroot}/etc/X11/Xsession.d/  %{buildroot}/usr/share/doc/ukui-desktop-environment/
+mkdir -p %{buildroot}/etc/X11/Xsession.d/  %{buildroot}/usr/share/doc/ukui-session-manager/  %{buildroot}/usr/share/man/man1/
 cp debian/99ukui-environment %{buildroot}/etc/X11/Xsession.d/
-cp debian/copyright  %{buildroot}/usr/share/doc/ukui-desktop-environment/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-desktop-environment/changelog.gz
+cp debian/copyright  %{buildroot}/usr/share/doc/ukui-session-manager/
+gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-session-manager/changelog.gz
+gzip man/ukui-session.1 >  %{buildroot}/usr/share/man/man1/ukui-session.1.gz 
+gzip man/ukui-session-tools.1 > %{buildroot}/usr/share/man/man1/ukui-session-tools.1.gz
 
 %files
 %{_datadir}/ukui/translations/ukui-session-manager/
@@ -55,6 +57,8 @@ gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-desktop-environment/cha
 %{_datadir}/glib-2.0/schemas/org.ukui.session.gschema.xml
 %{_bindir}/ukui-session
 %{_bindir}/ukui-session-tools
-%{_sysconfdir}/X11/Xsession.d/
-%{_datadir}/doc/ukui-desktop-environment/changelog.gz
-%{_datadir}/doc/ukui-desktop-environment/copyright
+%{_sysconfdir}/X11/Xsession.d/99ukui-environment
+%{_datadir}/doc/ukui-session-manager/changelog.gz
+%{_datadir}/doc/ukui-session-manager/copyright
+%{_datadir}/man/man1/ukui-session.1.gz 
+%{_datadir}/man/man1/ukui-session-tools.1.gz

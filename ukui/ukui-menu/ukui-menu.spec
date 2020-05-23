@@ -52,6 +52,5 @@ gzip man/ukui-menu.1  > %{buildroot}/usr/share/man/man1/ukui-menu.1.gz
 %files
 %{_sysconfdir}/xdg/autostart/ukui-menu.desktop
 %{_bindir}/ukui-menu
-%{_datadir}/doc/ukui-menu/changelog.gz
-%{_datadir}/doc/ukui-menu/copyright
+%{_datadir}/doc/ukui-menu/
 %{_datadir}/man/man1/ukui-menu.1.gz

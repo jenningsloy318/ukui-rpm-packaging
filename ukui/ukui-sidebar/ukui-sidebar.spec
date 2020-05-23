@@ -43,14 +43,13 @@ patch -p0 < plugin-path.patch
 %install
 rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir -p %{buildroot}/usr/share/doc/ukui-desktop-environment/
-cp debian/copyright  %{buildroot}/usr/share/doc/ukui-desktop-environment/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-desktop-environment/changelog.gz
+mkdir -p %{buildroot}/usr/share/doc/ukui-sidebar/
+cp debian/copyright  %{buildroot}/usr/share/doc/ukui-sidebar/
+gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-sidebar/changelog.gz
 
 %files
 %{_sysconfdir}/xdg/autostart/ukui-sidebar.desktop
 %{_bindir}/ukui-sidebar
 %{_libdir}/ukui-sidebar
 %{_datadir}/ukui-sidebar-notification
-%{_datadir}/doc/ukui-desktop-environment/changelog.gz
-%{_datadir}/doc/ukui-desktop-environment/copyright
+%{_datadir}/doc/ukui-sidebar/

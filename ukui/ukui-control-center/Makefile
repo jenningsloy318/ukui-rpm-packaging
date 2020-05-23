@@ -8,6 +8,6 @@ build:
 
 clean:
 	@echo ">> clean up containers"
-	$(DOCKER) container cleanup -a
+	$(DOCKER) container rm -a
 
 .PHONY: build  clean

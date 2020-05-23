@@ -64,9 +64,11 @@ find . -name "*.pro" | xargs sed -i '/inst2.path/s/lib/lib64/g'
 %install
 rm -rf %{buildroot} 
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir -p %{buildroot}/usr/share/dbus-1/system-services/ %{buildroot}/etc/dbus-1/system.d/
+mkdir -p %{buildroot}/usr/share/dbus-1/system-services/ %{buildroot}/etc/dbus-1/system.d/ %{buildroot}/usr/share/doc/ukui-control-center
 cp registeredQDbus/conf/com.control.center.qt.systemdbus.service %{buildroot}/usr/share/dbus-1/system-services/
 cp registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{buildroot}/etc/dbus-1/system.d/
+cp debian/copyright  %{buildroot}/usr/share/doc/ukui-control-center/
+gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-control-center/changelog.gz
 
 %files
 %{_sysconfdir}/dbus-1/system.d/com.control.center.qt.systemdbus.conf
@@ -82,3 +84,4 @@ cp registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{buildroot}/etc/d
 %{_datadir}/applications/ukui-control-center.desktop
 %{_datadir}/dbus-1/system-services/com.control.center.qt.systemdbus.service
 %{_datadir}/ukui/faces/
+%{_datadir}/doc/ukui-control-center

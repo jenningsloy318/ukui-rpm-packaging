@@ -101,12 +101,14 @@ Requires: peony-libs
 %install
 rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir  -p %{buildroot}/usr/share/man/man1/ %{buildroot}/usr/share/dbus-1/interfaces/ %{buildroot}/usr/share/dbus-1/services/
+mkdir  -p %{buildroot}/usr/share/man/man1/ %{buildroot}/usr/share/dbus-1/interfaces/ %{buildroot}/usr/share/dbus-1/services/  %{buildroot}/usr/share/doc/peony
 cp peony-qt-desktop/freedesktop-dbus-interfaces.xml %{buildroot}/usr/share/dbus-1/interfaces/freedesktop-dbus-interfaces.xml
 cp peony-qt-desktop/org.ukui.freedesktop.FileManager1.service %{buildroot}/usr/share/dbus-1/services/org.ukui.freedesktop.FileManager1.service
 gzip src/man/peony.1 > %{buildroot}/usr/share/man/man1/peony.1.gz
 gzip peony-qt-desktop/man/peony-qt-desktop.1 > %{buildroot}/usr/share/man/man1/peony-qt-desktop.1.gz
 cp data/*.desktop %{buildroot}/usr/share/applications/
+cp debian/copyright  %{buildroot}/usr/share/doc/peony/
+gzip  debian/changelog > %{buildroot}/usr/share/doc/peony/changelog.gz
 
 
 %files
@@ -125,16 +127,16 @@ cp data/*.desktop %{buildroot}/usr/share/applications/
 %{_datadir}/peony-qt-desktop/peony-qt-desktop_zh_CN.ts
 %{_datadir}/dbus-1/interfaces/freedesktop-dbus-interfaces.xml
 %{_datadir}/dbus-1/services/org.ukui.freedesktop.FileManager1.service
-
+%{_datadir}/doc/peony/
 
 %files libs
 %{_libdir}/libpeony.so
 %{_libdir}/libpeony.so.2
 %{_libdir}/libpeony.so.2.1
 %{_libdir}/libpeony.so.2.1.0
-%{_libdir}/pkgconfig/peony.pc
 %{_datadir}/libpeony-qt/libpeony-qt_zh_CN.ts
 
 
 %files devel
 %{_includedir}/peony-qt
+%{_libdir}/pkgconfig/peony.pc

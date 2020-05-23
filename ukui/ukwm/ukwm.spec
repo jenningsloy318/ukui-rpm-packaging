@@ -154,7 +154,8 @@ Summary: GObject introspection data for Ukwm
 %prep
 
 %setup -q
-./autogen.sh --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib64 -enable-introspection --enable-compile-warnings=yes
+./autogen.sh --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib64 -enable-introspection --enable-compile-warnings=yes 	--enable-egl-device 	--enable-wayland 	--enable-native-backend
+
 sed -i 's/GETTEXT_MACRO_VERSION = 0.19/GETTEXT_MACRO_VERSION = 0.20/' po/Makefile.in.in
 
 %build
@@ -163,7 +164,8 @@ sed -i 's/GETTEXT_MACRO_VERSION = 0.19/GETTEXT_MACRO_VERSION = 0.20/' po/Makefil
 rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
 mkdir -p %{buildroot}/usr/share/doc/ukwm/
-
+cp debian/copyright  %{buildroot}/usr/share/doc/ukwm/
+gzip  debian/changelog > %{buildroot}/usr/share/doc/ukwm/changelog.gz
 %files
 %{_bindir}/ukwm
 %{_datadir}/applications/ukwm.desktop
@@ -284,6 +286,7 @@ mkdir -p %{buildroot}/usr/share/doc/ukwm/
 %{_datadir}/locale/zh_CN/LC_MESSAGES/ukwm.mo
 %{_datadir}/locale/zh_HK/LC_MESSAGES/ukwm.mo
 %{_datadir}/locale/zh_TW/LC_MESSAGES/ukwm.mo
+%{_datadir}/doc/ukwm/
 %{_datadir}/man/man1/ukwm.1.gz
 %{_datadir}/gnome-control-center/keybindings/50-ukwm-navigation.xml
 %{_datadir}/gnome-control-center/keybindings/50-ukwm-system.xml
