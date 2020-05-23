@@ -106,11 +106,17 @@ cp peony-qt-desktop/freedesktop-dbus-interfaces.xml %{buildroot}/usr/share/dbus-
 cp peony-qt-desktop/org.ukui.freedesktop.FileManager1.service %{buildroot}/usr/share/dbus-1/services/org.ukui.freedesktop.FileManager1.service
 gzip src/man/peony.1 > %{buildroot}/usr/share/man/man1/peony.1.gz
 gzip peony-qt-desktop/man/peony-qt-desktop.1 > %{buildroot}/usr/share/man/man1/peony-qt-desktop.1.gz
+cp data/*.desktop %{buildroot}/usr/share/applications/
+
 
 %files
 %{_bindir}/peony
 %{_bindir}/peony-qt-desktop
-%{_datadir}/applications/peony.desktop
+%{_datadir}/applications/peony.desktop 
+%{_datadir}/applications/peony-computer.desktop 
+%{_datadir}/applications/peony-home.desktop 
+%{_datadir}/applications/peony-trash.desktop 
+%{_datadir}/applications/peony-desktop.desktop
 
 %files common 
 %{_mandir}/man1/peony-qt-desktop.1.gz
