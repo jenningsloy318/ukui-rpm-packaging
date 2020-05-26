@@ -319,7 +319,7 @@ gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 %files
 %{_sysconfdir}/xdg/ukui-kwinrc
 %{_bindir}
-%{_libexecdir}/ukui_kwin_rules_dialog
+%{_libdir}/libexec/ukui_kwin_rules_dialog
 %{_libdir}/libexec/ukui_kwin_killer_helper
 
 %files common 
