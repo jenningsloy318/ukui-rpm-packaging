@@ -31,6 +31,7 @@ BuildRequires: qt5-qtsensors-devel
 BuildRequires: qt5-qttools-static
 BuildRequires: gsettings-qt-devel
 BuildRequires: poppler-qt5-devel
+BuildRequires: qt5-qtbase-static
 
 
 # kf5 
@@ -74,20 +75,19 @@ BuildRequires: systemd-devel
 BuildRequires: libdrm-devel
 BuildRequires: mesa-libgbm-devel
 BuildRequires: libepoxy-devel
-
-
+BuildRequires: libICE-devel
+BuildRequires: libSM-devel
 # Wayland 
 BuildRequires: mesa-libEGL-devel
 BuildRequires: wayland-devel
-BuildRequires: mesa-libwayland-egl-devel
 BuildRequires: libwayland-client-devel
 BuildRequires: libwayland-server-devel
 BuildRequires: libwayland-cursor-devel
-BuildRequires: mesa-libwayland-egl-devel
 
 
 BuildRequires: kdecoration-devel
 BuildRequires: kscreenlocker-devel
+BuildRequires: libcap-devel
 
 %description
  This package is a transitional dummy to depend on the renamed ukui-kwin-x11 and
