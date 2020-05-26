@@ -64,10 +64,12 @@ BuildRequires: kf5-kwindowsystem-devel
 
 # X11/OpenGL
 BuildRequires: libxcb-devel
+BuildRequires: xcb-util-devel
 BuildRequires: xcb-util-cursor-devel
 BuildRequires: xcb-util-keysyms-devel
 BuildRequires: xcb-util-image-devel
 BuildRequires: xcb-util-wm-devel
+BuildRequires: xcb-util-renderutil-devel
 BuildRequires: libxkbcommon-devel
 BuildRequires: libxkbcommon-x11-devel
 BuildRequires: libinput-devel
@@ -310,8 +312,8 @@ Summary: UKUI window manager effects library
 %setup -q
 %build
 %{cmake3} .
-%{make_build}
-
+# %{make_build}
+make 
 %install
 rm -rf %{buildroot} 
 %{make_install}  INSTALL_ROOT=%{buildroot} 
