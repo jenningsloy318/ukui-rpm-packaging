@@ -32,7 +32,7 @@ BuildRequires: qt5-qttools-static
 BuildRequires: gsettings-qt-devel
 BuildRequires: poppler-qt5-devel
 BuildRequires: qt5-qtbase-static
-
+BuildRequires: qt5-qtbase-private-devel
 
 # kf5 
 BuildRequires: kf5-kconfigwidgets-devel
@@ -157,12 +157,7 @@ Provides: ukui-kwin
 %description wayland
  Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
  gives you complete control over your windows, making sure
- they're not in the way but aid you in your task. It paints
- the window decoration, the bar on top of every window with
- (configurable) buttons like close, maximize and minimize.
- It also handles placing of windows and switching between them.
- .
- This package provides the wayland version, which is still a work in progress
+ they're not in the way but aid you in your task. It paintsqt5-qtbase-guiprogress
  project, and is available as a PREVIEW release. Don't expect the same
  stability as with the x11 version.
 
@@ -312,8 +307,8 @@ Summary: UKUI window manager effects library
 %setup -q
 %build
 %{cmake3} .
-# %{make_build}
-make 
+%{make_build}
+#make 
 %install
 rm -rf %{buildroot} 
 %{make_install}  INSTALL_ROOT=%{buildroot} 
@@ -322,4 +317,66 @@ cp debian/copyright  %{buildroot}/usr/share/doc/ukui-kwin/copyright
 gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 
 %files
+%{_sysconfdir}/xdg/ukui-kwinrc
 %{_bindir}
+%{_libexecdir}/ukui_kwin_rules_dialog
+%{_libdir}/libexec/ukui_kwin_killer_helper
+
+%files common 
+%{_datadir}/ukui-kwin
+%{_datadir}/qlogging-categories5
+%{_datadir}/locale/bo/LC_MESSAGES/kcm-ukui-kwin-scripts.mo
+%{_datadir}/locale/bo/LC_MESSAGES/kcm_ukui-kwin_effects.mo
+%{_datadir}/locale/bo/LC_MESSAGES/kcm_ukui-kwin_virtualdesktops.mo
+%{_datadir}/locale/bo/LC_MESSAGES/kcm_ukuikwindecoration.mo
+%{_datadir}/locale/bo/LC_MESSAGES/kcm_ukuikwintabbox.mo
+%{_datadir}/locale/bo/LC_MESSAGES/kcmukuikwincommon.mo
+%{_datadir}/locale/bo/LC_MESSAGES/kcmukuikwincompositing.mo
+%{_datadir}/locale/bo/LC_MESSAGES/kcmukuikwinrules.mo
+%{_datadir}/locale/bo/LC_MESSAGES/kcmukuikwinscreenedges.mo
+%{_datadir}/locale/bo/LC_MESSAGES/kcmukwm.mo
+%{_datadir}/locale/bo/LC_MESSAGES/ukui-kwin.mo
+%{_datadir}/locale/bo/LC_MESSAGES/ukui-kwin_clients.mo
+%{_datadir}/locale/bo/LC_MESSAGES/ukui-kwin_effects.mo
+%{_datadir}/locale/bo/LC_MESSAGES/ukui-kwin_scripting.mo
+%{_datadir}/locale/bo/LC_MESSAGES/ukui-kwin_scripts.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/kcm-ukui-kwin-scripts.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/kcm_ukui-kwin_effects.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/kcm_ukui-kwin_virtualdesktops.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/kcm_ukuikwindecoration.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/kcm_ukuikwintabbox.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/kcmukuikwincommon.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/kcmukuikwincompositing.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/kcmukuikwinrules.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/kcmukuikwinscreenedges.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/kcmukwm.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/ukui-kwin.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/ukui-kwin_clients.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/ukui-kwin_effects.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/ukui-kwin_scripting.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/ukui-kwin_scripts.mo
+%{_datadir}/kservicetypes5
+%{_datadir}/kservices5
+%{_datadir}/kpackage
+%{_datadir}/knsrcfiles
+%{_datadir}/kconf_update
+%{_datadir}/icons/hicolor/16x16/apps/ukui-kwin.png
+%{_datadir}/icons/hicolor/32x32/apps/ukui-kwin.png
+%{_datadir}/icons/hicolor/48x48/apps/ukui-kwin.png
+%{_datadir}/doc/ukui-kwin/
+%{_datadir}dbus-1/interfaces/org.ukui.KWin.VirtualDesktopManager.xml
+%{_datadir}dbus-1/interfaces/org.ukui.KWin.xml
+%{_datadir}dbus-1/interfaces/org.ukui.kwin.ColorCorrect.xml
+%{_datadir}dbus-1/interfaces/org.ukui.kwin.Compositing.xml
+%{_datadir}dbus-1/interfaces/org.ukui.kwin.Effects.xml
+%{_datadir}/config.kcfg/ukui-kwin.kcfg
+%{_datadir}/config.kcfg/ukui-kwin_colorcorrect.kcfg
+%{_datadir}/config.kcfg/ukuikwindecorationsettings.kcfg
+%{_datadir}/config.kcfg/ukuivirtualdesktopssettings.kcfg
+%{_datadir}/aurorae/themes/Ukui-classic/
+%{_datadir}/aurorae/themes/Ukui-classic-dark/
+%{_datadir}/applications/ukui-kwin.desktop
+
+
+%files devel
+%{_includedir}/ukui-kwin/
