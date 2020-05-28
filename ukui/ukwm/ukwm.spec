@@ -62,9 +62,13 @@ BuildRequires: libglvnd-devel
 BuildRequires: libglvnd-core-devel
 
 Recommends: ukui-window-switch
-Suggests: ukui-control-center,
+Suggests: ukui-control-center
 Suggests: xdg-user-dirs
 
+Requires: ukwm-common
+Requires: ukui-settings-daemon
+Requires: gsettings-desktop-schemas
+Requires: zenity
 
 %description 
  Ukwm is a small window manager, using GTK+ and Clutter to do
@@ -120,6 +124,25 @@ Summary: shared files for the Ukwm window manager
 Summary: Development files for the Ukwm window manager
 
 Requires: ukwm-libs
+Requires: gtk3-devel
+Requires: cairo-devel 
+Requires: glib2-devel
+Requires: atk-devel
+Requires: pango-devel
+Requires: json-glib-devel
+Requires: mesa-libEGL-devel
+Requires: wayland-devel
+Requires: libdrm-devel 
+Requires: mesa-libgbm-devel
+Requires: libinput-devel
+Requires: libgudev-devel
+Requires: libXext-devel
+Requires: libXdamage-devel
+Requires: libXcomposite-devel
+Requires: libXi-devel
+Requires: gdk-pixbuf2-devel
+Requires: libXfixes-devel
+Requires: libXrandr-devel
 
 %description devel
  Ukwm is a small window manager, using GTK+ and Clutter to do

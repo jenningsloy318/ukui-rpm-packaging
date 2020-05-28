@@ -56,13 +56,22 @@ Requires:  ukui-menu
 Requires:  ukui-sidebar
 Requires:  ukui-control-center
 Requires:  ukui-session-manager
-Requires:  gvfs-backends
-Requires:  gvfs-bin
+Requires:  gvfs-smb
+Requires:  gvfs-afc
+Requires:  gvfs-afp
+Requires:  gvfs-goa
+
+Requires:  gvfs-mtp
+Requires:  gvfs-nfs
+Requires:  gvfs-fuse
+Requires:  gvfs-gphoto2
+Requires:  gvfs-archive
+Requires:  gvfs
 Requires:  ukwm
 Requires:  ukui-panel
 Requires:  mate-desktop
 Requires:  mate-notification-daemon
-Requires:  ukui-polkit
+Requires:  mate-polkit
 Requires:  ukui-settings-daemon
 Requires:  mate-terminal
 Requires:  ukui-themes

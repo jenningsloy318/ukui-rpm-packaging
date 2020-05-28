@@ -11,6 +11,7 @@ Summary:        Peony qt extensions (common files)
 License:        GPLv2+
 URL:            https://github.com/ukui/ukui-session-manager
 Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source1:       lib-path.patch
 
 BuildArch:      x86_64
 
@@ -23,9 +24,9 @@ BuildRequires:  qt5-qttools-devel
 BuildRequires:  poppler-qt5-devel
 BuildRequires:  peony-devel
 
-Requires:  parchives
-Requires:  peony-share 
-Requires:  peony-open-terminal
+Requires:  peony-extensions-parchives
+Requires:  peony-extensions-share 
+Requires:  peony-extensions-open-terminal
 
 
 %description
@@ -76,13 +77,12 @@ Requires:  mate-terminal
 
 %prep
 %setup -q
-find . -name "*.pro" | xargs sed -i '/target.path/s/lib/lib64/g' 
-find . -name "CMakeLists.txt" |  xargs sed -i '/DESTINATION/s/lib/lib64/g' 
+cp %{SOURCE1} .
+patch -p0 < lib-path.patch
 
 %build
 %{cmake3} .
 %{make_build}
-
 # CMakeLists.txt DON'T contain install clause
 %install
 rm -rf $RPM_BUILD_ROOT

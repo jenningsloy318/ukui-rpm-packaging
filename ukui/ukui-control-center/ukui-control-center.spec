@@ -10,6 +10,7 @@ Summary:        utilities to configure the UKUI desktop
 License:        GPLv2+
 URL:            https://github.com/ukui/%{name}
 Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source1:       lib-path.patch
 
 BuildArch:      x86_64
 
@@ -34,17 +35,16 @@ BuildRequires:  libkscreen-qt5-devel
 BuildRequires:  kf5-ki18n-devel
 Recommends: edid-decode
 Recommends: redshift
-Recommends: qml-module-qtquick-controls
+Recommends: qt5-qtquickcontrols
 
 
 Suggests: gsettings-desktop-schemas
-Suggests: mate-desktop-common
+Suggests: mate-common
 Suggests: ukui-power-manager
 Suggests: ukui-session-manager
 Suggests: ukui-screensaver
 Suggests: ukui-settings-daemon
-Suggests: qml-module-qtgraphicaleffects
-
+Suggests: qt5-qtgraphicaleffects
 
 %description
 utilities to configure the UKUI desktop
@@ -55,7 +55,8 @@ utilities to configure the UKUI desktop
 
 %prep
 %setup -q
-find . -name "*.pro" | xargs sed -i '/inst2.path/s/lib/lib64/g' 
+cp %{SOURCE1} .
+patch -p0 < lib-path.patch
 
 %build
   %{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ukui-control-center.pro	

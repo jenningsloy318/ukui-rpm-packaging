@@ -38,9 +38,8 @@ BuildRequires:  mate-desktop-devel
 BuildRequires:  mate-utils-devel
 BuildRequires:  mate-common
 
-Requires: mate-desktop-common
-Requires: ukui-polkit
-Requires: mate-desktop-common
+Requires: mate-common
+Requires: mate-polkit
 Requires: ukui-settings-daemon-common
 Requires: xorg-x11-server-utils
 

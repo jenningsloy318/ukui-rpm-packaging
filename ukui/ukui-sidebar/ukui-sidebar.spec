@@ -32,7 +32,6 @@ storage information.
 %prep
 
 %setup -q
-#find . -name "*.pro" | xargs sed -i '/target.path/s/lib/lib64/g' 
 cp %{SOURCE1} .
 patch -p0 < plugin-path.patch
  
