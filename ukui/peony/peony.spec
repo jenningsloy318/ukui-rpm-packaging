@@ -2,13 +2,14 @@
 %undefine _disable_source_fetch
 
 Name:           peony
-Version:        2.1.2
+Version:        2.2.0
 Release:        1%{?dist}
 Summary:        file Manager for the UKUI desktop
 
 License:        GPLv2+
 URL:            https://github.com/ukui/%{name}
 Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source1:       lib-path.patch
 
 BuildArch:      x86_64
 
@@ -93,7 +94,10 @@ Requires: peony-libs
 %prep
 
 %setup -q
- 
+  cp %{SOURCE1} .
+  patch -p0 < lib-path.patch
+
+
 %build
   %{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  peony-qt.pro
   %{make_build}
@@ -119,7 +123,7 @@ gzip  debian/changelog > %{buildroot}/usr/share/doc/peony/changelog.gz
 %{_datadir}/applications/peony-home.desktop 
 %{_datadir}/applications/peony-trash.desktop 
 %{_datadir}/applications/peony-desktop.desktop
-
+%{_datadir}/peony-qt-desktop/peony-qt-desktop_tr.ts
 %files common 
 %{_mandir}/man1/peony-qt-desktop.1.gz
 %{_mandir}/man1/peony.1.gz
