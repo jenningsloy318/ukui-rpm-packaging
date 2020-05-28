@@ -16,3 +16,14 @@ ukui packages:
   ```
   docker  run  --privileged -v `pwd`:/root docker.io/jenningsloy318/ukui-builder:f32  bash  /root/build.sh 
   ```
+
+
+## issues
+1.  ukui-control-center can be launched, but no response when click the items
+2.  ukui-panel with errors 
+      ```
+      (0x7ffc66705c50) Warning: "Icon Theme not set. Fallbacking to Oxygen, if installed"
+      (0x7ffc66705c50) Warning: "Fallback Icon Theme (Oxygen) not found"
+      (0x7ffc66705c50) Warning: QCoreApplication::postEvent: Unexpected null receiver
+      ```
+3. ukui-indicators build requires libukuipanelapplet-4.0, but ukui-panel don't provide this 
