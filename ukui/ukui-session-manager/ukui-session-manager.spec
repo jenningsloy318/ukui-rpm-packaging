@@ -25,7 +25,12 @@ BuildRequires:  libXtst-devel
 BuildRequires:  libqtxdg-devel
 BuildRequires:  systemd-devel
 
-Requires: ukui-themes
+Requires: peony
+Requires: ukwm
+Requires: ukui-panel
+Requires: ukui-polkit
+Requires: ukui-screensaver
+Requires: ukui-settings-daemon
 
 Provides: x-session-manager
 

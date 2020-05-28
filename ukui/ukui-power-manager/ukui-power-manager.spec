@@ -44,6 +44,13 @@ BuildRequires: xmlto
 BuildRequires: yelp-tools
 BuildRequires: libgnome-keyring-devel
 
+Requires: dbus-x11
+Requires: mate-notification-daemon
+Requires: ukui-power-manager-common
+Requires: systemd
+Requires: polkit-gnome
+Requires: upower
+
 %description
  UKUI Power Manager is a session daemon for the UKUI desktop
  that takes care of system or desktop events related to power, and
@@ -78,8 +85,7 @@ Summary:  power management tool for the UKUI desktop (common files)
 %setup -q
  ./autogen.sh --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib64 -enable-introspection --enable-compile-warnings=yes  --enable-egl-device     --enable-wayland        --enable-native-backend
 %build
-make
-#  %{make_build}
+ %{make_build}
 %install
 rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
