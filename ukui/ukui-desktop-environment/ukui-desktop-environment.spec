@@ -71,7 +71,7 @@ Requires:  ukwm
 Requires:  ukui-panel
 Requires:  mate-desktop
 Requires:  mate-notification-daemon
-Requires:  mate-polkit
+Requires:  ukui-polkit
 Requires:  ukui-settings-daemon
 Requires:  mate-terminal
 Requires:  ukui-themes

@@ -48,7 +48,7 @@ Requires: dbus-x11
 Requires: mate-notification-daemon
 Requires: ukui-power-manager-common
 Requires: systemd
-Requires: polkit-gnome
+Requires: ukui-polkit
 Requires: upower
 
 %description
