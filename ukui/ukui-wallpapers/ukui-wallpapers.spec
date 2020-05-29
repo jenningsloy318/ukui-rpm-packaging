@@ -13,8 +13,8 @@ URL:            https://github.com/ukui/ukui-wallpapers
 Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
-
-
+BuildRequires:  ninja-build
+BuildRequires:  meson
 %description
  The default UKUI wallpaper. Outstanding wallpapers selected
  from Ubuntu Kylin 20.04 Wallpaper Contest. These wallpapers
