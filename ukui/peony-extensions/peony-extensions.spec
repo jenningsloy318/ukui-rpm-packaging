@@ -38,9 +38,9 @@ Requires:  peony-extensions-open-terminal
 Summary: Allows one to quickly share a folder from the Peony file manager
 
 Requires:  peony-libs
-Requires:  samba-common
 Requires:  samba
-
+Requires:  samba-common
+Requires:  samba-common-tools
 %description share
  Peony is the official file manager for the UKUI desktop. This
  package adds extended functionality to the Peony file manager.
@@ -105,3 +105,16 @@ gzip  debian/changelog > %{buildroot}/usr/share/doc/peony-extensions/changelog.g
 %files open-terminal
 %{_libdir}/peony-qt-extensions/libpeony-qt-menu-plugin-mate-terminal.so
 
+%post share
+
+[ -d /var/lib/samba/usershares  ] || mkdir /var/lib/samba/usershares 
+sed -i '/^\[global/a \\tusershare allow guests = yes\n\tusershare path = /var/lib/samba/usershares\n\tusershare max shares = 100\n\tusershare owner only = yes' /etc/samba/smb.conf
+systemctl restart smb
+systemctl restart nmb
+systemctl enable smb
+systemctl enable nmb
+
+%preun share
+sed -i '/usershare/d' /etc/samba/smb.conf
+systemctl restart smb
+systemctl restart nmb
