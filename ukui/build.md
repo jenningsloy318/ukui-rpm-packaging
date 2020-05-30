@@ -25,3 +25,9 @@ ukui packages:
       (0x7ffc66705c50) Warning: "Fallback Icon Theme (Oxygen) not found"
       (0x7ffc66705c50) Warning: QCoreApplication::postEvent: Unexpected null receiver
       ```
+2. biometric-authentication build, already installed   libfprint-devel  and fprintd-devel but still errors
+  ```
+  configure: error: Package requirements (libfprint >= 0.7.0) were not met:
+
+  Package 'libfprint', required by 'virtual:world', not found
+  ```
