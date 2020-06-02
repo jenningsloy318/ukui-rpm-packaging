@@ -5,4 +5,5 @@ dnf install -y $(grep  BuildRequires /root/biometric-authentication.spec |awk '{
 
 
 echo "build rpm package"
+cp /root/libfprint-pkgconfig.patch /root/rpmbuild/SOURCES/libfprint-pkgconfig.patch
 rpmbuild  -ba /root/biometric-authentication.spec
