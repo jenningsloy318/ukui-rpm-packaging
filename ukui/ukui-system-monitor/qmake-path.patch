@@ -1,0 +1,57 @@
+diff --git Makefile Makefile
+index 420cd31..32845e4 100644
+--- Makefile
++++ Makefile
+@@ -11,7 +11,7 @@ MAKEFILE      = Makefile
+ EQ            = =
+ 
+ first: make_first
+-QMAKE         = /usr/lib/qt5/bin/qmake
++QMAKE         = /usr/bin/qmake-qt5
+ DEL_FILE      = rm -f
+ CHK_DIR_EXISTS= test -d
+ MKDIR         = mkdir -p
+@@ -21,8 +21,8 @@ COPY_DIR      = cp -f -R
+ INSTALL_FILE  = install -m 644 -p
+ INSTALL_PROGRAM = install -m 755 -p
+ INSTALL_DIR   = cp -f -R
+-QINSTALL      = /usr/lib/qt5/bin/qmake -install qinstall
+-QINSTALL_PROGRAM = /usr/lib/qt5/bin/qmake -install qinstall -exe
++QINSTALL      = /usr/bin/qmake-qt5 -install qinstall
++QINSTALL_PROGRAM = /usr/bin/qmake-qt5 -install qinstall -exe
+ DEL_FILE      = rm -f
+ SYMLINK       = ln -f -s
+ DEL_DIR       = rmdir
+diff --git src/Makefile src/Makefile
+index 1b36651..bd9a7fd 100644
+--- src/Makefile
++++ src/Makefile
+@@ -4,7 +4,7 @@
+ # Project:  src.pro
+ # Template: app
+ 
+-# Command: /usr/lib/qt5/bin/qmake -o Makefile src.pro 'QMAKE_CFLAGS_RELEASE=-g -O2 -fdebug-prefix-map=/home/tang/ukui-system-monitor=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2' 'QMAKE_CFLAGS_DEBUG=-g -O2 -fdebug-prefix-map=/home/tang/ukui-system-monitor=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2' 'QMAKE_CXXFLAGS_RELEASE=-g -O2 -fdebug-prefix-map=/home/tang/ukui-system-monitor=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2' 'QMAKE_CXXFLAGS_DEBUG=-g -O2 -fdebug-prefix-map=/home/tang/ukui-system-monitor=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2' 'QMAKE_LFLAGS_RELEASE=-Wl,-Bsymbolic-functions -Wl,-z,relro' 'QMAKE_LFLAGS_DEBUG=-Wl,-Bsymbolic-functions -Wl,-z,relro' QMAKE_STRIP=: PREFIX=/usr
++# Command: /usr/bin/qmake-qt5 -o Makefile src.pro 'QMAKE_CFLAGS_RELEASE=-g -O2 -fdebug-prefix-map=/home/tang/ukui-system-monitor=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2' 'QMAKE_CFLAGS_DEBUG=-g -O2 -fdebug-prefix-map=/home/tang/ukui-system-monitor=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2' 'QMAKE_CXXFLAGS_RELEASE=-g -O2 -fdebug-prefix-map=/home/tang/ukui-system-monitor=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2' 'QMAKE_CXXFLAGS_DEBUG=-g -O2 -fdebug-prefix-map=/home/tang/ukui-system-monitor=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2' 'QMAKE_LFLAGS_RELEASE=-Wl,-Bsymbolic-functions -Wl,-z,relro' 'QMAKE_LFLAGS_DEBUG=-Wl,-Bsymbolic-functions -Wl,-z,relro' QMAKE_STRIP=: PREFIX=/usr
+ 
+ #############################################################################
+ 
+@@ -22,7 +22,7 @@ CFLAGS        = -pipe -g -O2 -fdebug-prefix-map=/home/tang/ukui-system-monitor=.
+ CXXFLAGS      = -pipe -g -O2 -fdebug-prefix-map=/home/tang/ukui-system-monitor=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+ 
+ INCPATH       = -I. -isystem /usr/include/libgtop-2.0 -isystem /usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtSvg -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I.moc -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+-QMAKE         = /usr/lib/qt5/bin/qmake
++QMAKE         = /usr/bin/qmake-qt5
+ DEL_FILE      = rm -f
+ CHK_DIR_EXISTS= test -d
+ MKDIR         = mkdir -p
+@@ -32,8 +32,8 @@ COPY_DIR      = cp -f -R
+ INSTALL_FILE  = install -m 644 -p
+ INSTALL_PROGRAM = install -m 755 -p
+ INSTALL_DIR   = cp -f -R
+-QINSTALL      = /usr/lib/qt5/bin/qmake -install qinstall
+-QINSTALL_PROGRAM = /usr/lib/qt5/bin/qmake -install qinstall -exe
++QINSTALL      = /usr/bin/qmake-qt5 -install qinstall
++QINSTALL_PROGRAM = /usr/bin/qmake-qt5 -install qinstall -exe
+ DEL_FILE      = rm -f
+ SYMLINK       = ln -f -s
+ DEL_DIR       = rmdir
