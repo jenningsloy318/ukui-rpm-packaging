@@ -81,12 +81,12 @@ cp %{SOURCE1} .
 patch -p0 < lib-path.patch
 
 %build
-%{cmake3} .
+mkdir cmake-build
+pushd cmake-build
+%cmake3 ..
 %{make_build}
-# CMakeLists.txt DON'T contain install clause
+popd
 %install
-rm -rf $RPM_BUILD_ROOT
-
 mkdir -p %{buildroot}/usr/share/doc/peony-extensions/  %{buildroot}/usr/lib64/peony-qt-extensions 
 cp testdir/libpeony-qt-engrampa-menu-plugin.so  testdir/libpeony-qt-menu-plugin-mate-terminal.so  peony-extensions-cmake/peony-qt-share/libpeony-qt-share.so %{buildroot}/usr/lib64/peony-qt-extensions
 cp debian/copyright  %{buildroot}/usr/share/doc/peony-extensions/copyright

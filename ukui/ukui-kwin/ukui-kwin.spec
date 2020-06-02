@@ -314,14 +314,19 @@ Summary: UKUI window manager effects library
 
 %prep
 %setup -q
+
 %build
-%{cmake3} .
+mkdir cmake-build
+pushd cmake-build
+%cmake3 ..
 %{make_build}
-#make 
+popd
+
 %install
-rm -rf %{buildroot} 
+pushd cmake-build
 %{make_install}  INSTALL_ROOT=%{buildroot} 
 mkdir -p %{buildroot}/usr/share/doc/ukui-kwin/  
+popd
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-kwin/copyright
 gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 

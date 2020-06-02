@@ -58,21 +58,23 @@ Suggests: ukui-window-switch
 %setup -q
 
 %build
-mkdir build 
-cd build 
-%{cmake3} ..
 
+mkdir cmake-build
+pushd cmake-build
+%{cmake3} ..
+%{make_build}
+popd 
 
 %install
-rm -rf $RPM_BUILD_ROOT
-cd build 
+pushd cmake-build
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-cd ..
+popd 
 mkdir -p %{buildroot}/usr/share/doc/ukui-panel/ %{buildroot}/usr/share/man/man1/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-panel/
 gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-panel/changelog.gz
 gzip man/ukui-panel.1  > %{buildroot}/usr/share/man/man1/ukui-panel.1.gz
 gzip man/ukui-flash-disk.1 > %{buildroot}/usr/share/man/man1/ukui-flash-disk.1.gz
+
 %files
 %{_bindir}/ukui-panel
 %{_bindir}/ukui-flash-disk

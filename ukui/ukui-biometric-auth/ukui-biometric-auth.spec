@@ -58,12 +58,16 @@ Summary: UKUI authentication agent for PolicyKit-1
 
 
 %build
-  %{cmake3} .
-  %{make_build}
+mkdir cmake-build
+pushd cmake-build
+%cmake3 ..
+%{make_build}
+popd
 
 %install
-rm -rf %{buildroot}
+pushd cmake-build
 %{make_install}  INSTALL_ROOT=%{buildroot} 
+popd
 mkdir  -p %{buildroot}/usr/share/doc/ukui-biometric-auth %{buildroot}/usr/share/man/man1/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-biometric-auth/
 gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-biometric-auth/changelog.gz
