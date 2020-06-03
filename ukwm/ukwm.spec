@@ -188,7 +188,7 @@ rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
 mkdir -p %{buildroot}/usr/share/doc/ukwm/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukwm/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukwm/changelog.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukwm/changelog.gz
 %files
 %{_bindir}/ukwm
 %{_datadir}/applications/ukwm.desktop

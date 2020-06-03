@@ -36,7 +36,7 @@ Requires: pam-biometric
 rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
 mkdir -p %{buildroot}/usr/share/doc/ukui-biometric-manager/ %{buildroot}/usr/share/man/man1/
-gzip man/biometric-manager.1		 > %{buildroot}/usr/share/man/man1/biometric-manager.1.gz
+gzip -c man/biometric-manager.1		 > %{buildroot}/usr/share/man/man1/biometric-manager.1.gz
 
 %files
 %{_mandir}/man1/biometric-manager.1.gz

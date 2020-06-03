@@ -70,10 +70,10 @@ pushd cmake-build
 popd
 mkdir  -p %{buildroot}/usr/share/doc/ukui-biometric-auth %{buildroot}/usr/share/man/man1/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-biometric-auth/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-biometric-auth/changelog.gz
-gzip man/bioctl.1 > %{buildroot}/usr/share/man/man1/bioctl.1.gz
-gzip man/bioauth.1 > %{buildroot}/usr/share/man/man1/bioauth.1.gz
-gzip man/biodrvctl.1 > %{buildroot}/usr/share/man/man1/biodrvctl.1.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-biometric-auth/changelog.gz
+gzip -c man/bioctl.1 > %{buildroot}/usr/share/man/man1/bioctl.1.gz
+gzip -c man/bioauth.1 > %{buildroot}/usr/share/man/man1/bioauth.1.gz
+gzip -c man/biodrvctl.1 > %{buildroot}/usr/share/man/man1/biodrvctl.1.gz
 
 %files
 %{_datadir}/doc/ukui-biometric-auth

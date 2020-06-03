@@ -124,7 +124,7 @@ UKUI Desktop Environment (extra components, metapackage)
 %install
 mkdir -p %{buildroot}/usr/share/doc/ukui-desktop-environment/ %{buildroot}/usr/share/glib-2.0/schemas/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-desktop-environment/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-desktop-environment/changelog.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-desktop-environment/changelog.gz
 cp debian/ukui-ubuntu.gschema.override %{buildroot}/usr/share/glib-2.0/schemas/ukui.gschema.override
 
 %files 

@@ -47,8 +47,8 @@ rm -rf $RPM_BUILD_ROOT
 %{make_install}  INSTALL_ROOT=%{buildroot} 
 mkdir -p %{buildroot}/usr/share/doc/ukui-menu/ %{buildroot}/usr/share/man/man1/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-menu/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-menu/changelog.gz
-gzip man/ukui-menu.1  > %{buildroot}/usr/share/man/man1/ukui-menu.1.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-menu/changelog.gz
+gzip -c man/ukui-menu.1  > %{buildroot}/usr/share/man/man1/ukui-menu.1.gz
 %files
 %{_sysconfdir}/xdg/autostart/ukui-menu.desktop
 %{_bindir}/ukui-menu

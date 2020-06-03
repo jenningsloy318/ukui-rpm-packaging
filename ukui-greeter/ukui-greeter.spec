@@ -47,8 +47,8 @@ rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
 mkdir -p %{buildroot}/usr/share/doc/ukui-greeter/   %{buildroot}/usr/share/man/man8/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-greeter/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-greeter/changelog.gz
-gzip ukui-greeter/man/ukui-greeter.8 > %{buildroot}/usr/share/man/man8/ukui-greeter.8.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-greeter/changelog.gz
+gzip -c ukui-greeter/man/ukui-greeter.8 > %{buildroot}/usr/share/man/man8/ukui-greeter.8.gz
 
 %files
 %{_sysconfdir}/lightdm/ukui-greeter.conf

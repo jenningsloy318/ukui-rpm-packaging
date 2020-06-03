@@ -117,13 +117,13 @@ rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
 mkdir  -p %{buildroot}/usr/share/doc/biometric-authentication %{buildroot}/usr/share/man/man1/
 cp debian/copyright  %{buildroot}/usr/share/doc/biometric-authentication/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/biometric-authentication/changelog.gz
-gzip man/biometric-auth-client.1	 > %{buildroot}/usr/share/man/man1/biometric-auth-client.1.gz
-gzip man/biometric-config-tool.8	 > %{buildroot}/usr/share/man/man8/biometric-config-tool.8.gz
-gzip man/biometric-device-discover.1	 > %{buildroot}/usr/share/man/man1/biometric-device-discover.1.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/biometric-authentication/changelog.gz
+gzip -c man/biometric-auth-client.1	 > %{buildroot}/usr/share/man/man1/biometric-auth-client.1.gz
+gzip -c man/biometric-config-tool.8	 > %{buildroot}/usr/share/man/man8/biometric-config-tool.8.gz
+gzip -c man/biometric-device-discover.1	 > %{buildroot}/usr/share/man/man1/biometric-device-discover.1.gz
 
-gzip man/bioauth.1 > %{buildroot}/usr/share/man/man1/bioauth.1.gz
-gzip man/biodrvctl.1 > %{buildroot}/usr/share/man/man1/biodrvctl.1.gz
+gzip -c man/bioauth.1 > %{buildroot}/usr/share/man/man1/bioauth.1.gz
+gzip -c man/biodrvctl.1 > %{buildroot}/usr/share/man/man1/biodrvctl.1.gz
 
 %files
 %{_sysconfdir}/

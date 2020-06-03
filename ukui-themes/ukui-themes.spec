@@ -33,7 +33,7 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/ukui-themes/ %{buildroot}/usr/share/mime/packages/ %{buildroot}/usr/share/glib-2.0/schemas/  %{buildroot}/usr/share/icons/
 
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-themes/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-themes/changelog.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-themes/changelog.gz
 cp ukui-custom.xml	%{buildroot}/usr/share/mime/packages/
 cp debian/25_ukui-themes.gschema.override %{buildroot}/usr/share/glib-2.0/schemas/
 cp -r  ukui-icon-theme-basic %{buildroot}/usr/share/icons/

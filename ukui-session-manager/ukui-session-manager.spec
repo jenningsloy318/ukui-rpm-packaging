@@ -58,9 +58,9 @@ popd
 mkdir -p %{buildroot}/etc/X11/Xsession.d/  %{buildroot}/usr/share/doc/ukui-session-manager/  %{buildroot}/usr/share/man/man1/
 cp debian/99ukui-environment %{buildroot}/etc/X11/Xsession.d/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-session-manager/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-session-manager/changelog.gz
-gzip man/ukui-session.1 >  %{buildroot}/usr/share/man/man1/ukui-session.1.gz 
-gzip man/ukui-session-tools.1 > %{buildroot}/usr/share/man/man1/ukui-session-tools.1.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-session-manager/changelog.gz
+gzip -c man/ukui-session.1 >  %{buildroot}/usr/share/man/man1/ukui-session.1.gz 
+gzip -c man/ukui-session-tools.1 > %{buildroot}/usr/share/man/man1/ukui-session-tools.1.gz
 
 
 %files

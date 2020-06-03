@@ -44,7 +44,7 @@ rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
 mkdir -p %{buildroot}/usr/share/doc/ukui-sidebar/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-sidebar/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-sidebar/changelog.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-sidebar/changelog.gz
 
 %files
 %{_sysconfdir}/xdg/autostart/ukui-sidebar.desktop

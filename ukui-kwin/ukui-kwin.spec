@@ -328,7 +328,7 @@ pushd cmake-build
 mkdir -p %{buildroot}/usr/share/doc/ukui-kwin/  
 popd
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-kwin/copyright
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 
 %files
 %{_datadir}/doc/ukui-kwin/

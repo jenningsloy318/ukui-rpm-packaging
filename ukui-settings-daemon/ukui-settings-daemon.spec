@@ -119,7 +119,7 @@ Summary: daemon handling the UKUI session settings (development files)
 %{make_install} INSTALL_ROOT=%{buildroot}
 mkdir -p  %{buildroot}/usr/share/doc/ukui-settings-daemon/ 
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-settings-daemon/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-settings-daemon/changelog.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-settings-daemon/changelog.gz
 
 %files
 %{_sysconfdir}/xrdb/

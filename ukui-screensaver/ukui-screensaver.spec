@@ -52,10 +52,10 @@ pushd cmake-build
 popd
 mkdir -p %{buildroot}/usr/share/doc/ukui-screensaver/ %{buildroot}/usr/share/man/man1
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-screensaver/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-screensaver/changelog.gz
-gzip man/ukui-screensaver-backend.1 >  %{buildroot}/usr/share/man/man1/ukui-screensaver-backend.1.gz
-gzip man/ukui-screensaver-dialog.1 >  %{buildroot}/usr/share/man/man1/ukui-screensaver-dialog.1.gz
-gzip man/ukui-screensaver-command.1 >  %{buildroot}/usr/share/man/man1/ukui-screensaver-command.1.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-screensaver/changelog.gz
+gzip -c man/ukui-screensaver-backend.1 >  %{buildroot}/usr/share/man/man1/ukui-screensaver-backend.1.gz
+gzip -c man/ukui-screensaver-dialog.1 >  %{buildroot}/usr/share/man/man1/ukui-screensaver-dialog.1.gz
+gzip -c man/ukui-screensaver-command.1 >  %{buildroot}/usr/share/man/man1/ukui-screensaver-command.1.gz
 
 %files
 %{_sysconfdir}/pam.d/ukui-screensaver-qt

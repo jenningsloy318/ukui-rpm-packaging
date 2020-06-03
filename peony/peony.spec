@@ -108,11 +108,11 @@ rm -rf %{buildroot}
 mkdir  -p %{buildroot}/usr/share/man/man1/ %{buildroot}/usr/share/dbus-1/interfaces/ %{buildroot}/usr/share/dbus-1/services/  %{buildroot}/usr/share/doc/peony
 cp peony-qt-desktop/freedesktop-dbus-interfaces.xml %{buildroot}/usr/share/dbus-1/interfaces/freedesktop-dbus-interfaces.xml
 cp peony-qt-desktop/org.ukui.freedesktop.FileManager1.service %{buildroot}/usr/share/dbus-1/services/org.ukui.freedesktop.FileManager1.service
-gzip src/man/peony.1 > %{buildroot}/usr/share/man/man1/peony.1.gz
-gzip peony-qt-desktop/man/peony-qt-desktop.1 >  %{buildroot}/usr/share/man/man1/peony-qt-desktop.1.gz
+gzip -c src/man/peony.1 > %{buildroot}/usr/share/man/man1/peony.1.gz
+gzip -c peony-qt-desktop/man/peony-qt-desktop.1 >  %{buildroot}/usr/share/man/man1/peony-qt-desktop.1.gz
 cp data/*.desktop %{buildroot}/usr/share/applications/
 cp debian/copyright  %{buildroot}/usr/share/doc/peony/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/peony/changelog.gz
+gzip -c debian/changelog > %{buildroot}/usr/share/doc/peony/changelog.gz
 
 
 %files

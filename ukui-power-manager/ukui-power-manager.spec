@@ -91,7 +91,7 @@ rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
 mkdir -p %{buildroot}/usr/share/doc/ukui-power-manager/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-power-manager/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-power-manager/changelog.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-power-manager/changelog.gz
 
 %files
 %{_sysconfdir}/xdg/autostart/ukui-power-manager-tray.desktop

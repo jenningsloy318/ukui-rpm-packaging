@@ -41,8 +41,8 @@ rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
 mkdir -p %{buildroot}/usr/share/doc/kylin-nm/ %{buildroot}/usr/share/man/man1/
 cp debian/copyright  %{buildroot}/usr/share/doc/kylin-nm/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/kylin-nm/changelog.gz
-gzip man/kylin-nm.1	 > %{buildroot}/usr/share/man/man1/kylin-nm.1.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/kylin-nm/changelog.gz
+gzip -c man/kylin-nm.1	 > %{buildroot}/usr/share/man/man1/kylin-nm.1.gz
 
 %files
 %{_sysconfdir}/xdg/autostart/kylin-nm.desktop

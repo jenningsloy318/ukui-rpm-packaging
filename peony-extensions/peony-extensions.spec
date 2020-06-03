@@ -90,7 +90,7 @@ popd
 mkdir -p %{buildroot}/usr/share/doc/peony-extensions/  %{buildroot}/usr/lib64/peony-qt-extensions 
 cp testdir/libpeony-qt-engrampa-menu-plugin.so  testdir/libpeony-qt-menu-plugin-mate-terminal.so  peony-extensions-cmake/peony-qt-share/libpeony-qt-share.so %{buildroot}/usr/lib64/peony-qt-extensions
 cp debian/copyright  %{buildroot}/usr/share/doc/peony-extensions/copyright
-gzip  debian/changelog > %{buildroot}/usr/share/doc/peony-extensions/changelog.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/peony-extensions/changelog.gz
 
 %files
 %{_datadir}/doc/peony-extensions/

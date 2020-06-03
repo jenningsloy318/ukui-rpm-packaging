@@ -36,7 +36,7 @@ rm -rf %{buildroot}
 DESTDIR=%{buildroot}  ninja -C build install  
 mkdir -p %{buildroot}/usr/share/doc/ukui-wallpapers/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-wallpapers/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-wallpapers/changelog.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-wallpapers/changelog.gz
 
 
 %files

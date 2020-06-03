@@ -51,7 +51,7 @@ rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
 mkdir -p %{buildroot}/usr/share/doc/ukui-system-monitor/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-system-monitor/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-system-monitor/changelog.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-system-monitor/changelog.gz
 
 %files
 %{_bindir}/ukui-system-monitor

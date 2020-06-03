@@ -43,7 +43,7 @@ rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
 mkdir -p %{buildroot}/usr/share/doc/ukui-window-switch/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-window-switch/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-window-switch/changelog.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-window-switch/changelog.gz
 
 %files
 %{_sysconfdir}/ukui/ukui-window-switch/ukui-window-switch.conf

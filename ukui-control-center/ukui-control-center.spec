@@ -69,7 +69,7 @@ mkdir -p %{buildroot}/usr/share/dbus-1/system-services/ %{buildroot}/etc/dbus-1/
 cp registeredQDbus/conf/com.control.center.qt.systemdbus.service %{buildroot}/usr/share/dbus-1/system-services/
 cp registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{buildroot}/etc/dbus-1/system.d/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-control-center/
-gzip  debian/changelog > %{buildroot}/usr/share/doc/ukui-control-center/changelog.gz
+gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-control-center/changelog.gz
 
 %files
 %{_sysconfdir}/dbus-1/system.d/com.control.center.qt.systemdbus.conf
