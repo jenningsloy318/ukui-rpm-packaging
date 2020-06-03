@@ -24,20 +24,15 @@ pipeline {
         steps {
 
           sh '''
-              cp peony/lib-path.patch ${TOP}/SOURCES
+              cp peony/peony-libdir.patch ${TOP}/SOURCES
               cp peony/peony.spec ${TOP}/SPECS
               dnf install -y $(grep  BuildRequires ${TOP}/SPECS/peony.spec | awk '{print $2}')
               rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/peony.spec
           '''
+          sh '''
+            dnf -y install ${TOP}/RPMS/x86_64/{peony-2.2.0-1.fc32.x86_64.rpm,peony-common-2.2.0-1.fc32.x86_64.rpm,peony-devel-2.2.0-1.fc32.x86_64.rpm,peony-libs-2.2.0-1.fc32.x86_64.rpm}
+          '''
+          }          
         }
-    }
-
-    stage ('install peony') { 
-      steps {
-        sh '''
-          dnf -y install ${TOP}/RPMS/x86_64/{peony-2.2.0-1.fc32.x86_64.rpm,peony-common-2.2.0-1.fc32.x86_64.rpm,peony-devel-2.2.0-1.fc32.x86_64.rpm,peony-libs-2.2.0-1.fc32.x86_64.rpm}
-        '''
-        }
-    }
   }
 }

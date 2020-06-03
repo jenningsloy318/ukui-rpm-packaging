@@ -9,7 +9,7 @@ Summary:        file Manager for the UKUI desktop
 License:        GPLv2+
 URL:            https://github.com/ukui/%{name}
 Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Source1:       lib-path.patch
+Source1:        peony-libdir.patch
 
 BuildArch:      x86_64
 
@@ -95,7 +95,7 @@ Requires: peony-libs
 
 %setup -q
   cp %{SOURCE1} .
-  patch -p0 < lib-path.patch
+  patch -p0 < peony-libdir.patch
 
 
 %build
