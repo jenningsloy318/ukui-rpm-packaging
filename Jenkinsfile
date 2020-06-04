@@ -46,5 +46,15 @@ pipeline {
               '''
              }
     }
+    stage ('build  qt5-ukui-platformtheme ') { 
+
+             steps { 
+              sh '''
+                  cp qt5-ukui-platformtheme/qt5-ukui-platformtheme.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/qt5-ukui-platformtheme.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/qt5-ukui-platformtheme.spec
+              '''
+             }
+    }    
   }
 }
