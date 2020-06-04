@@ -94,5 +94,25 @@ pipeline {
              }
     }  
     
+    stage ('build  ukui-desktop-environment ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-desktop-environment/ukui-desktop-environment.spec ${TOP}/SPECS
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-desktop-environment.spec
+              '''
+             }
+    }
+    stage ('build  ukui-greeter ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-greeter/ukui-greeter.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-greeter.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-greeter.spec
+              '''
+             }
+    } 
+
   }
 }
