@@ -35,6 +35,16 @@ pipeline {
               '''
              }
     }
+    stage ('build  peony-extensions ') { 
 
+             steps { 
+              sh '''
+                  cp peony-extensions/peony-extensions-libdir-and-qmake.patch ${TOP}/SOURCES
+                  cp peony-extensions/peony-extensions.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/peony-extensions.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/peony-extensions.spec
+              '''
+             }
+    }
   }
 }
