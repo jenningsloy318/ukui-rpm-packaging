@@ -20,6 +20,19 @@ pipeline {
 
         }
     }
+   
+    stage ('build kylin-nm ') { 
+
+             steps { 
+              sh '''
+                  cp kylin-nm/kylin-nm.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/kylin-nm.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/kylin-nm.spec
+              '''
+             }
+    }
+
+
     stage ('build and install peony ') { 
 
              steps { 
@@ -123,5 +136,141 @@ pipeline {
               '''
              }
     }
+    stage ('build  ukui-menu ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-menu/ukui-menu.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-menu.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-menu.spec
+              '''
+             }
+    }
+    stage ('build  ukui-panel ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-panel/ukui-panel.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-panel.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-panel.spec
+              '''
+             }             
+    }    
+    stage ('build  ukui-power-manager ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-power-manager/ukui-power-manager.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-power-manager.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-power-manager.spec
+              '''
+             }             
+    }
+    stage ('build  ukui-screensaver  ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-screensaver/ukui-screensaver.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-screensaver.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-screensaver.spec
+              '''
+             }             
+    }
+    stage ('build  ukui-session-manager  ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-session-manager/ukui-session-manager.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-session-manager.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-session-manager.spec
+              '''
+             }             
+    }
+    stage ('build  ukui-settings-daemon  ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-settings-daemon/ukui-settings-daemon.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-settings-daemon.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-settings-daemon.spec
+              '''
+             }             
+    }   
+    stage ('build  ukui-sidebar  ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-sidebar/ukui-sidebar-plugin-libdir.patch ${TOP}/SOURCES
+                  cp ukui-sidebar/ukui-sidebar.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-sidebar.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-sidebar.spec
+              '''
+             }             
+    } 
+    stage ('build  ukui-system-monitor  ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-system-monitor/ukui-system-monitor-qmake-path.patch ${TOP}/SOURCES
+                  cp ukui-system-monitor/ukui-system-monitor.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-system-monitor.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-system-monitor.spec
+              '''
+             }             
+    }     
+    stage ('build  ukui-themes  ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-themes/ukui-themes.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-themes.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-themes.spec
+              '''
+             }             
+    } 
+    stage ('build  ukui-wallpapers  ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-wallpapers/ukui-wallpapers.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-wallpapers.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-wallpapers.spec
+              '''
+             }             
+    } 
+    stage ('build  ukui-window-switch  ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-window-switch/ukui-window-switch.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-window-switch.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-window-switch.spec
+              '''
+             }             
+    } 
+    stage ('build  ukwm  ') { 
+
+             steps { 
+              sh '''
+                  cp ukwm/ukwm.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/v.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukwm.spec
+              '''
+             }             
+    }
+
+    //stage ('build biometric-authentication ') { 
+    //        when {
+    //            branch 'master'
+    //        }
+    //         steps { 
+    //          sh '''
+    //              cp biometric-authentication/biometric-authentication-libfprint-pkgconfig.patch ${TOP}/SOURCES
+    //              cp biometric-authentication/biometric-authentication.spec ${TOP}/SPECS
+    //              dnf install -y $(grep  BuildRequires ${TOP}/SPECS/biometric-authentication.spec | awk '{print $2}')
+    //              rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/biometric-authentication.spec
+    //          '''
+    //         }
+    //}                             
   }
 }

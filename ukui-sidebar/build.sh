@@ -6,5 +6,5 @@ strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
 
 echo "build rpm package"
 mkdir -p /root/rpmbuild/SOURCES 
-cp /root/plugin-path.patch /root/rpmbuild/SOURCES 
+cp /root/ukui-sidebar-plugin-libdir.patch /root/rpmbuild/SOURCES 
 rpmbuild -ba /root/ukui-sidebar.spec

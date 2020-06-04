@@ -9,7 +9,7 @@ Summary:        Biometric Authentication Service
 License:        GPLv2+
 URL:            https://github.com/ukui/%{name}
 Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Source1: 				libfprint-pkgconfig.patch
+Source1: 				biometric-authentication-libfprint-pkgconfig.patch
 BuildArch:      x86_64
 
 
@@ -104,7 +104,7 @@ Summary: Biometric Authentication Driver (community multidevice)
 
 %setup -q
   cp %{SOURCE1} .
-  patch -p0 < libfprint-pkgconfig.patch
+  patch -p0 < biometric-authentication-libfprint-pkgconfig.patch
 ./autogen.sh --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib64
 ./configure     --prefix=/usr     --sysconfdir=/etc  --libdir=/usr/lib64  --libexecdir=/usr/libexec/biometric-authentication --with-bio-config-dir=/etc/biometric-auth/    --infodir=/usr/share/info  --localstatedir=/var --disable-silent-rules --disable-dependency-tracking --enable-static   --enable-shared --with-bio-db-dir=/var/lib/biometric-auth/     --with-bio-db-name=biometric.db     --with-bio-config-dir=/etc/biometric-auth/     --with-bio-driver-dir=/usr/lib64/biometric-authentication/drivers    --with-bio-extra-dir=/usr/lib64/biometric-authentication/drivers/extra     
 
