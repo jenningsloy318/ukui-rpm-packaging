@@ -55,6 +55,20 @@ pipeline {
                   rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/qt5-ukui-platformtheme.spec
               '''
              }
-    }    
+    }
+    stage ('build  ukui-biometric-auth ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-biometric-auth/ukui-biometric-auth-libdir.patch ${TOP}/SOURCES
+                  cp ukui-biometric-auth/ukui-biometric-auth.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-biometric-auth.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-biometric-auth.spec
+              '''
+              sh '''
+                dnf -y install ${TOP}/RPMS/x86_64/{pam-biometric-1.2.0-1.fc32.x86_64.rpm,ukui-biometric-auth-1.2.0-1.fc32.x86_64.rpm,ukui-polkit-1.2.0-1.fc32.x86_64.rpm}
+                '''
+             }
+    }        
   }
 }
