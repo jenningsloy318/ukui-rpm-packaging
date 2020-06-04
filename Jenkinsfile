@@ -82,7 +82,17 @@ pipeline {
              }
     }
 
-  
+    stage ('build  ukui-control-center ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-control-center/ukui-control-center-libdir.patch ${TOP}/SOURCES
+                  cp ukui-control-center/ukui-control-center.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-control-center.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-control-center.spec
+              '''
+             }
+    }  
     
   }
 }
