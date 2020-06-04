@@ -223,7 +223,6 @@ pipeline {
              steps { 
               sh '''
                   cp ukui-themes/ukui-themes.spec ${TOP}/SPECS
-                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-themes.spec | awk '{print $2}')
                   rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-themes.spec
               '''
              }             
