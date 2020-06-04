@@ -19,13 +19,7 @@ ukui packages:
 
 
 ## issues
-1.  ukui-panel with errors 
-      ```
-      (0x7ffc66705c50) Warning: "Icon Theme not set. Fallbacking to Oxygen, if installed"
-      (0x7ffc66705c50) Warning: "Fallback Icon Theme (Oxygen) not found"
-      (0x7ffc66705c50) Warning: QCoreApplication::postEvent: Unexpected null receiver
-      ```
-2. biometric-authentication build, already installed   libfprint-devel  and fprintd-devel but still errors
+1. biometric-authentication build, already installed   libfprint-devel  and fprintd-devel but still errors
   ```
   ../../../../src/drivers/community-multidevice/community_ops.h:50:54: error: 'FP_ENROLL_COMPLETE' undeclared here (not in a function)
     50 |  COMMUNITY_ENROLL_COMPLETE = COMMUNITY_ENROLL_BASE + FP_ENROLL_COMPLETE,
