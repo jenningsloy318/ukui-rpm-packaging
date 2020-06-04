@@ -11,7 +11,7 @@ Summary:        Peony qt extensions (common files)
 License:        GPLv2+
 URL:            https://github.com/ukui/ukui-session-manager
 Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Source1:       lib-path.patch
+Source1:        peony-extensions-libdir-and-qmake.patch
 
 BuildArch:      x86_64
 
@@ -78,7 +78,7 @@ Requires:  mate-terminal
 %prep
 %setup -q
 cp %{SOURCE1} .
-patch -p0 < lib-path.patch
+patch -p0 < peony-extensions-libdir-and-qmake.patch
 
 %build
 mkdir cmake-build
