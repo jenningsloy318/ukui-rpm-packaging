@@ -257,7 +257,16 @@ pipeline {
               '''
              }             
     }
+    stage ('build  kylin-display-switch  ') { 
 
+             steps { 
+              sh '''
+                  cp kylin-display-switch/kylin-display-switch.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/kylin-display-switch.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/kylin-display-switch.spec
+              '''
+             }             
+    }
     //stage ('build biometric-authentication ') { 
     //        when {
     //            branch 'master'
