@@ -252,7 +252,7 @@ pipeline {
              steps { 
               sh '''
                   cp ukwm/ukwm.spec ${TOP}/SPECS
-                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/v.spec | awk '{print $2}')
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukwm.spec | awk '{print $2}')
                   rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukwm.spec
               '''
              }             
