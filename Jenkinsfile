@@ -13,7 +13,7 @@ pipeline {
         steps {
         	sh  '''
             mkdir -p ${TOP}/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
-            dnf -y install which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros  ruby  mysql-devel ruby-devel rubygems  meson ninja-build qt5-qtbase
+            dnf -y install which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros python3-rpm-macros  ruby  mysql-devel ruby-devel rubygems  meson ninja-build qt5-qtbase
             strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
             gem install sass bundler rails compass
           '''
