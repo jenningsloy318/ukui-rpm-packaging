@@ -69,6 +69,20 @@ pipeline {
                 dnf -y install ${TOP}/RPMS/x86_64/{pam-biometric-1.2.0-1.fc32.x86_64.rpm,ukui-biometric-auth-1.2.0-1.fc32.x86_64.rpm,ukui-polkit-1.2.0-1.fc32.x86_64.rpm}
                 '''
              }
-    }        
+    }
+
+    stage ('build  ukui-biometric-manager ') { 
+
+             steps { 
+              sh '''
+                  cp ukui-biometric-manager/ukui-biometric-manager.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-biometric-manager.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-biometric-manager.spec
+              '''
+             }
+    }
+
+  
+    
   }
 }
