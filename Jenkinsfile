@@ -113,6 +113,15 @@ pipeline {
               '''
              }
     } 
+    stage ('build  ukui-kwin ') { 
 
+             steps { 
+              sh '''
+                  cp ukui-kwin/ukui-kwin.spec ${TOP}/SPECS
+                  dnf install -y $(grep  BuildRequires ${TOP}/SPECS/ukui-kwin.spec | awk '{print $2}')
+                  rpmbuild --define "_topdir ${TOP}" -bb ${TOP}/SPECS/ukui-kwin.spec
+              '''
+             }
+    }
   }
 }
