@@ -350,9 +350,10 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 %{_libdir}/qt5/plugins/ukuikwincompositing.so
 %{_libdir}/qt5/plugins/ukui-kwin/effects/
 %{_libdir}/qt5/plugins/org.kde.kdecoration2/ukui_kwin5_aurorae.so
+%{_libdir}/qt5/plugins/org.kde.kdecoration2/libkwin-style-ukui.so
 %{_libdir}/qt5/plugins/org.ukui.kglobalaccel5.platforms/KF5GlobalAccelPrivateKWin.so
 %{_libdir}/qt5/plugins/org.ukui.kwin.scenes/
-%{_libdir}//qt5/qml/org/ukui/kwin/
+%{_libdir}/qt5/qml/org/ukui/kwin/
 %{_libdir}/libukui-kwin.so.1
 %{_libdir}/libukui-kwin.so.1.0.0
 %{_libdir}/libkdeinit5_ukui_kwin_rules_dialog.so
@@ -480,7 +481,6 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 %{_libdir}/libukui-kwineffects.so
 %{_libdir}/libukui-kwineffects.so.1.0.0
 %{_libdir}/libukui-kwineffects.so.12
-
 
 
 
