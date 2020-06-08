@@ -49,3 +49,7 @@ cp -r  ukui-icon-theme-default %{buildroot}/usr/share/icons/
 %{_datadir}/icons/ukui-icon-theme-default
 %{_datadir}/themes/ukui-black
 %{_datadir}/themes/ukui-white
+
+
+%post 
+gsettings set org.ukui.style icon-theme-name  ukui-icon-theme-default
