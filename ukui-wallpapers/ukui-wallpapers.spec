@@ -27,13 +27,14 @@ BuildRequires:  meson
 %setup -q
  
 %build
-meson build --buildtype debugoptimized --prefix=/usr
-ninja -C build
+
+%meson 
+%meson_build
+
 
 %install
-rm -rf %{buildroot}
+%meson_install
 
-DESTDIR=%{buildroot}  ninja -C build install  
 mkdir -p %{buildroot}/usr/share/doc/ukui-wallpapers/
 cp debian/copyright  %{buildroot}/usr/share/doc/ukui-wallpapers/
 gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-wallpapers/changelog.gz
