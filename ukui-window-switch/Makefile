@@ -4,7 +4,7 @@ all: build  clean
 
 build: 
 	@echo ">> building rpms"
-	$(DOCKER) run  --privileged -v `pwd`:/root docker.io/jenningsloy318/ukui-builder:f32  bash  /root/build.sh 
+	$(DOCKER) run --ulimit=host   --privileged -v `pwd`:/root docker.io/jenningsloy318/ukui-builder:f32  bash  /root/build.sh 
 
 clean:
 	@echo ">> clean up containers"
