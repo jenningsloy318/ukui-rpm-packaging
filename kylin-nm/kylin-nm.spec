@@ -2,14 +2,15 @@
 %undefine _disable_source_fetch
 
 Name:           kylin-nm
-Version:        1.2.4
+Version:        master
 Release:        1%{?dist}
 Summary:        Gui Applet tool for display and edit network simply
 
 
 License:        GPLv2+
 URL:            https://github.com/ukui/kylin-nm
-Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 
 BuildArch:      x86_64
 BuildRequires:  qt5-qtbase-devel
@@ -33,20 +34,21 @@ Requires: NetworkManager
 %setup -q
  
 %build
-  %{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  kylin-nm.pro	
-  %{make_build}
+mkdir qmake-build
+pushd qmake-build
+%{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ..
+%{make_build}
+popd 
 
 %install
-rm -rf %{buildroot}
+pushd qmake-build
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir -p %{buildroot}/usr/share/doc/kylin-nm/ %{buildroot}/usr/share/man/man1/
-cp debian/copyright  %{buildroot}/usr/share/doc/kylin-nm/
-gzip -c  debian/changelog > %{buildroot}/usr/share/doc/kylin-nm/changelog.gz
+popd 
+mkdir -p %{buildroot}/usr/share/man/man1/
 gzip -c man/kylin-nm.1	 > %{buildroot}/usr/share/man/man1/kylin-nm.1.gz
 
 %files
+%doc debian/changelog  debian/copyright
 %{_sysconfdir}/xdg/autostart/kylin-nm.desktop
 %{_bindir}/kylin-nm
-%{_datadir}/doc/kylin-nm/changelog.gz
-%{_datadir}/doc/kylin-nm/copyright
 %{_mandir}/man1/kylin-nm.1.gz

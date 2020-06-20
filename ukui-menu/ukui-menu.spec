@@ -2,14 +2,15 @@
 %undefine _disable_source_fetch
 
 Name:           ukui-menu
-Version:        2.0.6
+Version:        master
 Release:        1%{?dist}
 Summary:        Advanced ukui menu
 
 
 License:        GPLv2+
 URL:            https://github.com/ukui/ukui-session-manager
-Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 
 BuildArch:      x86_64
 
@@ -38,19 +39,23 @@ Requires:  libX11
 
 %prep
 %setup -q
+
 %build
-  %{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ukui-menu.pro	
-  %{make_build}
+mkdir qmake-build
+pushd qmake-build
+%{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ..
+%{make_build}
+popd
 
 %install
-rm -rf $RPM_BUILD_ROOT
+pushd qmake-build
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir -p %{buildroot}/usr/share/doc/ukui-menu/ %{buildroot}/usr/share/man/man1/
-cp debian/copyright  %{buildroot}/usr/share/doc/ukui-menu/
-gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-menu/changelog.gz
+popd 
+mkdir -p  %{buildroot}/usr/share/man/man1/
 gzip -c man/ukui-menu.1  > %{buildroot}/usr/share/man/man1/ukui-menu.1.gz
+
 %files
+%doc debian/changelog debian/copyright
 %{_sysconfdir}/xdg/autostart/ukui-menu.desktop
 %{_bindir}/ukui-menu
-%{_datadir}/doc/ukui-menu/
 %{_datadir}/man/man1/ukui-menu.1.gz

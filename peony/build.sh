@@ -1,10 +1,9 @@
 #!/bin/bash
 
-echo "install build dependencies"
-dnf install -y $(grep  BuildRequires /root/peony.spec |awk '{print $2}')
-strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
-
+echo "update packages"
+dnf update -y 
 
 echo "build rpm package"
-cp /root/peony-libdir.patch /root/rpmbuild/SOURCES
+mkdir -p /root/rpmbuild/SOURCES/
+cp /root/peony-libdir.patch /root/rpmbuild/SOURCES/peony-libdir.patch
 rpmbuild  -ba /root/peony.spec   

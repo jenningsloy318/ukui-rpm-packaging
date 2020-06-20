@@ -2,7 +2,7 @@
 %undefine _disable_source_fetch
 
 Name:           ukui-power-manager
-Version:        2.0.2
+Version:        master
 Release:        1%{?dist}
 Summary:        power management tool for the UKUI desktop
 
@@ -10,8 +10,9 @@ Summary:        power management tool for the UKUI desktop
 
 
 License:        GPLv2+
-URL:            https://github.com/ukui/qt5-ukui-platformtheme
-Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+URL:            https://github.com/ukui/ukui-power-manager
+#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 
 BuildArch:      x86_64
 
@@ -84,16 +85,15 @@ Summary:  power management tool for the UKUI desktop (common files)
 
 %setup -q
  ./autogen.sh --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib64 -enable-introspection --enable-compile-warnings=yes  --enable-egl-device     --enable-wayland        --enable-native-backend
+
 %build
- %{make_build}
+%{make_build}
+
 %install
-rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir -p %{buildroot}/usr/share/doc/ukui-power-manager/
-cp debian/copyright  %{buildroot}/usr/share/doc/ukui-power-manager/
-gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-power-manager/changelog.gz
 
 %files
+%doc debian/copyright debian/changelog
 %{_sysconfdir}/xdg/autostart/ukui-power-manager-tray.desktop
 %{_sysconfdir}/xdg/autostart/ukui-power-manager.desktop
 %{_bindir}/ukui-power-manager
@@ -195,30 +195,6 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-power-manager/change
 %{_datadir}/locale/zh_CN/LC_MESSAGES/ukui-power-manager.mo
 %{_datadir}/locale/zh_HK/LC_MESSAGES/ukui-power-manager.mo
 %{_datadir}/locale/zh_TW/LC_MESSAGES/ukui-power-manager.mo
-%{_datadir}/icons/hicolor/16x16/apps/ukui-brightness-applet.png
-%{_datadir}/icons/hicolor/16x16/apps/ukui-inhibit-applet.png
-%{_datadir}/icons/hicolor/16x16/apps/ukui-power-manager.png
-%{_datadir}/icons/hicolor/16x16/apps/ukui-power-statistics.png
-%{_datadir}/icons/hicolor/22x22/apps/ukui-brightness-applet.png
-%{_datadir}/icons/hicolor/22x22/apps/ukui-inhibit-applet.png
-%{_datadir}/icons/hicolor/22x22/apps/ukui-power-manager.png
-%{_datadir}/icons/hicolor/22x22/apps/ukui-power-statistics.png
-%{_datadir}/icons/hicolor/24x24/apps/ukui-brightness-applet.png
-%{_datadir}/icons/hicolor/24x24/apps/ukui-inhibit-applet.png
-%{_datadir}/icons/hicolor/24x24/apps/ukui-power-manager.png
-%{_datadir}/icons/hicolor/24x24/apps/ukui-power-statistics.png
-%{_datadir}/icons/hicolor/32x32/apps/ukui-brightness-applet.png
-%{_datadir}/icons/hicolor/32x32/apps/ukui-inhibit-applet.png
-%{_datadir}/icons/hicolor/32x32/apps/ukui-power-manager.png
-%{_datadir}/icons/hicolor/32x32/apps/ukui-power-statistics.png
-%{_datadir}/icons/hicolor/48x48/apps/ukui-brightness-applet.png
-%{_datadir}/icons/hicolor/48x48/apps/ukui-inhibit-applet.png
-%{_datadir}/icons/hicolor/48x48/apps/ukui-power-manager.png
-%{_datadir}/icons/hicolor/48x48/apps/ukui-power-statistics.png
-%{_datadir}/icons/hicolor/scalable/apps/ukui-brightness-applet.svg
-%{_datadir}/icons/hicolor/scalable/apps/ukui-inhibit-applet.svg
-%{_datadir}/icons/hicolor/scalable/apps/ukui-power-manager.svg
-%{_datadir}/icons/hicolor/scalable/apps/ukui-power-statistics.svg
 %{_datadir}/glib-2.0/schemas/org.ukui.power-manager.gschema.xml
 %{_datadir}/man/man1/ukui-power-backlight-helper.1.gz
 %{_datadir}/man/man1/ukui-power-manager-tray.1.gz

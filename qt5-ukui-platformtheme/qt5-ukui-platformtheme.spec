@@ -2,14 +2,15 @@
 %undefine _disable_source_fetch
 
 Name:           qt5-ukui-platformtheme
-Version:        1.0.2
+Version:        master
 Release:        1%{?dist}
 Summary:        Qt5 QPA platform theme of UKUI
 
 
 License:        GPLv2+
 URL:            https://github.com/ukui/qt5-ukui-platformtheme
-Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 
 BuildArch:      x86_64
 
@@ -78,12 +79,15 @@ Requires: qt5-ukui-platformtheme-styles-libs
 %setup -q
  
 %build
-  %{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  qt5-ukui.pro	
-  %{make_build}
+mkdir qmake-build
+pushd qmake-build
+%{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ..
+%{make_build}
+pushd 
 %install
-rm -rf %{buildroot}
+pushd qmake-build
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-
+popd
 
 %files
 %{_libdir}/qt5/plugins/platformthemes/libqt5-ukui-platformtheme.so

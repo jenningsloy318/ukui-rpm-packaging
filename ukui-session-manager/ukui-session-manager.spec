@@ -2,14 +2,15 @@
 %undefine _disable_source_fetch
 
 Name:           ukui-session-manager
-Version:        2.0.0
+Version:        master
 Release:        1%{?dist}
 Summary:        Session manager of the UKUI desktop environment
 
 
 License:        GPLv2+
 URL:            https://github.com/ukui/ukui-session-manager
-Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 
 BuildArch:      x86_64
 BuildRequires:  qt5-qtdeclarative-devel
@@ -55,22 +56,19 @@ popd
 pushd cmake-build
 %make_install INSTALL_ROOT=%{buildroot}
 popd
-mkdir -p %{buildroot}/etc/X11/Xsession.d/  %{buildroot}/usr/share/doc/ukui-session-manager/  %{buildroot}/usr/share/man/man1/
-cp debian/99ukui-environment %{buildroot}/etc/X11/Xsession.d/
-cp debian/copyright  %{buildroot}/usr/share/doc/ukui-session-manager/
-gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-session-manager/changelog.gz
+mkdir -p %{buildroot}/etc/X11/Xsession.d/    %{buildroot}/usr/share/man/man1/
+install -m644  debian/99ukui-environment %{buildroot}/etc/X11/Xsession.d/99ukui-environment
 gzip -c man/ukui-session.1 >  %{buildroot}/usr/share/man/man1/ukui-session.1.gz 
 gzip -c man/ukui-session-tools.1 > %{buildroot}/usr/share/man/man1/ukui-session-tools.1.gz
 
 
 %files
+%doc debian/changelog debian/copyright
 %{_datadir}/ukui/translations/ukui-session-manager/
 %{_datadir}/xsessions/ukui.desktop
 %{_datadir}/glib-2.0/schemas/org.ukui.session.gschema.xml
 %{_bindir}/ukui-session
 %{_bindir}/ukui-session-tools
 %{_sysconfdir}/X11/Xsession.d/99ukui-environment
-%{_datadir}/doc/ukui-session-manager/changelog.gz
-%{_datadir}/doc/ukui-session-manager/copyright
 %{_datadir}/man/man1/ukui-session.1.gz 
 %{_datadir}/man/man1/ukui-session-tools.1.gz

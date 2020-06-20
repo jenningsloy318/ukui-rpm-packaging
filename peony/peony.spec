@@ -2,13 +2,14 @@
 %undefine _disable_source_fetch
 
 Name:           peony
-Version:        2.2.0
+Version:        master
 Release:        1%{?dist}
 Summary:        file Manager for the UKUI desktop
 
 License:        GPLv2+
 URL:            https://github.com/ukui/%{name}
-Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 Patch0:         peony-libdir.patch
 
 BuildArch:      x86_64
@@ -97,20 +98,22 @@ Requires: peony-libs
 %patch0 -p0
 
 %build
-  %{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  peony-qt.pro
+  mkdir qmake-build
+  pushd qmake-build
+  %{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ..
   %{make_build}
+  popd
 
 %install
-rm -rf %{buildroot}
+pushd qmake-build
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir  -p %{buildroot}/usr/share/man/man1/ %{buildroot}/usr/share/dbus-1/interfaces/ %{buildroot}/usr/share/dbus-1/services/  %{buildroot}/usr/share/doc/peony
+popd
+mkdir  -p %{buildroot}/usr/share/man/man1/ %{buildroot}/usr/share/dbus-1/interfaces/ %{buildroot}/usr/share/dbus-1/services/
 cp peony-qt-desktop/freedesktop-dbus-interfaces.xml %{buildroot}/usr/share/dbus-1/interfaces/freedesktop-dbus-interfaces.xml
 cp peony-qt-desktop/org.ukui.freedesktop.FileManager1.service %{buildroot}/usr/share/dbus-1/services/org.ukui.freedesktop.FileManager1.service
 gzip -c src/man/peony.1 > %{buildroot}/usr/share/man/man1/peony.1.gz
 gzip -c peony-qt-desktop/man/peony-qt-desktop.1 >  %{buildroot}/usr/share/man/man1/peony-qt-desktop.1.gz
 cp data/*.desktop %{buildroot}/usr/share/applications/
-cp debian/copyright  %{buildroot}/usr/share/doc/peony/
-gzip -c debian/changelog > %{buildroot}/usr/share/doc/peony/changelog.gz
 
 
 %files
@@ -122,14 +125,15 @@ gzip -c debian/changelog > %{buildroot}/usr/share/doc/peony/changelog.gz
 %{_datadir}/applications/peony-trash.desktop 
 %{_datadir}/applications/peony-desktop.desktop
 %{_datadir}/peony-qt-desktop/peony-qt-desktop_tr.ts
+
 %files common 
+%doc debian/copyright debian/changelog
 %{_mandir}/man1/peony-qt-desktop.1.gz
 %{_mandir}/man1/peony.1.gz
 %{_datadir}/peony-qt/peony-qt_zh_CN.ts
 %{_datadir}/peony-qt-desktop/peony-qt-desktop_zh_CN.ts
 %{_datadir}/dbus-1/interfaces/freedesktop-dbus-interfaces.xml
 %{_datadir}/dbus-1/services/org.ukui.freedesktop.FileManager1.service
-%{_datadir}/doc/peony/
 
 %files libs
 %{_libdir}/libpeony.so
@@ -137,7 +141,8 @@ gzip -c debian/changelog > %{buildroot}/usr/share/doc/peony/changelog.gz
 %{_libdir}/libpeony.so.2.1
 %{_libdir}/libpeony.so.2.1.0
 %{_datadir}/libpeony-qt/libpeony-qt_zh_CN.ts
-
+%{_datadir}/libpeony-qt/libpeony-qt_tr.ts
+%{_datadir}/peony-qt/peony-qt_tr.ts
 
 %files devel
 %{_includedir}/peony-qt

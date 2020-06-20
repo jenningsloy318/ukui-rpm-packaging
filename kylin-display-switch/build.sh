@@ -1,6 +1,6 @@
 #!/bin/bash
-echo "install build dependencies"
-dnf install -y $(grep  BuildRequires /root/kylin-display-switch.spec |awk '{print $2}')
+echo "update packages"
+dnf update -y 
 
 
 echo "build rpm package"

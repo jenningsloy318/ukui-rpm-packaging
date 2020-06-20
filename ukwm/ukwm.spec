@@ -2,13 +2,14 @@
 %undefine _disable_source_fetch
 
 Name:           ukwm
-Version:        1.2.0
+Version:        master
 Release:        1%{?dist}
 Summary:        file Manager for the UKUI desktop
 
 License:        GPLv2+
-URL:            https://github.com/ukui/ukui-session-manager
-Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+URL:            https://github.com/ukui/ukwm
+#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 
 BuildArch:      x86_64
 
@@ -184,11 +185,8 @@ sed -i 's/GETTEXT_MACRO_VERSION = 0.19/GETTEXT_MACRO_VERSION = 0.20/' po/Makefil
 %build
 %{make_build}
 %install
-rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir -p %{buildroot}/usr/share/doc/ukwm/
-cp debian/copyright  %{buildroot}/usr/share/doc/ukwm/
-gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukwm/changelog.gz
+
 %files
 %{_bindir}/ukwm
 %{_datadir}/applications/ukwm.desktop
@@ -212,6 +210,7 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukwm/changelog.gz
 
 
 %files common
+%doc debian/copyright debian/changelog
 %{_datadir}/locale/am/LC_MESSAGES/ukwm.mo
 %{_datadir}/locale/ar/LC_MESSAGES/ukwm.mo
 %{_datadir}/locale/as/LC_MESSAGES/ukwm.mo
@@ -309,7 +308,6 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukwm/changelog.gz
 %{_datadir}/locale/zh_CN/LC_MESSAGES/ukwm.mo
 %{_datadir}/locale/zh_HK/LC_MESSAGES/ukwm.mo
 %{_datadir}/locale/zh_TW/LC_MESSAGES/ukwm.mo
-%{_datadir}/doc/ukwm/
 %{_datadir}/man/man1/ukwm.1.gz
 %{_datadir}/gnome-control-center/keybindings/50-ukwm-navigation.xml
 %{_datadir}/gnome-control-center/keybindings/50-ukwm-system.xml

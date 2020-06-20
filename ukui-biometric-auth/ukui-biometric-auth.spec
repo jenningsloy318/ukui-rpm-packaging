@@ -2,13 +2,15 @@
 %undefine _disable_source_fetch
 
 Name:           ukui-biometric-auth
-Version:        1.2.0
+Version:        master
 Release:        1%{?dist}
 Summary:        ukui-biometric-auth
 
 License:        GPLv2+
 URL:            https://github.com/ukui/%{name}
-Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
+
 Patch0:        ukui-biometric-auth-libdir.patch
 
 BuildArch:      x86_64
@@ -66,21 +68,24 @@ popd
 pushd cmake-build
 %{make_install}  INSTALL_ROOT=%{buildroot} 
 popd
-mkdir  -p %{buildroot}/usr/share/doc/ukui-biometric-auth %{buildroot}/usr/share/man/man1/
-cp debian/copyright  %{buildroot}/usr/share/doc/ukui-biometric-auth/
-gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-biometric-auth/changelog.gz
+mkdir  -p  %{buildroot}/usr/share/man/man1/
 gzip -c man/bioctl.1 > %{buildroot}/usr/share/man/man1/bioctl.1.gz
 gzip -c man/bioauth.1 > %{buildroot}/usr/share/man/man1/bioauth.1.gz
 gzip -c man/biodrvctl.1 > %{buildroot}/usr/share/man/man1/biodrvctl.1.gz
 
 %files
-%{_datadir}/doc/ukui-biometric-auth
+%doc debian/changelog debian/copyright
 %{_datadir}/ukui-biometric/images
 %{_datadir}/ukui-biometric/i18n_qm/es.qm
 %{_datadir}/ukui-biometric/i18n_qm/fr.qm
 %{_datadir}/ukui-biometric/i18n_qm/pt.qm
 %{_datadir}/ukui-biometric/i18n_qm/ru.qm
 %{_datadir}/ukui-biometric/i18n_qm/zh_CN.qm
+%{_datadir}/ukui-biometric/i18n_qm/bo.qm
+%{_datadir}/ukui-biometric/i18n_qm/polkit/bo.qm
+%{_datadir}/ukui-biometric/i18n_qm/polkit/tr.qm
+%{_datadir}/ukui-biometric/i18n_qm/tr.qm
+
 
 %files -n pam-biometric
 %{_bindir}/bioauth

@@ -2,14 +2,15 @@
 %undefine _disable_source_fetch
 
 Name:           ukui-panel
-Version:        2.0.7
+Version:        master
 Release:        1%{?dist}
 Summary:        ukui desktop panel
 
 
 License:        GPLv2+
 URL:            https://github.com/ukui/%{name}
-Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 BuildRequires:  peony-devel
@@ -69,13 +70,12 @@ popd
 pushd cmake-build
 %{make_install}  INSTALL_ROOT=%{buildroot} 
 popd 
-mkdir -p %{buildroot}/usr/share/doc/ukui-panel/ %{buildroot}/usr/share/man/man1/
-cp debian/copyright  %{buildroot}/usr/share/doc/ukui-panel/
-gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-panel/changelog.gz
+mkdir -p  %{buildroot}/usr/share/man/man1/
 gzip -c man/ukui-panel.1  > %{buildroot}/usr/share/man/man1/ukui-panel.1.gz
 gzip -c man/ukui-flash-disk.1 > %{buildroot}/usr/share/man/man1/ukui-flash-disk.1.gz
 
 %files
+%doc debian/copyright  debian/changelog
 %{_bindir}/ukui-panel
 %{_bindir}/ukui-flash-disk
 %{_sysconfdir}/xdg/autostart/ukui-flash-disk.desktop
@@ -83,7 +83,6 @@ gzip -c man/ukui-flash-disk.1 > %{buildroot}/usr/share/man/man1/ukui-flash-disk.
 %{_includedir}/ukui/
 %{_libdir}/pkgconfig/ukui.pc
 %{_libdir}/ukui-panel/
-%{_datadir}/doc/ukui-panel/
 %{_datadir}/man/man1/ukui-panel.1.gz
 %{_datadir}/man/man1/ukui-flash-disk.1.gz
 %{_datadir}/cmake/ukui/ukui-config-version.cmake

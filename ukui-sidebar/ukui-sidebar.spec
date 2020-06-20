@@ -31,25 +31,26 @@ displaying some application notification messages and some cutting
 storage information.
 
 %prep
-
 %setup -q
 %patch0 -p0
  
 %build
-  %{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ukui-sidebar.pro
-  make
+mkdir qmake-build
+pushd qmake-build
+%{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ..
+%{make_build}
+popd 
 
 %install
-rm -rf %{buildroot}
+pushd qmake-build
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir -p %{buildroot}/usr/share/doc/ukui-sidebar/
-cp debian/copyright  %{buildroot}/usr/share/doc/ukui-sidebar/
-gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-sidebar/changelog.gz
+popd 
 
 %files
+%doc debian/copyright debian/changelog
 %{_sysconfdir}/xdg/autostart/ukui-sidebar.desktop
 %{_bindir}/*
 %{_libdir}/ukui-sidebar
 %{_datadir}/ukui-sidebar-notification
-%{_datadir}/doc/ukui-sidebar/
 %{_datadir}/applications/*
+%{_datadir}/ukui-clock/

@@ -2,7 +2,7 @@
 %undefine _disable_source_fetch
 
 Name:           peony-extensions
-Version:        2.0.2
+Version:        master
 Release:        1%{?dist}
 Summary:        Peony qt extensions (common files)
 
@@ -10,7 +10,9 @@ Summary:        Peony qt extensions (common files)
 
 License:        GPLv2+
 URL:            https://github.com/ukui/ukui-session-manager
-Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
+
 Patch0:        peony-extensions-libdir-and-qmake.patch
 
 BuildArch:      x86_64
@@ -23,6 +25,7 @@ BuildRequires:  qt5-qtbase-devel
 BuildRequires:  qt5-qttools-devel
 BuildRequires:  poppler-qt5-devel
 BuildRequires:  peony-devel
+BuildRequires:  gsettings-qt-devel
 
 Requires:  peony-extensions-parchives
 Requires:  peony-extensions-share 
@@ -73,6 +76,30 @@ Requires:  mate-terminal
  peony-open-terminal is a proof-of-concept Peony extension
  which allows you to open a terminal in arbitrary local folders.
 
+%package set-wallpaper
+Summary: Peony plugin for right click a picture to set as wallpaper.
+Requires:  peony-libs
+
+%description set-wallpaper
+Description: Peony plugin for right click a picture to set as wallpaper.
+ Peony is the official file manager for the UKUI desktop. This
+ package adds extended functionality to the Peony file manager.
+ .
+ In addition to set wallpaper in ukui-control-center, you can select a 
+ picture and right click to quickly set as wallpaper.
+
+
+%package computer-view
+Summary: Peony plugin for displaying computer:/// with more infomation.
+Requires:  peony-libs
+%description computer-view
+
+ Peony is the official file manager for the UKUI desktop. This
+ package adds extended functionality to the Peony file manager.
+ .
+ peony-extionsion-computer-view is a proof-of-concept Peony extension
+ which allows user browsering computer:/// with more infomation, which
+ not provided in icon view and list view.
 
 
 %prep
@@ -83,16 +110,16 @@ Requires:  mate-terminal
 mkdir cmake-build
 pushd cmake-build
 %cmake3 ..
-%{make_build}
+make
 popd
 %install
-mkdir -p %{buildroot}/usr/share/doc/peony-extensions/  %{buildroot}/usr/lib64/peony-qt-extensions 
-cp testdir/libpeony-qt-engrampa-menu-plugin.so  testdir/libpeony-qt-menu-plugin-mate-terminal.so  peony-extensions-cmake/peony-qt-share/libpeony-qt-share.so %{buildroot}/usr/lib64/peony-qt-extensions
-cp debian/copyright  %{buildroot}/usr/share/doc/peony-extensions/copyright
-gzip -c  debian/changelog > %{buildroot}/usr/share/doc/peony-extensions/changelog.gz
+mkdir -p  %{buildroot}/usr/lib64/peony-qt-extensions 
+cp testdir/{libpeony-qt-computer-view-plugin.so,libpeony-qt-engrampa-menu-plugin.so,libpeony-qt-menu-plugin-mate-terminal.so,libpeony-qt-set-wallpaper.so} %{buildroot}/usr/lib64/peony-qt-extensions
+cp peony-extensions-cmake/peony-qt-share/libpeony-qt-share.so  %{buildroot}/usr/lib64/peony-qt-extensions
+
 
 %files
-%{_datadir}/doc/peony-extensions/
+%doc debian/copyright  debian/changelog
 
 %files  share
 %{_libdir}/peony-qt-extensions/libpeony-qt-share.so
@@ -103,6 +130,13 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/peony-extensions/changelo
 
 %files open-terminal
 %{_libdir}/peony-qt-extensions/libpeony-qt-menu-plugin-mate-terminal.so
+
+
+%files set-wallpaper
+%{_libdir}/peony-qt-extensions/libpeony-qt-set-wallpaper.so
+
+%files computer-view
+%{_libdir}/peony-qt-extensions/libpeony-qt-computer-view-plugin.so
 
 %post share
 

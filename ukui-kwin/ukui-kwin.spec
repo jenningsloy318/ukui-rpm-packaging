@@ -10,7 +10,7 @@ Summary:        UKUI window manager
 
 License:        GPLv2+
 URL:            https://github.com/ukui/ukui-session-manager
-Source0:        https://github.com/ukui/ukui-kwin/archive/master.zip#/%{name}-%{version}.zip
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 
 BuildArch:      x86_64
 

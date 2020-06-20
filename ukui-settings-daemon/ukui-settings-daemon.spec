@@ -2,13 +2,14 @@
 %undefine _disable_source_fetch
 
 Name:           ukui-settings-daemon
-Version:        1.2.1
+Version:        master
 Release:        1%{?dist}
 Summary:        daemon handling the UKUI session settings
 
 License:        GPLv2+
 URL:            https://github.com/ukui/ukui-settings-daemon
-Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 
 BuildArch:      x86_64
 
@@ -117,9 +118,6 @@ Summary: daemon handling the UKUI session settings (development files)
 
 %install
 %{make_install} INSTALL_ROOT=%{buildroot}
-mkdir -p  %{buildroot}/usr/share/doc/ukui-settings-daemon/ 
-cp debian/copyright  %{buildroot}/usr/share/doc/ukui-settings-daemon/
-gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-settings-daemon/changelog.gz
 
 %files
 %{_sysconfdir}/xrdb/
@@ -135,6 +133,7 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-settings-daemon/chan
 %{_datadir}/polkit-1/actions/org.ukui.settingsdaemon.datetimemechanism.policy
 
 %files common
+%doc debian/changelog debian/copyright
 %{_datadir}/glib-2.0/schemas//org.ukui.SettingsDaemon.plugins.a11y-keyboard.gschema.xml
 %{_datadir}/glib-2.0/schemas//org.ukui.SettingsDaemon.plugins.a11y-settings.gschema.xml
 %{_datadir}/glib-2.0/schemas//org.ukui.SettingsDaemon.plugins.background.gschema.xml
@@ -260,7 +259,6 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-settings-daemon/chan
 %{_datadir}/locale/zh_TW/LC_MESSAGES/ukui-settings-daemon.mo
 %{_datadir}/locale/zu/LC_MESSAGES/ukui-settings-daemon.mo
 %{_datadir}/ukui-settings-daemon/
-%{_datadir}/doc/ukui-settings-daemon/
 %{_datadir}/man/man1/ukui-settings-daemon.1.gz
 %{_datadir}/man/man1/usd-datetime-mechanism.1.gz
 %{_datadir}/man/man1/usd-locate-pointer.1.gz

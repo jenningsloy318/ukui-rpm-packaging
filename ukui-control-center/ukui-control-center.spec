@@ -2,14 +2,16 @@
 %undefine _disable_source_fetch
 
 Name:           ukui-control-center
-Version:        2.0.4
+Version:        master
 Release:        1%{?dist}
 Summary:        utilities to configure the UKUI desktop
 
 
 License:        GPLv2+
 URL:            https://github.com/ukui/%{name}
-Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
+
 Patch0:        ukui-control-center-libdir.patch
 
 BuildArch:      x86_64
@@ -58,30 +60,29 @@ utilities to configure the UKUI desktop
 %patch0 -p0
 
 %build
-  %{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ukui-control-center.pro	
-  %{make_build}
+mkdir qmake-build
+pushd qmake-build
+%{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ..
+%{make_build}
+popd
 
 %install
-rm -rf %{buildroot} 
+pushd qmake-build
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir -p %{buildroot}/usr/share/dbus-1/system-services/ %{buildroot}/etc/dbus-1/system.d/ %{buildroot}/usr/share/doc/ukui-control-center
+popd
+mkdir -p %{buildroot}/usr/share/dbus-1/system-services/ %{buildroot}/etc/dbus-1/system.d/ 
 cp registeredQDbus/conf/com.control.center.qt.systemdbus.service %{buildroot}/usr/share/dbus-1/system-services/
 cp registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{buildroot}/etc/dbus-1/system.d/
-cp debian/copyright  %{buildroot}/usr/share/doc/ukui-control-center/
-gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-control-center/changelog.gz
+ 
 
 %files
+%doc debian/copyright debian/changelog
 %{_sysconfdir}/dbus-1/system.d/com.control.center.qt.systemdbus.conf
 %{_bindir}/launchSysDbus
 %{_bindir}/ukui-control-center
-%{_libdir}/control-center/pluginlibs
-%{_datadir}/glib-2.0/schemas/org.ukui.control-center.desktop.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.ukui.control-center.experienceplan.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.ukui.control-center.keybinding.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.ukui.control-center.notice.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.ukui.control-center.panel.plugins.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.ukui.control-center.wifi.switch.gschema.xml
+%{_libdir}/control-center/
+%{_datadir}/glib-2.0/schemas/*
 %{_datadir}/applications/ukui-control-center.desktop
 %{_datadir}/dbus-1/system-services/com.control.center.qt.systemdbus.service
-%{_datadir}/ukui/faces/
-%{_datadir}/doc/ukui-control-center
+%{_datadir}/ukui/faces/*
+%{_datadir}/locale/zh_CN/LC_MESSAGES/installer-timezones.mo
