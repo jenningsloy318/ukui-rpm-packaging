@@ -3,6 +3,6 @@
 echo "update packages"
 dnf update -y
 
+echo "build biometric-authentication package"
 
-echo "build rpm package"
 rpmbuild  -ba /root/biometric-authentication.spec
