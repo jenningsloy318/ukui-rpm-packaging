@@ -2,14 +2,15 @@
 %undefine _disable_source_fetch
 
 Name:           biometric-authentication
-Version:        0.9.62
+Version:        master
 Release:        1%{?dist}
 Summary:        Biometric Authentication Service
 
 License:        GPLv2+
 URL:            https://github.com/ukui/%{name}
-Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Patch0: 				biometric-authentication-libfprint-pkgconfig.patch
+#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
+
 BuildArch:      x86_64
 
 
@@ -20,7 +21,6 @@ BuildRequires:  gtk3-devel
 BuildRequires:  libusb-devel
 BuildRequires: sqlite-devel
 BuildRequires: libfprint-devel
-BuildRequires: fprintd-devel
 BuildRequires: polkit-devel
 BuildRequires: libtool
 BuildRequires: libuuid-devel
@@ -103,7 +103,6 @@ Summary: Biometric Authentication Driver (community multidevice)
 %prep
 
 %setup -q
-%patch0 -p0
 ./autogen.sh --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib64
 ./configure     --prefix=/usr     --sysconfdir=/etc  --libdir=/usr/lib64  --libexecdir=/usr/libexec/biometric-authentication --with-bio-config-dir=/etc/biometric-auth/    --infodir=/usr/share/info  --localstatedir=/var --disable-silent-rules --disable-dependency-tracking --enable-static   --enable-shared --with-bio-db-dir=/var/lib/biometric-auth/     --with-bio-db-name=biometric.db     --with-bio-config-dir=/etc/biometric-auth/     --with-bio-driver-dir=/usr/lib64/biometric-authentication/drivers    --with-bio-extra-dir=/usr/lib64/biometric-authentication/drivers/extra     
 
