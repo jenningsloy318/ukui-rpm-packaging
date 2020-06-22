@@ -11,7 +11,7 @@ Summary:        UKUI window manager
 License:        GPLv2+
 URL:            https://github.com/ukui/ukui-kwin
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
-Patch0:         fix-qfile-class.patch
+
 BuildArch:      x86_64
 
 # Base
@@ -33,6 +33,7 @@ BuildRequires: gsettings-qt-devel
 BuildRequires: poppler-qt5-devel
 BuildRequires: qt5-qtbase-static
 BuildRequires: qt5-qtbase-private-devel
+BuildRequires: qt5-qtvirtualkeyboard-devel
 
 # kf5 
 BuildRequires: kf5-kconfigwidgets-devel
@@ -79,17 +80,20 @@ BuildRequires: mesa-libgbm-devel
 BuildRequires: libepoxy-devel
 BuildRequires: libICE-devel
 BuildRequires: libSM-devel
+BuildRequires: libXi-devel 
 # Wayland 
 BuildRequires: mesa-libEGL-devel
 BuildRequires: wayland-devel
 BuildRequires: libwayland-client-devel
 BuildRequires: libwayland-server-devel
 BuildRequires: libwayland-cursor-devel
+BuildRequires: xorg-x11-server-Xwayland
 
 
 BuildRequires: kdecoration-devel
 BuildRequires: kscreenlocker-devel
 BuildRequires: libcap-devel
+BuildRequires: plasma-breeze
 
 
 Requires: ukui-kwin-x11
@@ -314,7 +318,7 @@ Summary: UKUI window manager effects library
 
 %prep
 %setup -q
-%patch -p0
+
 %build
 mkdir cmake-build
 pushd cmake-build
