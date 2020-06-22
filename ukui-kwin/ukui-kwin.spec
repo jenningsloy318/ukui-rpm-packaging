@@ -9,9 +9,9 @@ Summary:        UKUI window manager
 
 
 License:        GPLv2+
-URL:            https://github.com/ukui/ukui-session-manager
+URL:            https://github.com/ukui/ukui-kwin
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
-
+Patch0:         fix-qfile-class.patch
 BuildArch:      x86_64
 
 # Base
@@ -314,7 +314,7 @@ Summary: UKUI window manager effects library
 
 %prep
 %setup -q
-
+%patch -p0
 %build
 mkdir cmake-build
 pushd cmake-build

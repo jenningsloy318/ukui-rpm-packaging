@@ -1,0 +1,13 @@
+diff --git effects/blur/blur.cpp effects/blur/blur.cpp
+index 6d43a42..f1b3a8f 100644
+--- effects/blur/blur.cpp
++++ effects/blur/blur.cpp
+@@ -23,7 +23,7 @@
+ #include "blurshader.h"
+ // KConfigSkeleton
+ #include "blurconfig.h"
+-
++#include "QFile"
+ #include <QGuiApplication>
+ #include <QMatrix4x4>
+ #include <QScreen> // for QGuiApplication
