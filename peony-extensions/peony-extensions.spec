@@ -90,7 +90,7 @@ Description: Peony plugin for right click a picture to set as wallpaper.
 
 
 %package computer-view
-Summary: Peony plugin for displaying computer:/// with more infomation.
+Summary: Peony plugin for displaying computer:/// with more information.
 Requires:  peony-libs
 %description computer-view
 
@@ -98,7 +98,7 @@ Requires:  peony-libs
  package adds extended functionality to the Peony file manager.
  .
  peony-extionsion-computer-view is a proof-of-concept Peony extension
- which allows user browsering computer:/// with more infomation, which
+ which allows user browsering computer:/// with more information, which
  not provided in icon view and list view.
 
 
