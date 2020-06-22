@@ -158,7 +158,7 @@ Summary: UKUI window manager, wayland version
 Requires: kwayland-integration 
 Requires: ukui-kwin-common
 Requires: libcap
-Requires: xwayland
+Requires: xorg-x11-server-Xwayland
 Requires: ukui-kwin-wayland-backend-drm,ukui-kwin-wayland-backend-fbdev,ukui-kwin-wayland-backend-x11,ukui-kwin-wayland-backend-virtual,ukui-kwin-wayland-backend-wayland
 
 Provides: ukui-kwin
@@ -318,7 +318,7 @@ Summary: UKUI window manager effects library
 
 %prep
 %setup -q
-
+find . -type f | xargs sed -i 's/QtQuick.Controls/Qt5QuickControls2/g'
 %build
 mkdir cmake-build
 pushd cmake-build
