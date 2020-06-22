@@ -92,5 +92,4 @@ gzip -c man/ukui-flash-disk.1 > %{buildroot}/usr/share/man/man1/ukui-flash-disk.
 %{_datadir}/ukui-panel/
 %{_datadir}/ukui/panel.conf
 %{_datadir}/ukui/panel.qss
-%{_datadir}/ukui/ukui-panel_zh_CN.qm
-%{_datadir}/ukui/ukui-panel/
+%{_datadir}/ukui/ukui-panel*
