@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "update packages"
-dnf update -y
+dnf update -y --exclude=libfprint*
 
 echo "build biometric-authentication package"
 

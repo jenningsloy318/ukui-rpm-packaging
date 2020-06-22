@@ -104,8 +104,7 @@ Summary: Biometric Authentication Driver (community multidevice)
 
 %setup -q
 ./autogen.sh --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib64
-# ./configure     --prefix=/usr     --sysconfdir=/etc  --libdir=/usr/lib64  --libexecdir=/usr/libexec/biometric-authentication --with-bio-config-dir=/etc/biometric-auth/    --infodir=/usr/share/info  --localstatedir=/var --disable-silent-rules --disable-dependency-tracking --enable-static   --enable-shared --with-bio-db-dir=/var/lib/biometric-auth/     --with-bio-db-name=biometric.db     --with-bio-config-dir=/etc/biometric-auth/     --with-bio-driver-dir=/usr/lib64/biometric-authentication/drivers    --with-bio-extra-dir=/usr/lib64/biometric-authentication/drivers/extra     
-./configure     --prefix=/usr     --sysconfdir=/etc  --libdir=/usr/lib64 
+%{configure}  --with-bio-config-dir=/etc/biometric-auth/   --disable-silent-rules --with-bio-db-dir=/var/lib/biometric-auth/     --with-bio-db-name=biometric.db     --with-bio-config-dir=/etc/biometric-auth/     --with-bio-driver-dir=/usr/lib64/biometric-authentication/drivers    --with-bio-extra-dir=/usr/lib64/biometric-authentication/drivers/extra     
 
 %build
 %{make_build}
