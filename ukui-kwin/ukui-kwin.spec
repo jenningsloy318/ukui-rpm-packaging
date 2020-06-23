@@ -11,7 +11,6 @@ Summary:        UKUI window manager
 License:        GPLv2+
 URL:            https://github.com/ukui/ukui-kwin
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
-
 BuildArch:      x86_64
 
 # Base
@@ -34,6 +33,9 @@ BuildRequires: poppler-qt5-devel
 BuildRequires: qt5-qtbase-static
 BuildRequires: qt5-qtbase-private-devel
 BuildRequires: qt5-qtvirtualkeyboard-devel
+BuildRequires: qt5-qtquickcontrols2-devel 
+BuildRequires: qt5-qtquickcontrols2 
+BuildRequires: qt5-qtquickcontrols
 
 # kf5 
 BuildRequires: kf5-kconfigwidgets-devel
@@ -318,7 +320,7 @@ Summary: UKUI window manager effects library
 
 %prep
 %setup -q
-find . -type f | xargs sed -i 's/QtQuick.Controls/Qt5QuickControls2/g'
+
 %build
 mkdir cmake-build
 pushd cmake-build
