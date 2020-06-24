@@ -95,7 +95,7 @@ BuildRequires: xorg-x11-server-Xwayland
 BuildRequires: kdecoration-devel
 BuildRequires: kscreenlocker-devel
 BuildRequires: libcap-devel
-BuildRequires: plasma-breeze
+BuildRequires: plasma-breeze-devel
 
 
 Requires: ukui-kwin-x11
@@ -126,7 +126,6 @@ Requires: qt5-qtmultimedia
 
 %package data
 Summary: UKUI window manager data files
-Requires:  plasma-framework
 Requires: qt5-qtmultimedia
 
 %description data
