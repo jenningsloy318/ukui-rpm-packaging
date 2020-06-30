@@ -10,7 +10,7 @@ License:        GPLv2+
 URL:            https://github.com/ukui/%{name}
 #Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
-
+Patch0:					biometric-authentication-unitdir.patch
 BuildArch:      x86_64
 
 
@@ -101,10 +101,10 @@ Summary: Biometric Authentication Driver (community multidevice)
 
 
 %prep
-
 %setup -q
-./autogen.sh --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib64
-%{configure}  --with-bio-config-dir=/etc/biometric-auth/   --disable-silent-rules --with-bio-db-dir=/var/lib/biometric-auth/     --with-bio-db-name=biometric.db     --with-bio-config-dir=/etc/biometric-auth/     --with-bio-driver-dir=/usr/lib64/biometric-authentication/drivers    --with-bio-extra-dir=/usr/lib64/biometric-authentication/drivers/extra     
+%patch0 -p0
+./autogen.sh --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib64 --unitdir=/usr/lib/system/systemd
+%{configure} --disable-dependency-tracking  --with-bio-config-dir=/etc/biometric-auth/   --disable-silent-rules --with-bio-db-dir=/var/lib/biometric-auth/     --with-bio-db-name=biometric.db     --with-bio-config-dir=/etc/biometric-auth/     --with-bio-driver-dir=/usr/lib64/biometric-authentication/drivers    --with-bio-extra-dir=/usr/lib64/biometric-authentication/drivers/extra     
 
 %build
 %{make_build}
@@ -112,21 +112,54 @@ Summary: Biometric Authentication Driver (community multidevice)
 %install
 rm -rf %{buildroot}
 %{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir  -p %{buildroot}/usr/share/doc/biometric-authentication %{buildroot}/usr/share/man/man1/
-cp debian/copyright  %{buildroot}/usr/share/doc/biometric-authentication/
-gzip -c  debian/changelog > %{buildroot}/usr/share/doc/biometric-authentication/changelog.gz
-gzip -c man/biometric-auth-client.1	 > %{buildroot}/usr/share/man/man1/biometric-auth-client.1.gz
-gzip -c man/biometric-config-tool.8	 > %{buildroot}/usr/share/man/man8/biometric-config-tool.8.gz
-gzip -c man/biometric-device-discover.1	 > %{buildroot}/usr/share/man/man1/biometric-device-discover.1.gz
-
-gzip -c man/bioauth.1 > %{buildroot}/usr/share/man/man1/bioauth.1.gz
-gzip -c man/biodrvctl.1 > %{buildroot}/usr/share/man/man1/biodrvctl.1.gz
+mkdir -p %{buildroot}/usr/share/man/{man1,man8}
+gzip -c doc/man/biometric-auth-client.1	 > %{buildroot}/usr/share/man/man1/biometric-auth-client.1.gz
+gzip -c doc/man/biometric-device-discover.1 > %{buildroot}/usr/share/man/man1/biometric-device-discover.1.gz
+gzip -c doc/man/biometric-config-tool.8 >%{buildroot}/usr/share/man/man8/biometric-config-tool.8.gz
 
 %files
-%{_sysconfdir}/
+%doc debian/copyright debian/changelog 
+%{_sysconfdir}/biometric-auth/biometric-drivers.conf
+%{_sysconfdir}/dbus-1/system.d/org.ukui.Biometric.conf
+%{_sysconfdir}/init.d/biometric-authentication
+%{_libexecdir}/biometric-authenticationd
+%{_datadir}/dbus-1/interfaces/org.ukui.Biometric.xml
+%{_datadir}/polkit-1/actions/org.freedesktop.policykit.pkexec.biometric-authentication.policy
+%{_datadir}/polkit-1/actions/org.ukui.biometric.policy
 %{_unitdir}/biometric-authentication.service
-%{_libdir}/biometric-authentication
-%{_datdir}/biometric-auth
+
+
+
+
+%files devel 
+%{_includedir}/libbiometric/
+%{_libdir}/pkgconfig/libbiometric.pc
+%{_libdir}/libbiometric.a
+%{_libdir}/libbiometric.la
+
+%files libs
+%{_libdir}/libbiometric.so  
+%{_libdir}/libbiometric.so.0  
+%{_libdir}/libbiometric.so.0.0.0
+%{_datadir}/locale/bo/LC_MESSAGES/biometric-authentication.mo
+%{_datadir}/locale/es/LC_MESSAGES/biometric-authentication.mo
+%{_datadir}/locale/fr/LC_MESSAGES/biometric-authentication.mo
+%{_datadir}/locale/pt/LC_MESSAGES/biometric-authentication.mo
+%{_datadir}/locale/ru/LC_MESSAGES/biometric-authentication.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/biometric-authentication.mo
+
+
+%files community-drivers
+%{_libdir}/biometric-authentication/drivers/
+%{_libdir}/biometric-authentication/discover-tools/*
+
+%files utils
+%{_bindir}/biometric-auth-client
+%{_bindir}/biometric-config-tool
+%{_bindir}/biometric-device-discover
+%{_mandir}/man1/*
+%{_mandir}/man8/*
+
 
 
 %post 
