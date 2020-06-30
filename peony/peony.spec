@@ -109,11 +109,15 @@ pushd qmake-build
 %{make_install}  INSTALL_ROOT=%{buildroot} 
 popd
 mkdir  -p %{buildroot}/usr/share/man/man1/ %{buildroot}/usr/share/dbus-1/interfaces/ %{buildroot}/usr/share/dbus-1/services/
-cp peony-qt-desktop/freedesktop-dbus-interfaces.xml %{buildroot}/usr/share/dbus-1/interfaces/freedesktop-dbus-interfaces.xml
-cp peony-qt-desktop/org.ukui.freedesktop.FileManager1.service %{buildroot}/usr/share/dbus-1/services/org.ukui.freedesktop.FileManager1.service
+install -m644  peony-qt-desktop/freedesktop-dbus-interfaces.xml %{buildroot}/usr/share/dbus-1/interfaces/freedesktop-dbus-interfaces.xml
+install -m644  peony-qt-desktop/org.ukui.freedesktop.FileManager1.service %{buildroot}/usr/share/dbus-1/services/org.ukui.freedesktop.FileManager1.service
 gzip -c src/man/peony.1 > %{buildroot}/usr/share/man/man1/peony.1.gz
 gzip -c peony-qt-desktop/man/peony-qt-desktop.1 >  %{buildroot}/usr/share/man/man1/peony-qt-desktop.1.gz
-cp data/*.desktop %{buildroot}/usr/share/applications/
+install -m644  data/peony.desktop %{buildroot}/usr/share/applications/peony.desktop
+install -m644  data/peony-computer.desktop %{buildroot}/usr/share/applications/peony-computer.desktop
+install -m644  data/peony-home.desktop %{buildroot}/usr/share/applications/peony-home.desktop
+install -m644  data/peony-trash.desktop %{buildroot}/usr/share/applications/peony-trash.desktop
+install -m644  data/peony-desktop.desktop %{buildroot}/usr/share/applications/peony-desktop.desktop
 
 
 %files
@@ -124,14 +128,11 @@ cp data/*.desktop %{buildroot}/usr/share/applications/
 %{_datadir}/applications/peony-home.desktop 
 %{_datadir}/applications/peony-trash.desktop 
 %{_datadir}/applications/peony-desktop.desktop
-%{_datadir}/peony-qt-desktop/peony-qt-desktop_tr.ts
 
 %files common 
 %doc debian/copyright debian/changelog
 %{_mandir}/man1/peony-qt-desktop.1.gz
 %{_mandir}/man1/peony.1.gz
-%{_datadir}/peony-qt/peony-qt_zh_CN.ts
-%{_datadir}/peony-qt-desktop/peony-qt-desktop_zh_CN.ts
 %{_datadir}/dbus-1/interfaces/freedesktop-dbus-interfaces.xml
 %{_datadir}/dbus-1/services/org.ukui.freedesktop.FileManager1.service
 
@@ -140,9 +141,6 @@ cp data/*.desktop %{buildroot}/usr/share/applications/
 %{_libdir}/libpeony.so.2
 %{_libdir}/libpeony.so.2.1
 %{_libdir}/libpeony.so.2.1.0
-%{_datadir}/libpeony-qt/libpeony-qt_zh_CN.ts
-%{_datadir}/libpeony-qt/libpeony-qt_tr.ts
-%{_datadir}/peony-qt/peony-qt_tr.ts
 
 %files devel
 %{_includedir}/peony-qt
