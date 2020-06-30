@@ -14,7 +14,14 @@ URL:            https://github.com/ukui/ukui-themes
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 
 BuildArch:      x86_64
+
+%if 0%{?rhel} && 0%{?rhel} >= 8
+BuildRequires: sassc
+%endif
+
+%if 0%{?fedora} && 0%{?fedora} >= 32
 BuildRequires: rubygem-sass
+%endif
 
 %description
  This package contains the official desktop themes of the UKUI desktop
