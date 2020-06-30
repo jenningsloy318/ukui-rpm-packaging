@@ -14,7 +14,7 @@ Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-
 
 BuildArch:      x86_64
 BuildRequires:  qt5-qtbase-devel
-BuildRequires:  qtchooser
+
 BuildRequires: qt5-qtscript-devel
 BuildRequires:  qt5-qttools-devel
 BuildRequires: qt5-qtx11extras-devel
