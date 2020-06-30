@@ -19,7 +19,7 @@ BuildArch:      x86_64
 
 BuildRequires: qt5-qtbase-devel
 BuildRequires: qt5-qtx11extras-devel
-BuildRequires: gdm-pam-extensions-devel
+#BuildRequires: gdm-pam-extensions-devel
 BuildRequires: pam-devel
 BuildRequires: qt5-qttools-devel
 BuildRequires: glib2-devel
