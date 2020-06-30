@@ -42,14 +42,9 @@ Requires:  python3-xlib
 %install
 %{py3_install}
 
-mkdir -p %{buildroot}/usr/share/doc/kylin-display-switch/ 
-cp debian/copyright  %{buildroot}/usr/share/doc/kylin-display-switch/
-gzip -c  debian/changelog >  %{buildroot}/usr/share/doc/kylin-display-switch/changelog.gz
-
 
 %files
-%{_datadir}/doc/kylin-display-switch/changelog.gz
-%{_datadir}/doc/kylin-display-switch/copyright
+%doc debian/copyright debian/changelog
 %{_sysconfdir}/xdg/autostart/kylin-display-switch.desktop
 %{_bindir}/kds
 %{_datadir}/kylin-display-switch/
