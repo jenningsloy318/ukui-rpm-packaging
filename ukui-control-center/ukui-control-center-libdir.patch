@@ -218,7 +218,7 @@ index 1a4d8e2..cdc887a 100644
  
  ##加载gio库和gio-unix库
 diff --git plugins/personalized/screensaver/screensaver.cpp plugins/personalized/screensaver/screensaver.cpp
-index c45a509..cb73d86 100644
+index 3502774..cf10491 100644
 --- plugins/personalized/screensaver/screensaver.cpp
 +++ plugins/personalized/screensaver/screensaver.cpp
 @@ -443,7 +443,7 @@ void Screensaver::status_init(){
@@ -347,6 +347,19 @@ index 319e8c1..759c8ef 100644
  
  ##加载gio库和gio-unix库，用于处理时间
  CONFIG        += link_pkgconfig \
+diff --git shell/mainwindow.cpp shell/mainwindow.cpp
+index da4cee4..59294b3 100644
+--- shell/mainwindow.cpp
++++ shell/mainwindow.cpp
+@@ -386,7 +386,7 @@ void MainWindow::loadPlugins(){
+     static bool installed = (QCoreApplication::applicationDirPath() == QDir(("/usr/bin")).canonicalPath());
+ 
+     if (installed)
+-        pluginsDir = QDir("/usr/lib/control-center/pluginlibs/");
++        pluginsDir = QDir("/usr/lib64/control-center/pluginlibs/");
+     else {
+         pluginsDir = QDir(qApp->applicationDirPath() + "/pluginlibs/");
+     }
 diff --git shell/shell.pro shell/shell.pro
 index ef051a0..4275a0c 100644
 --- shell/shell.pro

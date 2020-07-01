@@ -85,4 +85,4 @@ cp registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{buildroot}/etc/d
 %{_datadir}/applications/ukui-control-center.desktop
 %{_datadir}/dbus-1/system-services/com.control.center.qt.systemdbus.service
 %{_datadir}/ukui/faces/*
-%{_datadir}/locale/zh_CN/LC_MESSAGES/installer-timezones.mo
+%{_datadir}/locale/*/LC_MESSAGES/*

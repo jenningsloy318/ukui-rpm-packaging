@@ -27,7 +27,7 @@ BuildRequires:  libqtxdg-devel
 BuildRequires:  systemd-devel
 
 Requires: peony
-Requires: ukwm
+Requires: ukui-kwin
 Requires: ukui-panel
 Requires: ukui-polkit
 Requires: ukui-screensaver

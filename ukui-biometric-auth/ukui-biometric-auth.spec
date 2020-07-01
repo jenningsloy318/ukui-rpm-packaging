@@ -76,15 +76,8 @@ gzip -c man/biodrvctl.1 > %{buildroot}/usr/share/man/man1/biodrvctl.1.gz
 %files
 %doc debian/changelog debian/copyright
 %{_datadir}/ukui-biometric/images
-%{_datadir}/ukui-biometric/i18n_qm/es.qm
-%{_datadir}/ukui-biometric/i18n_qm/fr.qm
-%{_datadir}/ukui-biometric/i18n_qm/pt.qm
-%{_datadir}/ukui-biometric/i18n_qm/ru.qm
-%{_datadir}/ukui-biometric/i18n_qm/zh_CN.qm
-%{_datadir}/ukui-biometric/i18n_qm/bo.qm
-%{_datadir}/ukui-biometric/i18n_qm/polkit/bo.qm
-%{_datadir}/ukui-biometric/i18n_qm/polkit/tr.qm
-%{_datadir}/ukui-biometric/i18n_qm/tr.qm
+%{_datadir}/ukui-biometric/i18n_qm/*
+%{_datadir}/ukui-biometric/i18n_qm/polkit/*
 
 
 %files -n pam-biometric
@@ -94,9 +87,8 @@ gzip -c man/biodrvctl.1 > %{buildroot}/usr/share/man/man1/biodrvctl.1.gz
 %{_sysconfdir}/biometric-auth/ukui-biometric.conf
 %{_libdir}/security/pam_biometric.so
 %{_datadir}/pam-configs/pam-biometric
-%{_datadir}/polkit-1/actions/org.freedesktop.plicykit.pkexec.bioctl.policy
-%{_datadir}/polkit-1/actions/org.freedesktop.plicykit.pkexec.biodrvctl.policy
-%{_datadir}/ukui-biometric/i18n_qm/bioauth-bin
+%{_datadir}/polkit-1/actions/*
+%{_datadir}/ukui-biometric/i18n_qm/*
 %{_mandir}/man1/bioctl.1.gz
 %{_mandir}/man1/bioauth.1.gz
 %{_mandir}/man1/biodrvctl.1.gz
@@ -105,9 +97,5 @@ gzip -c man/biodrvctl.1 > %{buildroot}/usr/share/man/man1/biodrvctl.1.gz
 %files -n  ukui-polkit
 %{_sysconfdir}/xdg/autostart/polkit-ukui-authentication-agent-1.desktop
 %{_libdir}/ukui-polkit/polkit-ukui-authentication-agent-1
-%{_datadir}/ukui-biometric/i18n_qm/polkit/es.qm
-%{_datadir}/ukui-biometric/i18n_qm/polkit/fr.qm
-%{_datadir}/ukui-biometric/i18n_qm/polkit/pt.qm
-%{_datadir}/ukui-biometric/i18n_qm/polkit/ru.qm
-%{_datadir}/ukui-biometric/i18n_qm/polkit/zh_CN.qm
+%{_datadir}/ukui-biometric/i18n_qm/polkit/*
         
