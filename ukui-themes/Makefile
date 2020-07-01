@@ -12,7 +12,7 @@ docker-build:
 	$(DOCKER) run  --ulimit=host --privileged -v `pwd`:/root docker.io/jenningsloy318/ukui-themes-builder:f32  bash  /root/build.sh 
 
 deps:
-ifeq (,$(filter *el*,$(DIST)))
+ifneq (,$(filter .el%,$(DIST)))
 	@echo ">> install dependencies"
 	dnf install -y which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros sassc
 	ln -sf /usr/bin/sassc /usr/bin/sass

@@ -1,5 +1,9 @@
 
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
+DIST := $(shell { rpm --eval "%{dist}";} 2>/dev/null)
+PKG_VERSION := $(shell { grep  "Version" peony.spec| awk  '{print $$2}'; } )
+PKG_RELEASE :=$(shell { grep "Release" peony.spec| awk '{print $$2}'|sed "s/%{?dist}/${DIST}/g"; } )
+
 all: build  clean
 
 docker-builder:
@@ -18,7 +22,7 @@ build: | deps
 	@echo ">> building rpms"
 	cp peony-libdir.patch ~/rpmbuild/SOURCES/peony-libdir.patch
 	rpmbuild -ba peony.spec
-	dnf install -y  /root/rpmbuild/RPMS/x86_64/{peony-common-*${DIST}.x86_64.rpm,peony-devel-*${DIST}.x86_64.rpm,peony-libs-*${DIST}.x86_64.rpm}
+	dnf install -y  /root/rpmbuild/RPMS/x86_64/{peony-common-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm,peony-devel-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm,peony-libs-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm}
 
 clean:
 	@echo ">> clean up"
