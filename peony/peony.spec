@@ -135,6 +135,9 @@ install -m644  data/peony-desktop.desktop %{buildroot}/usr/share/applications/pe
 %{_mandir}/man1/peony.1.gz
 %{_datadir}/dbus-1/interfaces/freedesktop-dbus-interfaces.xml
 %{_datadir}/dbus-1/services/org.ukui.freedesktop.FileManager1.service
+%{_datadir}/libpeony-qt/
+%{_datadir}/peony-qt-desktop/
+%{_datadir}/peony-qt/
 
 %files libs
 %{_libdir}/libpeony.so
