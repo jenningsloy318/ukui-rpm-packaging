@@ -18,6 +18,7 @@ build: | deps
 	@echo ">> building rpms"
 	cp peony-libdir.patch ~/rpmbuild/SOURCES/peony-libdir.patch
 	rpmbuild -ba peony.spec
+	dnf install -y  /root/rpmbuild/RPMS/x86_64/{peony-common-*${DIST}.x86_64.rpm,peony-devel-*${DIST}.x86_64.rpm,peony-libs-*${DIST}.x86_64.rpm}
 
 clean:
 	@echo ">> clean up"
