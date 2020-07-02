@@ -19,7 +19,7 @@ build-libfprint:
 	@echo ">> build libfprint-devel"
 	rpm -ivh https://mirrors.tuna.tsinghua.edu.cn/fedora/releases/31/Everything/source/tree/Packages/l/libfprint-1.0-1.fc31.src.rpm  
 	rpmbuild  -ba /root/rpmbuild/SPECS/libfprint.spec 
-	dnf install -y  /root/rpmbuild/RPMS/x86_64/libfprint-1.0-1${DIST}.x86_64.rpm /root/rpmbuild/RPMS/x86_64/libfprint-devel-1.0-1${DIST}.x86_64.rpm
+	rpm -ihv --force /root/rpmbuild/RPMS/x86_64/libfprint-1.0-1${DIST}.x86_64.rpm /root/rpmbuild/RPMS/x86_64/libfprint-devel-1.0-1${DIST}.x86_64.rpm
 
 build: | deps build-libfprint
 	@echo ">> building rpms"

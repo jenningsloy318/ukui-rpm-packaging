@@ -22,7 +22,7 @@ build: | deps
 	@echo ">> building rpms"
 	cp peony-libdir.patch ~/rpmbuild/SOURCES/peony-libdir.patch
 	rpmbuild -ba peony.spec
-	dnf install -y  /root/rpmbuild/RPMS/x86_64/{peony-common-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm,peony-devel-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm,peony-libs-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm}
+	rpm -ihv --force  /root/rpmbuild/RPMS/x86_64/{peony-common-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm,peony-devel-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm,peony-libs-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm}
 
 clean:
 	@echo ">> clean up"

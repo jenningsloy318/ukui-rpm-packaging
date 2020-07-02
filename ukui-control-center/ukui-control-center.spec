@@ -35,6 +35,7 @@ BuildRequires:  qt5-qtmultimedia-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  libkscreen-qt5-devel
 BuildRequires:  kf5-ki18n-devel
+BuildRequires: libcanberra-devel
 Recommends: edid-decode
 Recommends: redshift
 Recommends: qt5-qtquickcontrols
@@ -69,11 +70,11 @@ popd
 %install
 pushd qmake-build
 %{make_install}  INSTALL_ROOT=%{buildroot} 
+cp -r pluginlibs %{buildroot}/usr/lib64/control-center
 popd
 mkdir -p %{buildroot}/usr/share/dbus-1/system-services/ %{buildroot}/etc/dbus-1/system.d/ 
-cp registeredQDbus/conf/com.control.center.qt.systemdbus.service %{buildroot}/usr/share/dbus-1/system-services/
-cp registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{buildroot}/etc/dbus-1/system.d/
- 
+install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.service %{buildroot}/usr/share/dbus-1/system-services/com.control.center.qt.systemdbus.service
+install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{buildroot}/etc/dbus-1/system.d/com.control.center.qt.systemdbus.conf
 
 %files
 %doc debian/copyright debian/changelog

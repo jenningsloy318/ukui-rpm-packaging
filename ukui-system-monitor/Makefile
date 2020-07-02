@@ -16,7 +16,6 @@ deps:
 
 build: | deps 
 	@echo ">> building rpms"
-	cp ukui-system-monitor-qmake-path.patch ~/rpmbuild/SOURCES/
 	rpmbuild -ba ukui-system-monitor.spec
 
 clean:

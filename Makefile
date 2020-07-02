@@ -24,7 +24,6 @@ build: | bio-auth
 	cd ukui-biometric-auth/ && make build && cd ..
 	cd ukui-biometric-manager/ && make build && cd ..
 	cd ukui-control-center/ && make build && cd ..
-	cd ukui-desktop-environment/ && make build && cd ..
 	cd ukui-greeter/ && make build && cd ..
 	cd ukui-kwin/ && make build && cd ..
 	cd ukui-menu/ && make build && cd ..
@@ -38,3 +37,6 @@ build: | bio-auth
 	cd ukui-themes/ && make build && cd ..
 	cd ukui-wallpapers/ && make build && cd ..
 	cd ukui-window-switch/ && make build && cd ..
+
+clean:
+	rm -rf ~/rpmbuild/{SOURCES,RPMS}

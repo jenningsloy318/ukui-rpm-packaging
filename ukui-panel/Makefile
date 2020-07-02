@@ -16,7 +16,7 @@ ifndef SAASound
 		@echo ">> building SAASound-devel from source"
 		rpm -ivh 	https://mirrors.tuna.tsinghua.edu.cn/fedora/releases/32/Everything/source/tree/Packages/s/SAASound-3.2-24.fc32.src.rpm
 		rpmbuild -ba 	/root/rpmbuild/SPECS/SAASound.spec
-		dnf install -y  /root/rpmbuild/RPMS/x86_64/SAASound-3.2-24${DIST}.x86_64.rpm /root/rpmbuild/RPMS/x86_64/SAASound-devel-3.2-24${DIST}.x86_64.rpm
+		rpm -ihv --force  /root/rpmbuild/RPMS/x86_64/SAASound-3.2-24${DIST}.x86_64.rpm /root/rpmbuild/RPMS/x86_64/SAASound-devel-3.2-24${DIST}.x86_64.rpm
 else 
 		@echo ">> install SAASound-devel from repository"
 		dnf install -y SAASound-devel
