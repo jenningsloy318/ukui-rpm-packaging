@@ -19,7 +19,7 @@ build: | deps
 	rpmbuild -ba ukui-media.spec
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/ukui-media* rpmbuild/RPMS/x86_64/ukui-media* ~/rpmbuild/SOURCES/ukui-media* ~/rpmbuild/RPMS/x86_64/ukui-media* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean

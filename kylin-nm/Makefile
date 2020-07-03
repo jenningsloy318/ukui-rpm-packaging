@@ -20,7 +20,7 @@ build: | deps
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/kylin-nm* rpmbuild/RPMS/x86_64/kylin-nm* ~/rpmbuild/SOURCES/kylin-nm* ~/rpmbuild/RPMS/x86_64/kylin-nm* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean

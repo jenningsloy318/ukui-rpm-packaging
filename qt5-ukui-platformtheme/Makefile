@@ -20,7 +20,7 @@ build: | deps
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/qt5-ukui-platformtheme* rpmbuild/RPMS/x86_64/qt5-ukui-platformtheme* ~/rpmbuild/SOURCES/qt5-ukui-platformtheme* ~/rpmbuild/RPMS/x86_64/qt5-ukui-platformtheme* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean

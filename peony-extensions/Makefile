@@ -21,7 +21,7 @@ build: | deps
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/peony-extensions* rpmbuild/RPMS/x86_64/peony-extensions* ~/rpmbuild/SOURCES/peony-extensions* ~/rpmbuild/RPMS/x86_64/peony-extensions* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean

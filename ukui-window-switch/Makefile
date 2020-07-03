@@ -20,7 +20,7 @@ build: | deps
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/ukui-window-switch* rpmbuild/RPMS/x86_64/ukui-window-switch* ~/rpmbuild/SOURCES/ukui-window-switch* ~/rpmbuild/RPMS/x86_64/ukui-window-switch* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean

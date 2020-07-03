@@ -20,7 +20,7 @@ build: | deps
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/ukui-biometric-manager* rpmbuild/RPMS/x86_64/ukui-biometric-manager* ~/rpmbuild/SOURCES/ukui-biometric-manager* ~/rpmbuild/RPMS/x86_64/ukui-biometric-manager* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean

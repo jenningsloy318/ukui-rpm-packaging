@@ -21,7 +21,7 @@ build: | deps
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/ukui-screensaver* rpmbuild/RPMS/x86_64/ukui-screensaver* ~/rpmbuild/SOURCES/ukui-screensaver* ~/rpmbuild/RPMS/x86_64/ukui-screensaver* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean

@@ -33,7 +33,7 @@ build: | deps  SAASound-build
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/ukui-panel* rpmbuild/RPMS/x86_64/ukui-panel* ~/rpmbuild/SOURCES/ukui-panel* ~/rpmbuild/RPMS/x86_64/ukui-panel* 
 	$(DOCKER) container rm -a 
 	
 

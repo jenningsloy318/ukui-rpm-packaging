@@ -21,7 +21,7 @@ build: | deps
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/ukui-sidebar* rpmbuild/RPMS/x86_64/ukui-sidebar* ~/rpmbuild/SOURCES/ukui-sidebar* ~/rpmbuild/RPMS/x86_64/ukui-sidebar* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean

@@ -26,7 +26,7 @@ build: | deps
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/peony* rpmbuild/RPMS/x86_64/peony* ~/rpmbuild/SOURCES/peony* ~/rpmbuild/RPMS/x86_64/peony* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean

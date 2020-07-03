@@ -19,7 +19,7 @@ build: | deps
 	rpmbuild -ba ukui-menu.spec
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/ukui-menu* rpmbuild/RPMS/x86_64/ukui-menu* ~/rpmbuild/SOURCES/ukui-menu* ~/rpmbuild/RPMS/x86_64/ukui-menu* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean

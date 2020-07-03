@@ -19,7 +19,7 @@ build: | deps
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/kylin-display-switch* rpmbuild/RPMS/x86_64/kylin-display-switch* ~/rpmbuild/SOURCES/kylin-display-switch* ~/rpmbuild/RPMS/x86_64/kylin-display-switch* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean

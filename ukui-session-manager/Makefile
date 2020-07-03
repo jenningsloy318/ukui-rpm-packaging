@@ -19,7 +19,7 @@ build: | deps
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/ukui-session-manager* rpmbuild/RPMS/x86_64/ukui-session-manager* ~/rpmbuild/SOURCES/ukui-session-manager* ~/rpmbuild/RPMS/x86_64/ukui-session-manager* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean

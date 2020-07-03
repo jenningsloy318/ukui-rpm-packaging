@@ -20,7 +20,7 @@ build: | deps
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/ukui-wallpapers* rpmbuild/RPMS/x86_64/ukui-wallpapers* ~/rpmbuild/SOURCES/ukui-wallpapers* ~/rpmbuild/RPMS/x86_64/ukui-wallpapers* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean

@@ -27,7 +27,7 @@ build: | deps
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/ukui-themes* rpmbuild/RPMS/x86_64/ukui-themes* ~/rpmbuild/SOURCES/ukui-themes* ~/rpmbuild/RPMS/x86_64/ukui-themes* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean

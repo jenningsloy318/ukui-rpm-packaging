@@ -28,7 +28,7 @@ build: | deps build-libfprint
 	
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/biometric-authentication* rpmbuild/RPMS/x86_64/biometric-authentication* ~/rpmbuild/SOURCES/biometric-authentication* ~/rpmbuild/RPMS/x86_64/biometric-authentication* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean

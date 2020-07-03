@@ -20,7 +20,7 @@ build: | deps
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild
+	rm -rf rpmbuild/SOURCES/ukui-system-monitor* rpmbuild/RPMS/x86_64/ukui-system-monitor* ~/rpmbuild/SOURCES/ukui-system-monitor* ~/rpmbuild/RPMS/x86_64/ukui-system-monitor* 
 	$(DOCKER) container rm -a
 
 .PHONY: build  clean
