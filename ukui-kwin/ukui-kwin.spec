@@ -126,8 +126,12 @@ Requires: qt5-qtmultimedia
 
 %package data
 Summary: UKUI window manager data files
-Requires: qt5-qtmultimedia
+Requires: kf5-plasma
 
+Recommends: qt5-qtmultimedia
+Recommends: qt5-qtquickcontrols
+Recommends: qt5-qtdeclarative
+Recommends: qt5-qtvirtualkeyboard
 %description data
  Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
  gives you complete control over your windows, making sure
@@ -142,6 +146,7 @@ Requires: qt5-qtmultimedia
 %package devel
 Summary: UKUI window manager - devel files
 Requires: ukui-kwin-common 
+Requires: ukui-kwin-libs 
 
 %description devel
  Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
@@ -160,7 +165,7 @@ Requires: kwayland-integration
 Requires: ukui-kwin-common
 Requires: libcap
 Requires: xorg-x11-server-Xwayland
-Requires: ukui-kwin-wayland-backend-drm,ukui-kwin-wayland-backend-fbdev,ukui-kwin-wayland-backend-x11,ukui-kwin-wayland-backend-virtual,ukui-kwin-wayland-backend-wayland
+Requires: (ukui-kwin-wayland-backend-drm or ukui-kwin-wayland-backend-fbdev or ukui-kwin-wayland-backend-x11 or ukui-kwin-wayland-backend-virtual or ukui-kwin-wayland-backend-wayland)
 
 Provides: ukui-kwin
 
@@ -250,8 +255,8 @@ Summary: UKUI window manager drm plugin
 Provides: ukui-kwin, x-window-manager
 
 Requires: ukui-kwin-common
-Requires: ukui-kwin-kwinglutils
-Requires: ukui-kwin-kwinxrenderutils
+Requires: ukui-kwin-libs-gl-utils
+Requires: ukui-kwin-libs-xrender-utils
 %description x11
  Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
  gives you complete control over your windows, making sure
@@ -262,11 +267,22 @@ Requires: ukui-kwin-kwinxrenderutils
  .
  This package is part of the UKUI project.
 
-%package kwin4-effect-builtins
-Summary: UKUI window manager drm plugin
-Requires: ukui-kwin-kwineffects
 
-%description kwin4-effect-builtins
+%package libs
+Summary: KWin runtime libraries
+Requires: ukui-kwin-libs-effects
+Requires: ukui-kwin-libs-effects-builtins
+Requires: ukui-kwin-libs-gl-utils
+Requires: ukui-kwin-libs-xrender-utils
+
+%description libs
+KWin runtime libraries.
+
+%package libs-effects-builtins
+Summary: UKUI window manager drm plugin
+Requires: ukui-kwin-libs-effects
+
+%description libs-effects-builtins
  Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
  gives you complete control over your windows, making sure
  they're not in the way but aid you in your task. It paints
@@ -277,9 +293,9 @@ Requires: ukui-kwin-kwineffects
  This package is part of the UKUI project.
 
 
-%package kwineffects
+%package libs-effects
 Summary:  UKUI window manager effects library
-%description kwineffects
+%description libs-effects
  Ukui-kwin is the window manager for the UKUI3.0 Desktop. It
  gives you complete control over your windows, making sure
  they're not in the way but aid you in your task. It paints
@@ -291,10 +307,10 @@ Summary:  UKUI window manager effects library
 
 
 
-%package kwinglutils
+%package libs-gl-utils
 Summary:  UKUI window manager effects library
 
-%description  kwinglutils
+%description  libs-gl-utils
  Ukui-kwin is the window manager for the UKUI3.0 Desktop. It
  gives you complete control over your windows, making sure
  they're not in the way but aid you in your task. It paints
@@ -304,10 +320,10 @@ Summary:  UKUI window manager effects library
  .
  This package is part of the UKUI project.
 
-%package kwinxrenderutils
+%package libs-xrender-utils
 
 Summary: UKUI window manager effects library
-%description kwinxrenderutils
+%description libs-xrender-utils
  Ukui-kwin is the window manager for the UKUI3.0 Desktop. It
  gives you complete control over your windows, making sure
  they're not in the way but aid you in your task. It paints
@@ -348,7 +364,6 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 %{_libdir}/qt5/plugins/kcm_ukuikwin_scripts.so
 %{_libdir}/qt5/plugins/kcm_ukuikwintabbox.so
 %{_libdir}/qt5/plugins/kcms/kcm_ukuikwin_effects.so
-%{_libdir}/qt5/plugins/kcms/kcm_ukuikwin_virtualdesktops.so
 %{_libdir}/qt5/plugins/kcms/kcm_ukuikwindecoration.so
 %{_libdir}/qt5/plugins/kf5/org.ukui.kwindowsystem.platforms/KF5WindowSystemKWinPrivatePlugin.so
 %{_libdir}/qt5/plugins/kpackage/packagestructure/
@@ -359,11 +374,7 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 %{_libdir}/qt5/plugins/org.ukui.kglobalaccel5.platforms/KF5GlobalAccelPrivateKWin.so
 %{_libdir}/qt5/plugins/org.ukui.kwin.scenes/
 %{_libdir}/qt5/qml/org/ukui/kwin/
-%{_libdir}/libukui-kwin.so.1
-%{_libdir}/libukui-kwin.so.1.0.0
 %{_libdir}/libkdeinit5_ukui_kwin_rules_dialog.so
-%{_libdir}/libkcmukuikwincommon.so.1.0.0
-%{_libdir}/libkcmukuikwincommon.so.1
 %{_libdir}/libexec/ukui_kwin_rules_dialog
 %{_libdir}/libexec/ukui_kwin_killer_helper
 %{_libdir}/kconf_update_bin/ukui_kwin5_update_default_rules
@@ -401,6 +412,17 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 %{_libdir}/cmake/ukui-kwin/KWinDBusInterface/KWinDBusInterfaceConfig.cmake 
 %{_datadir}/dbus-1/interfaces/*
 
+
+
+%files libs
+%{_libdir}/libkcmukuikwincommon.so.1.0.0
+%{_libdir}/libkcmukuikwincommon.so.1
+%{_libdir}/libukui-kwin.so.1
+%{_libdir}/libukui-kwin.so.1.0.0
+%{_libdir}/qt5/plugins/kcms/kcm_ukuikwin_virtualdesktops.so
+
+
+
 %files wayland
 %{_bindir}/ukui-kwin_wayland
 %{_libdir}/qt5/plugins/kf5/org.ukui.kidletime.platforms/KF5IdleTimeKWinWaylandPrivatePlugin.so
@@ -427,25 +449,25 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 %{_libdir}/qt5/plugins/org.ukui.kwin.platforms/KWinX11Platform.so
 
 
-%files kwin4-effect-builtins
+%files libs-effects-builtins
 %{_libdir}/libukui-kwin4_effect_builtins.so
 %{_libdir}/libukui-kwin4_effect_builtins.so.1
 %{_libdir}/libukui-kwin4_effect_builtins.so.1.0.0
 
-%files kwineffects
+%files libs-effects
 %{_libdir}/libukui-kwineffects.so
 %{_libdir}/libukui-kwineffects.so.1.0.0
 %{_libdir}/libukui-kwineffects.so.12
 
 
 
-%files kwinglutils
+%files libs-gl-utils
 %{_libdir}/libukui-kwinglutils.so
 %{_libdir}/libukui-kwinglutils.so.1.0.0
 %{_libdir}/libukui-kwinglutils.so.12
 
 
-%files kwinxrenderutils
+%files libs-xrender-utils
 %{_libdir}/libukui-kwinxrenderutils.so
 %{_libdir}/libukui-kwinxrenderutils.so.1.0.0
 %{_libdir}/libukui-kwinxrenderutils.so.12
