@@ -24,7 +24,8 @@ pipeline {
 
              steps { 
               sh '''
-                  make build
+                make clean
+                make build
               '''
              }
     }
