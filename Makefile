@@ -18,6 +18,7 @@ endif
 build: | bio-auth
 	cd kylin-display-switch/ && make build && cd ..
 	cd kylin-nm/ && make build && cd ..
+	cd kylin-video/ && make build && cd ..
 	cd peony/ && make build && cd ..
 	cd peony-extensions/ && make build && cd ..
 	cd qt5-ukui-platformtheme/ && make build && cd ..
@@ -38,6 +39,7 @@ build: | bio-auth
 	cd ukui-wallpapers/ && make build && cd ..
 	cd ukui-window-switch/ && make build && cd ..
 	cd ukui-media/ && make build && cd ..
+
 
 clean:
 	rm -rf ~/rpmbuild/{SOURCES,RPMS}
