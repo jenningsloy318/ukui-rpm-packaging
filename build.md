@@ -1293,3 +1293,9 @@ error: Bad exit status from /var/tmp/rpm-tmp.I9DH2T (%build)
     Jul 01 04:38:17 centos8-builder.lmy.com kernel: ukui-greeter[37021]: segfault at 2b1140 ip 00000000002b1140 sp 00007fffb1c117f8 error 14 in ukui-greeter[55c6dcb5c000+c6000]
     Jul 01 04:38:18 centos8-builder.lmy.com systemd-coredump[37449]: Process 37021 (ukui-greeter) of user 993 dumped core.
     ```   
+
+  5. missing license files in folowing repo
+      - ukui-biometric-manager
+      - ukui-biometric-auth
+      - ukui-screensaver
+      - ukui-system-monitor
