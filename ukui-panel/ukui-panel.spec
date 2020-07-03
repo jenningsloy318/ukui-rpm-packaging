@@ -7,8 +7,8 @@ Release:        1%{?dist}
 Summary:        ukui desktop panel
 
 
-License:        GPLv2+
-URL:            https://github.com/ukui/%{name}
+License:         LGPL-2.1 License
+URL:            https://github.com/ukui/ukui-panel
 #Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 

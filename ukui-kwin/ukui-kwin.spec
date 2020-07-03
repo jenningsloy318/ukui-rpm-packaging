@@ -8,7 +8,7 @@ Summary:        UKUI window manager
 
 
 
-License:        GPLv2+
+License:         GPL-2.0 License
 URL:            https://github.com/ukui/ukui-kwin
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 BuildArch:      x86_64

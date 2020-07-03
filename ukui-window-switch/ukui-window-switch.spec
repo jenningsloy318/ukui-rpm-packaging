@@ -8,8 +8,8 @@ Summary:        Front of the window switch
 
 
 
-License:        GPLv2+
-URL:            https://github.com/ukui/qt5-ukui-platformtheme
+License:        GPL-2.0 License
+URL:            https://github.com/ukui/ukui-window-switch
 #Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 

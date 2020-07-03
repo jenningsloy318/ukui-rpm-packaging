@@ -8,7 +8,7 @@ Summary:        UKUI media utilities
 
 
 License:        GPL-2.0 License
-URL:            https://github.com/ukui/%{name}
+URL:            https://github.com/ukui/ukui-media
 #Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 

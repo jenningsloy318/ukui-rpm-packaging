@@ -37,6 +37,7 @@ build: | bio-auth
 	cd ukui-themes/ && make build && cd ..
 	cd ukui-wallpapers/ && make build && cd ..
 	cd ukui-window-switch/ && make build && cd ..
+	cd ukui-media/ && make build && cd ..
 
 clean:
 	rm -rf ~/rpmbuild/{SOURCES,RPMS}

@@ -8,8 +8,8 @@ Summary:        Peony qt extensions (common files)
 
 
 
-License:        GPLv2+
-URL:            https://github.com/ukui/ukui-session-manager
+License:        LGPL-3.0 License
+URL:            https://github.com/ukui/peony-extensions
 #Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 
