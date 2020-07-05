@@ -1,15 +1,15 @@
 
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
 DIST := $(shell { rpm --eval "%{dist}";} 2>/dev/null)
+PKG_NAME := $(shell { grep  "Name" biometric-authentication.spec| awk  '{print $$2}'; } )
+PKG_VERSION := $(shell { grep  "Version" biometric-authentication.spec| awk  '{print $$2}'; } )
 
 all: build 
 
-docker-builder:
-	$(DOCKER) build -t docker.io/jenningsloy318/biometric-authentication-builder:f32  -f Dockerfile .
 
 docker-build: 
 	@echo ">> building rpms in container"
-	$(DOCKER) run  --ulimit=host  --privileged -v `pwd`:/root docker.io/jenningsloy318/biometric-authentication-builder:f32  bash  /root/build.sh 
+	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/biometric-authentication  -w /root/biometric-authentication docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
 
 deps:
 	@echo ">> install dependencies"
@@ -21,7 +21,12 @@ build-libfprint:
 	rpmbuild  -ba /root/rpmbuild/SPECS/libfprint.spec 
 	rpm -ihv --force /root/rpmbuild/RPMS/x86_64/libfprint-1.0-1${DIST}.x86_64.rpm /root/rpmbuild/RPMS/x86_64/libfprint-devel-1.0-1${DIST}.x86_64.rpm
 
-build: | deps build-libfprint
+download-source:
+	@echo "download source code"
+	mkdir -p ~/rpmbuild/SOURCES/
+	curl -SL https://github.com/ukui/${PKG_NAME}/archive/${PKG_VERSION}.zip#/${PKG_NAME}-${PKG_VERSION}.zip -o ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.zip
+
+build: | deps build-libfprint download-source
 	@echo ">> building rpms"
 	cp biometric-authentication-unitdir.patch ~/rpmbuild/SOURCES
 	rpmbuild  -ba biometric-authentication.spec
@@ -29,6 +34,5 @@ build: | deps build-libfprint
 clean:
 	@echo ">> clean up"
 	rm -rf rpmbuild/SOURCES/biometric-authentication* rpmbuild/RPMS/x86_64/biometric-authentication* ~/rpmbuild/SOURCES/biometric-authentication* ~/rpmbuild/RPMS/x86_64/biometric-authentication* 
-	$(DOCKER) container rm -a
 
 .PHONY: build  clean

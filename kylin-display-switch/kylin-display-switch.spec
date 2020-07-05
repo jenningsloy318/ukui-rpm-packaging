@@ -1,6 +1,5 @@
-# enable download source
-%undefine _disable_source_fetch
-#%define debug_package %{nil}
+# disable debug package
+%define debug_package %{nil}
 
 Name:           kylin-display-switch
 Version:        master
@@ -10,7 +9,7 @@ Summary:        Gui tool for display switching
 
 License:         GPL-3.0 License
 URL:            https://github.com/ukui/kylin-display-switch
-#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+# %%Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 
 BuildArch:      x86_64

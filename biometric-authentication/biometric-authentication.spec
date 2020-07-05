@@ -1,6 +1,3 @@
-# enable download source
-%undefine _disable_source_fetch
-
 Name:           biometric-authentication
 Version:        master
 Release:        1%{?dist}
@@ -8,7 +5,7 @@ Summary:        Biometric Authentication Service
 
 License:        LGPL-3.0 License
 URL:            https://github.com/ukui/biometric-authentication
-#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+# %%Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 Patch0:					biometric-authentication-unitdir.patch
 BuildArch:      x86_64

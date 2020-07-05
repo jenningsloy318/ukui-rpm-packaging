@@ -1,6 +1,3 @@
-# enable download source
-%undefine _disable_source_fetch
-
 Name:           ukui-window-switch
 Version:        master
 Release:        1%{?dist}
@@ -10,7 +7,7 @@ Summary:        Front of the window switch
 
 License:        GPL-2.0 License
 URL:            https://github.com/ukui/ukui-window-switch
-#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+# %%Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 
 BuildArch:      x86_64
@@ -22,7 +19,7 @@ BuildRequires: qt5-qtx11extras-devel
 BuildRequires: qt5-qtbase-private-devel
 BuildRequires: gtk3-devel
 BuildRequires: libwnck3-devel
-
+BuildRequires: gsettings-qt-devel
 Requires: ukui-kwin
 
 

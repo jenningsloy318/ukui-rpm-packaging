@@ -1,6 +1,3 @@
-# enable download source
-%undefine _disable_source_fetch
-
 Name:           kylin-video
 Version:        master
 Release:        1%{?dist}
@@ -24,6 +21,7 @@ BuildRequires: zlib-devel
 BuildRequires: libX11-devel
 BuildRequires: libcrystalhd-devel
 BuildRequires: qt5-qtsvg-devel
+BuildRequires: libXext-devel
 
 Requires: (mpv or mplayer)
 Requires: mesa-vdpau-drivers

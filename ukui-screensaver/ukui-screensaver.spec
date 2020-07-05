@@ -1,17 +1,12 @@
-# enable download source
-%undefine _disable_source_fetch
-
 Name:           ukui-screensaver
 Version:        master
 Release:        1%{?dist}
 Summary:         Screensaver for UKUI desktop environment
 
 
-
-
 License:        GPLv2+
 URL:            https://github.com/ukui/ukui-screensaver
-#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+# %%Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 Patch0:         ukui-screensaver-libexec-path.patch
 BuildArch:      x86_64

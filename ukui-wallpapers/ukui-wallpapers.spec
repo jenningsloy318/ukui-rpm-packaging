@@ -1,5 +1,4 @@
-# enable download source
-%undefine _disable_source_fetch
+# disable debug package
 %define debug_package %{nil}
 
 Name:           ukui-wallpapers

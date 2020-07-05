@@ -13,6 +13,9 @@ else
 
 endif
 
+docker-build: 
+	@echo ">> building rpms in container"
+	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/ukui-rpm-packaging  -w /root/ukui-rpm-packaging docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
 
 
 build: | bio-auth

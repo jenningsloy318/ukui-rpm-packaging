@@ -1,6 +1,3 @@
-# enable download source
-%undefine _disable_source_fetch
-
 Name:           ukui-menu
 Version:        master
 Release:        1%{?dist}
@@ -9,7 +6,7 @@ Summary:        Advanced ukui menu
 
 License:         GPL-3.0 License
 URL:            https://github.com/ukui/ukui-menu
-#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+# %%Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 
 BuildArch:      x86_64
