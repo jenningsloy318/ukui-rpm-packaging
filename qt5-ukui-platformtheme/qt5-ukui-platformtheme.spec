@@ -87,6 +87,7 @@ pushd qmake-build
 popd
 
 %files
+%doc debian/changelog  debian/copyright
 %{_libdir}/qt5/plugins/platformthemes/libqt5-ukui-platformtheme.so
 
 %files styles-devel
