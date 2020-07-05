@@ -96,7 +96,7 @@ BuildRequires: libcap-devel
 BuildRequires: plasma-breeze-devel
 
 
-Requires: ukui-kwin-x11
+Requires: (ukui-kwin-x11 or ukui-kwin-wayland)
 
 %description
  This package is a transitional dummy to depend on the renamed ukui-kwin-x11 and
@@ -106,12 +106,16 @@ Requires: ukui-kwin-x11
 %package common
 Summary: UKUI window manager, common files
 
-Requires: ukui-kwin-data
 Requires: kf5-kglobalaccel
 Requires: kf5-kirigami2
 Requires: kf5-kdeclarative
 Requires: qt5-qtmultimedia
-
+Requires: kf5-plasma
+ 
+Recommends: qt5-qtmultimedia
+Recommends: qt5-qtquickcontrols
+Recommends: qt5-qtdeclarative
+Recommends: qt5-qtvirtualkeyboard
 %description common
   Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
  gives you complete control over your windows, making sure
@@ -122,23 +126,14 @@ Requires: qt5-qtmultimedia
  .
  This package is part of the UKUI project.
 
-%package data
-Summary: UKUI window manager data files
-Requires: kf5-plasma
 
-Recommends: qt5-qtmultimedia
-Recommends: qt5-qtquickcontrols
-Recommends: qt5-qtdeclarative
-Recommends: qt5-qtvirtualkeyboard
-%description data
- Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
- gives you complete control over your windows, making sure
- they're not in the way but aid you in your task. It paints
- the window decoration, the bar on top of every window with
- (configurable) buttons like close, maximize and minimize.
- It also handles placing of windows and switching between them.
- .
- This package contains the data files
+%package libs
+Summary: KWin runtime libraries
+
+Requires: ukui-kwin-common
+
+%description libs
+ukui-KWin runtime libraries.
 
 
 %package devel
@@ -159,7 +154,7 @@ Requires: ukui-kwin-libs
 
 %package wayland
 Summary: UKUI window manager, wayland version
-Requires: kwayland-integration 
+Requires: kwayland-integration
 Requires: ukui-kwin-common
 Requires: libcap
 Requires: xorg-x11-server-Xwayland
@@ -174,87 +169,12 @@ Provides: ukui-kwin
  project, and is available as a PREVIEW release. Don't expect the same
  stability as with the x11 version.
 
-%package wayland-backend-drm
-Summary: UKUI window manager drm plugin
-Provides: ukui-kwin-wayland-backend
-
-%description wayland-backend-drm
- Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
- gives you complete control over your windows, making sure
- they're not in the way but aid you in your task. It paints
- the window decoration, the bar on top of every window with
- (configurable) buttons like close, maximize and minimize.
- It also handles placing of windows and switching between them.
- .
- This package is part of the UKUI project
-
-
-%package wayland-backend-fbdev
-Summary: UKUI window manager fbdev plugin
-Provides: ukui-kwin-wayland-backend
-
-%description wayland-backend-fbdev
- Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
- gives you complete control over your windows, making sure
- they're not in the way but aid you in your task. It paints
- the window decoration, the bar on top of every window with
- (configurable) buttons like close, maximize and minimize.
- It also handles placing of windows and switching between them.
- .
- This package is part of the UKUI project
-
-%package wayland-backend-virtual
-Summary: UKUI window manager virtual plugin
-Provides: ukui-kwin-wayland-backend
-
-%description wayland-backend-virtual
- Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
- gives you complete control over your windows, making sure
- they're not in the way but aid you in your task. It paints
- the window decoration, the bar on top of every window with
- (configurable) buttons like close, maximize and minimize.
- It also handles placing of windows and switching between them.
- .
- This backend allows running ukui-kwin-wayland in headless mode,
- useful for testing, or in the Cloud.
-
-%package wayland-backend-wayland
-
-Summary: UKUI window manager drm plugin
-
-Provides: ukui-kwin-wayland-backend
-%description wayland-backend-wayland
- Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
- gives you complete control over your windows, making sure
- they're not in the way but aid you in your task. It paints
- the window decoration, the bar on top of every window with
- (configurable) buttons like close, maximize and minimize.
- It also handles placing of windows and switching between them.
- .
- This package is part of the UKUI project
-
-%package wayland-backend-x11
-Summary:  UKUI window manager drm plugin
-Provides: ukui-kwin-wayland-backend
-
-%description wayland-backend-x11
- Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
- gives you complete control over your windows, making sure
- they're not in the way but aid you in your task. It paints
- the window decoration, the bar on top of every window with
- (configurable) buttons like close, maximize and minimize.
- It also handles placing of windows and switching between them.
- .
- This package is part of the UKUI project
-
-
 %package x11
 Summary: UKUI window manager drm plugin
 Provides: ukui-kwin, x-window-manager
 
 Requires: ukui-kwin-common
-Requires: ukui-kwin-libs-gl-utils
-Requires: ukui-kwin-libs-xrender-utils
+Requires: ukui-kwin-libs
 %description x11
  Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
  gives you complete control over your windows, making sure
@@ -265,71 +185,6 @@ Requires: ukui-kwin-libs-xrender-utils
  .
  This package is part of the UKUI project.
 
-
-%package libs
-Summary: KWin runtime libraries
-Requires: ukui-kwin-libs-effects
-Requires: ukui-kwin-libs-effects-builtins
-Requires: ukui-kwin-libs-gl-utils
-Requires: ukui-kwin-libs-xrender-utils
-
-%description libs
-KWin runtime libraries.
-
-%package libs-effects-builtins
-Summary: UKUI window manager drm plugin
-Requires: ukui-kwin-libs-effects
-
-%description libs-effects-builtins
- Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
- gives you complete control over your windows, making sure
- they're not in the way but aid you in your task. It paints
- the window decoration, the bar on top of every window with
- (configurable) buttons like close, maximize and minimize.
- It also handles placing of windows and switching between them.
- .
- This package is part of the UKUI project.
-
-
-%package libs-effects
-Summary:  UKUI window manager effects library
-%description libs-effects
- Ukui-kwin is the window manager for the UKUI3.0 Desktop. It
- gives you complete control over your windows, making sure
- they're not in the way but aid you in your task. It paints
- the window decoration, the bar on top of every window with
- (configurable) buttons like close, maximize and minimize.
- It also handles placing of windows and switching between them.
- .
- This package is part of the UKUI project.
-
-
-
-%package libs-gl-utils
-Summary:  UKUI window manager effects library
-
-%description  libs-gl-utils
- Ukui-kwin is the window manager for the UKUI3.0 Desktop. It
- gives you complete control over your windows, making sure
- they're not in the way but aid you in your task. It paints
- the window decoration, the bar on top of every window with
- (configurable) buttons like close, maximize and minimize.
- It also handles placing of windows and switching between them.
- .
- This package is part of the UKUI project.
-
-%package libs-xrender-utils
-
-Summary: UKUI window manager effects library
-%description libs-xrender-utils
- Ukui-kwin is the window manager for the UKUI3.0 Desktop. It
- gives you complete control over your windows, making sure
- they're not in the way but aid you in your task. It paints
- the window decoration, the bar on top of every window with
- (configurable) buttons like close, maximize and minimize.
- It also handles placing of windows and switching between them.
- .
- This package is part of the UKUI project.
 
 %prep
 %setup -q
@@ -383,8 +238,6 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 %{_datadir}/knsrcfiles/ukui-kwinswitcher.knsrc
 %{_datadir}/knsrcfiles/ukui-window-decorations.knsrc
 %{_datadir}/qlogging-categories5/org_ukui_kwin.categories
-
-%files data 
 %{_sysconfdir}/xdg/ukui-kwinrc 
 %{_datadir}/applications/ukui-kwin.desktop 
 %{_datadir}/aurorae/themes/Ukui-classic/
@@ -404,13 +257,6 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 %{_datadir}/locale/*/LC_MESSAGES/*
 
 
-%files devel
-%{_includedir}/ukui-kwin/
-%{_includedir}/ukui-kwin_export.h
-%{_libdir}/cmake/ukui-kwin/KWinDBusInterface/KWinDBusInterfaceConfig.cmake 
-%{_datadir}/dbus-1/interfaces/*
-
-
 
 %files libs
 %{_libdir}/libkcmukuikwincommon.so.1.0.0
@@ -418,27 +264,35 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 %{_libdir}/libukui-kwin.so.1
 %{_libdir}/libukui-kwin.so.1.0.0
 %{_libdir}/qt5/plugins/kcms/kcm_ukuikwin_virtualdesktops.so
+%{_libdir}/libukui-kwin4_effect_builtins.so.1
+%{_libdir}/libukui-kwin4_effect_builtins.so.1.0.0
+%{_libdir}/libukui-kwineffects.so.1.0.0
+%{_libdir}/libukui-kwineffects.so.12
+%{_libdir}/libukui-kwinglutils.so.1.0.0
+%{_libdir}/libukui-kwinglutils.so.12
+%{_libdir}/libukui-kwinxrenderutils.so.1.0.0
+%{_libdir}/libukui-kwinxrenderutils.so.12
 
 
+
+%files devel
+%{_includedir}/ukui-kwin/
+%{_includedir}/ukui-kwin_export.h
+%{_libdir}/cmake/ukui-kwin/KWinDBusInterface/KWinDBusInterfaceConfig.cmake 
+%{_datadir}/dbus-1/interfaces/*
+%{_libdir}/libukui-kwinglutils.so
+%{_libdir}/libukui-kwineffects.so
+%{_libdir}/libukui-kwinxrenderutils.so
+%{_libdir}/libukui-kwin4_effect_builtins.so
 
 %files wayland
 %{_bindir}/ukui-kwin_wayland
 %{_libdir}/qt5/plugins/kf5/org.ukui.kidletime.platforms/KF5IdleTimeKWinWaylandPrivatePlugin.so
 %{_libdir}/qt5/plugins/platforms/UKUIKWinQpaPlugin.so
-
-%files wayland-backend-drm
 %{_libdir}/qt5/plugins/org.ukui.kwin.waylandbackends/KWinWaylandDrmBackend.so
-
-%files wayland-backend-fbdev
 %{_libdir}/qt5/plugins/org.ukui.kwin.waylandbackends/KWinWaylandFbdevBackend.so
-
-%files wayland-backend-virtual
 %{_libdir}/qt5/plugins/org.ukui.kwin.waylandbackends/KWinWaylandVirtualBackend.so
-
-%files wayland-backend-wayland
 %{_libdir}/qt5/plugins/org.ukui.kwin.waylandbackends/KWinWaylandWaylandBackend.so
-
-%files wayland-backend-x11
 %{_libdir}/qt5/plugins/org.ukui.kwin.waylandbackends/KWinWaylandX11Backend.so
 
 %files x11 
@@ -447,28 +301,11 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 %{_libdir}/qt5/plugins/org.ukui.kwin.platforms/KWinX11Platform.so
 
 
-%files libs-effects-builtins
-%{_libdir}/libukui-kwin4_effect_builtins.so
-%{_libdir}/libukui-kwin4_effect_builtins.so.1
-%{_libdir}/libukui-kwin4_effect_builtins.so.1.0.0
-
-%files libs-effects
-%{_libdir}/libukui-kwineffects.so
-%{_libdir}/libukui-kwineffects.so.1.0.0
-%{_libdir}/libukui-kwineffects.so.12
 
 
 
-%files libs-gl-utils
-%{_libdir}/libukui-kwinglutils.so
-%{_libdir}/libukui-kwinglutils.so.1.0.0
-%{_libdir}/libukui-kwinglutils.so.12
 
 
-%files libs-xrender-utils
-%{_libdir}/libukui-kwinxrenderutils.so
-%{_libdir}/libukui-kwinxrenderutils.so.1.0.0
-%{_libdir}/libukui-kwinxrenderutils.so.12
 
 %post x11 
 #! /bin/sh
