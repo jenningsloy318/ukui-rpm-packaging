@@ -45,3 +45,4 @@ gzip -c man/biometric-manager.1		 > %{buildroot}/usr/share/man/man1/biometric-ma
 %{_bindir}/biometric-manager
 %{_datadir}/applications/biometric-manager.desktop
 %{_datadir}/pixmaps/biometric-manager.png
+%{_datadir}/biometric-manager/
