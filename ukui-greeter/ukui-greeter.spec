@@ -57,5 +57,5 @@ gzip -c ukui-greeter/man/ukui-greeter.8 > %{buildroot}/usr/share/man/man8/ukui-g
 %{_datadir}/man/man8/ukui-greeter.8.gz
 %{_sbindir}/ukui-greeter
 %{_datadir}/lightdm/lightdm.conf.d/95-ukui-greeter.conf
-%{_datadir}/ukui-greeter/images/
+%{_datadir}/ukui-greeter/
 %{_datadir}/xgreeters/ukui-greeter.desktop
