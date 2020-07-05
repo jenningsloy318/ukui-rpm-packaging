@@ -11,7 +11,7 @@ docker-build:
 
 deps:
 	@echo ">> install dependencies"
-	dnf -y install  qt5-qtbase-devel qt5-qtscript-devel qt5-qttools-devel qt5-linguist qt5-qtbase-private-devel qt5-qtx11extras-devel zlib-devel libX11-devel libcrystalhd-devel
+	dnf -y install  qt5-qtbase-devel qt5-qtscript-devel qt5-qttools-devel qt5-linguist qt5-qtbase-private-devel qt5-qtx11extras-devel zlib-devel libX11-devel libcrystalhd-devel qt5-qtsvg-devel
 	strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
 	ln -s /usr/bin/lrelease-qt5 /usr/bin/lrelease
 

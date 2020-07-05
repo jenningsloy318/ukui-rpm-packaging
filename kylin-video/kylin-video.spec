@@ -23,6 +23,7 @@ BuildRequires: qt5-qtx11extras-devel
 BuildRequires: zlib-devel
 BuildRequires: libX11-devel
 BuildRequires: libcrystalhd-devel
+BuildRequires: qt5-qtsvg-devel
 
 Requires: (mpv or mplayer)
 Requires: mesa-vdpau-drivers
