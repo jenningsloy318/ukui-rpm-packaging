@@ -12,11 +12,11 @@ index c66b886..da35b84 100644
  
      qDebug()<<pluginsDir.entryList().count();
 diff --git src/plugins/clipboardPlugin/clipboardPlugin.pro src/plugins/clipboardPlugin/clipboardPlugin.pro
-index 2613ac7..347eb40 100644
+index 6cc6c38..f03f59b 100644
 --- src/plugins/clipboardPlugin/clipboardPlugin.pro
 +++ src/plugins/clipboardPlugin/clipboardPlugin.pro
-@@ -67,6 +67,6 @@ TRANSLATIONS += test_zh_CN.ts
- TRANSLATIONS += bo.ts
+@@ -68,6 +68,6 @@ TRANSLATIONS += bo.ts
+ TRANSLATIONS += tr.ts
  
  unix {
 -    target.path = /usr/lib/ukui-sidebar/sidebar_clipboardPlugin_plugins
@@ -37,10 +37,10 @@ index 1a31862..af8b180 100644
  
      translation.path = /usr/share/ukui-sidebar-notification
 diff --git src/widget.cpp src/widget.cpp
-index 01bdbb9..96c1dfd 100644
+index 55b476c..25b5815 100644
 --- src/widget.cpp
 +++ src/widget.cpp
-@@ -113,7 +113,7 @@ Widget::~Widget()
+@@ -114,7 +114,7 @@ Widget::~Widget()
  //加载通知中心插件
  bool Widget::loadNotificationPlugin()
  {
@@ -49,7 +49,7 @@ index 01bdbb9..96c1dfd 100644
      QPluginLoader pluginLoader(pluginsDir.absoluteFilePath("libnotification_plugin.so"));
  
      m_pNotificationPluginObject = pluginLoader.instance();
-@@ -135,7 +135,7 @@ bool Widget::loadNotificationPlugin()
+@@ -136,7 +136,7 @@ bool Widget::loadNotificationPlugin()
  //加载剪贴板插件
  int Widget::ListenClipboardSignal()
  {
