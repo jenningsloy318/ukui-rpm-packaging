@@ -158,7 +158,6 @@ Requires: kwayland-integration
 Requires: ukui-kwin-common
 Requires: libcap
 Requires: xorg-x11-server-Xwayland
-Requires: (ukui-kwin-wayland-backend-drm or ukui-kwin-wayland-backend-fbdev or ukui-kwin-wayland-backend-x11 or ukui-kwin-wayland-backend-virtual or ukui-kwin-wayland-backend-wayland)
 
 Provides: ukui-kwin
 
