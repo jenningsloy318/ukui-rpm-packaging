@@ -32,7 +32,8 @@ BuildRequires:  qt5-qtmultimedia-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  libkscreen-qt5-devel
 BuildRequires:  kf5-ki18n-devel
-BuildRequires: libcanberra-devel
+BuildRequires:  libcanberra-devel
+BuildRequires:  libXi-devel
 Recommends: edid-decode
 Recommends: redshift
 Recommends: qt5-qtquickcontrols

@@ -25,10 +25,10 @@ index 1b665ae..53b6105 100644
  ##加载gio库和gio-unix库
  CONFIG        += link_pkgconfig \
 diff --git plugins/devices/audio/audio.pro plugins/devices/audio/audio.pro
-index 6eae727..4b09549 100644
+index 489f9f9..380e115 100644
 --- plugins/devices/audio/audio.pro
 +++ plugins/devices/audio/audio.pro
-@@ -27,7 +27,7 @@ PKGCONFIG += libmatemixer \
+@@ -28,7 +28,7 @@ PKGCONFIG += libmatemixer \
  
  #DEFINES += QT_DEPRECATED_WARNINGS
  
@@ -51,7 +51,7 @@ index f19b17f..3335d16 100644
  CONFIG        += link_pkgconfig \
                   C++11
 diff --git plugins/devices/mouse/mouse.pro plugins/devices/mouse/mouse.pro
-index 26edae7..bf179e4 100644
+index ca2f0ae..e93f622 100644
 --- plugins/devices/mouse/mouse.pro
 +++ plugins/devices/mouse/mouse.pro
 @@ -20,8 +20,8 @@ INCLUDEPATH   +=  \
@@ -63,8 +63,8 @@ index 26edae7..bf179e4 100644
 +LIBS          +=  -L/usr/lib64/  -lXi -lgsettings-qt
 +#LIBS          +=  -L/usr/lib64/   -lgsettings-qt
  
- 
- 
+ ##加载gio库和gio-unix库
+ CONFIG        += link_pkgconfig \
 diff --git plugins/devices/mousecontrol/mousecontrol.pro plugins/devices/mousecontrol/mousecontrol.pro
 index c77de3f..15e57c3 100644
 --- plugins/devices/mousecontrol/mousecontrol.pro
@@ -361,7 +361,7 @@ index da4cee4..59294b3 100644
          pluginsDir = QDir(qApp->applicationDirPath() + "/pluginlibs/");
      }
 diff --git shell/shell.pro shell/shell.pro
-index ef051a0..4275a0c 100644
+index 8ec6a50..728b088 100644
 --- shell/shell.pro
 +++ shell/shell.pro
 @@ -25,7 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
