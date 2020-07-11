@@ -13,6 +13,7 @@ docker-build:
 deps:
 	@echo ">> install dependencies"
 	dnf install -y which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros   qt5-qtbase-devel qt5-qtsvg-devel qt5-qtx11extras-devel glib2-devel gsettings-qt-devel bamf-devel libXrandr-devel libXtst-devel libX11-devel qt5-linguist
+	update-alternatives --install /usr/bin/lrelease lrelease /usr/bin/lrelease-qt5 0
 	strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
 
 download-source:
