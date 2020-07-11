@@ -20,6 +20,7 @@ BuildRequires:  bamf-devel
 BuildRequires:  libXrandr-devel
 BuildRequires:  libXtst-devel
 BuildRequires:  libX11-devel
+BuildRequires:  qt5-linguist
 
 Requires:  gsettings-qt
 Requires:  qt5-qtx11extras
