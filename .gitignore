@@ -2,3 +2,4 @@ rpmbuild
 *.rpm
 tmp
 .cache
+*log*
