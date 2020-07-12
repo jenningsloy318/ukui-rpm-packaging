@@ -14,7 +14,6 @@ deps:
 	@echo ">> install dependencies"
 	dnf -y install  qt5-qtbase-devel qt5-qtscript-devel qt5-qttools-devel qt5-linguist qt5-qtbase-private-devel qt5-qtx11extras-devel zlib-devel libX11-devel libcrystalhd-devel qt5-qtsvg-devel libXext-devel
 	strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
-	update-alternatives --install /usr/bin/lrelease lrelease  /usr/bin/lrelease-qt5 0
 
 download-source:
 	@echo "download source code"

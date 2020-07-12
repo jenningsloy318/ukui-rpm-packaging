@@ -46,6 +46,7 @@ Provides: x-session-manager
 %setup -q
 
 %build
+export PATH=%{_qt5_bindir}:$PATH
 mkdir cmake-build
 pushd cmake-build
 %cmake3 ..
