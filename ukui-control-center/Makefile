@@ -21,7 +21,6 @@ download-source:
 
 build: | deps download-source
 	@echo ">> building rpms"
-	cp ukui-control-center-libdir.patch ~/rpmbuild/SOURCES
 	rpmbuild -ba ukui-control-center.spec
 
 clean:

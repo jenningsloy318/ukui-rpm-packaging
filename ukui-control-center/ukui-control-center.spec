@@ -9,7 +9,6 @@ URL:            https://github.com/ukui/ukui-control-center
 # %%Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
 
-Patch0:        ukui-control-center-libdir.patch
 
 BuildArch:      x86_64
 
@@ -56,13 +55,12 @@ utilities to configure the UKUI desktop
 
 %prep
 %setup -q
-%patch0 -p0
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
 mkdir qmake-build
 pushd qmake-build
-%{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ..
+%{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default ..
 %{make_build}
 popd
 
