@@ -58,3 +58,4 @@ gzip -c man/ukui-menu.1  > %{buildroot}/usr/share/man/man1/ukui-menu.1.gz
 %{_sysconfdir}/xdg/autostart/ukui-menu.desktop
 %{_bindir}/ukui-menu
 %{_datadir}/man/man1/ukui-menu.1.gz
+%{_datadir}/ukui-menu/
