@@ -55,6 +55,7 @@ Summary: UKUI authentication agent for PolicyKit-1
 %patch0 -p0
 
 %build
+export PATH=%{_qt5_bindir}:$PATH
 mkdir cmake-build
 pushd cmake-build
 %cmake3 ..

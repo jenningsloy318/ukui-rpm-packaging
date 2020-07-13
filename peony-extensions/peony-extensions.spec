@@ -106,6 +106,7 @@ Requires:  peony-libs
 %patch0 -p0
 
 %build
+export PATH=%{_qt5_bindir}:$PATH
 mkdir cmake-build
 pushd cmake-build
 %cmake3 ..

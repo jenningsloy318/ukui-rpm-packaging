@@ -32,6 +32,7 @@ storage information.
 %patch0 -p0
  
 %build
+export PATH=%{_qt5_bindir}:$PATH
 mkdir qmake-build
 pushd qmake-build
 %{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ..

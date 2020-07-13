@@ -37,6 +37,7 @@ A simple and lightweight screensaver written by Qt5.
 %patch0 -p0
 
 %build
+export PATH=%{_qt5_bindir}:$PATH
 mkdir cmake-build
 pushd cmake-build
 %cmake3 ..
