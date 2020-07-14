@@ -1,29 +1,29 @@
 
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
-PKG_NAME := $(shell { grep  "Name" ukui-wallpapers.spec| awk  '{print $$2}'; } )
-PKG_VERSION := $(shell { grep  "Version" ukui-wallpapers.spec| awk  '{print $$2}'; } )
+PKG_NAME := ukui-wallpapers
+PKG_VERSION := master
 
 all: build 
 
 docker-build: 
-	@echo ">> building rpms in container"
-	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/ukui-wallpapers  -w /root/ukui-wallpapers docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
+	@echo ">> building ${PKG_NAME} rpms in container"
+	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
 
 deps:
-	@echo ">> install dependencies"
+	@echo ">> install dependencies for ${PKG_NAME}"
 	dnf install -y which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros ninja-build meson
 
 download-source:
-	@echo "download source code"
+	@echo "download ${PKG_NAME} source code"
 	mkdir -p ~/rpmbuild/SOURCES/
-	curl -SL https://github.com/ukui/${PKG_NAME}/archive/${PKG_VERSION}.zip#/${PKG_NAME}-${PKG_VERSION}.zip -o ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.zip
+	curl -SL https://github.com/ukui/${PKG_NAME}/archive/${PKG_VERSION}.tar.gz#/${PKG_NAME}-${PKG_VERSION}.tar.gz -o ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.tar.gz
 
 build: | deps download-source
-	@echo ">> building rpms"
-	rpmbuild -ba ukui-wallpapers.spec
+	@echo ">> building ${PKG_NAME} rpms"
+	rpmbuild -ba ${PKG_NAME}.spec
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild/SOURCES/ukui-wallpapers* rpmbuild/RPMS/x86_64/ukui-wallpapers* ~/rpmbuild/SOURCES/ukui-wallpapers* ~/rpmbuild/RPMS/x86_64/ukui-wallpapers* 
+	rm -rf rpmbuild/SOURCES/${PKG_NAME}* rpmbuild/RPMS/x86_64/${PKG_NAME}* ~/rpmbuild/SOURCES/${PKG_NAME}* ~/rpmbuild/RPMS/x86_64/${PKG_NAME}* 
 
-.PHONY: build  clean
+.PHONY: build docker-build deps download-source clean

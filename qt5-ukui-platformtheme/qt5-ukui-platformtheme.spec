@@ -6,8 +6,7 @@ Summary:        Qt5 QPA platform theme of UKUI
 
 License:         LGPL-3.0 License
 URL:            https://github.com/ukui/qt5-ukui-platformtheme
-# %%Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 

@@ -1,6 +1,3 @@
-# enable download source
-%undefine _disable_source_fetch
-
 Name:           ukui-panel
 Version:        master
 Release:        1%{?dist}
@@ -9,7 +6,6 @@ Summary:        ukui desktop panel
 
 License:         LGPL-2.1 License
 URL:            https://github.com/ukui/ukui-panel
-#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildArch:      x86_64

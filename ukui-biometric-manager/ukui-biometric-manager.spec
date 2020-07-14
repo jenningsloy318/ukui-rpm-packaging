@@ -6,8 +6,7 @@ Summary:        kylin-fingerprint, kylin-fprint-login
 
 License:         GPL-3.0 License
 URL:            https://github.com/ukui/ukui-biometric-manager
-#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 BuildRequires:  qt5-qtbase-devel

@@ -6,9 +6,8 @@ Summary:        Indicator that displays China weather information
 
 
 License:         GPL-3.0 License
-URL:            https://github.com/ukui/kylin-display-switch
-# %%Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Source0:        https://github.com/UbuntuKylin/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
+URL:            https://github.com/UbuntuKylin/indicator-china-weather
+Source0:        https://github.com/UbuntuKylin/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 

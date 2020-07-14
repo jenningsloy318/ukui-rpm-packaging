@@ -7,8 +7,7 @@ Summary:        Peony qt extensions (common files)
 
 License:        LGPL-3.0 License
 URL:            https://github.com/ukui/peony-extensions
-# %%Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 Patch0:        peony-extensions-libdir-and-qmake.patch
 

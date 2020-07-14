@@ -6,8 +6,7 @@ Summary:        utilities to configure the UKUI desktop
 
 License:         GPL-2.0 License
 URL:            https://github.com/ukui/ukui-control-center
-# %%Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 
 BuildArch:      x86_64
@@ -77,7 +76,7 @@ install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{build
 %{_sysconfdir}/dbus-1/system.d/com.control.center.qt.systemdbus.conf
 %{_bindir}/launchSysDbus
 %{_bindir}/ukui-control-center
-%{_libdir}/control-center/
+%{_libdir}/ukui-control-center/
 %{_datadir}/glib-2.0/schemas/*
 %{_datadir}/applications/ukui-control-center.desktop
 %{_datadir}/dbus-1/system-services/com.control.center.qt.systemdbus.service

@@ -1,31 +1,31 @@
 
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
-PKG_NAME := $(shell { grep  "Name" indicator-china-weather.spec| awk  '{print $$2}'; } )
-PKG_VERSION := $(shell { grep  "Version" indicator-china-weather.spec| awk  '{print $$2}'; } )
+PKG_NAME := indicator-china-weather
+PKG_VERSION := master
 
 all: build 
 
 
 docker-build: 
-	@echo ">> building rpms in container"
-	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/indicator-china-weather  -w /root/indicator-china-weather docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
+	@echo ">> building ${PKG_NAME} rpms in container"
+	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
 
 
 deps:
-	@echo ">> install dependencies"
+	@echo ">> install dependencies for ${PKG_NAME}"
 	dnf -y install which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-qtbase-devel  qt5-qtscript-devel qt5-qttools-devel GeoIP-devel
 
 download-source:
-	@echo "download source code"
+	@echo "download ${PKG_NAME} source code"
 	mkdir -p ~/rpmbuild/SOURCES/
-	curl -SL https://github.com/UbuntuKylin/${PKG_NAME}/archive/${PKG_VERSION}.zip#/${PKG_NAME}-${PKG_VERSION}.zip -o ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.zip
+	curl -SL https://github.com/UbuntuKylin/${PKG_NAME}/archive/${PKG_VERSION}.tar.gz#/${PKG_NAME}-${PKG_VERSION}.tar.gz -o ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.tar.gz
 
 build: | deps download-source
-	@echo ">> building rpms"
-	rpmbuild  -ba indicator-china-weather.spec
+	@echo ">> building ${PKG_NAME} rpms"
+	rpmbuild  -ba ${PKG_NAME}.spec
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild/SOURCES/indicator-china-weather* rpmbuild/RPMS/x86_64/indicator-china-weather* ~/rpmbuild/SOURCES/indicator-china-weather* ~/rpmbuild/RPMS/x86_64/indicator-china-weather* 
+	rm -rf rpmbuild/SOURCES/${PKG_NAME}* rpmbuild/RPMS/x86_64/${PKG_NAME}* ~/rpmbuild/SOURCES/${PKG_NAME}* ~/rpmbuild/RPMS/x86_64/${PKG_NAME}* 
 
-.PHONY: build  clean
+.PHONY: build docker-build deps download-source clean

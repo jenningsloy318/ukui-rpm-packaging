@@ -1,33 +1,32 @@
 
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
-PKG_NAME := $(shell { grep  "Name" kylin-nm.spec| awk  '{print $$2}'; } )
-PKG_VERSION := $(shell { grep  "Version" kylin-nm.spec| awk  '{print $$2}'; } )
+PKG_NAME := kylin-nm
+PKG_VERSION := master
 
 all: build 
 
 
 docker-build: 
-	@echo ">> building rpms in container"
-	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/kylin-nm  -w /root/kylin-nm docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
+	@echo ">> building ${PKG_NAME} rpms in container"
+	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
 
 
 deps:
-	@echo ">> install dependencies"
+	@echo ">> install dependencies for ${PKG_NAME}"
 	dnf -y install which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros qt5-qtbase-devel  qt5-qtscript-devel qt5-qttools-devel qt5-qtx11extras-devel gsettings-qt-devel kf5-kwindowsystem-devel
 	strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
 
 download-source:
-	@echo "download source code"
+	@echo "download ${PKG_NAME} source code"
 	mkdir -p ~/rpmbuild/SOURCES/
-#	curl -SL https://github.com/ukui/${PKG_NAME}/archive/${PKG_VERSION}.zip#/${PKG_NAME}-${PKG_VERSION}.zip -o ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.zip
-	curl -SL https://github.com/ukui/${PKG_NAME}/archive/v${PKG_VERSION}.tar.gz#/${PKG_NAME}-${PKG_VERSION}.tar.gz -o ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.tar.gz
+	curl -SL https://github.com/ukui/${PKG_NAME}/archive/${PKG_VERSION}.tar.gz#/${PKG_NAME}-${PKG_VERSION}.tar.gz -o ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.tar.gz
 
 build: | deps download-source
-	@echo ">> building rpms"
-	rpmbuild -ba kylin-nm.spec
+	@echo ">> building ${PKG_NAME} rpms"
+	rpmbuild -ba ${PKG_NAME}.spec
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild/SOURCES/kylin-nm* rpmbuild/RPMS/x86_64/kylin-nm* ~/rpmbuild/SOURCES/kylin-nm* ~/rpmbuild/RPMS/x86_64/kylin-nm* 
+	rm -rf rpmbuild/SOURCES/${PKG_NAME}* rpmbuild/RPMS/x86_64/${PKG_NAME}* ~/rpmbuild/SOURCES/${PKG_NAME}* ~/rpmbuild/RPMS/x86_64/${PKG_NAME}* 
 
-.PHONY: build  clean
+.PHONY: build docker-build deps download-source clean

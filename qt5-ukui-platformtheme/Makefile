@@ -1,36 +1,31 @@
 
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
-PKG_NAME := $(shell { grep  "Name" qt5-ukui-platformtheme.spec| awk  '{print $$2}'; } )
-PKG_VERSION := $(shell { grep  "Version" qt5-ukui-platformtheme.spec| awk  '{print $$2}'; } )
+PKG_NAME := qt5-ukui-platformtheme
+PKG_VERSION := master
 
 all: build 
 
 
 docker-build: 
-	@echo ">> building rpms in container"
-	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/qt5-ukui-platformtheme  -w /root/qt5-ukui-platformtheme docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
+	@echo ">> building ${PKG_NAME} rpms in container"
+	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
 
 deps:
-	@echo ">> install dependencies"
+	@echo ">> install dependencies for ${PKG_NAME}"
 	dnf -y install which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros  glib2-devel qt5-qtx11extras-devel kf5-kwindowsystem-devel gsettings-desktop-schemas-devel qt5-qtbase-devel qt5-qtbase-private-devel qt5-qttools-devel gsettings-qt-devel
 	strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
 
 download-source:
-	@echo "download source code"
+	@echo "download ${PKG_NAME} source code"
 	mkdir -p ~/rpmbuild/SOURCES/
-	curl -SL https://github.com/ukui/${PKG_NAME}/archive/${PKG_VERSION}.zip#/${PKG_NAME}-${PKG_VERSION}.zip -o ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.zip
+	curl -SL https://github.com/ukui/${PKG_NAME}/archive/${PKG_VERSION}.tar.gz#/${PKG_NAME}-${PKG_VERSION}.tar.gz -o ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.tar.gz
 
 build: | deps download-source
-	@echo ">> building rpms"
-	cp qt5-ukui-platformtheme-libdir-and-qmake.patch ~/rpmbuild/SOURCES/qt5-ukui-platformtheme-libdir-and-qmake.patch
-	rpmbuild -ba qt5-ukui-platformtheme.spec
-
-build: | deps
-	@echo ">> building rpms"
-	rpmbuild -ba qt5-ukui-platformtheme.spec
+	@echo ">> building ${PKG_NAME} rpms"
+	rpmbuild -ba ${PKG_NAME}.spec
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild/SOURCES/qt5-ukui-platformtheme* rpmbuild/RPMS/x86_64/qt5-ukui-platformtheme* ~/rpmbuild/SOURCES/qt5-ukui-platformtheme* ~/rpmbuild/RPMS/x86_64/qt5-ukui-platformtheme* 
+	rm -rf rpmbuild/SOURCES/${PKG_NAME}* rpmbuild/RPMS/x86_64/${PKG_NAME}* ~/rpmbuild/SOURCES/${PKG_NAME}* ~/rpmbuild/RPMS/x86_64/${PKG_NAME}* 
 
-.PHONY: build  clean
+.PHONY: build docker-build deps download-source clean

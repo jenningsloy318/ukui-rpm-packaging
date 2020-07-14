@@ -1,6 +1,3 @@
-# enable download source
-%undefine _disable_source_fetch
-
 Name:           ukui-session-manager
 Version:        master
 Release:        1%{?dist}
@@ -9,8 +6,7 @@ Summary:        Session manager of the UKUI desktop environment
 
 License:        LGPL-2.1 License
 URL:            https://github.com/ukui/ukui-session-manager
-#Source0:        https://github.com/ukui/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.zip#/%{name}-%{version}.zip
+Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 BuildRequires:  qt5-qtdeclarative-devel

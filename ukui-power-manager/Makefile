@@ -1,31 +1,32 @@
 
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
-PKG_NAME := $(shell { grep  "Name" ukui-power-manager.spec| awk  '{print $$2}'; } )
-PKG_VERSION := $(shell { grep  "Version" ukui-power-manager.spec| awk  '{print $$2}'; } )
+PKG_NAME := ukui-power-manager
+PKG_VERSION := master
 
 all: build 
 
 docker-build: 
-	@echo ">> building rpms in container"
-	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/ukui-power-manager  -w /root/ukui-power-manager docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
+	@echo ">> building ${PKG_NAME} rpms in container"
+	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
 
 
 deps:
-	@echo ">> install dependencies"
+	@echo ">> install dependencies for ${PKG_NAME}"
 	dnf install -y which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros  gtk3-devel libwnck3-devel qt5-qtbase-devel intltool libcanberra-devel libcanberra-gtk3 glib2-devel dbus-glib-devel libnotify-devel libtool libgcrypt-devel upower-devel libX11-devel libXext-devel libXrandr-devel perl-XML-Parser qt5-qtx11extras-devel gsettings-qt-devel mate-common mate-desktop-devel qt5-qtcharts-devel xmlto yelp-tools libgnome-keyring-devel 
 	strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
 
 download-source:
-	@echo "download source code"
+	@echo "download ${PKG_NAME} source code"
 	mkdir -p ~/rpmbuild/SOURCES/
-	curl -SL https://github.com/ukui/${PKG_NAME}/archive/${PKG_VERSION}.zip#/${PKG_NAME}-${PKG_VERSION}.zip -o ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.zip
+	curl -SL https://github.com/ukui/${PKG_NAME}/archive/${PKG_VERSION}.tar.gz#/${PKG_NAME}-${PKG_VERSION}.tar.gz -o ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.tar.gz
 
 build: | deps  download-source
-	@echo ">> building rpms"
-	rpmbuild -ba ukui-power-manager.spec
+	@echo ">> building ${PKG_NAME} rpms"
+	rpmbuild -ba ${PKG_NAME}.spec
 
 clean:
 	@echo ">> clean up"
-	rm -rf rpmbuild/SOURCES/ukui-power-manager* rpmbuild/RPMS/x86_64/ukui-power-manager* ~/rpmbuild/SOURCES/ukui-power-manager* ~/rpmbuild/RPMS/x86_64/ukui-power-manager* 
+	rm -rf rpmbuild/SOURCES/${PKG_NAME}* rpmbuild/RPMS/x86_64/${PKG_NAME}* ~/rpmbuild/SOURCES/${PKG_NAME}* ~/rpmbuild/RPMS/x86_64/${PKG_NAME}* 
 
-.PHONY: build  clean
+
+.PHONY: build docker-build deps download-source clean
