@@ -45,6 +45,11 @@ Provides: x-session-manager
 export PATH=%{_qt5_bindir}:$PATH
 mkdir cmake-build
 pushd cmake-build
+%if 0%{?rhel} == 8
+if ! grep -q "qm_files.CONFIG" /usr/lib64/qt5/mkspecs/features/lrelease.prf; then 
+sed -i '/qm_files.path/a qm_files.CONFIG = no_check_exist'  /usr/lib64/qt5/mkspecs/features/lrelease.prf
+fi
+%endif
 %cmake3 ..
 %{make_build}
 popd

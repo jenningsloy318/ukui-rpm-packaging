@@ -170,20 +170,6 @@ if [ ! -f /etc/biometric-auth/biometric-drivers.conf ]; then
 		/etc/biometric-auth/biometric-drivers.conf
 fi
 
-# Automatically added by dh_systemd_enable/10.7.2ubuntu2
-# This will only remove masks created by d-s-h on package removal.
-deb-systemd-helper unmask biometric-authentication.service >/dev/null || true
-
-# was-enabled defaults to true, so new installations run enable.
-if deb-systemd-helper --quiet was-enabled biometric-authentication.service; then
-	# Enables the unit on first installation, creates new
-	# symlinks on upgrades if the unit file has changed.
-	deb-systemd-helper enable biometric-authentication.service >/dev/null || true
-else
-	# Update the statefile to add new symlinks (if any), which need to be
-	# cleaned up on purge. Also remove old symlinks.
-	deb-systemd-helper update-state biometric-authentication.service >/dev/null || true
-fi
 
 if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-deconfigure" ] || [ "$1" = "abort-remove" ] ; then
         if [ -x "/etc/init.d/biometric-authentication" ]; then
@@ -197,8 +183,6 @@ exit 0
 
 %postun 
 #!/bin/sh -e
-
-#DEBHELPER#
 
 set -e
 
@@ -245,22 +229,6 @@ if [ -d /run/systemd/system ] ; then
 fi
 # End automatically added section
 
-# Automatically added by dh_systemd_enable/11.2.1ubuntu1
-if [ "$1" = "remove" ]; then
-	if [ -x "/usr/bin/deb-systemd-helper" ]; then
-		deb-systemd-helper mask 'biometric-authentication.service' >/dev/null || true
-	fi
-fi
-
-if [ "$1" = "purge" ]; then
-	if [ -x "/usr/bin/deb-systemd-helper" ]; then
-		deb-systemd-helper purge 'biometric-authentication.service' >/dev/null || true
-		deb-systemd-helper unmask 'biometric-authentication.service' >/dev/null || true
-	fi
-	update-rc.d biometric-authentication remove >/dev/null
-fi
-# End automatically added section
-
 
 %post community-drivers
 
@@ -268,7 +236,6 @@ fi
 #!/bin/sh
 set -e
 
-#DEBHELPER#
 
 KEY_DIR="/etc/biometric-auth/key"
 KEY_FILE="${KEY_DIR}/community-multidevice-aes.key"
@@ -316,8 +283,6 @@ exit 0
 %preun community-drivers
 #!/bin/sh
 set -e
-
-#DEBHELPER#
 
 DRIVER_LIST="upekts uru4000 aes4000 aes2501 upektc aes1610 fdu2000 vcom5s \
 	upeksonly vfs101 vfs301 aes2550 upeke2 aes1660 aes2660 aes3500  \

@@ -63,6 +63,7 @@ BuildRequires:  kf5-kwindowsystem-devel
 BuildRequires:  poppler-qt5-devel
 BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  qt5-qtbase-private-devel
+BuildRequires:  qt5-linguist
 
 %description libs
  Peony is the official file manager for the UKUI desktop. It allows one
@@ -100,6 +101,11 @@ Requires: peony-libs
 export PATH=%{_qt5_bindir}:$PATH
 mkdir qmake-build
 pushd qmake-build
+%if 0%{?rhel} == 8
+if ! grep -q "qm_files.CONFIG" /usr/lib64/qt5/mkspecs/features/lrelease.prf; then 
+sed -i '/qm_files.path/a qm_files.CONFIG = no_check_exist'  /usr/lib64/qt5/mkspecs/features/lrelease.prf
+fi
+%endif
 %{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ..
 %{make_build}
 popd

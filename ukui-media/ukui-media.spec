@@ -57,6 +57,7 @@ Summary: UKUI media utilities (common files)
 %build
 ./autogen.sh
 %configure
+%{make_build} 
 
 %install
 %{make_install}  INSTALL_ROOT=%{buildroot} 

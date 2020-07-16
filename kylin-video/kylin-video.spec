@@ -44,6 +44,11 @@ Recommends: crystalhd-firmware
 export PATH=%{_qt5_bindir}:$PATH
 mkdir qmake-build
 pushd qmake-build
+%if 0%{?rhel} == 8
+if ! grep -q "qm_files.CONFIG" /usr/lib64/qt5/mkspecs/features/lrelease.prf; then 
+sed -i '/qm_files.path/a qm_files.CONFIG = no_check_exist'  /usr/lib64/qt5/mkspecs/features/lrelease.prf
+fi
+%endif
 %{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ..
 %{make_build}
 popd 
