@@ -1,20 +1,33 @@
 ukui packages:  
-- ukui-session-manager 
-- ukui-menu 
-- ukui-sidebar 
-- ukui-control-center 
-- ukui-settings-daemon 
-- ukui-window-switch 
-- ukui-media 
-- ukui-power-manager 
-- kylin-nm 
+- kylin-display-switch 
+- kylin-nm
+- kylin-video
+- indicator-china-weather 
 - qt5-ukui-platformtheme
+- peony 
+- peony-extensions 
+- ukui-biometric-auth 
+- ukui-biometric-manager 
+- ukui-control-center
+- ukui-greeter
+- ukui-kwin or ukwm
+- ukui-menu 
+- ukui-panel 
+- ukui-power-manager
+- ukui-screensaver
+- ukui-session-manager
+- ukui-settings-daemon
+- ukui-sidebar
+- ukui-system-monitor
+- ukui-window-switch
+- ukui-wallpapers
+- ukui-themes
+- ukui-media
 
 ## build 
-- use [Dockerfile](./Dockerfile) to build image docker.io/jenningsloy318/ukui-builder:f32
 - in docker build
   ```
-  docker  run  --privileged -v `pwd`:/root docker.io/jenningsloy318/ukui-builder:f32  bash  /root/build.sh 
+  make docker-build
   ```
 
 
@@ -68,10 +81,7 @@ make: *** [Makefile:386: all] Error 2
 error: Bad exit status from /var/tmp/rpm-tmp.I9DH2T (%build)
 ```
 
-2. on centos 8, peony translations will not be installed 
-
-3. on centos 8, control-center pluginlibs will not be installed
-4. on centos 8, ukui will has many errors, desktop will auto logout some times later
+2. on centos 8, ukui will has many errors, desktop will auto logout some times later
     ```
     Jul 01 01:27:28 centos8-builder.lmy.com systemd[1]: session-c1.scope: Killing process 1228 (ukui-greeter) with signal SIGTERM.
     Jul 01 01:27:28 centos8-builder.lmy.com dbus-daemon[1285]: [session uid=0 pid=1285] Activating via systemd: service name='org.a11y.Bus' unit='at-spi-dbus-bus.service' requested by ':1.8' (uid=0 pid=1325 comm="/usr/libexec/ukui-settings-daemon " label="unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023")
@@ -1294,13 +1304,8 @@ error: Bad exit status from /var/tmp/rpm-tmp.I9DH2T (%build)
     Jul 01 04:38:18 centos8-builder.lmy.com systemd-coredump[37449]: Process 37021 (ukui-greeter) of user 993 dumped core.
     ```   
 
-  5. missing license files in folowing repo
-      - ukui-biometric-manager
-      - ukui-biometric-auth
-      - ukui-screensaver
-      - ukui-system-monitor
 
-  6. ukui-kwin build failed on fedora 33 as kscreenlocker-devel don't have function such as setWaylandDisplay,greeterClientConnectionChanged,greeterClientConnection
+  3. ukui-kwin build failed on fedora 33 as kscreenlocker-devel don't have function such as setWaylandDisplay,greeterClientConnectionChanged,greeterClientConnection
 ```
 make[3]: Entering directory '/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build'
 [ 64%] Building CXX object CMakeFiles/ukui-kwin.dir/wayland_server.cpp.o
