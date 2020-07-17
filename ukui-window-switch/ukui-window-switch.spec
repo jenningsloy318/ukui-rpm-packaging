@@ -19,7 +19,7 @@ BuildRequires: qt5-qtbase-private-devel
 BuildRequires: gtk3-devel
 BuildRequires: libwnck3-devel
 BuildRequires: gsettings-qt-devel
-Requires: ukui-kwin
+Requires: (ukui-kwin or ukwm)
 
 
 
