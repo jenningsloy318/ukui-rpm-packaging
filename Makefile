@@ -18,32 +18,71 @@ docker-build:
 	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
 
 
-build: | bio-auth
-	cd kylin-display-switch/ && make build && cd ..
-	cd kylin-nm/ && make build && cd ..
-	cd kylin-video/ && make build && cd ..
-	cd indicator-china-weather/ && make build && cd ..
-	cd peony/ && make build && cd ..
-	cd peony-extensions/ && make build && cd ..
-	cd qt5-ukui-platformtheme/ && make build && cd ..
-	cd ukui-biometric-auth/ && make build && cd ..
-	cd ukui-biometric-manager/ && make build && cd ..
-	cd ukui-control-center/ && make build && cd ..
-	cd ukui-greeter/ && make build && cd ..
-	cd ukui-kwin/ && make build && cd ..
-	cd ukui-menu/ && make build && cd ..
-	cd ukui-panel/ && make build && cd ..
-	cd ukui-power-manager/ && make build && cd ..
-	cd ukui-screensaver/ && make build && cd ..
-	cd ukui-session-manager/ && make build && cd ..
-	cd ukui-settings-daemon/ && make build && cd ..
-	cd ukui-sidebar/ && make build && cd ..
-	cd ukui-system-monitor/ && make build && cd ..
-	cd ukui-themes/ && make build && cd ..
-	cd ukui-wallpapers/ && make build && cd ..
-	cd ukui-window-switch/ && make build && cd ..
-	cd ukui-media/ && make build && cd ..
+build:
+ifneq (,$(filter .el%,$(DIST)))
+	@echo ">> build ukui on centos/rhel"
+	make 	build-on-centos
+else 
+	@echo ">> build ukui on fedora"
+	make 	build-on-fedora
+endif
 
 
+build-on-fedora: | bio-auth
+	make -C kylin-display-switch 
+	make -C kylin-nm
+	make -C kylin-video
+	make -C indicator-china-weather 
+	make -C qt5-ukui-platformtheme
+	make -C peony 
+	make -C peony-extensions 
+	make -C ukui-biometric-auth 
+	make -C ukui-biometric-manager 
+	make -C ukui-control-center
+	make -C ukui-greeter
+	make -C ukui-kwin
+	make -C ukui-menu 
+	make -C ukui-panel 
+	make -C ukui-power-manager
+	make -C ukui-screensaver
+	make -C ukui-session-manager
+	make -C ukui-settings-daemon
+	make -C ukui-sidebar
+	make -C ukui-system-monitor
+	make -C ukui-window-switch
+	make -C ukui-wallpapers
+	make -C ukui-themes
+	make -C ukui-media
+
+
+build-on-centos: | bio-auth
+	make -C kylin-display-switch 
+	make -C kylin-nm
+	make -C kylin-video
+	make -C indicator-china-weather 
+	make -C qt5-ukui-platformtheme
+	make -C peony 
+	make -C peony-extensions 
+	make -C ukui-biometric-auth 
+	make -C ukui-biometric-manager 
+	make -C ukui-control-center
+	make -C ukui-greeter
+	make -C ukwm
+	make -C ukui-menu 
+	make -C ukui-panel 
+	make -C ukui-power-manager
+	make -C ukui-screensaver
+	make -C ukui-session-manager
+	make -C ukui-settings-daemon
+	make -C ukui-sidebar
+	make -C ukui-system-monitor
+	make -C ukui-window-switch
+	make -C ukui-wallpapers
+	make -C ukui-themes
+	make -C ukui-media
+	
 clean:
 	rm -rf ~/rpmbuild/{SOURCES,RPMS}
+
+
+.PHONY:  bio-auth  docker-build build build-on-fedora build-on-centos  clean
