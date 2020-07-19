@@ -13,6 +13,18 @@ Patch0:         peony-libdir.patch
 
 BuildArch:      x86_64
 
+BuildRequires:  qt5-qtbase-devel
+BuildRequires:  qt5-qttools-devel
+BuildRequires:  glib2-devel
+BuildRequires:  qt5-qtbase-devel
+BuildRequires:  gsettings-qt-devel
+BuildRequires:  kf5-kwindowsystem-devel
+BuildRequires:  poppler-qt5-devel
+BuildRequires:  qt5-qtx11extras-devel
+BuildRequires:  qt5-qtbase-private-devel
+BuildRequires:  qt5-linguist
+BuildRequires:  libudisks2-devel
+
 Requires: peony-libs
 Requires: peony-common
 Requires: kf5-kwindowsystem
@@ -54,16 +66,6 @@ Summary: file manager for the UKUI desktop (common files)
 
 Summary: libraries for Peony components
 
-BuildRequires:  qt5-qtbase-devel
-BuildRequires:  qt5-qttools-devel
-BuildRequires:  glib2-devel
-BuildRequires:  qt5-qtbase-devel
-BuildRequires:  gsettings-qt-devel
-BuildRequires:  kf5-kwindowsystem-devel
-BuildRequires:  poppler-qt5-devel
-BuildRequires:  qt5-qtx11extras-devel
-BuildRequires:  qt5-qtbase-private-devel
-BuildRequires:  qt5-linguist
 
 %description libs
  Peony is the official file manager for the UKUI desktop. It allows one
