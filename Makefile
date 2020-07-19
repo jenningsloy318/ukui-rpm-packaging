@@ -13,9 +13,15 @@ else
 
 endif
 
-docker-build: 
+docker-build-fedora: 
 	@echo ">> building rpms in container"
 	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
+
+docker-build-centos8: 
+	@echo ">> building rpms in container"
+	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y https://mirrors.tuna.tsinghua.edu.cn/epel/epel-release-latest-8.noarch.rpm https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm https://pkgs.dyn.su/el8/base/x86_64/raven-release-1.0-1.el8.noarch.rpm make curl rpm-build && \
+	sed -i 's|enabled=0|enabled=1|g' /etc/yum.repos.d/CentOS-PowerTools.repo && dnf install -y  rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted && make build"
+
 
 
 build:
@@ -40,7 +46,7 @@ build-on-fedora: | bio-auth
 	make -C ukui-biometric-manager 
 	make -C ukui-control-center
 	make -C ukui-greeter
-	make -C ukui-kwin
+	make -C ukwm
 	make -C ukui-menu 
 	make -C ukui-panel 
 	make -C ukui-power-manager
@@ -67,7 +73,7 @@ build-on-centos: | bio-auth
 	make -C ukui-biometric-manager 
 	make -C ukui-control-center
 	make -C ukui-greeter
-	make -C ukwm
+	make -C ukui-kwin
 	make -C ukui-menu 
 	make -C ukui-panel 
 	make -C ukui-power-manager
