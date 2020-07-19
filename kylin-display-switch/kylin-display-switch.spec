@@ -17,7 +17,7 @@ BuildRequires: python3
 BuildRequires: python3-setuptools
 BuildRequires: python3-distutils-extra
 BuildRequires: python3-rpm-macros
-
+BuildRequires: python-rpm-macros
 
 Requires:  python3-qt5
 Requires:  python3-xlib
