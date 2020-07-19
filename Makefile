@@ -4,15 +4,6 @@ DIST := $(shell { rpm --eval "%{dist}";} 2>/dev/null)
 all: build 
 
 
-bio-auth:
-ifneq (,$(filter .el%,$(DIST)))
-	@echo ">> build biometric-authentication"
-	cd biometric-authentication/ && make build && cd ..
-else 
-	@echo ">> don't build biometric-authentication on fedora"
-
-endif
-
 docker-build-fedora: 
 	@echo ">> building rpms in container"
 	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
@@ -34,7 +25,7 @@ else
 endif
 
 
-build-on-fedora: | bio-auth
+build-on-fedora: 
 	make -C kylin-display-switch 
 	make -C kylin-nm
 	make -C kylin-video
@@ -61,11 +52,12 @@ build-on-fedora: | bio-auth
 	make -C ukui-media
 
 
-build-on-centos: | bio-auth
+build-on-centos: 
 	make -C kylin-display-switch 
 	make -C kylin-nm
 	make -C kylin-video
 	make -C indicator-china-weather 
+	make -C biometric-authentication
 	make -C qt5-ukui-platformtheme
 	make -C peony 
 	make -C peony-extensions 
@@ -91,4 +83,4 @@ clean:
 	rm -rf ~/rpmbuild/{SOURCES,RPMS}
 
 
-.PHONY:  bio-auth  docker-build build build-on-fedora build-on-centos  clean
+.PHONY:   docker-build build build-on-fedora build-on-centos  clean
