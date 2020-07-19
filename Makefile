@@ -10,7 +10,7 @@ docker-build-fedora:
 
 docker-build-centos8: 
 	@echo ">> building rpms in container"
-	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y https://mirrors.tuna.tsinghua.edu.cn/epel/epel-release-latest-8.noarch.rpm https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm https://pkgs.dyn.su/el8/base/x86_64/raven-release-1.0-1.el8.noarch.rpm dnf-plugins-core make curl rpm-build && sed -i 's|enabled=0|enabled=1|g' /etc/yum.repos.d/CentOS-PowerTools.repo && dnf install -y  python3 rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted  && alternatives --set python /usr/bin/python3 && make build"
+	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y https://mirrors.tuna.tsinghua.edu.cn/epel/epel-release-latest-8.noarch.rpm https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm https://pkgs.dyn.su/el8/base/x86_64/raven-release-1.0-1.el8.noarch.rpm dnf-plugins-core make curl rpm-build  && sed -i 's|enabled=0|enabled=1|g' /etc/yum.repos.d/CentOS-PowerTools.repo && dnf install -y centos-release-stream  python3 rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted  && alternatives --set python /usr/bin/python3 && make build"
 
 
 
