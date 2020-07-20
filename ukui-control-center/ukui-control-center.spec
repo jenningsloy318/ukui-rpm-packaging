@@ -32,6 +32,7 @@ BuildRequires:  libkscreen-qt5-devel
 BuildRequires:  kf5-ki18n-devel
 BuildRequires:  libcanberra-devel
 BuildRequires:  libXi-devel
+BuildRequires:  mate-desktop-devel
 Recommends: edid-decode
 Recommends: redshift
 Recommends: qt5-qtquickcontrols
