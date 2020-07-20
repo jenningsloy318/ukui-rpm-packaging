@@ -10,13 +10,18 @@ docker-build-fedora:
 
 docker-build-centos8: 
 	@echo ">> building rpms in container"
-	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y https://mirrors.tuna.tsinghua.edu.cn/epel/epel-release-latest-8.noarch.rpm https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm https://pkgs.dyn.su/el8/base/x86_64/raven-release-1.0-1.el8.noarch.rpm dnf-plugins-core make curl rpm-build  centos-release-stream && sed -i 's|enabled=0|enabled=1|g' /etc/yum.repos.d/CentOS-PowerTools.repo /etc/yum.repos.d/CentOS-Stream-PowerTools.repo && dnf install -y   python3 rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted  && alternatives --set python /usr/bin/python3 && make build"
+	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y dnf-plugins-core make curl rpm-build && make build"
 
 
 
 build:
 ifneq (,$(filter .el%,$(DIST)))
 	@echo ">> build ukui on centos/rhel"
+	dnf install -y https://mirrors.tuna.tsinghua.edu.cn/epel/epel-release-latest-8.noarch.rpm https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm https://pkgs.dyn.su/el8/base/x86_64/raven-release-1.0-1.el8.noarch.rpm dnf-plugins-core make curl rpm-build  centos-release-stream python3
+	sed -i 's|enabled=0|enabled=1|g' /etc/yum.repos.d/CentOS-PowerTools.repo /etc/yum.repos.d/CentOS-Stream-PowerTools.repo 
+	dnf install -y rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted 
+	alternatives --set python /usr/bin/python3 
+	dnf copr -y enable stenstorp/MATE
 	make 	build-on-centos
 else 
 	@echo ">> build ukui on fedora"
@@ -56,7 +61,6 @@ build-on-centos:
 	make -C kylin-nm
 	make -C kylin-video
 	make -C indicator-china-weather 
-	make -C biometric-authentication
 	make -C qt5-ukui-platformtheme
 	make -C peony 
 	make -C peony-extensions 

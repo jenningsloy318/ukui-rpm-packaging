@@ -1,3 +1,5 @@
+# disable debug package
+%define debug_package %{nil}
 Name:           peony-extensions
 Version:        master
 Release:        1%{?dist}
@@ -100,6 +102,15 @@ Requires:  peony-libs
  not provided in icon view and list view.
 
 
+%package -n peony-admin
+Summary: Peony plugin for open files or directories as admin
+Requires:  peony-libs
+Requires:  polkit
+
+%description -n peony-admin
+Peony plugin for open files or directories as admin
+
+
 %prep
 %setup -q
 %patch0 -p0
@@ -111,11 +122,16 @@ pushd cmake-build
 %cmake3 ..
 make
 popd
-%install
-mkdir -p  %{buildroot}/usr/lib64/peony-qt-extensions 
-cp testdir/{libpeony-qt-computer-view-plugin.so,libpeony-qt-engrampa-menu-plugin.so,libpeony-qt-menu-plugin-mate-terminal.so,libpeony-qt-set-wallpaper.so} %{buildroot}/usr/lib64/peony-qt-extensions
-cp peony-extensions-cmake/peony-qt-share/libpeony-qt-share.so  %{buildroot}/usr/lib64/peony-qt-extensions
 
+%install
+install -d %{buildroot}/usr/lib64/peony-qt-extensions  %{buildroot}/usr/share/polkit-1/actions/
+install -m644 testdir/libpeony-qt-computer-view-plugin.so %{buildroot}/usr/lib64/peony-qt-extensions/libpeony-qt-computer-view-plugin.so
+install -m644 testdir/libpeony-qt-engrampa-menu-plugin.so %{buildroot}/usr/lib64/peony-qt-extensions/libpeony-qt-engrampa-menu-plugin.so 
+install -m644 testdir/libpeony-qt-menu-plugin-mate-terminal.so %{buildroot}/usr/lib64/peony-qt-extensions/libpeony-qt-menu-plugin-mate-terminal.so
+install -m644 testdir/libpeony-qt-set-wallpaper.so %{buildroot}/usr/lib64/peony-qt-extensions/libpeony-qt-set-wallpaper.so
+install -m644  peony-extensions-cmake/peony-qt-share/libpeony-qt-share.so  %{buildroot}/usr/lib64/peony-qt-extensions/libpeony-qt-share.so
+install -m644 peony-extensions-cmake/peony-qt-admin/libpeony-qt-admin.so %{buildroot}/usr/lib64/peony-qt-extensions/libpeony-qt-admin.so
+install -m644 peony-extensions-cmake/peony-qt-admin/org.freedesktop.peony-qt-admin.policy  %{buildroot}/usr/share/polkit-1/actions/org.freedesktop.peony-qt-admin.policy 
 
 %files
 %doc debian/copyright  debian/changelog
@@ -136,6 +152,11 @@ cp peony-extensions-cmake/peony-qt-share/libpeony-qt-share.so  %{buildroot}/usr/
 
 %files -n peony-computer-view
 %{_libdir}/peony-qt-extensions/libpeony-qt-computer-view-plugin.so
+
+
+%files -n peony-admin
+%{_libdir}/peony-qt-extensions/libpeony-qt-admin*
+%{_datadir}/polkit-1/actions/org.freedesktop.peony-qt-admin.policy 
 
 %post -n peony-share
 

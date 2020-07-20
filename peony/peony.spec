@@ -24,6 +24,9 @@ BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  qt5-qtbase-private-devel
 BuildRequires:  qt5-linguist
 BuildRequires:  libudisks2-devel
+BuildRequires:  gtk2-devel
+BuildRequires:  libnotify-devel
+
 
 Requires: peony-libs
 Requires: peony-common
