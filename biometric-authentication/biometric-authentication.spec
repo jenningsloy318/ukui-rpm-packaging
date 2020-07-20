@@ -100,7 +100,7 @@ Summary: Biometric Authentication Driver (community multidevice)
 %setup -q
 %patch0 -p0
 ./autogen.sh --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib64 --unitdir=/usr/lib/system/systemd
-%{configure} --disable-dependency-tracking  --with-bio-config-dir=/etc/biometric-auth/   --disable-silent-rules --with-bio-db-dir=/var/lib/biometric-auth/     --with-bio-db-name=biometric.db     --with-bio-config-dir=/etc/biometric-auth/     --with-bio-driver-dir=/usr/lib64/biometric-authentication/drivers    --with-bio-extra-dir=/usr/lib64/biometric-authentication/drivers/extra     
+%{configure} --disable-dependency-tracking  --with-bio-config-dir=/etc/biometric-auth/   --disable-silent-rules --with-bio-db-dir=/var/lib/biometric-auth/     --with-bio-db-name=biometric.db     --with-bio-config-dir=/etc/biometric-auth/     --with-bio-driver-dir=/usr/lib64/biometric-authentication/drivers    --with-bio-extra-dir=/usr/lib64/biometric-authentication/drivers/extra      --libexecdir=/usr/libexec/biometric-authentication
 
 %build
 %{make_build}
@@ -113,12 +113,14 @@ gzip -c doc/man/biometric-auth-client.1	 > %{buildroot}/usr/share/man/man1/biome
 gzip -c doc/man/biometric-device-discover.1 > %{buildroot}/usr/share/man/man1/biometric-device-discover.1.gz
 gzip -c doc/man/biometric-config-tool.8 >%{buildroot}/usr/share/man/man8/biometric-config-tool.8.gz
 
+sed -i 's|/usr/lib/biometric-authentication/biometric-authenticationd|/usr/libexec/biometric-authentication/biometric-authenticationd|g' %{buildroot}/%{_unitdir}/biometric-authentication.service
+
 %files
 %doc debian/copyright debian/changelog 
 %{_sysconfdir}/biometric-auth/biometric-drivers.conf
 %{_sysconfdir}/dbus-1/system.d/org.ukui.Biometric.conf
 %{_sysconfdir}/init.d/biometric-authentication
-%{_libexecdir}/biometric-authenticationd
+%{_libexecdir}/biometric-authentication
 %{_datadir}/dbus-1/interfaces/org.ukui.Biometric.xml
 %{_datadir}/polkit-1/actions/org.freedesktop.policykit.pkexec.biometric-authentication.policy
 %{_datadir}/polkit-1/actions/org.ukui.biometric.policy
@@ -162,7 +164,7 @@ gzip -c doc/man/biometric-config-tool.8 >%{buildroot}/usr/share/man/man8/biometr
 #!/bin/sh
 set -e
 
-#DEBHELPER#
+
 
 if [ ! -f /etc/biometric-auth/biometric-drivers.conf ]; then
 	mkdir -p /etc/biometric-auth
@@ -170,15 +172,17 @@ if [ ! -f /etc/biometric-auth/biometric-drivers.conf ]; then
 		/etc/biometric-auth/biometric-drivers.conf
 fi
 
-
-if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-deconfigure" ] || [ "$1" = "abort-remove" ] ; then
-        if [ -x "/etc/init.d/biometric-authentication" ]; then
-                update-rc.d biometric-authentication defaults >/dev/null || exit 1
-        fi
+# In case this system is running systemd, we make systemd reload the unit files
+# to pick up changes.
+if [ -d /run/systemd/system ] ; then
+	systemctl --system daemon-reload >/dev/null || true
 fi
 # End automatically added section
 
-exit 0
+
+systemctl start biometric-authentication.service
+
+systemctl enable biometric-authentication.service
 
 
 %postun 
@@ -190,37 +194,11 @@ BIO_DRIVER_CONF="/etc/biometric-auth/biometric-drivers.conf"
 BIO_DATABASE="/var/lib/biometric-auth/biometric.db"
 BIO_USERS=`ls /home`
 
-case "$1" in
-	remove)
-		;;
 
-	purge)
-		if [ -e $BIO_DRIVER_CONF ]; then
-			rm -rf $BIO_DRIVER_CONF
-		fi
 
-		if [ -e $BIO_DATABASE ]; then
-			rm -rf $BIO_DATABASE
-		fi
+systemctl stop biometric-authentication.service
 
-		for user in $BIO_USERS;
-		do
-			user_uuid_file="/home/$user/.biometric_auth/UUID"
-			if [ -e $user_uuid_file ]; then
-				rm -rf $user_uuid_file
-			fi
-		done
-
-		;;
-
-	upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
-		;;
-
-	*)
-		echo "postrm called with unknown argument '$1'" >&2
-		exit 1
-		;;
-esac
+systemctl disable biometric-authentication.service
 
 # In case this system is running systemd, we make systemd reload the unit files
 # to pick up changes.
@@ -228,6 +206,9 @@ if [ -d /run/systemd/system ] ; then
 	systemctl --system daemon-reload >/dev/null || true
 fi
 # End automatically added section
+
+
+
 
 
 %post community-drivers
@@ -256,27 +237,13 @@ then
 	chmod 0600 ${KEY_FILE}
 fi
 
-DRIVER_LIST="upekts uru4000 aes4000 aes2501 upektc aes1610 fdu2000 vcom5s \
-	upeksonly vfs101 vfs301 aes2550 upeke2 aes1660 aes2660 aes3500  \
-	upektc_img etes603 vfs5011 vfs0050 elan"
+DRIVER_LIST="upekts uru4000 aes4000 aes2501 upektc aes1610 fdu2000 vcom5s 	upeksonly vfs101 vfs301 aes2550 upeke2 aes1660 aes2660 aes3500  	upektc_img etes603 vfs5011 vfs0050 elan"
 
-case "${1}" in
-	configure)
-		for driver in ${DRIVER_LIST}; do
-			biometric-config-tool add-driver -f ${driver} \
-				/usr/lib/biometric-authentication/drivers/${driver}.so
+
+for driver in ${DRIVER_LIST}; do
+			biometric-config-tool add-driver -f ${driver} /usr/lib64/biometric-authentication/drivers/${driver}.so
 			biometric-config-tool set-key -i ${driver} AESKey ${KEY_FILE}
-		done
-		;;
-
-	abort-upgrade|abort-remove|abort-deconfigure)
-		;;
-
-	*)
-		echo "postinst called with unknown argument \`${1}'" >&2
-		exit 1
-		;;
-esac
+done
 
 exit 0
 
@@ -284,9 +251,7 @@ exit 0
 #!/bin/sh
 set -e
 
-DRIVER_LIST="upekts uru4000 aes4000 aes2501 upektc aes1610 fdu2000 vcom5s \
-	upeksonly vfs101 vfs301 aes2550 upeke2 aes1660 aes2660 aes3500  \
-	upektc_img etes603 vfs5011 vfs0050 elan"
+DRIVER_LIST="upekts uru4000 aes4000 aes2501 upektc aes1610 fdu2000 vcom5s 	upeksonly vfs101 vfs301 aes2550 upeke2 aes1660 aes2660 aes3500  	upektc_img etes603 vfs5011 vfs0050 elan"
 
 for driver in ${DRIVER_LIST}; do
 	biometric-config-tool remove-driver -i ${driver}
