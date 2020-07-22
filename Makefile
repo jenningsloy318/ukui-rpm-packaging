@@ -42,6 +42,7 @@ build-on-fedora:
 	make -C ukui-control-center
 	make -C ukui-greeter
 	make -C ukwm
+	make -C ukui-kwin
 	make -C ukui-menu 
 	make -C ukui-panel 
 	make -C ukui-power-manager

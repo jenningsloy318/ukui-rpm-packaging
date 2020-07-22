@@ -33,6 +33,9 @@ BuildRequires:  kf5-ki18n-devel
 BuildRequires:  libcanberra-devel
 BuildRequires:  libXi-devel
 BuildRequires:  mate-desktop-devel
+BuildRequires:  libxkbcommon-devel 
+BuildRequires:  libxkbfile-devel
+
 Recommends: edid-decode
 Recommends: redshift
 Recommends: qt5-qtquickcontrols
@@ -75,8 +78,7 @@ install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{build
 %files
 %doc debian/copyright debian/changelog
 %{_sysconfdir}/dbus-1/system.d/com.control.center.qt.systemdbus.conf
-%{_bindir}/launchSysDbus
-%{_bindir}/ukui-control-center
+%{_bindir}/*
 %{_libdir}/ukui-control-center/
 %{_datadir}/glib-2.0/schemas/*
 %{_datadir}/applications/ukui-control-center.desktop
