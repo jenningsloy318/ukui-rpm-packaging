@@ -4,11 +4,15 @@ DIST := $(shell { rpm --eval "%{dist}";} 2>/dev/null)
 all: build 
 
 
-docker-build-fedora: 
+docker-build-fedora-32: 
 	@echo ">> building rpms in container"
 	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y dnf-plugins-core make curl rpm-build && make build"
 
-docker-build-centos8: 
+docker-build-fedora-rawhide: 
+	@echo ">> building rpms in container"
+	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:rawhide   /bin/bash -c "sudo dnf install -y dnf-plugins-core make curl rpm-build && make build"
+
+docker-build-centos-8: 
 	@echo ">> building rpms in container"
 	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y dnf-plugins-core make curl rpm-build && make build"
 
