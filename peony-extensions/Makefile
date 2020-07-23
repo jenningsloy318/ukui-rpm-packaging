@@ -22,7 +22,6 @@ download-source:
 
 build: | deps download-source
 	@echo ">> building ${PKG_NAME} rpms"
-	cp peony-extensions-libdir-and-qmake.patch ~/rpmbuild/SOURCES/peony-extensions-libdir-and-qmake.patch
 	rpmbuild -ba ${PKG_NAME}.spec
 
 clean:

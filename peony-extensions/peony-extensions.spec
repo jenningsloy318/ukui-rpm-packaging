@@ -11,7 +11,6 @@ License:        LGPL-3.0 License
 URL:            https://github.com/ukui/peony-extensions
 Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
-Patch0:        peony-extensions-libdir-and-qmake.patch
 
 BuildArch:      x86_64
 
@@ -113,7 +112,6 @@ Peony plugin for open files or directories as admin
 
 %prep
 %setup -q
-%patch0 -p0
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
