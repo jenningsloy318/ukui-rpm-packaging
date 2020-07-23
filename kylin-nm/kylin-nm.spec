@@ -16,6 +16,7 @@ BuildRequires:  qt5-qttools-devel
 BuildRequires: qt5-qtx11extras-devel
 BuildRequires:  gsettings-qt-devel
 BuildRequires: kf5-kwindowsystem-devel
+BuildRequires: libx11-devel
 
 Requires: NetworkManager
 
