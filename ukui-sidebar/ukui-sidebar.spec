@@ -18,6 +18,7 @@ BuildRequires:  qt5-qtsvg-devel
 BuildRequires:  dconf-devel
 BuildRequires:  gsettings-qt-devel
 BuildRequires:  qt5-qtmultimedia-devel
+BuildRequires:  kf5-kwindowsystem-devel
 
 %description
 The ukui-sidebar is mainly used in the desktop operating system.
