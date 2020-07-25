@@ -23,7 +23,7 @@ BuildRequires:  mate-common
 BuildRequires:  qt5-qtsvg-devel
 BuildRequires:  qt5-qtmultimedia-devel
 BuildRequires:  qt5-qtx11extras-devel
-
+BuildRequires:  kf5-kwindowsystem-devel
 BuildRequires:  bamf-devel
 BuildRequires:  libXrandr-devel
 BuildRequires:  libXtst-devel

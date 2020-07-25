@@ -20,7 +20,7 @@ BuildRequires:  libXrandr-devel
 BuildRequires:  libXtst-devel
 BuildRequires:  libX11-devel
 BuildRequires:  qt5-linguist
-
+BuildRequires:  kf5-kwindowsystem-devel
 Requires:  gsettings-qt
 Requires:  qt5-qtx11extras
 Requires:  bamf-daemon
