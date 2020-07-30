@@ -5,7 +5,7 @@ Summary:        daemon handling the UKUI session settings
 
 License:         GPL-2.0 License
 URL:            https://github.com/ukui/ukui-settings-daemon
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 
@@ -37,7 +37,7 @@ BuildRequires:  mate-common
 
 Requires: mate-common
 Requires: ukui-polkit
-Requires: ukui-settings-daemon-common
+Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Requires: xorg-x11-server-utils
 
 
@@ -82,7 +82,7 @@ Summary: daemon handling the UKUI session settings (common files)
 
 %package devel
 Summary: daemon handling the UKUI session settings (development files)
-
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description devel
  This package contains the daemon which is responsible for setting the

@@ -7,7 +7,7 @@ Summary:        UKUI window manager
 
 License:         GPL-2.0 License
 URL:            https://github.com/ukui/ukui-kwin
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.gz
 BuildArch:      x86_64
 
 # Base
@@ -94,8 +94,9 @@ BuildRequires: kscreenlocker-devel
 BuildRequires: libcap-devel
 BuildRequires: plasma-breeze-devel
 
-
-Requires: (ukui-kwin-x11 or ukui-kwin-wayland)
+Requires: %{name}-common%{?_isa}  = %{version}-%{release}
+Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
+Requires: (%{name}-x11%{?_isa} = %{version}-%{release} or %{name}-wayland%{?_isa} = %{version}-%{release})
 
 %description
  This package is a transitional dummy to depend on the renamed ukui-kwin-x11 and
@@ -129,7 +130,7 @@ Recommends: qt5-qtvirtualkeyboard
 %package libs
 Summary: KWin runtime libraries
 
-Requires: ukui-kwin-common
+Requires: %{name}-common%{?_isa}  = %{version}-%{release}
 
 %description libs
 ukui-KWin runtime libraries.
@@ -137,8 +138,8 @@ ukui-KWin runtime libraries.
 
 %package devel
 Summary: UKUI window manager - devel files
-Requires: ukui-kwin-common 
-Requires: ukui-kwin-libs 
+Requires: %{name}-common%{?_isa}  = %{version}-%{release}
+Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 
 %description devel
  Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
@@ -154,7 +155,8 @@ Requires: ukui-kwin-libs
 %package wayland
 Summary: UKUI window manager, wayland version
 Requires: kwayland-integration
-Requires: ukui-kwin-common
+Requires: %{name}-common%{?_isa}  = %{version}-%{release}
+Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 Requires: libcap
 Requires: xorg-x11-server-Xwayland
 
@@ -171,8 +173,8 @@ Provides: ukui-kwin
 Summary: UKUI window manager drm plugin
 Provides: ukui-kwin, x-window-manager
 
-Requires: ukui-kwin-common
-Requires: ukui-kwin-libs
+Requires: %{name}-common%{?_isa}  = %{version}-%{release}
+Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 %description x11
  Ukui-kwin  is the window manager for the UKUI3.0 Desktop. It
  gives you complete control over your windows, making sure
@@ -191,24 +193,22 @@ Requires: ukui-kwin-libs
 export PATH=%{_qt5_bindir}:$PATH
 mkdir cmake-build
 pushd cmake-build
-%cmake3 ..
-%{make_build}
+%{cmake_kf5} ..
+%{cmake_build}
 popd
 
 %install
 pushd cmake-build
-%{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir -p %{buildroot}/usr/share/doc/ukui-kwin/  
+%{cmake_install}
 popd
-cp debian/copyright  %{buildroot}/usr/share/doc/ukui-kwin/copyright
-gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 
 %files
-%{_datadir}/doc/ukui-kwin/
+%doc debian/copyright   debian/changelog 
 
 
 %files common 
 
+%{_sysconfdir}/xdg/ukui-kwinrc 
 %{_libdir}/qt5/plugins/kcm_ukuikwinoptions.so
 %{_libdir}/qt5/plugins/kcm_ukuikwinrules.so
 %{_libdir}/qt5/plugins/kcm_ukuikwintouchscreen.so
@@ -226,17 +226,15 @@ gzip -c  debian/changelog > %{buildroot}/usr/share/doc/ukui-kwin/changelog.gz
 %{_libdir}/qt5/plugins/org.ukui.kwin.scenes/
 %{_libdir}/qt5/qml/org/ukui/kwin/
 %{_libdir}/libkdeinit5_ukui_kwin_rules_dialog.so
-%{_libdir}/libexec/ukui_kwin_rules_dialog
-%{_libdir}/libexec/ukui_kwin_killer_helper
 %{_libdir}/kconf_update_bin/ukui_kwin5_update_default_rules
-%{_datadir}/doc/ukui-kwin/
+%{_libexecdir}/ukui_kwin_rules_dialog
+%{_libexecdir}/ukui_kwin_killer_helper
 %{_datadir}/knsrcfiles/ukui-aurorae.knsrc
 %{_datadir}/knsrcfiles/ukui-kwineffect.knsrc
 %{_datadir}/knsrcfiles/ukui-kwinscripts.knsrc
 %{_datadir}/knsrcfiles/ukui-kwinswitcher.knsrc
 %{_datadir}/knsrcfiles/ukui-window-decorations.knsrc
 %{_datadir}/qlogging-categories5/org_ukui_kwin.categories
-%{_sysconfdir}/xdg/ukui-kwinrc 
 %{_datadir}/applications/ukui-kwin.desktop 
 %{_datadir}/aurorae/themes/Ukui-classic/
 %{_datadir}/aurorae/themes/Ukui-classic-dark/

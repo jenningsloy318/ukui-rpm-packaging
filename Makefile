@@ -21,7 +21,7 @@ docker-build-centos-8:
 build:
 ifneq (,$(filter .el%,$(DIST)))
 	@echo ">> build ukui on centos/rhel"
-	dnf install -y https://mirrors.tuna.tsinghua.edu.cn/epel/epel-release-latest-8.noarch.rpm https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm https://pkgs.dyn.su/el8/base/x86_64/raven-release-1.0-1.el8.noarch.rpm dnf-plugins-core make curl rpm-build  centos-release-stream python3
+	dnf install -y https://mirrors.tuna.tsinghua.edu.cn/epel/epel-release-latest-8.noarch.rpm https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm https://pkgs.dyn.su/el8/base/x86_64/raven-release-1.0-1.el8.noarch.rpm dnf-plugins-core make curl rpm-build  centos-release-stream python3 git 
 	dnf config-manager --enable PowerTools
 	dnf config-manager --enable Stream-PowerTools
 	dnf install -y rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted 
@@ -35,6 +35,7 @@ ifneq (,$(filter .el%,$(DIST)))
 	make 	build-on-centos
 else 
 	@echo ">> build ukui on fedora"
+	dnf install -y git 
 	make 	build-on-fedora
 endif
 

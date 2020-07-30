@@ -7,7 +7,7 @@ Summary:        Indicator that displays China weather information
 
 License:         GPL-3.0 License
 URL:            https://github.com/UbuntuKylin/indicator-china-weather
-Source0:        https://github.com/UbuntuKylin/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 
@@ -31,15 +31,15 @@ BuildRequires: GeoIP-devel
 export PATH=%{_qt5_bindir}:$PATH
 mkdir qmake-build
 pushd qmake-build
-%{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ..
+%{qmake_qt5} ..
 %{make_build}
 popd 
 
 %install
 pushd qmake-build
-%{make_install}  INSTALL_ROOT=%{buildroot} 
+%{make_install} INSTALL_ROOT=%{buildroot}
 popd 
-mkdir -p %{buildroot}/usr/share/man/man1/
+install -d %{buildroot}/usr/share/man/man1/
 gzip -c man/indicator-china-weather.1	 > %{buildroot}/usr/share/man/man1/indicator-china-weather.1.gz
 
 

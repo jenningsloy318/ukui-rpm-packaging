@@ -8,7 +8,7 @@ Summary:        file Manager for the UKUI desktop
 
 License:        GPLv2+
 URL:            https://github.com/ukui/ukwm
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 
@@ -65,7 +65,8 @@ Recommends: ukui-window-switch
 Suggests: ukui-control-center
 Suggests: xdg-user-dirs
 
-Requires: ukwm-common
+Requires: %{name}-libs%{?_isa} = %{version}-%{release}
+Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Requires: ukui-settings-daemon
 Requires: gsettings-desktop-schemas
 Requires: zenity
@@ -86,7 +87,7 @@ Requires: zenity
 %package libs
 Summary: window manager library from the Ukwm window manager
 Requires: gsettings-desktop-schemas
-Requires: ukwm-common
+Requires: %{name}-common%{?_isa} = %{version}-%{release}
 
 %description libs
  Ukwm is a small window manager, using GTK+ and Clutter to do
@@ -123,7 +124,9 @@ Summary: shared files for the Ukwm window manager
 
 Summary: Development files for the Ukwm window manager
 
-Requires: ukwm-libs
+Requires: %{name}%{?_isa} = %{version}-%{release}
+Requires: %{name}-libs%{?_isa} = %{version}-%{release}
+Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Requires: gtk3-devel
 Requires: cairo-devel 
 Requires: glib2-devel
@@ -185,8 +188,9 @@ sed -i "/GETTEXT_MACRO_VERSION/s/0.19/%{gettext_version}/g" po/Makefile.in.in
 
 %build
 %{make_build}
+
 %install
-%{make_install}  INSTALL_ROOT=%{buildroot} 
+%{make_install}
 
 %files
 %{_bindir}/ukwm

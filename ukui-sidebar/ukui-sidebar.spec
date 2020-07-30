@@ -6,8 +6,7 @@ Summary:        parallels toolbox for UKUI
 
 License:         GPL-3.0 License
 URL:            https://github.com/ukui/ukui-sidebar
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Patch0:        ukui-sidebar-plugin-libdir.patch
+Source0:        %{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 BuildRequires:  qt5-qtbase-devel
@@ -29,19 +28,18 @@ storage information.
 
 %prep
 %setup -q
-%patch0 -p0
  
 %build
 export PATH=%{_qt5_bindir}:$PATH
 mkdir qmake-build
 pushd qmake-build
-%{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ..
+%{qmake_qt5} ..
 %{make_build}
 popd 
 
 %install
 pushd qmake-build
-%{make_install}  INSTALL_ROOT=%{buildroot} 
+%{make_install} INSTALL_ROOT=%{buildroot}
 popd 
 
 %files

@@ -6,7 +6,7 @@ Summary:        utilities to configure the UKUI desktop
 
 License:         GPL-2.0 License
 URL:            https://github.com/ukui/ukui-control-center
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.gz
 
 
 BuildArch:      x86_64
@@ -63,15 +63,15 @@ utilities to configure the UKUI desktop
 export PATH=%{_qt5_bindir}:$PATH
 mkdir qmake-build
 pushd qmake-build
-%{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default ..
+%{qmake_qt5} ..
 %{make_build}
 popd
 
 %install
 pushd qmake-build
-%{make_install}  INSTALL_ROOT=%{buildroot} 
+%{make_install} INSTALL_ROOT=%{buildroot}
 popd
-mkdir -p %{buildroot}/usr/share/dbus-1/system-services/ %{buildroot}/etc/dbus-1/system.d/ 
+install -d  %{buildroot}/usr/share/dbus-1/system-services/ %{buildroot}/etc/dbus-1/system.d/ 
 install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.service %{buildroot}/usr/share/dbus-1/system-services/com.control.center.qt.systemdbus.service
 install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{buildroot}/etc/dbus-1/system.d/com.control.center.qt.systemdbus.conf
 

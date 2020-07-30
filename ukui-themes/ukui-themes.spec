@@ -2,14 +2,14 @@
 %define debug_package %{nil}
 
 Name:           ukui-themes
-Version:        master
+Version:        1.4.0
 Release:        1%{?dist}
 Summary:        Official themes for the UKUI desktop
 
 
 License:        GPL-3.0 License
 URL:            https://github.com/ukui/ukui-themes
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 
@@ -34,8 +34,8 @@ BuildRequires: rubygem-sass
 %{make_build}
 
 %install
-%{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir -p  %{buildroot}/usr/share/mime/packages/ %{buildroot}/usr/share/glib-2.0/schemas/  %{buildroot}/usr/share/icons/
+%{make_install} INSTALL_ROOT=%{buildroot}
+install -d %{buildroot}/usr/share/mime/packages/ %{buildroot}/usr/share/glib-2.0/schemas/  %{buildroot}/usr/share/icons/
 install -m 644 ukui-custom.xml	%{buildroot}/usr/share/mime/packages/ukui-custom.xml
 install -m 644 debian/25_ukui-themes.gschema.override %{buildroot}/usr/share/glib-2.0/schemas/25_ukui-themes.gschema.override
 cp -r  ukui-icon-theme-basic %{buildroot}/usr/share/icons/

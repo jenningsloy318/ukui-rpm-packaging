@@ -5,7 +5,7 @@ Summary:        ukui-biometric-auth
 
 License:         GPL-3.0 License
 URL:            https://github.com/ukui/ukui-biometric-auth
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.gz
 
 Patch0:        ukui-biometric-auth-libdir.patch
 
@@ -15,8 +15,8 @@ BuildRequires:  qt5-qttools-devel
 BuildRequires:  pam-devel
 BuildRequires:  polkit-qt5-1-devel
 
-Requires: pam-biometric
-Requires: ukui-polkit
+Requires: pam-biometric%{?_isa} = %{version}-%{release}
+Requires: ukui-polkit%{?_isa} = %{version}-%{release}
 
 %description
 ukui-biometric-auth
@@ -57,15 +57,15 @@ Summary: UKUI authentication agent for PolicyKit-1
 export PATH=%{_qt5_bindir}:$PATH
 mkdir cmake-build
 pushd cmake-build
-%cmake3 ..
-%{make_build}
+%{cmake} ..
+%{cmake_build}
 popd
 
 %install
 pushd cmake-build
-%{make_install}  INSTALL_ROOT=%{buildroot} 
+%{cmake_install}
 popd
-mkdir  -p  %{buildroot}/usr/share/man/man1/
+install -d %{buildroot}/usr/share/man/man1/
 gzip -c man/bioctl.1 > %{buildroot}/usr/share/man/man1/bioctl.1.gz
 gzip -c man/bioauth.1 > %{buildroot}/usr/share/man/man1/bioauth.1.gz
 gzip -c man/biodrvctl.1 > %{buildroot}/usr/share/man/man1/biodrvctl.1.gz

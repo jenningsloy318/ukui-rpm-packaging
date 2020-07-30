@@ -9,7 +9,7 @@ Summary:        Peony qt extensions (common files)
 
 License:        LGPL-3.0 License
 URL:            https://github.com/ukui/peony-extensions
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.gz
 
 
 BuildArch:      x86_64
@@ -24,11 +24,11 @@ BuildRequires:  poppler-qt5-devel
 BuildRequires:  peony-devel
 BuildRequires:  gsettings-qt-devel
 
-Requires:  peony-share 
-Requires:  peony-parchives
-Requires:  peony-open-terminal
-Requires:  peony-set-wallpaper
-Requires:  peony-computer-view
+Requires:  peony-share%{?_isa}  = %{version}-%{release} 
+Requires:  peony-parchives%{?_isa}  = %{version}-%{release}
+Requires:  peony-open-terminal%{?_isa}  = %{version}-%{release}
+Requires:  peony-set-wallpaper%{?_isa}  = %{version}-%{release}
+Requires:  peony-computer-view%{?_isa}  = %{version}-%{release}
 
 %description
  Peony is the official file manager for the UKUI desktop. This
@@ -117,8 +117,8 @@ Peony plugin for open files or directories as admin
 export PATH=%{_qt5_bindir}:$PATH
 mkdir cmake-build
 pushd cmake-build
-%cmake3 ..
-make
+%{cmake} ..
+%{cmake_build}
 popd
 
 %install

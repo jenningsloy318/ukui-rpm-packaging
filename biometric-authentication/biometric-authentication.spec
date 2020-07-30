@@ -1,20 +1,20 @@
 Name:           biometric-authentication
-Version:        master
+Version:        0.9.62
 Release:        1%{?dist}
 Summary:        Biometric Authentication Service
 
 License:        LGPL-3.0 License
 URL:            https://github.com/ukui/biometric-authentication
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.gz
 Patch0:					biometric-authentication-unitdir.patch
 BuildArch:      x86_64
 
 
 BuildRequires: automake
 BuildRequires: python3-devel
-BuildRequires:  glib2-devel
-BuildRequires:  gtk3-devel 
-BuildRequires:  libusb-devel
+BuildRequires: glib2-devel
+BuildRequires: gtk3-devel 
+BuildRequires: libusb-devel
 BuildRequires: sqlite-devel
 BuildRequires: libfprint-devel
 BuildRequires: polkit-devel
@@ -22,7 +22,7 @@ BuildRequires: libtool
 BuildRequires: libuuid-devel
 
 Requires: systemd
-Requires: biometric-authentication-libs
+Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 
 %description
  The service layer of the biometric identification authentication framework.
@@ -55,11 +55,11 @@ Requires: systemd
 
 Summary: Biometric Identification DRIVER API - development files
 
-Requires: biometric-authentication-libs
+Requires: %{name}%{?_isa} = %{version}-%{release}
+Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 Requires: systemd
-Requires: biometric-authentication,
-Requires: python3-prettytable,
-Requires: python3-dbus,
+Requires: python3-prettytable
+Requires: python3-dbus
 Requires: python3-gobject
 
 %description  devel
@@ -72,6 +72,10 @@ Requires: python3-gobject
 %package utils
 
 Summary: Biometric authentication utils
+
+Requires: %{name}%{?_isa} = %{version}-%{release}
+Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
+
 %description utils
  Biometric authentication tools.
  This package provides the biometric-config-tool and biometric-device-discover
@@ -84,6 +88,9 @@ Summary: Biometric authentication utils
 
 %package community-drivers
 Summary: Biometric Authentication Driver (community multidevice)
+
+Requires: %{name}%{?_isa} = %{version}-%{release}
+Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 
 %description community-drivers
 
@@ -107,8 +114,8 @@ Summary: Biometric Authentication Driver (community multidevice)
 
 %install
 rm -rf %{buildroot}
-%{make_install}  INSTALL_ROOT=%{buildroot} 
-mkdir -p %{buildroot}/usr/share/man/{man1,man8}
+%{make_install} INSTALL_ROOT=%{buildroot}
+install -d %{buildroot}/usr/share/man/{man1,man8}
 gzip -c doc/man/biometric-auth-client.1	 > %{buildroot}/usr/share/man/man1/biometric-auth-client.1.gz
 gzip -c doc/man/biometric-device-discover.1 > %{buildroot}/usr/share/man/man1/biometric-device-discover.1.gz
 gzip -c doc/man/biometric-config-tool.8 >%{buildroot}/usr/share/man/man8/biometric-config-tool.8.gz

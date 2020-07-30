@@ -3,6 +3,13 @@ DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
 PKG_NAME := indicator-china-weather
 PKG_VERSION := master
 
+# set the git tag based on the version
+ifneq (,$(filter master,$(PKG_VERSION)))
+		GitTag=HEAD
+else 
+		GitTag=v${PKG_VERSION}
+endif
+
 all: build 
 
 
@@ -18,7 +25,9 @@ deps:
 download-source:
 	@echo "download ${PKG_NAME} source code"
 	mkdir -p ~/rpmbuild/SOURCES/
-	curl -SL https://github.com/UbuntuKylin/${PKG_NAME}/archive/${PKG_VERSION}.tar.gz#/${PKG_NAME}-${PKG_VERSION}.tar.gz -o ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.tar.gz
+	git clone https://github.com/UbuntuKylin/${PKG_NAME}
+	cd ${PKG_NAME} && git archive  --format=tar.gz --prefix=${PKG_NAME}-${PKG_VERSION}/  -o  ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.tar.gz  ${GitTag}
+	rm -rf ${PKG_NAME} 
 
 build: | deps download-source
 	@echo ">> building ${PKG_NAME} rpms"

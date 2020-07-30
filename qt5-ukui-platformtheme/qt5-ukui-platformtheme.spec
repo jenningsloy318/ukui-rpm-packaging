@@ -6,20 +6,20 @@ Summary:        Qt5 QPA platform theme of UKUI
 
 License:         LGPL-3.0 License
 URL:            https://github.com/ukui/qt5-ukui-platformtheme
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 
-BuildRequires:  glib2-devel
-BuildRequires:  qt5-qtx11extras-devel
-BuildRequires:  kf5-kwindowsystem-devel
+BuildRequires: glib2-devel
+BuildRequires: qt5-qtx11extras-devel
+BuildRequires: kf5-kwindowsystem-devel
 BuildRequires: gsettings-desktop-schemas-devel
 BuildRequires: qt5-qtbase-devel
 BuildRequires: qt5-qtbase-private-devel
 BuildRequires: qt5-qttools-devel
 BuildRequires: gsettings-qt-devel
-Requires: qt5-ukui-platformtheme-styles
-Requires: qt5-ukui-platformtheme-styles-libs
+Requires: %{name}-styles%{?_isa}  = %{version}-%{release}
+Requires: %{name}-styles-libs%{?_isa}  = %{version}-%{release}
 
 
 
@@ -46,6 +46,8 @@ Requires: qt5-ukui-platformtheme-styles-libs
  This package provides several qstyle plugins which as default
  styles in ukui. For now, fusion is the base style of ukui-styles.
 
+Requires: %{name}-styles-libs%{?_isa}  = %{version}-%{release}
+
 %package styles-libs
 Summary: UKUI platform theme and styles' shared library
 
@@ -58,7 +60,7 @@ Summary: UKUI platform theme and styles' shared library
 
 %package styles-devel
 Summary: Development files of qt5-ukui-platformtheme-styles-libs
-Requires: qt5-ukui-platformtheme-styles-libs
+Requires: %{name}-styles-libs%{?_isa}  = %{version}-%{release}
 
 %description styles-devel
  qt5-ukui-platformtheme is official platform theme of UKUI desktop
@@ -78,12 +80,13 @@ Requires: qt5-ukui-platformtheme-styles-libs
 export PATH=%{_qt5_bindir}:$PATH
 mkdir qmake-build
 pushd qmake-build
-%{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ..
+%{qmake_qt5} ..
 %{make_build}
 pushd 
+
 %install
 pushd qmake-build
-%{make_install}  INSTALL_ROOT=%{buildroot} 
+%{make_install} INSTALL_ROOT=%{buildroot}
 popd
 
 %files

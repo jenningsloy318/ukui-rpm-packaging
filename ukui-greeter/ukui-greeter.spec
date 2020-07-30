@@ -1,12 +1,12 @@
 Name:           ukui-greeter
-Version:        master
+Version:        3.0.0
 Release:        1%{?dist}
 Summary:        Lightdm greeter for UKUI
 
 
 License:        GPL-2.0 License
 URL:            https://github.com/ukui/ukui-greeter
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 
@@ -40,15 +40,15 @@ Provides: lightdm-greeter
 export PATH=%{_qt5_bindir}:$PATH
 mkdir qmake-build
 pushd qmake-build
-%{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ..	
+%{qmake_qt5} ..	
 %{make_build}
 popd
 
 %install
 pushd qmake-build
-%{make_install}  INSTALL_ROOT=%{buildroot} 
+%{make_install} INSTALL_ROOT=%{buildroot}
 popd
-mkdir -p   %{buildroot}/usr/share/man/man8/
+install -d %{buildroot}/usr/share/man/man8/
 gzip -c ukui-greeter/man/ukui-greeter.8 > %{buildroot}/usr/share/man/man8/ukui-greeter.8.gz
 
 %files

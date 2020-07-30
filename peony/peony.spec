@@ -8,7 +8,7 @@ Summary:        file Manager for the UKUI desktop
 
 License:         GPL-2.0 License
 URL:            https://github.com/ukui/peony
-Source0:        https://github.com/ukui/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.gz
 Patch0:         peony-libdir.patch
 
 BuildArch:      x86_64
@@ -28,8 +28,8 @@ BuildRequires:  gtk2-devel
 BuildRequires:  libnotify-devel
 
 
-Requires: peony-libs
-Requires: peony-common
+Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
+Requires: %{name}-common%{?_isa}  = %{version}-%{release}
 Requires: kf5-kwindowsystem
 
 
@@ -85,7 +85,7 @@ Summary: libraries for Peony components
 Summary: libraries for Peony components (development files)
 
 
-Requires: peony-libs
+Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 
 %description devel
  Peony is the official file manager for the UKUI desktop. It allows one
@@ -111,15 +111,15 @@ if ! grep -q "qm_files.CONFIG" /usr/lib64/qt5/mkspecs/features/lrelease.prf; the
 sed -i '/qm_files.path/a qm_files.CONFIG = no_check_exist'  /usr/lib64/qt5/mkspecs/features/lrelease.prf
 fi
 %endif
-%{qmake_qt5} %{_qt5_qmake_flags} CONFIG+=enable-by-default  ..
+%{qmake_qt5} ..
 %{make_build}
 popd
 
 %install
 pushd qmake-build
-%{make_install}  INSTALL_ROOT=%{buildroot} 
+%{make_install} INSTALL_ROOT=%{buildroot}
 popd
-mkdir  -p %{buildroot}/usr/share/man/man1/ %{buildroot}/usr/share/dbus-1/interfaces/ %{buildroot}/usr/share/dbus-1/services/
+install -d %{buildroot}/usr/share/man/man1/ %{buildroot}/usr/share/dbus-1/interfaces/ %{buildroot}/usr/share/dbus-1/services/
 install -m644  peony-qt-desktop/freedesktop-dbus-interfaces.xml %{buildroot}/usr/share/dbus-1/interfaces/freedesktop-dbus-interfaces.xml
 install -m644  peony-qt-desktop/org.ukui.freedesktop.FileManager1.service %{buildroot}/usr/share/dbus-1/services/org.ukui.freedesktop.FileManager1.service
 gzip -c src/man/peony.1 > %{buildroot}/usr/share/man/man1/peony.1.gz
