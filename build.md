@@ -38,50 +38,8 @@ error  happens because on fedora 32 onwards, libfprint default to version 2, but
 - option 1: rebuild libfprint version 1 on fedora 32, 
 - option 2:  wait for biometric-authentication upgrading
 
- 
-Tried to grab libfprint v1 from fedora repo and build/install it, then build biometric-autentication, but with following errors 
-```
-/usr/bin/ld: biometric_config_tool-biometric-config-tool-add-drivero:/root/rpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-main.h:29: multipledefinition of `bio_config_file'; biometri
-c_config_tool-biometric-config-tool-main.o:/root/rpmbuild/BUILDbiometric-authentication-master/src/utils/biometric-config-toolbiometric-config-tool-main.h:29: first defined here
-/usr/bin/ld: biometric_config_tool-biometric-config-tool-add-drivero:/root/rpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-add-driver.h:27:multiple definition of `force_override'; bio
-metric_config_tool-biometric-config-tool-main.o:/root/rpmbuildBUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-add-driver.h:27: firstdefined here
-/usr/bin/ld: biometric_config_tool-biometric-config-tool-add-drivero:/root/rpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-add-driver.h:28:multiple definition of `driver_disable'; bio
-metric_config_tool-biometric-config-tool-main.o:/root/rpmbuildBUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-add-driver.h:28: firstdefined here
-/usr/bin/ld:biometric_config_tool-biometric-config-tool-remove-driver.o:/rootrpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-main.h:29: multipledefinition of `bio_config_file'; biome
-tric_config_tool-biometric-config-tool-main.o:/root/rpmbuild/BUILDbiometric-authentication-master/src/utils/biometric-config-toolbiometric-config-tool-main.h:29: first defined here
-/usr/bin/ld:biometric_config_tool-biometric-config-tool-remove-driver.o:/rootrpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-remove-driver.h:27:multiple definition of `driver_ignore'
-; biometric_config_tool-biometric-config-tool-main.o:/root/rpmbuildBUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-remove-driver.h:27:first defined here
-/usr/bin/ld:biometric_config_tool-biometric-config-tool-enable-driver.o:/rootrpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-main.h:29: multipledefinition of `bio_config_file'; biome
-tric_config_tool-biometric-config-tool-main.o:/root/rpmbuild/BUILDbiometric-authentication-master/src/utils/biometric-config-toolbiometric-config-tool-main.h:29: first defined here
-/usr/bin/ld:biometric_config_tool-biometric-config-tool-enable-driver.o:/rootrpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-enable-driver.h:27:multiple definition of `driver_ignore'
-; biometric_config_tool-biometric-config-tool-main.o:/root/rpmbuildBUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-remove-driver.h:27:first defined here
-/usr/bin/ld:biometric_config_tool-biometric-config-tool-disable-driver.o:/rootrpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-main.h:29: multipledefinition of `bio_config_file'; biom
-etric_config_tool-biometric-config-tool-main.o:/root/rpmbuild/BUILDbiometric-authentication-master/src/utils/biometric-config-toolbiometric-config-tool-main.h:29: first defined here
-/usr/bin/ld:biometric_config_tool-biometric-config-tool-disable-driver.o:/rootrpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-disable-driver.h:27:multiple definition of `driver_ignor
-e'; biometric_config_tool-biometric-config-tool-main.o:/rootrpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-remove-driver.h:27:first defined here
-/usr/bin/ld: biometric_config_tool-biometric-config-tool-set-key.o:root/rpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-main.h:29: multipledefinition of `bio_config_file'; biometric_c
-onfig_tool-biometric-config-tool-main.o:/root/rpmbuild/BUILDbiometric-authentication-master/src/utils/biometric-config-toolbiometric-config-tool-main.h:29: first defined here
-/usr/bin/ld: biometric_config_tool-biometric-config-tool-set-key.o:root/rpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-set-key.h:29: multipledefinition of `key_is_exist'; biometric_c
-onfig_tool-biometric-config-tool-main.o:/root/rpmbuild/BUILDbiometric-authentication-master/src/utils/biometric-config-toolbiometric-config-tool-set-key.h:29: first defined here
-/usr/bin/ld: biometric_config_tool-biometric-config-tool-set-key.o:root/rpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-set-key.h:28: multipledefinition of `ignore_exist'; biometric_c
-onfig_tool-biometric-config-tool-main.o:/root/rpmbuild/BUILDbiometric-authentication-master/src/utils/biometric-config-toolbiometric-config-tool-set-key.h:28: first defined here
-/usr/bin/ld: biometric_config_tool-biometric-config-tool-set-key.o:root/rpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-set-key.h:27: multipledefinition of `force_override'; biometric
-_config_tool-biometric-config-tool-main.o:/root/rpmbuild/BUILDbiometric-authentication-master/src/utils/biometric-config-toolbiometric-config-tool-add-driver.h:27: first defined here
-/usr/bin/ld: biometric_config_tool-biometric-config-tool-remove-keyo:/root/rpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-main.h:29: multipledefinition of `bio_config_file'; biometri
-c_config_tool-biometric-config-tool-main.o:/root/rpmbuild/BUILDbiometric-authentication-master/src/utils/biometric-config-toolbiometric-config-tool-main.h:29: first defined here
-/usr/bin/ld: biometric_config_tool-biometric-config-tool-remove-keyo:/root/rpmbuild/BUILD/biometric-authentication-master/src/utilsbiometric-config-tool/biometric-config-tool-remove-key.h:27:multiple definition of `driver_ignore'; biom
-etric_config_tool-biometric-config-tool-main.o:/root/rpmbuild/BUILDbiometric-authentication-master/src/utils/biometric-config-toolbiometric-config-tool-remove-driver.h:27: first defined here
-collect2: error: ld returned 1 exit status
-make[4]: *** [Makefile:481: biometric-config-tool] Error 1
-make[4]: Leaving directory '/root/rpmbuild/BUILDbiometric-authentication-master/src/utils/biometric-config-tool'
-make[3]: *** [Makefile:407: all-recursive] Error 1
-make[2]: *** [Makefile:618: all-recursive] Error 1
-make[1]: *** [Makefile:454: all-recursive] Error 1
-make: *** [Makefile:386: all] Error 2
-error: Bad exit status from /var/tmp/rpm-tmp.I9DH2T (%build)
-```
 
-2. on centos 8, ukui will has many errors, desktop will auto logout some times later
+2. ukui runs with  many errors on both fedora 32/33 and centos 8 , desktop will auto logout several minutes later
     ```
     Jul 01 01:27:28 centos8-builder.lmy.com systemd[1]: session-c1.scope: Killing process 1228 (ukui-greeter) with signal SIGTERM.
     Jul 01 01:27:28 centos8-builder.lmy.com dbus-daemon[1285]: [session uid=0 pid=1285] Activating via systemd: service name='org.a11y.Bus' unit='at-spi-dbus-bus.service' requested by ':1.8' (uid=0 pid=1325 comm="/usr/libexec/ukui-settings-daemon " label="unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023")
@@ -1306,22 +1264,125 @@ error: Bad exit status from /var/tmp/rpm-tmp.I9DH2T (%build)
 
 
   3. ukui-kwin build failed on fedora 33 as kscreenlocker-devel don't have function such as setWaylandDisplay,greeterClientConnectionChanged,greeterClientConnection
-```
-make[3]: Entering directory '/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build'
-[ 64%] Building CXX object CMakeFiles/ukui-kwin.dir/wayland_server.cpp.o
-/usr/bin/g++ -DKCOREADDONS_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_DBUS_LIB -DQT_DISABLE_DEPRECATED_BEFORE=0 -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_NO_URL_CAST_FROM_STRING -DQT_QMLMODELS_LIB -DQT_QML_LIB -DQT_QUICK_LIB -DQT_SCRIPT_LIB -DQT_SENSORS_LIB -DQT_USE_QSTRINGBUILDER -DQT_WIDGETS_LIB -DQT_X11EXTRAS_LIB -DQT_XML_LIB -D_GNU_SOURCE -D_LARGEFILE64_SOURCE -Dukui_kwin_EXPORTS -I/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build -I/root/rpmbuild/BUILD/ukui-kwin-master -I/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build/ukui-kwin_autogen/include -I/root/rpmbuild/BUILD/ukui-kwin-master/platformsupport -I/root/rpmbuild/BUILD/ukui-kwin-master/tabbox -I/root/rpmbuild/BUILD/ukui-kwin-master/effects -I/root/rpmbuild/BUILD/ukui-kwin-master/libkwineffects -I/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build/libkwineffects -I/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build/effects -I/usr/include/qt5/QGSettings -I/usr/include/qt5/QtGui/5.14.2 -I/usr/include/qt5/QtGui/5.14.2/QtGui -I/usr/include/qt5/QtCore/5.14.2 -I/usr/include/qt5/QtCore/5.14.2/QtCore -isystem /usr/include/qt5 -isystem /usr/include/qt5/QtDBus -isystem /usr/include/qt5/QtCore -isystem /usr/lib64/qt5/mkspecs/linux-g++ -isystem /usr/include/qt5/QtWidgets -isystem /usr/include/qt5/QtGui -isystem /usr/include/qt5/QtQuick -isystem /usr/include/qt5/QtQmlModels -isystem /usr/include/qt5/QtQml -isystem /usr/include/qt5/QtNetwork -isystem /usr/include/KF5/KConfigCore -isystem /usr/include/KF5 -isystem /usr/include/KF5/KCoreAddons -isystem /usr/include/KF5/KWindowSystem -isystem /usr/include/KF5/KDeclarative -isystem /usr/include/KF5/KPackage -isystem /usr/include/qt5/QtConcurrent -isystem /usr/include/qt5/QtScript -isystem /usr/include/qt5/QtSensors -isystem /usr/include/KF5/KConfigWidgets -isystem /usr/include/KF5/KCodecs -isystem /usr/include/KF5/KWidgetsAddons -isystem /usr/include/KF5/KConfigGui -isystem /usr/include/qt5/QtXml -isystem /usr/include/KF5/KAuth -isystem /usr/include/KF5/KGlobalAccel -isystem /usr/include/qt5/QtX11Extras -isystem /usr/include/KF5/KI18n -isystem /usr/include/KF5/KNotifications -isystem /usr/include/KF5/Plasma -isystem /usr/include/KF5/KService -isystem /usr/include/KDecoration2 -isystem /usr/include/KScreenLocker -isystem /usr/include/KF5/KActivities -isystem /usr/include/KF5/KWayland/Client -isystem /usr/include/KF5/KWayland/Server -O2 -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fno-operator-names -fno-exceptions -Wall -Wextra -Wcast-align -Wchar-subscripts -Wformat-security -Wno-long-long -Wpointer-arith -Wundef -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type -Wvla -Wdate-time -Wsuggest-override -Wlogical-op -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -fPIC -std=gnu++14 -o CMakeFiles/ukui-kwin.dir/wayland_server.cpp.o -c /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp
-/root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp: In member function 'void KWin::WaylandServer::initScreenLocker()':
-/root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp:518:36: error: 'class ScreenLocker::KSldApp' has no member named 'setWaylandDisplay'
-  518 |     ScreenLocker::KSldApp::self()->setWaylandDisplay(m_display);
-      |                                    ^~~~~~~~~~~~~~~~~
-/root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp:522:68: error: 'greeterClientConnectionChanged' is not a member of 'ScreenLocker::KSldApp'
-  522 |     connect(ScreenLocker::KSldApp::self(), &ScreenLocker::KSldApp::greeterClientConnectionChanged, this,
-      |                                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp: In lambda function:
-/root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp:524:77: error: 'class ScreenLocker::KSldApp' has no member named 'greeterClientConnection'
-  524 |             m_screenLockerClientConnection = ScreenLocker::KSldApp::self()->greeterClientConnection();
-      |                                                                             ^~~~~~~~~~~~~~~~~~~~~~~
-/root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp: In member function 'quint16 KWin::WaylandServer::createClientId(KWayland::Server::ClientConnection*)':
-/root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp:740:43: warning: 'QSet<T> QList<T>::toSet() const [with T = short unsigned int]' is deprecated: Use QSet<T>(list.begin(), list.end()) instead. [-Wdeprecated-declarations]
-  740 |     auto ids = m_clientIds.values().toSet();
-```
+    ```
+    make[3]: Entering directory '/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build'
+    [ 64%] Building CXX object CMakeFiles/ukui-kwin.dir/wayland_server.cpp.o
+    /usr/bin/g++ -DKCOREADDONS_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_DBUS_LIB -DQT_DISABLE_DEPRECATED_BEFORE=0 -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_NO_URL_CAST_FROM_STRING -DQT_QMLMODELS_LIB -DQT_QML_LIB -DQT_QUICK_LIB -DQT_SCRIPT_LIB -DQT_SENSORS_LIB -DQT_USE_QSTRINGBUILDER -DQT_WIDGETS_LIB -DQT_X11EXTRAS_LIB -DQT_XML_LIB -D_GNU_SOURCE -D_LARGEFILE64_SOURCE -Dukui_kwin_EXPORTS -I/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build -I/root/rpmbuild/BUILD/ukui-kwin-master -I/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build/ukui-kwin_autogen/include -I/root/rpmbuild/BUILD/ukui-kwin-master/platformsupport -I/root/rpmbuild/BUILD/ukui-kwin-master/tabbox -I/root/rpmbuild/BUILD/ukui-kwin-master/effects -I/root/rpmbuild/BUILD/ukui-kwin-master/libkwineffects -I/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build/libkwineffects -I/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build/effects -I/usr/include/qt5/QGSettings -I/usr/include/qt5/QtGui/5.14.2 -I/usr/include/qt5/QtGui/5.14.2/QtGui -I/usr/include/qt5/QtCore/5.14.2 -I/usr/include/qt5/QtCore/5.14.2/QtCore -isystem /usr/include/qt5 -isystem /usr/include/qt5/QtDBus -isystem /usr/include/qt5/QtCore -isystem /usr/lib64/qt5/mkspecs/linux-g++ -isystem /usr/include/qt5/QtWidgets -isystem /usr/include/qt5/QtGui -isystem /usr/include/qt5/QtQuick -isystem /usr/include/qt5/QtQmlModels -isystem /usr/include/qt5/QtQml -isystem /usr/include/qt5/QtNetwork -isystem /usr/include/KF5/KConfigCore -isystem /usr/include/KF5 -isystem /usr/include/KF5/KCoreAddons -isystem /usr/include/KF5/KWindowSystem -isystem /usr/include/KF5/KDeclarative -isystem /usr/include/KF5/KPackage -isystem /usr/include/qt5/QtConcurrent -isystem /usr/include/qt5/QtScript -isystem /usr/include/qt5/QtSensors -isystem /usr/include/KF5/KConfigWidgets -isystem /usr/include/KF5/KCodecs -isystem /usr/include/KF5/KWidgetsAddons -isystem /usr/include/KF5/KConfigGui -isystem /usr/include/qt5/QtXml -isystem /usr/include/KF5/KAuth -isystem /usr/include/KF5/KGlobalAccel -isystem /usr/include/qt5/QtX11Extras -isystem /usr/include/KF5/KI18n -isystem /usr/include/KF5/KNotifications -isystem /usr/include/KF5/Plasma -isystem /usr/include/KF5/KService -isystem /usr/include/KDecoration2 -isystem /usr/include/KScreenLocker -isystem /usr/include/KF5/KActivities -isystem /usr/include/KF5/KWayland/Client -isystem /usr/include/KF5/KWayland/Server -O2 -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fno-operator-names -fno-exceptions -Wall -Wextra -Wcast-align -Wchar-subscripts -Wformat-security -Wno-long-long -Wpointer-arith -Wundef -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type -Wvla -Wdate-time -Wsuggest-override -Wlogical-op -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -fPIC -std=gnu++14 -o CMakeFiles/ukui-kwin.dir/wayland_server.cpp.o -c /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp
+    /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp: In member function 'void KWin::WaylandServer::initScreenLocker()':
+    /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp:518:36: error: 'class ScreenLocker::KSldApp' has no member named 'setWaylandDisplay'
+      518 |     ScreenLocker::KSldApp::self()->setWaylandDisplay(m_display);
+          |                                    ^~~~~~~~~~~~~~~~~
+    /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp:522:68: error: 'greeterClientConnectionChanged' is not a member of 'ScreenLocker::KSldApp'
+      522 |     connect(ScreenLocker::KSldApp::self(), &ScreenLocker::KSldApp::greeterClientConnectionChanged, this,
+          |                                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp: In lambda function:
+    /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp:524:77: error: 'class ScreenLocker::KSldApp' has no member named 'greeterClientConnection'
+      524 |             m_screenLockerClientConnection = ScreenLocker::KSldApp::self()->greeterClientConnection();
+          |                                                                             ^~~~~~~~~~~~~~~~~~~~~~~
+    /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp: In member function 'quint16 KWin::WaylandServer::createClientId(KWayland::Server::ClientConnection*)':
+    /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp:740:43: warning: 'QSet<T> QList<T>::toSet() const [with T = short unsigned int]' is deprecated: Use QSet<T>(list.begin(), list.end()) instead. [-Wdeprecated-declarations]
+      740 |     auto ids = m_clientIds.values().toSet();
+    ```
+
+  4. now ukui-control-center will coredump on both centos 8 and fedora
+    ```
+    Create youker Interface Failed When Get Computer info:  QDBusError("org.freedesktop.DBus.Error.ServiceUnknown", "The name is not activatable")
+    QLayout: Attempting to add QLayout "" to QFrame "", which already has a layout
+    QLayout: Attempting to add QLayout "" to QFrame "", which already has a layout
+
+    ** (process:7285): WARNING **: 16:05:24.202: Bad setup, install the freedesktop sound theme
+    QLayout: Attempting to add QLayout "" to UkmediaMainWidget "Audio", which already has a layout
+
+    (process:7285): GLib-GIO-CRITICAL **: 16:05:24.239: g_app_info_get_name: assertion 'G_IS_APP_INFO (appinfo)' failed
+
+    (process:7285): GLib-GIO-CRITICAL **: 16:05:24.240: g_app_info_get_icon: assertion 'G_IS_APP_INFO (appinfo)' failed
+
+    (process:7285): GLib-GIO-CRITICAL **: 16:05:24.240: g_icon_to_string: assertion 'icon != NULL' failed
+    Segmentation fault (core dumped)
+    [jenningsl@fedora ~]$ gdb ukui-control-center
+    GNU gdb (GDB) Fedora 9.1-5.fc32
+    Copyright (C) 2020 Free Software Foundation, Inc.
+    License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+    This is free software: you are free to change and redistribute it.
+    There is NO WARRANTY, to the extent permitted by law.
+    Type "show copying" and "show warranty" for details.
+    This GDB was configured as "x86_64-redhat-linux-gnu".
+    Type "show configuration" for configuration details.
+    For bug reporting instructions, please see:
+    <http://www.gnu.org/software/gdb/bugs/>.
+    Find the GDB manual and other documentation resources online at:
+        <http://www.gnu.org/software/gdb/documentation/>.
+
+    For help, type "help".
+    Type "apropos word" to search for commands related to "word"...
+    Reading symbols from ukui-control-center...
+    Reading symbols from .gnu_debugdata for /usr/bin/ukui-control-center...
+    (No debugging symbols found in .gnu_debugdata for /usr/bin/ukui-control-center)
+    Missing separate debuginfos, use: dnf debuginfo-install ukui-control-center-master-1.fc32.x86_64
+    (gdb) r
+    Starting program: /usr/bin/ukui-control-center 
+    warning: the debug information found in "/usr/lib/debug//lib64/ld-2.31.so.debug" does not match "/lib64/ld-linux-x86-64.so.2" (CRC mismatch).
+
+    warning: the debug information found in "/usr/lib/debug//usr/lib64/ld-2.31.so.debug" does not match "/lib64/ld-linux-x86-64.so.2" (CRC mismatch).
+
+    warning: the debug information found in "/usr/lib/debug//lib64/libpthread-2.31.so.debug" does not match "/lib64/libpthread.so.0" (CRC mismatch).
+
+    warning: the debug information found in "/usr/lib/debug//usr/lib64/libpthread-2.31.so.debug" does not match "/lib64/libpthread.so.0" (CRC mismatch).
+
+    [Thread debugging using libthread_db enabled]
+    Using host libthread_db library "/lib64/libthread_db.so.1".
+    warning: the debug information found in "/usr/lib/debug//lib64/libc-2.31.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+    warning: the debug information found in "/usr/lib/debug//usr/lib64/libc-2.31.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+    warning: the debug information found in "/usr/lib/debug//lib64/libdl-2.31.so.debug" does not match "/lib64/libdl.so.2" (CRC mismatch).
+
+    warning: the debug information found in "/usr/lib/debug//usr/lib64/libdl-2.31.so.debug" does not match "/lib64/libdl.so.2" (CRC mismatch).
+
+    warning: the debug information found in "/usr/lib/debug//lib64/libm-2.31.so.debug" does not match "/lib64/libm.so.6" (CRC mismatch).
+
+    warning: the debug information found in "/usr/lib/debug//usr/lib64/libm-2.31.so.debug" does not match "/lib64/libm.so.6" (CRC mismatch).
+
+    warning: the debug information found in "/usr/lib/debug//lib64/libresolv-2.31.so.debug" does not match "/lib64/libresolv.so.2" (CRC mismatch).
+
+    warning: the debug information found in "/usr/lib/debug//usr/lib64/libresolv-2.31.so.debug" does not match "/lib64/libresolv.so.2" (CRC mismatch).
+
+    warning: the debug information found in "/usr/lib/debug//lib64/librt-2.31.so.debug" does not match "/lib64/librt.so.1" (CRC mismatch).
+
+    warning: the debug information found in "/usr/lib/debug//usr/lib64/librt-2.31.so.debug" does not match "/lib64/librt.so.1" (CRC mismatch).
+
+    [New Thread 0x7ffff3117700 (LWP 7362)]
+    [New Thread 0x7ffff2857700 (LWP 7363)]
+    [New Thread 0x7ffff2056700 (LWP 7364)]
+    [New Thread 0x7ffff182b700 (LWP 7365)]
+    [New Thread 0x7ffff102a700 (LWP 7366)]
+    [Detaching after fork from child process 7367]
+    Create youker Interface Failed When Get Computer info:  QDBusError("org.freedesktop.DBus.Error.ServiceUnknown", "The name is not activatable")
+    QLayout: Attempting to add QLayout "" to QFrame "", which already has a layout
+    QLayout: Attempting to add QLayout "" to QFrame "", which already has a layout
+    [New Thread 0x7fffdbbaf700 (LWP 7368)]
+
+    ** (process:7358): WARNING **: 16:06:02.649: Bad setup, install the freedesktop sound theme
+    QLayout: Attempting to add QLayout "" to UkmediaMainWidget "Audio", which already has a layout
+
+    (process:7358): GLib-GIO-CRITICAL **: 16:06:02.980: g_app_info_get_name: assertion 'G_IS_APP_INFO (appinfo)' failed
+
+    (process:7358): GLib-GIO-CRITICAL **: 16:06:02.980: g_app_info_get_icon: assertion 'G_IS_APP_INFO (appinfo)' failed
+
+    (process:7358): GLib-GIO-CRITICAL **: 16:06:02.980: g_icon_to_string: assertion 'icon != NULL' failed
+    [Detaching after fork from child process 7370]
+
+    Thread 1 "ukui-control-ce" received signal SIGSEGV, Segmentation fault.
+    0x00007fffdb0b981c in Widget::Widget(QWidget*) () from /usr/lib64/ukui-control-center/libdisplay.so
+    (gdb) bt
+    #0  0x00007fffdb0b981c in Widget::Widget(QWidget*) () at /usr/lib64/ukui-control-center/libdisplay.so
+    #1  0x00007fffdb09f954 in DisplaySet::DisplaySet() () at /usr/lib64/ukui-control-center/libdisplay.so
+    #2  0x00007fffdb0ca995 in qt_plugin_instance () at /usr/lib64/ukui-control-center/libdisplay.so
+    #3  0x00007ffff6c4d564 in QLibraryPrivate::pluginInstance() () at /lib64/libQt5Core.so.5
+    #4  0x000055555557326e in MainWindow::loadPlugins() ()
+    #5  0x0000555555575174 in MainWindow::MainWindow(QWidget*) ()
+    #6  0x000055555556f336 in main ()
+    ```
+  5. peony-extensions don't have install target in CMake config, thus need to copy it manually
+  6. many repos don't support set the libdir correctly
+  7. ukui-system-monitor missing target to create qm files
