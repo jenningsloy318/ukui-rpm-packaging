@@ -45,6 +45,7 @@ build-on-fedora:
 	make -C kylin-nm
 	make -C kylin-video
 	make -C indicator-china-weather 
+	make -C biometric-authentication
 	make -C qt5-ukui-platformtheme
 	make -C peony 
 	make -C peony-extensions 
@@ -73,6 +74,7 @@ build-on-centos:
 	make -C kylin-nm
 	make -C kylin-video
 	make -C indicator-china-weather 
+	make -C biometric-authentication
 	make -C qt5-ukui-platformtheme
 	make -C peony 
 	make -C peony-extensions 
