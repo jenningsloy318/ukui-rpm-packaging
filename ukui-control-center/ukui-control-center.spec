@@ -36,7 +36,12 @@ BuildRequires:  mate-desktop-devel
 BuildRequires:  libxkbcommon-devel 
 BuildRequires:  libxkbfile-devel
 
-Recommends: edid-decode
+
+Requires: redhat-lsb-core
+Requires: edid-decode
+Requires: qt5-qtquickcontrols
+Requires: qt5-qtgraphicaleffects
+
 Recommends: redshift
 Recommends: qt5-qtquickcontrols
 

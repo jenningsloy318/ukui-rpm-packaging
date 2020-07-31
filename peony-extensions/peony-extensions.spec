@@ -103,8 +103,12 @@ Requires:  peony-libs
 
 %package -n peony-admin
 Summary: Peony plugin for open files or directories as admin
-Requires:  peony-libs
-Requires:  polkit
+Requires: peony
+Requires: peony-libs
+Requires: polkit
+Requires: pluma 
+Requires: mate-terminal
+
 
 %description -n peony-admin
 Peony plugin for open files or directories as admin
