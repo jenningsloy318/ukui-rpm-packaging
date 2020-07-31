@@ -1386,3 +1386,5 @@ error  happens because on fedora 32 onwards, libfprint default to version 2, but
   5. peony-extensions don't have install target in CMake config, thus need to copy it manually
   6. many repos don't support set the libdir correctly
   7. ukui-system-monitor missing target to create qm files
+  8. ukui-biometric-auth, ukui-polkit file /etc/xdg/autostart/polkit-ukui-authentication-agent-1.desktop has wrong polkit-ukui-authentication-agent-1 path, it should be /usr/lib64/ukui-polkit/polkit-ukui-authentication-agent-1 instead of /usr/lib//ukui-polkit/polkit-ukui-authentication-agent-1
+  9. monitor resolution can't be restore after logout or reboot, but I can see there is a file ~/.config/monitors.xml which has stored last settings.
