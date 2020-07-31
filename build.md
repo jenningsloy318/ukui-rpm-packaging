@@ -40,6 +40,11 @@ error  happens because on fedora 32 onwards, libfprint default to version 2, but
 
 
 2. ukui runs with  many errors on both fedora 32/33 and centos 8 , desktop will auto logout several minutes later
+
+    symtoms:
+    1. desktop session will terminated after some minutes, and return to login window 
+    2. even desktop session exists, the keyboard input will get no response, nothing will display or input as typing, but mouse can move or drag, but sometimes still can't operate correctly
+    
     ```
     Jul 01 01:27:28 centos8-builder.lmy.com systemd[1]: session-c1.scope: Killing process 1228 (ukui-greeter) with signal SIGTERM.
     Jul 01 01:27:28 centos8-builder.lmy.com dbus-daemon[1285]: [session uid=0 pid=1285] Activating via systemd: service name='org.a11y.Bus' unit='at-spi-dbus-bus.service' requested by ':1.8' (uid=0 pid=1325 comm="/usr/libexec/ukui-settings-daemon " label="unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023")
@@ -1284,107 +1289,8 @@ error  happens because on fedora 32 onwards, libfprint default to version 2, but
       740 |     auto ids = m_clientIds.values().toSet();
     ```
 
-  4. now ukui-control-center will coredump on both centos 8 and fedora
-    ```
-    Create youker Interface Failed When Get Computer info:  QDBusError("org.freedesktop.DBus.Error.ServiceUnknown", "The name is not activatable")
-    QLayout: Attempting to add QLayout "" to QFrame "", which already has a layout
-    QLayout: Attempting to add QLayout "" to QFrame "", which already has a layout
-
-    ** (process:7285): WARNING **: 16:05:24.202: Bad setup, install the freedesktop sound theme
-    QLayout: Attempting to add QLayout "" to UkmediaMainWidget "Audio", which already has a layout
-
-    (process:7285): GLib-GIO-CRITICAL **: 16:05:24.239: g_app_info_get_name: assertion 'G_IS_APP_INFO (appinfo)' failed
-
-    (process:7285): GLib-GIO-CRITICAL **: 16:05:24.240: g_app_info_get_icon: assertion 'G_IS_APP_INFO (appinfo)' failed
-
-    (process:7285): GLib-GIO-CRITICAL **: 16:05:24.240: g_icon_to_string: assertion 'icon != NULL' failed
-    Segmentation fault (core dumped)
-    [jenningsl@fedora ~]$ gdb ukui-control-center
-    GNU gdb (GDB) Fedora 9.1-5.fc32
-    Copyright (C) 2020 Free Software Foundation, Inc.
-    License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-    This is free software: you are free to change and redistribute it.
-    There is NO WARRANTY, to the extent permitted by law.
-    Type "show copying" and "show warranty" for details.
-    This GDB was configured as "x86_64-redhat-linux-gnu".
-    Type "show configuration" for configuration details.
-    For bug reporting instructions, please see:
-    <http://www.gnu.org/software/gdb/bugs/>.
-    Find the GDB manual and other documentation resources online at:
-        <http://www.gnu.org/software/gdb/documentation/>.
-
-    For help, type "help".
-    Type "apropos word" to search for commands related to "word"...
-    Reading symbols from ukui-control-center...
-    Reading symbols from .gnu_debugdata for /usr/bin/ukui-control-center...
-    (No debugging symbols found in .gnu_debugdata for /usr/bin/ukui-control-center)
-    Missing separate debuginfos, use: dnf debuginfo-install ukui-control-center-master-1.fc32.x86_64
-    (gdb) r
-    Starting program: /usr/bin/ukui-control-center 
-    warning: the debug information found in "/usr/lib/debug//lib64/ld-2.31.so.debug" does not match "/lib64/ld-linux-x86-64.so.2" (CRC mismatch).
-
-    warning: the debug information found in "/usr/lib/debug//usr/lib64/ld-2.31.so.debug" does not match "/lib64/ld-linux-x86-64.so.2" (CRC mismatch).
-
-    warning: the debug information found in "/usr/lib/debug//lib64/libpthread-2.31.so.debug" does not match "/lib64/libpthread.so.0" (CRC mismatch).
-
-    warning: the debug information found in "/usr/lib/debug//usr/lib64/libpthread-2.31.so.debug" does not match "/lib64/libpthread.so.0" (CRC mismatch).
-
-    [Thread debugging using libthread_db enabled]
-    Using host libthread_db library "/lib64/libthread_db.so.1".
-    warning: the debug information found in "/usr/lib/debug//lib64/libc-2.31.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
-
-    warning: the debug information found in "/usr/lib/debug//usr/lib64/libc-2.31.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
-
-    warning: the debug information found in "/usr/lib/debug//lib64/libdl-2.31.so.debug" does not match "/lib64/libdl.so.2" (CRC mismatch).
-
-    warning: the debug information found in "/usr/lib/debug//usr/lib64/libdl-2.31.so.debug" does not match "/lib64/libdl.so.2" (CRC mismatch).
-
-    warning: the debug information found in "/usr/lib/debug//lib64/libm-2.31.so.debug" does not match "/lib64/libm.so.6" (CRC mismatch).
-
-    warning: the debug information found in "/usr/lib/debug//usr/lib64/libm-2.31.so.debug" does not match "/lib64/libm.so.6" (CRC mismatch).
-
-    warning: the debug information found in "/usr/lib/debug//lib64/libresolv-2.31.so.debug" does not match "/lib64/libresolv.so.2" (CRC mismatch).
-
-    warning: the debug information found in "/usr/lib/debug//usr/lib64/libresolv-2.31.so.debug" does not match "/lib64/libresolv.so.2" (CRC mismatch).
-
-    warning: the debug information found in "/usr/lib/debug//lib64/librt-2.31.so.debug" does not match "/lib64/librt.so.1" (CRC mismatch).
-
-    warning: the debug information found in "/usr/lib/debug//usr/lib64/librt-2.31.so.debug" does not match "/lib64/librt.so.1" (CRC mismatch).
-
-    [New Thread 0x7ffff3117700 (LWP 7362)]
-    [New Thread 0x7ffff2857700 (LWP 7363)]
-    [New Thread 0x7ffff2056700 (LWP 7364)]
-    [New Thread 0x7ffff182b700 (LWP 7365)]
-    [New Thread 0x7ffff102a700 (LWP 7366)]
-    [Detaching after fork from child process 7367]
-    Create youker Interface Failed When Get Computer info:  QDBusError("org.freedesktop.DBus.Error.ServiceUnknown", "The name is not activatable")
-    QLayout: Attempting to add QLayout "" to QFrame "", which already has a layout
-    QLayout: Attempting to add QLayout "" to QFrame "", which already has a layout
-    [New Thread 0x7fffdbbaf700 (LWP 7368)]
-
-    ** (process:7358): WARNING **: 16:06:02.649: Bad setup, install the freedesktop sound theme
-    QLayout: Attempting to add QLayout "" to UkmediaMainWidget "Audio", which already has a layout
-
-    (process:7358): GLib-GIO-CRITICAL **: 16:06:02.980: g_app_info_get_name: assertion 'G_IS_APP_INFO (appinfo)' failed
-
-    (process:7358): GLib-GIO-CRITICAL **: 16:06:02.980: g_app_info_get_icon: assertion 'G_IS_APP_INFO (appinfo)' failed
-
-    (process:7358): GLib-GIO-CRITICAL **: 16:06:02.980: g_icon_to_string: assertion 'icon != NULL' failed
-    [Detaching after fork from child process 7370]
-
-    Thread 1 "ukui-control-ce" received signal SIGSEGV, Segmentation fault.
-    0x00007fffdb0b981c in Widget::Widget(QWidget*) () from /usr/lib64/ukui-control-center/libdisplay.so
-    (gdb) bt
-    #0  0x00007fffdb0b981c in Widget::Widget(QWidget*) () at /usr/lib64/ukui-control-center/libdisplay.so
-    #1  0x00007fffdb09f954 in DisplaySet::DisplaySet() () at /usr/lib64/ukui-control-center/libdisplay.so
-    #2  0x00007fffdb0ca995 in qt_plugin_instance () at /usr/lib64/ukui-control-center/libdisplay.so
-    #3  0x00007ffff6c4d564 in QLibraryPrivate::pluginInstance() () at /lib64/libQt5Core.so.5
-    #4  0x000055555557326e in MainWindow::loadPlugins() ()
-    #5  0x0000555555575174 in MainWindow::MainWindow(QWidget*) ()
-    #6  0x000055555556f336 in main ()
-    ```
-  5. peony-extensions don't have install target in CMake config, thus need to copy it manually
-  6. many repos don't support set the libdir correctly
-  7. ukui-system-monitor missing target to create qm files
-  8. ukui-biometric-auth, ukui-polkit file /etc/xdg/autostart/polkit-ukui-authentication-agent-1.desktop has wrong polkit-ukui-authentication-agent-1 path, it should be /usr/lib64/ukui-polkit/polkit-ukui-authentication-agent-1 instead of /usr/lib//ukui-polkit/polkit-ukui-authentication-agent-1
-  9. monitor resolution can't be restore after logout or reboot, but I can see there is a file ~/.config/monitors.xml which has stored last settings.
+  4. peony-extensions don't have install target in CMake config, thus need to copy it manually
+  5. many repos don't support set the libdir correctly
+  6. ukui-system-monitor missing target to create qm files
+  7. ukui-biometric-auth, ukui-polkit file /etc/xdg/autostart/polkit-ukui-authentication-agent-1.desktop has wrong polkit-ukui-authentication-agent-1 path, it should be /usr/lib64/ukui-polkit/polkit-ukui-authentication-agent-1 instead of /usr/lib//ukui-polkit/polkit-ukui-authentication-agent-1
+  8. monitor resolution can't be restore after logout or reboot, but I can see there is a file ~/.config/monitors.xml which has stored last settings.
