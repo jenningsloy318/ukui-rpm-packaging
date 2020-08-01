@@ -9,7 +9,6 @@ Summary:        file Manager for the UKUI desktop
 License:         GPL-2.0 License
 URL:            https://github.com/ukui/peony
 Source0:        %{name}-%{version}.tar.gz
-Patch0:         peony-libdir.patch
 
 BuildArch:      x86_64
 
@@ -100,7 +99,6 @@ Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 %prep
 
 %setup -q
-%patch0 -p0
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
@@ -151,10 +149,7 @@ install -m644  data/peony-desktop.desktop %{buildroot}/usr/share/applications/pe
 %{_datadir}/peony-qt/
 
 %files libs
-%{_libdir}/libpeony.so
-%{_libdir}/libpeony.so.2
-%{_libdir}/libpeony.so.2.1
-%{_libdir}/libpeony.so.2.1.0
+%{_libdir}/libpeony.*
 
 %files devel
 %{_includedir}/peony-qt

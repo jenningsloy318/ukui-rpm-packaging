@@ -18,7 +18,7 @@ docker-build:
 
 deps:
 	@echo ">> install dependencies for ${PKG_NAME}"
-	dnf install -y which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros   qt5-qtdeclarative-devel qt5-qtbase-devel qt5-qtmultimedia-devel qt5-qtx11extras-devel kf5-kidletime-devel qt5-qttools-devel qt5-qttools qt5-linguist gsettings-qt-devel libXtst-devel libqtxdg-devel systemd-devel 
+	dnf install -y git which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros   qt5-qtdeclarative-devel qt5-qtbase-devel qt5-qtmultimedia-devel qt5-qtx11extras-devel kf5-kidletime-devel qt5-qttools-devel qt5-qttools qt5-linguist gsettings-qt-devel libXtst-devel libqtxdg-devel systemd-devel 
 	strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
 
 download-source:

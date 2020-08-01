@@ -20,7 +20,7 @@ docker-build:
 
 deps:
 	@echo ">> install dependencies for ${PKG_NAME}"
-	dnf -y install which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros python3 python3-setuptools python3-distutils-extra python3-rpm-macros  python-rpm-macros
+	dnf -y install git which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros python3 python3-setuptools python3-distutils-extra python3-rpm-macros  python-rpm-macros
 
 download-source:
 	@echo "download ${PKG_NAME} source code"
