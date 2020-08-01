@@ -19,6 +19,7 @@ BuildRequires:  libgtop2-devel
 BuildRequires:  systemd-devel
 BuildRequires:  gsettings-qt-devel
 BuildRequires:  qt5-qtx11extras-devel
+BuildRequires:  libpcap-devel
 
 Requires: inotify-tools
 Requires: hdparm
