@@ -137,6 +137,7 @@ install -m644 peony-extensions-cmake/peony-qt-admin/org.freedesktop.peony-qt-adm
 
 %files
 %doc debian/copyright  debian/changelog
+%dir %{_libdir}/peony-qt-extensions/
 
 %files  -n peony-share
 %{_libdir}/peony-qt-extensions/libpeony-qt-share.so
