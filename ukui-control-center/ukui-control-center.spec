@@ -38,7 +38,6 @@ BuildRequires:  libxkbfile-devel
 
 
 Requires: redhat-lsb-core
-Requires: edid-decode
 Requires: qt5-qtquickcontrols
 Requires: qt5-qtgraphicaleffects
 
