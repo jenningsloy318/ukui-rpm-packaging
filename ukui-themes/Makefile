@@ -30,6 +30,7 @@ endif
 download-source:
 	@echo "download ${PKG_NAME} source code"
 	mkdir -p ~/rpmbuild/SOURCES/
+	rm -rf ${PKG_NAME} 
 	git clone https://github.com/ukui/${PKG_NAME}
 	cd ${PKG_NAME} && git archive  --format=tar.gz --prefix=${PKG_NAME}-${PKG_VERSION}/  -o  ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.tar.gz  ${GitTag}
 	rm -rf ${PKG_NAME} 
