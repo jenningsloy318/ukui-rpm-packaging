@@ -48,6 +48,5 @@ popd
 %{_bindir}/*
 %{_libdir}/ukui-sidebar
 %{_datadir}/ukui-sidebar
-%{_datadir}/ukui-sidebar-notification
 %{_datadir}/applications/*
 %{_datadir}/ukui-clock/
