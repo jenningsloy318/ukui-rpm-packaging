@@ -28,10 +28,6 @@ ifneq (,$(filter .el%,$(DIST)))
 	alternatives --set python /usr/bin/python3
 	dnf copr enable -y neonman/MATE
 	dnf copr enable -y neonman/MATE-Dependencies
-	rpm -ivh https://mirrors.tuna.tsinghua.edu.cn/fedora/releases/32/Everything/source/tree/Packages/l/libX11-1.6.9-3.fc32.src.rpm
-	dnf install -y xorg-x11-util-macros "pkgconfig(xproto)" xorg-x11-xtrans-devel libxcb-devel "pkgconfig(xau)" "perl(Pod::Usage)" "pkgconfig(xdmcp)"
-	rpmbuild -ba /root/rpmbuild/SPECS/libX11.spec
-	dnf install  -y /root/rpmbuild/RPMS/x86_64/libX11-1.6.9-3.el8.x86_64.rpm  /root/rpmbuild/RPMS/noarch/libX11-common-1.6.9-3.el8.noarch.rpm /root/rpmbuild/RPMS/x86_64/libX11-devel-1.6.9-3.el8.x86_64.rpm  /root/rpmbuild/RPMS/x86_64/libX11-xcb-1.6.9-3.el8.x86_64.rpm
 	make 	build-on-centos
 else 
 	@echo ">> build ukui on fedora"
