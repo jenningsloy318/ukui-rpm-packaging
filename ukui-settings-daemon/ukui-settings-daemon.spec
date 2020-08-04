@@ -120,6 +120,8 @@ fi
 %install
 %{make_install} INSTALL_ROOT=%{buildroot}
 
+%find_lang %name
+
 %files
 %{_sysconfdir}/xrdb/
 %{_sysconfdir}/xdg/autostart/ukui-settings-daemon.desktop
@@ -133,7 +135,7 @@ fi
 %{_datadir}/dbus-1/system-services/org.ukui.SettingsDaemon.DateTimeMechanism.service
 %{_datadir}/polkit-1/actions/org.ukui.settingsdaemon.datetimemechanism.policy
 
-%files common
+%files common -f %name.lang
 %doc debian/changelog debian/copyright
 %{_datadir}/glib-2.0/schemas/org.ukui.SettingsDaemon.plugins.a11y-keyboard.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.ukui.SettingsDaemon.plugins.a11y-settings.gschema.xml
@@ -161,7 +163,6 @@ fi
 %{_datadir}/glib-2.0/schemas/org.ukui.peripherals-touchscreen.gschema.xml
 %{_datadir}/icons/ukui/*/actions/*
 %{_datadir}/icons/hicolor/*/apps/*
-%{_datadir}/locale/*/LC_MESSAGES/ukui-settings-daemon.mo
 %{_datadir}/ukui-settings-daemon/
 %{_datadir}/man/man1/ukui-settings-daemon.1.gz
 %{_datadir}/man/man1/usd-datetime-mechanism.1.gz

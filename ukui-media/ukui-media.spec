@@ -66,13 +66,15 @@ gzip -c man/ukui-volume-control-applet-qt.1  > %{buildroot}/usr/share/man/man1/u
 gzip -c man/ukui-volume-control-applet.1  > %{buildroot}/usr/share/man/man1/ukui-volume-control-applet.1.gz
 gzip -c man/ukui-volume-control.1  > %{buildroot}/usr/share/man/man1/ukui-volume-control.1.gz
 
+%find_lang %name
+
 %files
 %doc debian/changelog debian/copyright
 %{_bindir}/*
 %{_datadir}/applications/
 %{_datadir}/ukui-media/
 
-%files common
+%files common -f %name.lang
 %{_sysconfdir}/xdg/autostart/ukui-volume-control-applet.desktop
 %{_datadir}/locale/*/LC_MESSAGES/ukui-media.mo
 %{_datadir}/sounds/ukui/

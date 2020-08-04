@@ -39,13 +39,12 @@ Requires:  python3-xlib
 
 %install
 %{py3_install}
+%find_lang %name
 
-
-%files
+%files -f %name.lang
 %doc debian/copyright debian/changelog
 %{_sysconfdir}/xdg/autostart/kylin-display-switch.desktop
 %{_bindir}/kds
 %{_datadir}/kylin-display-switch/
-%{_datadir}/locale/*/LC_MESSAGES/kylin-display-switch.mo
 %{_mandir}/man1/kds.1.gz
 %{python3_sitelib}/kylin_display_switch-*.egg-info

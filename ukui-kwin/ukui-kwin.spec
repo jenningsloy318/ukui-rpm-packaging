@@ -201,6 +201,7 @@ popd
 pushd cmake-build
 %{cmake_install}
 popd
+%find_lang %name
 
 %files
 %doc debian/copyright   debian/changelog 

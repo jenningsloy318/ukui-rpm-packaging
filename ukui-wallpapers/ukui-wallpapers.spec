@@ -33,13 +33,9 @@ BuildRequires:  meson
 
 %install
 %{meson_install}
+%find_lang %name
 
-
-%files
+%files -f %name.lang
 %doc debian/copyright debian/changelog
 %{_datadir}/backgrounds/*
-%{_datadir}/locale/bo/LC_MESSAGES/ukui-wallpapers.mo
-%{_datadir}/locale/tr/LC_MESSAGES/ukui-wallpapers.mo
-%{_datadir}/locale/zh_CN/LC_MESSAGES/ukui-wallpapers.mo
-%{_datadir}/locale/zh_TW/LC_MESSAGES/ukui-wallpapers.mo
 %{_datadir}/ukui-background-properties/

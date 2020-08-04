@@ -79,8 +79,10 @@ install -d  %{buildroot}/usr/share/dbus-1/system-services/ %{buildroot}/etc/dbus
 install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.service %{buildroot}/usr/share/dbus-1/system-services/com.control.center.qt.systemdbus.service
 install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{buildroot}/etc/dbus-1/system.d/com.control.center.qt.systemdbus.conf
 
-%files
+
+%files 
 %doc debian/copyright debian/changelog
+%exclude %{_datadir}/locale/zh_CN/LC_MESSAGES/installer-timezones.mo
 %{_sysconfdir}/dbus-1/system.d/com.control.center.qt.systemdbus.conf
 %{_bindir}/*
 %{_libdir}/ukui-control-center/
@@ -88,4 +90,3 @@ install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{build
 %{_datadir}/applications/ukui-control-center.desktop
 %{_datadir}/dbus-1/system-services/com.control.center.qt.systemdbus.service
 %{_datadir}/ukui/faces/*
-%{_datadir}/locale/*/LC_MESSAGES/*

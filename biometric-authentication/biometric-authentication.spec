@@ -120,7 +120,11 @@ gzip -c doc/man/biometric-auth-client.1	 > %{buildroot}/usr/share/man/man1/biome
 gzip -c doc/man/biometric-device-discover.1 > %{buildroot}/usr/share/man/man1/biometric-device-discover.1.gz
 gzip -c doc/man/biometric-config-tool.8 >%{buildroot}/usr/share/man/man8/biometric-config-tool.8.gz
 
+%find_lang %name
+
 sed -i 's|/usr/lib/biometric-authentication/biometric-authenticationd|/usr/libexec/biometric-authentication/biometric-authenticationd|g' %{buildroot}/%{_unitdir}/biometric-authentication.service
+
+
 
 %files
 %doc debian/copyright debian/changelog 
@@ -141,17 +145,11 @@ sed -i 's|/usr/lib/biometric-authentication/biometric-authenticationd|/usr/libex
 %{_libdir}/pkgconfig/libbiometric.pc
 %{_libdir}/libbiometric.a
 %{_libdir}/libbiometric.la
-
-%files libs
+ 
+%files libs -f %name.lang
 %{_libdir}/libbiometric.so  
 %{_libdir}/libbiometric.so.0  
 %{_libdir}/libbiometric.so.0.0.0
-%{_datadir}/locale/bo/LC_MESSAGES/biometric-authentication.mo
-%{_datadir}/locale/es/LC_MESSAGES/biometric-authentication.mo
-%{_datadir}/locale/fr/LC_MESSAGES/biometric-authentication.mo
-%{_datadir}/locale/pt/LC_MESSAGES/biometric-authentication.mo
-%{_datadir}/locale/ru/LC_MESSAGES/biometric-authentication.mo
-%{_datadir}/locale/zh_CN/LC_MESSAGES/biometric-authentication.mo
 
 
 %files community-drivers

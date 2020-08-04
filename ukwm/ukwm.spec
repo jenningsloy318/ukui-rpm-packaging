@@ -192,6 +192,8 @@ sed -i "/GETTEXT_MACRO_VERSION/s/0.19/%{gettext_version}/g" po/Makefile.in.in
 %install
 %{make_install}
 
+%find_lang %name
+
 %files
 %{_bindir}/ukwm
 %{_datadir}/applications/ukwm.desktop
@@ -214,9 +216,8 @@ sed -i "/GETTEXT_MACRO_VERSION/s/0.19/%{gettext_version}/g" po/Makefile.in.in
 %{_libdir}/ukwm/libukwm-cogl-path-1.so
 
 
-%files common
+%files common -f %name.lang
 %doc debian/copyright debian/changelog
-%{_datadir}/locale/*/LC_MESSAGES/ukwm.mo
 %{_datadir}/man/man1/ukwm.1.gz
 %{_datadir}/gnome-control-center/keybindings/50-ukwm-navigation.xml
 %{_datadir}/gnome-control-center/keybindings/50-ukwm-system.xml
