@@ -38,7 +38,6 @@ download-source:
 
 build: | deps build-libfprint download-source
 	@echo ">> building rpms"
-	cp biometric-authentication-unitdir.patch ~/rpmbuild/SOURCES
 	rpmbuild  -ba  ${PKG_NAME}.spec
 	
 clean:

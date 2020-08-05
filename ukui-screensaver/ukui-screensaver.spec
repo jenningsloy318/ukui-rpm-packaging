@@ -7,7 +7,6 @@ Summary:         Screensaver for UKUI desktop environment
 License:        GPLv2+
 URL:            https://github.com/ukui/ukui-screensaver
 Source0:        %{name}-%{version}.tar.gz
-Patch0:         ukui-screensaver-libexec-path.patch
 BuildArch:      x86_64
 
 
@@ -33,7 +32,7 @@ A simple and lightweight screensaver written by Qt5.
 %prep
 
 %setup -q
-%patch0 -p0
+sed -i 's|lib/ukui-screensaver|lib64/ukui-screensaver|g' screensaver/CMakeLists.txt
 
 %build
 export PATH=%{_qt5_bindir}:$PATH

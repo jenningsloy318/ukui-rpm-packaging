@@ -35,7 +35,7 @@ BuildRequires:  libXi-devel
 BuildRequires:  mate-desktop-devel
 BuildRequires:  libxkbcommon-devel 
 BuildRequires:  libxkbfile-devel
-
+BuildRequires:  qt5-linguist
 
 Requires: redhat-lsb-core
 Requires: qt5-qtquickcontrols
@@ -65,6 +65,11 @@ utilities to configure the UKUI desktop
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
+%if 0%{?rhel} == 8
+if ! grep -q "qm_files.CONFIG" /usr/lib64/qt5/mkspecs/features/lrelease.prf; then
+  sed -i '/qm_files.path/a qm_files.CONFIG = no_check_exist'  /usr/lib64/qt5/mkspecs/features/lrelease.prf
+fi
+%endif
 mkdir qmake-build
 pushd qmake-build
 %{qmake_qt5} ..
@@ -90,3 +95,4 @@ install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{build
 %{_datadir}/applications/ukui-control-center.desktop
 %{_datadir}/dbus-1/system-services/com.control.center.qt.systemdbus.service
 %{_datadir}/ukui/faces/*
+%{_datadir}/ukui-control-center/

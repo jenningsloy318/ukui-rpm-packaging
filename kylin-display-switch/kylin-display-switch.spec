@@ -32,7 +32,7 @@ Requires:  python3-xlib
 %prep
 
 %setup -q
- 
+sed -i 's|../lib/systemd/system/|lib/systemd/system/|g' setup.py 
 %build
 
 %{py3_build} 
@@ -44,7 +44,12 @@ Requires:  python3-xlib
 %files -f %name.lang
 %doc debian/copyright debian/changelog
 %{_sysconfdir}/xdg/autostart/kylin-display-switch.desktop
-%{_bindir}/kds
+%{_sysconfdir}/dbus-1/system.d/com.kylin.display.switch.conf
+%{_bindir}/*
+%{_unitdir}/kylin-display-switch.service
 %{_datadir}/kylin-display-switch/
+%{_datadir}/glib-2.0/schemas/org.kylin.display.switch.gschema.xml
+%{_datadir}/dbus-1/system-services/com.kylin.display.switch.service
 %{_mandir}/man1/kds.1.gz
+%{_mandir}/man1/kdsSysDbusLauncher.1.gz
 %{python3_sitelib}/kylin_display_switch-*.egg-info

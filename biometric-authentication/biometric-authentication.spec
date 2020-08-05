@@ -6,7 +6,6 @@ Summary:        Biometric Authentication Service
 License:        LGPL-3.0 License
 URL:            https://github.com/ukui/biometric-authentication
 Source0:        %{name}-%{version}.tar.gz
-Patch0:					biometric-authentication-unitdir.patch
 BuildArch:      x86_64
 
 
@@ -105,7 +104,7 @@ Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 
 %prep
 %setup -q
-%patch0 -p0
+sed -i 's|/lib/systemd/system/|/usr/lib/systemd/system/|g'  data/Makefile.am
 ./autogen.sh --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib64 --unitdir=/usr/lib/system/systemd
 %{configure} --disable-dependency-tracking  --with-bio-config-dir=/etc/biometric-auth/   --disable-silent-rules --with-bio-db-dir=/var/lib/biometric-auth/     --with-bio-db-name=biometric.db     --with-bio-config-dir=/etc/biometric-auth/     --with-bio-driver-dir=/usr/lib64/biometric-authentication/drivers    --with-bio-extra-dir=/usr/lib64/biometric-authentication/drivers/extra      --libexecdir=/usr/libexec/biometric-authentication
 
@@ -130,7 +129,7 @@ sed -i 's|/usr/lib/biometric-authentication/biometric-authenticationd|/usr/libex
 %doc debian/copyright debian/changelog 
 %{_sysconfdir}/biometric-auth/biometric-drivers.conf
 %{_sysconfdir}/dbus-1/system.d/org.ukui.Biometric.conf
-%{_sysconfdir}/init.d/biometric-authentication
+%exclude %{_sysconfdir}/init.d/biometric-authentication
 %{_libexecdir}/biometric-authentication
 %{_datadir}/dbus-1/interfaces/org.ukui.Biometric.xml
 %{_datadir}/polkit-1/actions/org.freedesktop.policykit.pkexec.biometric-authentication.policy

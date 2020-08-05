@@ -32,7 +32,6 @@ download-source:
 
 build: | deps  download-source
 	@echo ">> building ${PKG_NAME} rpms"
-	cp ukui-screensaver-libexec-path.patch ~/rpmbuild/SOURCES
 	rpmbuild -ba ${PKG_NAME}.spec
 
 clean:
