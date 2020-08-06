@@ -55,7 +55,6 @@ build-on-fedora:
 	make -C ukui-biometric-manager 
 	make -C ukui-control-center
 	make -C ukui-greeter
-	make -C ukwm
 	make -C ukui-kwin
 	make -C ukui-media
 	make -C ukui-menu 
