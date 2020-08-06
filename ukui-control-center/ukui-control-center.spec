@@ -25,7 +25,6 @@ BuildRequires:  dconf-devel
 BuildRequires:  redshift
 BuildRequires:  edid-decode
 BuildRequires:  libmatemixer-devel
-BuildRequires:  libqtxdg-devel
 BuildRequires:  qt5-qtmultimedia-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  libkscreen-qt5-devel

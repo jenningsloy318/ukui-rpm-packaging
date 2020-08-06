@@ -13,13 +13,8 @@ Source0:        %{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 
-%if 0%{?rhel} && 0%{?rhel} >= 8
 BuildRequires: sassc
-%endif
 
-%if 0%{?fedora} && 0%{?fedora} >= 32
-BuildRequires: rubygem-sass
-%endif
 
 %description
  This package contains the official desktop themes of the UKUI desktop

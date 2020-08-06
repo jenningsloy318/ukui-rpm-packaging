@@ -6,15 +6,15 @@ all: build
 
 docker-build-fedora-32: 
 	@echo ">> building rpms in container"
-	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y dnf-plugins-core make curl rpm-build && make build"
+	$(DOCKER) run --ulimit=host --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y dnf-plugins-core make curl rpm-build && make build"
 
 docker-build-fedora-rawhide: 
 	@echo ">> building rpms in container"
-	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:rawhide   /bin/bash -c "sudo dnf install -y dnf-plugins-core make curl rpm-build && make build"
+	$(DOCKER) run --ulimit=host --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:rawhide   /bin/bash -c "sudo dnf install -y dnf-plugins-core make curl rpm-build && make build"
 
 docker-build-centos-8: 
 	@echo ">> building rpms in container"
-	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y dnf-plugins-core make curl rpm-build && make build"
+	$(DOCKER) run --ulimit=host --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y dnf-plugins-core make curl rpm-build && make build"
 
 
 
@@ -28,15 +28,20 @@ ifneq (,$(filter .el%,$(DIST)))
 	alternatives --set python /usr/bin/python3
 	dnf copr enable -y neonman/MATE
 	dnf copr enable -y neonman/MATE-Dependencies
+	echo '%__cmake_builddir cmake-%{_vpath_builddir}'  >> ~/.rpmmacros
+	echo '%cmake_install     make install  DESTDIR="%{buildroot}"' >> ~/.rpmmacros
+	echo '%cmake_build   %__cmake ..' >> ~/.rpmmacros
 	make 	build-on-centos
 else 
 	@echo ">> build ukui on fedora"
+	echo '%__cmake_builddir cmake-%{_vpath_builddir}'  >> ~/.rpmmacros
 	dnf install -y git 
 	make 	build-on-fedora
 endif
 
 
 build-on-fedora: 
+	make -C fedora-deps
 	make -C kylin-display-switch 
 	make -C kylin-nm
 	make -C kylin-video
@@ -52,6 +57,7 @@ build-on-fedora:
 	make -C ukui-greeter
 	make -C ukwm
 	make -C ukui-kwin
+	make -C ukui-media
 	make -C ukui-menu 
 	make -C ukui-panel 
 	make -C ukui-power-manager
@@ -63,15 +69,15 @@ build-on-fedora:
 	make -C ukui-window-switch
 	make -C ukui-wallpapers
 	make -C ukui-themes
-	make -C ukui-media
+	
 
 
 build-on-centos: 
+	make -C centos8-deps
 	make -C kylin-display-switch 
 	make -C kylin-nm
 	make -C kylin-video
 	make -C indicator-china-weather
-	make -C kylin-scanner
 	make -C biometric-authentication
 	make -C qt5-ukui-platformtheme
 	make -C peony 
@@ -81,6 +87,7 @@ build-on-centos:
 	make -C ukui-control-center
 	make -C ukui-greeter
 	make -C ukui-kwin
+	make -C ukui-media
 	make -C ukui-menu 
 	make -C ukui-panel 
 	make -C ukui-power-manager
@@ -92,7 +99,7 @@ build-on-centos:
 	make -C ukui-window-switch
 	make -C ukui-wallpapers
 	make -C ukui-themes
-	make -C ukui-media
+	
 	
 clean:
 	rm -rf ~/rpmbuild/{SOURCES,RPMS}

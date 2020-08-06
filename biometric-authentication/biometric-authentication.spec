@@ -15,13 +15,14 @@ BuildRequires: glib2-devel
 BuildRequires: gtk3-devel 
 BuildRequires: libusb-devel
 BuildRequires: sqlite-devel
-BuildRequires: libfprint-devel
+BuildRequires: libfprint-devel <= 1.0
 BuildRequires: polkit-devel
 BuildRequires: libtool
 BuildRequires: libuuid-devel
 
 Requires: systemd
 Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
+Requires: libfprint <= 1.0
 
 %description
  The service layer of the biometric identification authentication framework.

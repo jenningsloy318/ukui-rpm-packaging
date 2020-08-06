@@ -14,7 +14,7 @@ BuildRequires:  qt5-qtbase-devel
 BuildRequires:  qt5-qttools-devel
 BuildRequires:  pam-devel
 BuildRequires:  polkit-qt5-1-devel
-
+BuildRequires:  kf5-rpm-macros
 Requires: pam-biometric%{?_isa} = %{version}-%{release}
 Requires: ukui-polkit%{?_isa} = %{version}-%{release}
 
@@ -55,16 +55,11 @@ Summary: UKUI authentication agent for PolicyKit-1
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-mkdir cmake-build
-pushd cmake-build
-%{cmake} ..
-%{cmake_build}
-popd
+%{cmake_kf5} 
+%{cmake_build} 
 
 %install
-pushd cmake-build
 %{cmake_install}
-popd
 install -d %{buildroot}/usr/share/man/man1/
 gzip -c man/bioctl.1 > %{buildroot}/usr/share/man/man1/bioctl.1.gz
 gzip -c man/bioauth.1 > %{buildroot}/usr/share/man/man1/bioauth.1.gz

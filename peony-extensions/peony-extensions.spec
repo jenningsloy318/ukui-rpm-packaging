@@ -23,6 +23,7 @@ BuildRequires:  qt5-qttools-devel
 BuildRequires:  poppler-qt5-devel
 BuildRequires:  peony-devel
 BuildRequires:  gsettings-qt-devel
+BuildRequires:  kf5-rpm-macros
 
 Requires:  peony-share%{?_isa}  = %{version}-%{release} 
 Requires:  peony-parchives%{?_isa}  = %{version}-%{release}
@@ -119,11 +120,8 @@ Peony plugin for open files or directories as admin
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-mkdir cmake-build
-pushd cmake-build
-%{cmake} ..
-%{cmake_build}
-popd
+%{cmake_kf5} 
+%{cmake_build} 
 
 %install
 install -d %{buildroot}/usr/lib64/peony-qt-extensions  %{buildroot}/usr/share/polkit-1/actions/

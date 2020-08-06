@@ -19,7 +19,7 @@ BuildRequires: glib2-devel
 BuildRequires: libX11-devel
 BuildRequires: libXtst-devel
 BuildRequires: gsettings-qt-devel
-
+BuildRequires: extra-cmake-modules
 
 Requires: ukui-session-manager
 Requires: mate-common
@@ -36,16 +36,11 @@ sed -i 's|lib/ukui-screensaver|lib64/ukui-screensaver|g' screensaver/CMakeLists.
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-mkdir cmake-build
-pushd cmake-build
-%{cmake} ..
-%{cmake_build}
-popd
+%{cmake_kf5} 
+%{cmake_build} 
 
 %install
-pushd cmake-build
 %{cmake_install}
-popd
 install -d %{buildroot}/usr/share/man/man1
 gzip -c man/ukui-screensaver-backend.1 >  %{buildroot}/usr/share/man/man1/ukui-screensaver-backend.1.gz
 gzip -c man/ukui-screensaver-dialog.1 >  %{buildroot}/usr/share/man/man1/ukui-screensaver-dialog.1.gz

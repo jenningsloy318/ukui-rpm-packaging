@@ -13,6 +13,7 @@ BuildArch:      x86_64
 # Base
 
 BuildRequires: extra-cmake-modules
+BuildRequires: kf5-rpm-macros
 BuildRequires: glib2-devel
 
 # Qt
@@ -191,16 +192,12 @@ Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-mkdir cmake-build
-pushd cmake-build
-%{cmake_kf5} ..
-%{cmake_build}
-popd
+%{cmake_kf5} 
+%{cmake_build} 
 
 %install
-pushd cmake-build
 %{cmake_install}
-popd
+
 %find_lang %name
 
 %files

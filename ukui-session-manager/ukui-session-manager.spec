@@ -21,6 +21,7 @@ BuildRequires:  gsettings-qt-devel
 BuildRequires:  libXtst-devel
 BuildRequires:  libqtxdg-devel
 BuildRequires:  systemd-devel
+BuildRequires:  kf5-rpm-macros
 
 Requires: peony
 Requires: (ukui-kwin or ukwm)
@@ -43,21 +44,16 @@ Provides: x-session-manager
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-mkdir cmake-build
-pushd cmake-build
 %if 0%{?rhel} == 8
 if ! grep -q "qm_files.CONFIG" /usr/lib64/qt5/mkspecs/features/lrelease.prf; then 
 sed -i '/qm_files.path/a qm_files.CONFIG = no_check_exist'  /usr/lib64/qt5/mkspecs/features/lrelease.prf
 fi
 %endif
-%{cmake_kf5} ..
-%{cmake_build}
-popd
+%{cmake_kf5} 
+%{cmake_build} 
 
 %install
-pushd cmake-build
 %{cmake_install}
-popd
 install -d %{buildroot}/etc/X11/Xsession.d/    %{buildroot}/usr/share/man/man1/
 install -m644  debian/99ukui-environment %{buildroot}/etc/X11/Xsession.d/99ukui-environment
 gzip -c man/ukui-session.1 >  %{buildroot}/usr/share/man/man1/ukui-session.1.gz 

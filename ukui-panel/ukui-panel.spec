@@ -9,14 +9,13 @@ URL:            https://github.com/ukui/ukui-panel
 Source0:        %{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
+BuildRequires:  kf5-rpm-macros
 BuildRequires:  peony-devel
-BuildRequires:  SAASound-devel
 BuildRequires:  dbusmenu-qt5-devel
 BuildRequires:  glib2-devel
 BuildRequires:  libicu-devel
 BuildRequires:  kf5-solid-devel
 BuildRequires:  kf5-kwindowsystem-devel
-
 BuildRequires:  pulseaudio-libs-devel
 BuildRequires:  pulseaudio-qt-devel
 BuildRequires:  qt5-qtsvg-devel
@@ -56,16 +55,11 @@ Suggests: ukui-window-switch
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-mkdir cmake-build
-pushd cmake-build
-%{cmake_kf5} ..
-%{cmake_build}
-popd 
+%{cmake_kf5} 
+%{cmake_build} 
 
 %install
-pushd cmake-build
 %{cmake_install}
-popd 
 install -d   %{buildroot}/usr/share/man/man1/
 gzip -c man/ukui-panel.1  > %{buildroot}/usr/share/man/man1/ukui-panel.1.gz
 gzip -c man/ukui-flash-disk.1 > %{buildroot}/usr/share/man/man1/ukui-flash-disk.1.gz
