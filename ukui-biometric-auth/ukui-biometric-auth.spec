@@ -51,7 +51,9 @@ Summary: UKUI authentication agent for PolicyKit-1
 %prep
 
 %setup -q
-%patch0 -p0
+
+sed -i 's|(TARGETS pam_biometric DESTINATION /lib/security)|(TARGETS pam_biometric DESTINATION /usr/lib64/security)|g' pam-biometric/CMakeLists.txt
+sed -i 's|DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/ukui-polkit)|DESTINATION lib64/${CMAKE_LIBRARY_ARCHITECTURE}/ukui-polkit)|g' polkit-agent/CMakeLists.txt
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
