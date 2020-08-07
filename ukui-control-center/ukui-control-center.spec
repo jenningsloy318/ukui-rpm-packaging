@@ -85,7 +85,8 @@ install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{build
 
 
 %files 
-%doc debian/copyright debian/changelog
+%doc debian/changelog
+%license  debian/copyright 
 %exclude %{_datadir}/locale/zh_CN/LC_MESSAGES/installer-timezones.mo
 %{_sysconfdir}/dbus-1/system.d/com.control.center.qt.systemdbus.conf
 %{_bindir}/*

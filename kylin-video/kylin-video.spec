@@ -61,7 +61,8 @@ install -d %{buildroot}/usr/share/man/man1/
 gzip -c man/kylin-video.1	 > %{buildroot}/usr/share/man/man1/kylin-video.1.gz
 
 %files
-%doc debian/changelog  debian/copyright
+%doc debian/changelog
+%license  debian/copyright 
 %{_bindir}/kylin-video
 %{_mandir}/man1/kylin-video.1.gz
 %{_datadir}/applications/kylin-video.desktop

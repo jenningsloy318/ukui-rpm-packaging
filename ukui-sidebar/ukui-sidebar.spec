@@ -43,7 +43,8 @@ pushd qmake-build
 popd 
 
 %files
-%doc debian/copyright debian/changelog
+%doc debian/changelog
+%license  debian/copyright
 %{_sysconfdir}/xdg/autostart/ukui-sidebar.desktop
 %{_bindir}/*
 %{_libdir}/ukui-sidebar

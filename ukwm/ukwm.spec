@@ -217,7 +217,8 @@ sed -i "/GETTEXT_MACRO_VERSION/s/0.19/%{gettext_version}/g" po/Makefile.in.in
 
 
 %files common -f %name.lang
-%doc debian/copyright debian/changelog
+%doc debian/changelog
+%license  debian/copyright
 %{_datadir}/man/man1/ukwm.1.gz
 %{_datadir}/gnome-control-center/keybindings/50-ukwm-navigation.xml
 %{_datadir}/gnome-control-center/keybindings/50-ukwm-system.xml

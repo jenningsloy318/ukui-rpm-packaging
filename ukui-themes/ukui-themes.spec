@@ -38,7 +38,8 @@ cp -r  ukui-icon-theme-classical %{buildroot}/usr/share/icons/
 cp -r  ukui-icon-theme-default %{buildroot}/usr/share/icons/
 
 %files
-%doc debian/changelog  debian/copyright
+%doc debian/changelog
+%license  debian/copyright
 %{_datadir}/mime/packages/ukui-custom.xml
 %{_datadir}/glib-2.0/schemas/25_ukui-themes.gschema.override
 %{_datadir}/icons/ukui-icon-theme-basic

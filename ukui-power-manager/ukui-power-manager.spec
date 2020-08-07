@@ -90,7 +90,8 @@ Summary:  power management tool for the UKUI desktop (common files)
 %find_lang %name
 
 %files
-%doc debian/copyright debian/changelog
+%doc debian/changelog
+%license  debian/copyright 
 %{_sysconfdir}/xdg/autostart/ukui-power-manager-tray.desktop
 %{_sysconfdir}/xdg/autostart/ukui-power-manager.desktop
 %{_bindir}/ukui-power-manager

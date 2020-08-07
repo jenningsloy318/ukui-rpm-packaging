@@ -69,7 +69,8 @@ gzip -c man/ukui-volume-control.1  > %{buildroot}/usr/share/man/man1/ukui-volume
 %find_lang %name
 
 %files
-%doc debian/changelog debian/copyright
+%doc debian/changelog
+%license  debian/copyright 
 %{_bindir}/*
 %{_datadir}/applications/
 %{_datadir}/ukui-media/

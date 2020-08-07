@@ -46,7 +46,8 @@ install -d %{buildroot}/usr/share/man/man1/
 gzip -c man/kylin-nm.1	 > %{buildroot}/usr/share/man/man1/kylin-nm.1.gz
 
 %files
-%doc debian/changelog  debian/copyright
+%doc debian/changelog
+%license  debian/copyright 
 %{_sysconfdir}/xdg/autostart/kylin-nm.desktop
 %{_bindir}/kylin-nm
 %{_mandir}/man1/kylin-nm.1.gz

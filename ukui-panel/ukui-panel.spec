@@ -55,17 +55,23 @@ Suggests: ukui-window-switch
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-%{cmake_kf5} 
-%{cmake_build} 
+mkdir cmake-build
+pushd cmake-build
+%{cmake} ..
+%{make_build} 
+popd
 
 %install
-%{cmake_install}
+pushd cmake-build
+%{make_install} INSTALL_ROOT=%{buildroot}
+popd
 install -d   %{buildroot}/usr/share/man/man1/
 gzip -c man/ukui-panel.1  > %{buildroot}/usr/share/man/man1/ukui-panel.1.gz
 gzip -c man/ukui-flash-disk.1 > %{buildroot}/usr/share/man/man1/ukui-flash-disk.1.gz
 
 %files
-%doc debian/copyright  debian/changelog
+%doc debian/changelog
+%license  debian/copyright
 %{_bindir}/ukui-panel
 %{_bindir}/ukui-flash-disk
 %{_sysconfdir}/xdg/autostart/ukui-flash-disk.desktop

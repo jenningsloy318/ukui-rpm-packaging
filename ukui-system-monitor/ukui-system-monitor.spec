@@ -50,6 +50,7 @@ pushd qmake-build
 popd
 
 %files
-%doc debian/copyright debian/changelog
+%doc debian/changelog
+%license  debian/copyright
 %{_bindir}/ukui-system-monitor
 %{_datadir}/applications/ukui-system-monitor.desktop

@@ -41,7 +41,8 @@ install -d %{buildroot}/usr/share/man/man1/
 gzip -c man/biometric-manager.1		 > %{buildroot}/usr/share/man/man1/biometric-manager.1.gz
 
 %files
-%doc debian/changelog debian/copyright
+%doc debian/changelog
+%license  debian/copyright 
 %{_mandir}/man1/biometric-manager.1.gz
 %{_bindir}/biometric-manager
 %{_datadir}/applications/biometric-manager.desktop

@@ -192,16 +192,21 @@ Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-%{cmake_kf5} 
-%{cmake_build} 
+mkdir cmake-build
+pushd cmake-build
+%{cmake} -DLIBEXEC_INSTALL_DIR:PATH=%{_libexecdir} ..
+%{make_build} 
+popd
 
 %install
-%{cmake_install}
-
+pushd cmake-build
+%{make_install}
+popd
 %find_lang %name
 
 %files
-%doc debian/copyright   debian/changelog 
+%doc debian/changelog
+%license  debian/copyright 
 
 
 %files common 

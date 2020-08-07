@@ -42,7 +42,8 @@ sed -i 's|../lib/systemd/system/|lib/systemd/system/|g' setup.py
 %find_lang %name
 
 %files -f %name.lang
-%doc debian/copyright debian/changelog
+%doc debian/changelog
+%license  debian/copyright 
 %{_sysconfdir}/xdg/autostart/kylin-display-switch.desktop
 %{_sysconfdir}/dbus-1/system.d/com.kylin.display.switch.conf
 %{_bindir}/*

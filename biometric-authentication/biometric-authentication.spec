@@ -127,7 +127,8 @@ sed -i 's|/usr/lib/biometric-authentication/biometric-authenticationd|/usr/libex
 
 
 %files
-%doc debian/copyright debian/changelog 
+%doc debian/changelog
+%license  debian/copyright  
 %{_sysconfdir}/biometric-auth/biometric-drivers.conf
 %{_sysconfdir}/dbus-1/system.d/org.ukui.Biometric.conf
 %exclude %{_sysconfdir}/init.d/biometric-authentication

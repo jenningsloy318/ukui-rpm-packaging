@@ -55,18 +55,24 @@ Summary: UKUI authentication agent for PolicyKit-1
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-%{cmake_kf5} 
-%{cmake_build} 
+mkdir cmake-build
+pushd cmake-build
+%{cmake} ..
+%{make_build} 
+popd
 
 %install
-%{cmake_install}
+pushd cmake-build
+%{make_install} INSTALL_ROOT=%{buildroot}
+popd
 install -d %{buildroot}/usr/share/man/man1/
 gzip -c man/bioctl.1 > %{buildroot}/usr/share/man/man1/bioctl.1.gz
 gzip -c man/bioauth.1 > %{buildroot}/usr/share/man/man1/bioauth.1.gz
 gzip -c man/biodrvctl.1 > %{buildroot}/usr/share/man/man1/biodrvctl.1.gz
 
 %files
-%doc debian/changelog debian/copyright
+%doc debian/changelog
+%license  debian/copyright 
 %{_datadir}/ukui-biometric/images
 %{_datadir}/ukui-biometric/i18n_qm/*
 %{_datadir}/ukui-biometric/i18n_qm/polkit/*

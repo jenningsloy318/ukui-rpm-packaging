@@ -46,7 +46,8 @@ pushd qmake-build
 popd
 
 %files
-%doc debian/copyright debian/changelog
+%doc debian/changelog
+%license  debian/copyright
 %{_sysconfdir}/ukui/ukui-window-switch/ukui-window-switch.conf
 %{_bindir}/ukui-window-switch
 %{_datadir}/dbus-1/services/org.ukui.WindowSwitch.service

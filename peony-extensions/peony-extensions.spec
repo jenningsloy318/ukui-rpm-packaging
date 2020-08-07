@@ -120,9 +120,11 @@ Peony plugin for open files or directories as admin
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-%{cmake_kf5} 
-%{cmake_build} 
-
+mkdir cmake-build
+pushd cmake-build
+%{cmake} ..
+%{make_build} 
+popd
 %install
 install -d %{buildroot}/usr/lib64/peony-qt-extensions  %{buildroot}/usr/share/polkit-1/actions/
 install -m644 testdir/libpeony-qt-computer-view-plugin.so %{buildroot}/usr/lib64/peony-qt-extensions/libpeony-qt-computer-view-plugin.so
@@ -134,7 +136,8 @@ install -m644 peony-extensions-cmake/peony-qt-admin/libpeony-qt-admin.so %{build
 install -m644 peony-extensions-cmake/peony-qt-admin/org.freedesktop.peony-qt-admin.policy  %{buildroot}/usr/share/polkit-1/actions/org.freedesktop.peony-qt-admin.policy 
 
 %files
-%doc debian/copyright  debian/changelog
+%doc debian/changelog
+%license  debian/copyright 
 %dir %{_libdir}/peony-qt-extensions/
 
 %files  -n peony-share

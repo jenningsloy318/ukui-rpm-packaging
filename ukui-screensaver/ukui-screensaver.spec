@@ -36,18 +36,24 @@ sed -i 's|lib/ukui-screensaver|lib64/ukui-screensaver|g' screensaver/CMakeLists.
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-%{cmake_kf5} 
-%{cmake_build} 
+mkdir cmake-build
+pushd cmake-build
+%{cmake} ..
+%{make_build} 
+popd
 
 %install
-%{cmake_install}
+pushd cmake-build
+%{make_install} INSTALL_ROOT=%{buildroot}
+popd
 install -d %{buildroot}/usr/share/man/man1
 gzip -c man/ukui-screensaver-backend.1 >  %{buildroot}/usr/share/man/man1/ukui-screensaver-backend.1.gz
 gzip -c man/ukui-screensaver-dialog.1 >  %{buildroot}/usr/share/man/man1/ukui-screensaver-dialog.1.gz
 gzip -c man/ukui-screensaver-command.1 >  %{buildroot}/usr/share/man/man1/ukui-screensaver-command.1.gz
 
 %files
-%doc debian/copyright debian/changelog
+%doc debian/changelog
+%license  debian/copyright
 %{_sysconfdir}/pam.d/ukui-screensaver-qt
 %{_sysconfdir}/xdg/autostart/ukui-screensaver.desktop
 %{_sysconfdir}/xdg/menus/ukui-screensavers.menu

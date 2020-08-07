@@ -52,7 +52,8 @@ install -d %{buildroot}/usr/share/man/man8/
 gzip -c ukui-greeter/man/ukui-greeter.8 > %{buildroot}/usr/share/man/man8/ukui-greeter.8.gz
 
 %files
-%doc  debian/copyright debian/changelog
+%doc debian/changelog
+%license  debian/copyright 
 %{_sysconfdir}/lightdm/ukui-greeter.conf
 %{_datadir}/man/man8/ukui-greeter.8.gz
 %{_sbindir}/ukui-greeter

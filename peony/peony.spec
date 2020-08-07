@@ -139,7 +139,8 @@ install -m644  data/peony-desktop.desktop %{buildroot}/usr/share/applications/pe
 %{_datadir}/applications/peony-desktop.desktop
 
 %files common 
-%doc debian/copyright debian/changelog
+%doc debian/changelog
+%license  debian/copyright 
 %{_mandir}/man1/peony-qt-desktop.1.gz
 %{_mandir}/man1/peony.1.gz
 %{_datadir}/dbus-1/interfaces/freedesktop-dbus-interfaces.xml

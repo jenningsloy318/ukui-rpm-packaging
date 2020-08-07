@@ -49,24 +49,30 @@ if ! grep -q "qm_files.CONFIG" /usr/lib64/qt5/mkspecs/features/lrelease.prf; the
 sed -i '/qm_files.path/a qm_files.CONFIG = no_check_exist'  /usr/lib64/qt5/mkspecs/features/lrelease.prf
 fi
 %endif
-%{cmake_kf5} 
-%{cmake_build} 
+mkdir cmake-build
+pushd cmake-build
+%{cmake} ..
+%{make_build} 
+popd
 
 %install
-%{cmake_install}
-install -d %{buildroot}/etc/X11/Xsession.d/    %{buildroot}/usr/share/man/man1/
-install -m644  debian/99ukui-environment %{buildroot}/etc/X11/Xsession.d/99ukui-environment
+pushd cmake-build
+%{make_install} INSTALL_ROOT=%{buildroot}
+popd
+install -d   %{buildroot}/usr/share/man/man1/ %{buildroot}/etc/polkit-1/localauthority/50-local.d/
+install -m644 data/com.ubuntu.enable-hibernate.pkla %{buildroot}/etc/polkit-1/localauthority/50-local.d/com.ubuntu.enable-hibernate.pkla
 gzip -c man/ukui-session.1 >  %{buildroot}/usr/share/man/man1/ukui-session.1.gz 
 gzip -c man/ukui-session-tools.1 > %{buildroot}/usr/share/man/man1/ukui-session-tools.1.gz
 
 
 %files
-%doc debian/changelog debian/copyright
+%doc debian/changelog
+%license  debian/copyright 
+%{_sysconfdir}/polkit-1/localauthority/50-local.d/com.ubuntu.enable-hibernate.pkla
 %{_datadir}/ukui/translations/ukui-session-manager/
 %{_datadir}/xsessions/ukui.desktop
 %{_datadir}/glib-2.0/schemas/org.ukui.session.gschema.xml
 %{_bindir}/ukui-session
 %{_bindir}/ukui-session-tools
-%{_sysconfdir}/X11/Xsession.d/99ukui-environment
 %{_datadir}/man/man1/ukui-session.1.gz 
 %{_datadir}/man/man1/ukui-session-tools.1.gz

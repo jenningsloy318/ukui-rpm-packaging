@@ -136,7 +136,8 @@ fi
 %{_datadir}/polkit-1/actions/org.ukui.settingsdaemon.datetimemechanism.policy
 
 %files common -f %name.lang
-%doc debian/changelog debian/copyright
+%doc debian/changelog
+%license  debian/copyright
 %{_datadir}/glib-2.0/schemas/org.ukui.SettingsDaemon.plugins.a11y-keyboard.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.ukui.SettingsDaemon.plugins.a11y-settings.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.ukui.SettingsDaemon.plugins.background.gschema.xml
