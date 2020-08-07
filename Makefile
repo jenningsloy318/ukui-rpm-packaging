@@ -28,13 +28,10 @@ ifneq (,$(filter .el%,$(DIST)))
 	alternatives --set python /usr/bin/python3
 	dnf copr enable -y neonman/MATE
 	dnf copr enable -y neonman/MATE-Dependencies
-	echo '%__cmake_builddir cmake-%{_vpath_builddir}'  >> ~/.rpmmacros
-	echo '%cmake_install     make install  DESTDIR="%{buildroot}"' >> ~/.rpmmacros
-	echo '%cmake_build   %__cmake ..' >> ~/.rpmmacros
 	make 	build-on-centos
+	
 else 
 	@echo ">> build ukui on fedora"
-	echo '%__cmake_builddir cmake-%{_vpath_builddir}'  >> ~/.rpmmacros
 	dnf install -y git 
 	make 	build-on-fedora
 endif
