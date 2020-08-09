@@ -2,7 +2,7 @@
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
 DIST := $(shell { rpm --eval "%{dist}";} 2>/dev/null)
 PKG_NAME := peony
-PKG_VERSION := master
+PKG_VERSION := 3.0.0
 PKG_RELEASE :=$(shell { grep "Release" ${PKG_NAME}.spec| awk '{print $$2}'|sed "s/%{?dist}/${DIST}/g"; } )
 
 # set the git tag based on the version

@@ -2,7 +2,7 @@
 %undefine _disable_source_fetch
 
 Name:           peony
-Version:        master
+Version:        3.0.0
 Release:        1%{?dist}
 Summary:        file Manager for the UKUI desktop
 
