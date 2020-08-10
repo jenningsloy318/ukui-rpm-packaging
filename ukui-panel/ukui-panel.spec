@@ -1,5 +1,8 @@
+%global __cmake_in_source_build 1
+
+
 Name:           ukui-panel
-Version:        3.0.0
+Version:        3.0.1
 Release:        1%{?dist}
 Summary:        ukui desktop panel
 
@@ -52,7 +55,7 @@ Suggests: ukui-window-switch
 
 %prep
 %setup -q
-
+sed -i  '/UKUiPreventInSourceBuilds.cmake/d'  panel/common/CMakeLists.txt panel/xdg/CMakeLists.txt CMakeLists.txt
 %build
 export PATH=%{_qt5_bindir}:$PATH
 mkdir cmake-build

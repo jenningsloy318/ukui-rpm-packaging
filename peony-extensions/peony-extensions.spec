@@ -1,5 +1,8 @@
+%global __cmake_in_source_build 1
+
 # disable debug package
 %define debug_package %{nil}
+
 Name:           peony-extensions
 Version:        master
 Release:        1%{?dist}
@@ -120,11 +123,8 @@ Peony plugin for open files or directories as admin
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-mkdir cmake-build
-pushd cmake-build
-%{cmake} ..
-%{make_build} 
-popd
+%{cmake} 
+%{make_build}
 %install
 install -d %{buildroot}/usr/lib64/peony-qt-extensions  %{buildroot}/usr/share/polkit-1/actions/
 install -m644 testdir/libpeony-qt-computer-view-plugin.so %{buildroot}/usr/lib64/peony-qt-extensions/libpeony-qt-computer-view-plugin.so

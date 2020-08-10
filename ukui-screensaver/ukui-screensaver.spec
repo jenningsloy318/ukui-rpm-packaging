@@ -1,3 +1,6 @@
+%global __cmake_in_source_build 1
+
+
 Name:           ukui-screensaver
 Version:        master
 Release:        1%{?dist}
@@ -36,16 +39,10 @@ sed -i 's|lib/ukui-screensaver|lib64/ukui-screensaver|g' screensaver/CMakeLists.
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-mkdir cmake-build
-pushd cmake-build
-%{cmake} ..
-%{make_build} 
-popd
+%{cmake} 
 
 %install
-pushd cmake-build
 %{make_install} INSTALL_ROOT=%{buildroot}
-popd
 install -d %{buildroot}/usr/share/man/man1
 gzip -c man/ukui-screensaver-backend.1 >  %{buildroot}/usr/share/man/man1/ukui-screensaver-backend.1.gz
 gzip -c man/ukui-screensaver-dialog.1 >  %{buildroot}/usr/share/man/man1/ukui-screensaver-dialog.1.gz

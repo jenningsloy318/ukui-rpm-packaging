@@ -1,5 +1,7 @@
+%global __cmake_in_source_build 1
+
 Name:           ukui-session-manager
-Version:        master
+Version:        3.0.0
 Release:        1%{?dist}
 Summary:        Session manager of the UKUI desktop environment
 
@@ -49,16 +51,11 @@ if ! grep -q "qm_files.CONFIG" /usr/lib64/qt5/mkspecs/features/lrelease.prf; the
 sed -i '/qm_files.path/a qm_files.CONFIG = no_check_exist'  /usr/lib64/qt5/mkspecs/features/lrelease.prf
 fi
 %endif
-mkdir cmake-build
-pushd cmake-build
-%{cmake} ..
+%{cmake} 
 %{make_build} 
-popd
 
 %install
-pushd cmake-build
 %{make_install} INSTALL_ROOT=%{buildroot}
-popd
 install -d   %{buildroot}/usr/share/man/man1/ %{buildroot}/etc/polkit-1/localauthority/50-local.d/
 install -m644 data/com.ubuntu.enable-hibernate.pkla %{buildroot}/etc/polkit-1/localauthority/50-local.d/com.ubuntu.enable-hibernate.pkla
 gzip -c man/ukui-session.1 >  %{buildroot}/usr/share/man/man1/ukui-session.1.gz 

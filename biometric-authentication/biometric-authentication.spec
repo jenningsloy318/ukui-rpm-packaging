@@ -1,5 +1,5 @@
 Name:           biometric-authentication
-Version:        master
+Version:        0.9.63
 Release:        1%{?dist}
 Summary:        Biometric Authentication Service
 

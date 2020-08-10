@@ -1,3 +1,5 @@
+%global __cmake_in_source_build 1
+
 Name:           ukui-biometric-auth
 Version:        master
 Release:        1%{?dist}
@@ -6,8 +8,6 @@ Summary:        ukui-biometric-auth
 License:         GPL-3.0 License
 URL:            https://github.com/ukui/ukui-biometric-auth
 Source0:        %{name}-%{version}.tar.gz
-
-Patch0:        ukui-biometric-auth-libdir.patch
 
 BuildArch:      x86_64
 BuildRequires:  qt5-qtbase-devel
@@ -57,16 +57,11 @@ sed -i 's|DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/ukui-polkit)|DESTINATION
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-mkdir cmake-build
-pushd cmake-build
-%{cmake} ..
+%{cmake} 
 %{make_build} 
-popd
 
 %install
-pushd cmake-build
 %{make_install} INSTALL_ROOT=%{buildroot}
-popd
 install -d %{buildroot}/usr/share/man/man1/
 gzip -c man/bioctl.1 > %{buildroot}/usr/share/man/man1/bioctl.1.gz
 gzip -c man/bioauth.1 > %{buildroot}/usr/share/man/man1/bioauth.1.gz

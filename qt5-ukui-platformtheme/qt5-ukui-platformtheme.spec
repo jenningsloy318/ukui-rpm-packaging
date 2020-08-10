@@ -1,5 +1,5 @@
 Name:           qt5-ukui-platformtheme
-Version:        master
+Version:        1.0.4
 Release:        1%{?dist}
 Summary:        Qt5 QPA platform theme of UKUI
 

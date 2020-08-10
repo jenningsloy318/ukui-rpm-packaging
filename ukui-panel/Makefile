@@ -2,7 +2,7 @@
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
 DIST := $(shell { rpm --eval "%{dist}";} 2>/dev/null)
 PKG_NAME := ukui-panel
-PKG_VERSION := 3.0.0
+PKG_VERSION := 3.0.1
 
 # set the git tag based on the version
 ifneq (,$(filter master,$(PKG_VERSION)))

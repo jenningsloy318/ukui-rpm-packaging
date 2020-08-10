@@ -1,3 +1,6 @@
+%global __cmake_in_source_build 1
+
+
 Name:           ukui-kwin
 Version:        master
 Release:        1%{?dist}
@@ -192,16 +195,11 @@ Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-mkdir cmake-build
-pushd cmake-build
-%{cmake} -DLIBEXEC_INSTALL_DIR:PATH=%{_libexecdir} ..
-%{make_build} 
-popd
+%{cmake} -DLIBEXEC_INSTALL_DIR:PATH=%{_libexecdir} 
+%{make_build}
 
 %install
-pushd cmake-build
 %{make_install}
-popd
 %find_lang %name
 
 %files

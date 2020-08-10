@@ -1,5 +1,5 @@
 Name:           ukui-control-center
-Version:        master
+Version:        3.0.0
 Release:        1%{?dist}
 Summary:        utilities to configure the UKUI desktop
 
@@ -22,7 +22,6 @@ BuildRequires:  kf5-kconfigwidgets-devel
 BuildRequires:  kf5-kconfig-devel
 BuildRequires:  qt5-qtdeclarative-devel
 BuildRequires:  dconf-devel
-BuildRequires:  redshift
 BuildRequires:  edid-decode
 BuildRequires:  libmatemixer-devel
 BuildRequires:  qt5-qtmultimedia-devel
@@ -35,6 +34,7 @@ BuildRequires:  mate-desktop-devel
 BuildRequires:  libxkbcommon-devel 
 BuildRequires:  libxkbfile-devel
 BuildRequires:  qt5-linguist
+BuildRequires: xcb-util-devel
 
 Requires: redhat-lsb-core
 Requires: qt5-qtquickcontrols
@@ -82,12 +82,11 @@ popd
 install -d  %{buildroot}/usr/share/dbus-1/system-services/ %{buildroot}/etc/dbus-1/system.d/ 
 install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.service %{buildroot}/usr/share/dbus-1/system-services/com.control.center.qt.systemdbus.service
 install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{buildroot}/etc/dbus-1/system.d/com.control.center.qt.systemdbus.conf
+%find_lang installer-timezones
 
-
-%files 
+%files -f installer-timezones.lang 
 %doc debian/changelog
 %license  debian/copyright 
-%exclude %{_datadir}/locale/zh_CN/LC_MESSAGES/installer-timezones.mo
 %{_sysconfdir}/dbus-1/system.d/com.control.center.qt.systemdbus.conf
 %{_bindir}/*
 %{_libdir}/ukui-control-center/
@@ -95,4 +94,3 @@ install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{build
 %{_datadir}/applications/ukui-control-center.desktop
 %{_datadir}/dbus-1/system-services/com.control.center.qt.systemdbus.service
 %{_datadir}/ukui/faces/*
-%{_datadir}/ukui-control-center/

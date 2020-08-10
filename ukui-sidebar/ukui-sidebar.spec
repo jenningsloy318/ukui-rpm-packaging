@@ -1,5 +1,5 @@
 Name:           ukui-sidebar
-Version:        master
+Version:        3.0.0
 Release:        1%{?dist}
 Summary:        parallels toolbox for UKUI
 
@@ -47,6 +47,6 @@ popd
 %{_sysconfdir}/xdg/autostart/ukui-sidebar.desktop
 %{_bindir}/*
 %{_libdir}/ukui-sidebar
-%{_datadir}/ukui-sidebar
+%{_datadir}/ukui-sidebar*
 %{_datadir}/applications/*
 %{_datadir}/ukui-clock/
