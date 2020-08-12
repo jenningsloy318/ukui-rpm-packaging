@@ -40,6 +40,10 @@ cp -r  ukui-icon-theme-default %{buildroot}/usr/share/icons/
 %files
 %doc debian/changelog
 %license  debian/copyright
+%exclude %{_datadir}/icons/ukui-icon-theme-basic/16x16/devices/media-optical-audio.svg
+%exclude %{_datadir}/icons/ukui-icon-theme-basic/16x16/devices/media-cdrom-audio.svg
+%exclude %{_datadir}/icons/ukui-icon-theme-basic/16x16/devices/gnome-dev-disc-audio.svg
+%exclude %{_datadir}/icons/ukui-icon-theme-basic/16x16/devices/gnome-dev-cdrom-audio.svg
 %{_datadir}/mime/packages/ukui-custom.xml
 %{_datadir}/glib-2.0/schemas/25_ukui-themes.gschema.override
 %{_datadir}/icons/ukui-icon-theme-basic
