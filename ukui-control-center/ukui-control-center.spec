@@ -11,29 +11,34 @@ Source0:        %{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 
-BuildRequires:  qt5-qtbase-devel
-BuildRequires:  qt5-qtsvg-devel
-BuildRequires:  gsettings-qt-devel
-BuildRequires:  glib2-devel
-BuildRequires:  qt5-qtx11extras-devel
-BuildRequires:  libmatekbd-devel
-BuildRequires:  libxklavier-devel
-BuildRequires:  kf5-kconfigwidgets-devel
-BuildRequires:  kf5-kconfig-devel
-BuildRequires:  qt5-qtdeclarative-devel
-BuildRequires:  dconf-devel
-BuildRequires:  edid-decode
-BuildRequires:  libmatemixer-devel
-BuildRequires:  qt5-qtmultimedia-devel
-BuildRequires:  libxml2-devel
-BuildRequires:  libkscreen-qt5-devel
-BuildRequires:  kf5-ki18n-devel
-BuildRequires:  libcanberra-devel
-BuildRequires:  libXi-devel
-BuildRequires:  mate-desktop-devel
-BuildRequires:  libxkbcommon-devel 
-BuildRequires:  libxkbfile-devel
-BuildRequires:  qt5-linguist
+BuildRequires: qt5-qtbase-devel
+BuildRequires: qt5-qtsvg-devel
+BuildRequires: gsettings-qt-devel
+BuildRequires: glib2-devel
+BuildRequires: qt5-qtx11extras-devel
+BuildRequires: libmatekbd-devel
+BuildRequires: libxklavier-devel
+BuildRequires: kf5-kconfigwidgets-devel
+BuildRequires: kf5-kconfig-devel
+BuildRequires: qt5-qtdeclarative-devel
+BuildRequires: dconf-devel
+BuildRequires: edid-decode
+BuildRequires: libmatemixer-devel
+BuildRequires: qt5-qtmultimedia-devel
+BuildRequires: libxml2-devel
+BuildRequires: libkscreen-qt5-devel
+BuildRequires: kf5-ki18n-devel
+BuildRequires: libcanberra-devel
+BuildRequires: libXi-devel
+BuildRequires: mate-desktop-devel
+BuildRequires: libxkbcommon-devel 
+BuildRequires: libxkbfile-devel
+BuildRequires: qt5-linguist
+BuildRequires: kf5-kwindowsystem-devel
+BuildRequires: kf5-kguiaddons-devel
+BuildRequires: kf5-kcoreaddons-devel
+BuildRequires: boost-devel
+BuildRequires: libxcb-devel
 BuildRequires: xcb-util-devel
 
 Requires: redhat-lsb-core
@@ -93,4 +98,5 @@ install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{build
 %{_datadir}/glib-2.0/schemas/*
 %{_datadir}/applications/ukui-control-center.desktop
 %{_datadir}/dbus-1/system-services/com.control.center.qt.systemdbus.service
+%{_datadir}/ukui-control-center/
 %{_datadir}/ukui/faces/*

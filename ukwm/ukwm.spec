@@ -2,7 +2,7 @@
 %undefine _disable_source_fetch
 
 Name:           ukwm
-Version:        master
+Version:        1.2.0
 Release:        1%{?dist}
 Summary:        file Manager for the UKUI desktop
 

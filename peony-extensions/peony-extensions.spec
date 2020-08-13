@@ -4,7 +4,7 @@
 %define debug_package %{nil}
 
 Name:           peony-extensions
-Version:        master
+Version:        3.0.0
 Release:        1%{?dist}
 Summary:        Peony qt extensions (common files)
 
@@ -28,6 +28,8 @@ BuildRequires:  peony-devel
 BuildRequires:  gsettings-qt-devel
 BuildRequires:  kf5-rpm-macros
 
+Requires: peony >= 3.0.0
+Requires: peony-libs >= 3.0.0
 Requires:  peony-share%{?_isa}  = %{version}-%{release} 
 Requires:  peony-parchives%{?_isa}  = %{version}-%{release}
 Requires:  peony-open-terminal%{?_isa}  = %{version}-%{release}
@@ -123,44 +125,43 @@ Peony plugin for open files or directories as admin
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-%{cmake} 
+mkdir qmake-build
+pushd qmake-build
+%{qmake_qt5}  ..
 %{make_build}
+popd
+
 %install
-install -d %{buildroot}/usr/lib64/peony-qt-extensions  %{buildroot}/usr/share/polkit-1/actions/
-install -m644 testdir/libpeony-qt-computer-view-plugin.so %{buildroot}/usr/lib64/peony-qt-extensions/libpeony-qt-computer-view-plugin.so
-install -m644 testdir/libpeony-qt-engrampa-menu-plugin.so %{buildroot}/usr/lib64/peony-qt-extensions/libpeony-qt-engrampa-menu-plugin.so 
-install -m644 testdir/libpeony-qt-menu-plugin-mate-terminal.so %{buildroot}/usr/lib64/peony-qt-extensions/libpeony-qt-menu-plugin-mate-terminal.so
-install -m644 testdir/libpeony-qt-set-wallpaper.so %{buildroot}/usr/lib64/peony-qt-extensions/libpeony-qt-set-wallpaper.so
-install -m644  peony-extensions-cmake/peony-qt-share/libpeony-qt-share.so  %{buildroot}/usr/lib64/peony-qt-extensions/libpeony-qt-share.so
-install -m644 peony-extensions-cmake/peony-qt-admin/libpeony-qt-admin.so %{buildroot}/usr/lib64/peony-qt-extensions/libpeony-qt-admin.so
-install -m644 peony-extensions-cmake/peony-qt-admin/org.freedesktop.peony-qt-admin.policy  %{buildroot}/usr/share/polkit-1/actions/org.freedesktop.peony-qt-admin.policy 
+pushd qmake-build
+%{make_install} INSTALL_ROOT=%{buildroot}
+popd
 
 %files
 %doc debian/changelog
 %license  debian/copyright 
-%dir %{_libdir}/peony-qt-extensions/
+%dir %{_libdir}/peony-extensions/
 
 %files  -n peony-share
-%{_libdir}/peony-qt-extensions/libpeony-qt-share.so
+%{_libdir}/peony-extensions/libpeony-share.so
 
 %files  -n peony-parchives
-%{_libdir}/peony-qt-extensions/libpeony-qt-engrampa-menu-plugin.so
+%{_libdir}/peony-extensions/libpeony-engrampa-menu-plugin.so
 
 
 %files -n peony-open-terminal
-%{_libdir}/peony-qt-extensions/libpeony-qt-menu-plugin-mate-terminal.so
+%{_libdir}/peony-extensions/libpeony-menu-plugin-mate-terminal.so 
 
 
 %files -n peony-set-wallpaper
-%{_libdir}/peony-qt-extensions/libpeony-qt-set-wallpaper.so
+%{_libdir}/peony-extensions/libpeony-set-wallpaper.so
 
 %files -n peony-computer-view
-%{_libdir}/peony-qt-extensions/libpeony-qt-computer-view-plugin.so
+%{_libdir}/peony-extensions/libpeony-computer-view-plugin.so
 
 
 %files -n peony-admin
-%{_libdir}/peony-qt-extensions/libpeony-qt-admin*
-%{_datadir}/polkit-1/actions/org.freedesktop.peony-qt-admin.policy 
+%{_libdir}/peony-extensions/libpeony-admin.so
+%{_datadir}/polkit-1/actions/org.freedesktop.peony-admin.policy
 
 %post -n peony-share
 

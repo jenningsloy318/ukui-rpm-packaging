@@ -2,7 +2,7 @@
 
 
 Name:           ukui-screensaver
-Version:        master
+Version:        3.0.0
 Release:        1%{?dist}
 Summary:         Screensaver for UKUI desktop environment
 

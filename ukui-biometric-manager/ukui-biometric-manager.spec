@@ -1,5 +1,5 @@
 Name:           ukui-biometric-manager
-Version:        master
+Version:        1.0.0
 Release:        1%{?dist}
 Summary:        kylin-fingerprint, kylin-fprint-login
 

@@ -1,5 +1,5 @@
 Name:           ukui-system-monitor
-Version:        master
+Version:        1.0.0
 Release:        1%{?dist}
 Summary:        simple system monitor written in QT
 

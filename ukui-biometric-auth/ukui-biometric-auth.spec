@@ -1,7 +1,7 @@
 %global __cmake_in_source_build 1
 
 Name:           ukui-biometric-auth
-Version:        master
+Version:        1.0.4
 Release:        1%{?dist}
 Summary:        ukui-biometric-auth
 
@@ -54,10 +54,11 @@ Summary: UKUI authentication agent for PolicyKit-1
 
 sed -i 's|(TARGETS pam_biometric DESTINATION /lib/security)|(TARGETS pam_biometric DESTINATION /usr/lib64/security)|g' pam-biometric/CMakeLists.txt
 sed -i 's|DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/ukui-polkit)|DESTINATION lib64/${CMAKE_LIBRARY_ARCHITECTURE}/ukui-polkit)|g' polkit-agent/CMakeLists.txt
+sed -i 's|/usr/lib/${CMAKE_LIBRARY_ARCHITECTURE}|/usr/lib64|g'   polkit-agent/CMakeLists.txt
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
-%{cmake} 
+%{cmake}
 %{make_build} 
 
 %install

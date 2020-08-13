@@ -1,5 +1,5 @@
 Name:           ukui-settings-daemon
-Version:        master
+Version:        3.0.0
 Release:        1%{?dist}
 Summary:        daemon handling the UKUI session settings
 

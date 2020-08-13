@@ -1,5 +1,5 @@
 Name:           ukui-window-switch
-Version:        master
+Version:        2.0.3
 Release:        1%{?dist}
 Summary:        Front of the window switch
 

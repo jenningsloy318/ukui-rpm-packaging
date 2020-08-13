@@ -1,5 +1,5 @@
 Name:           kylin-scanner
-Version:        master
+Version:        1.0.0
 Release:        1%{?dist}
 Summary:        Kylin Scanner is an interface-friendly scanning software developed with Qt5
 

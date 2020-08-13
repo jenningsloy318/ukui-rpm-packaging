@@ -1,5 +1,5 @@
 Name:           indicator-china-weather
-Version:        master
+Version:        3.1.0
 Release:        1%{?dist}
 Summary:        Indicator that displays China weather information
 

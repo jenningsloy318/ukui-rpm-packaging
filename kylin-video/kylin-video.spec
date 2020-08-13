@@ -1,5 +1,5 @@
 Name:           kylin-video
-Version:        master
+Version:        2.1.0
 Release:        1%{?dist}
 Summary:        Front-end for MPlayer and MPV
 
@@ -39,8 +39,8 @@ Recommends: crystalhd-firmware
 %prep
 
 %setup -q
- 
 %build
+
 export PATH=%{_qt5_bindir}:$PATH
 mkdir qmake-build
 pushd qmake-build

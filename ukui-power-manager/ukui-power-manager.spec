@@ -1,5 +1,5 @@
 Name:           ukui-power-manager
-Version:        master
+Version:        2.0.2
 Release:        1%{?dist}
 Summary:        power management tool for the UKUI desktop
 
