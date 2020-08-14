@@ -32,7 +32,7 @@ ifneq (,$(filter .el%,$(DIST)))
 	
 else 
 	@echo ">> build ukui on fedora"
-	dnf install -y git 
+	dnf install -y git  https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$$(rpm -E %{fedora}).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$$(rpm -E %{fedora}).noarch.rpm
 	make 	build-on-fedora
 endif
 
