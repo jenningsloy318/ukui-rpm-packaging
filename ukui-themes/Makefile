@@ -20,7 +20,6 @@ docker-build:
 deps:
 	@echo ">> install dependencies for ${PKG_NAME}"
 	dnf install -y git which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros sassc
-	ln -sf /usr/bin/sassc /usr/bin/sass
 
 download-source:
 	@echo "download ${PKG_NAME} source code"
