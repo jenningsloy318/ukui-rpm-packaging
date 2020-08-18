@@ -9,7 +9,7 @@ Summary:        Official themes for the UKUI desktop
 
 License:        GPL-3.0 License
 URL:            https://github.com/ukui/ukui-themes
-Source0:        %{name}-%{version}.tar.gz
+Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 
@@ -26,7 +26,7 @@ BuildRequires: sassc
 %setup -q
  
 %build
-%{make_build}
+%{make_build} SASS=sassc
 
 %install
 %{make_install} INSTALL_ROOT=%{buildroot}
