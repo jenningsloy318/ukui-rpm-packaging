@@ -27,7 +27,7 @@ Requires: kf5-kxmlgui
 %prep
 
 %setup -q
- 
+sed -i 's|/lib/systemd/system|/usr/lib/systemd/system/|g' src/src.pro 
 %build
 export PATH=%{_qt5_bindir}:$PATH
 mkdir qmake-build
@@ -46,5 +46,5 @@ popd
 %doc debian/changelog
 %license  debian/copyright 
 %{_bindir}/*
-%{_unitdir}/ukui-touch.service
+%{_unitdir}/libinput-touch-translator.service
 %{_libexecdir}/libinput-touch-translator
