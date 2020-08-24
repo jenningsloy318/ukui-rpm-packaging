@@ -1268,29 +1268,7 @@ error  happens because on fedora 32 onwards, libfprint default to version 2, but
     ```   
 
 
-  3. ukui-kwin build failed on fedora 33 as kscreenlocker-devel don't have function such as setWaylandDisplay,greeterClientConnectionChanged,greeterClientConnection
-    ```
-    make[3]: Entering directory '/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build'
-    [ 64%] Building CXX object CMakeFiles/ukui-kwin.dir/wayland_server.cpp.o
-    /usr/bin/g++ -DKCOREADDONS_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_DBUS_LIB -DQT_DISABLE_DEPRECATED_BEFORE=0 -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_NO_URL_CAST_FROM_STRING -DQT_QMLMODELS_LIB -DQT_QML_LIB -DQT_QUICK_LIB -DQT_SCRIPT_LIB -DQT_SENSORS_LIB -DQT_USE_QSTRINGBUILDER -DQT_WIDGETS_LIB -DQT_X11EXTRAS_LIB -DQT_XML_LIB -D_GNU_SOURCE -D_LARGEFILE64_SOURCE -Dukui_kwin_EXPORTS -I/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build -I/root/rpmbuild/BUILD/ukui-kwin-master -I/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build/ukui-kwin_autogen/include -I/root/rpmbuild/BUILD/ukui-kwin-master/platformsupport -I/root/rpmbuild/BUILD/ukui-kwin-master/tabbox -I/root/rpmbuild/BUILD/ukui-kwin-master/effects -I/root/rpmbuild/BUILD/ukui-kwin-master/libkwineffects -I/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build/libkwineffects -I/root/rpmbuild/BUILD/ukui-kwin-master/cmake-build/effects -I/usr/include/qt5/QGSettings -I/usr/include/qt5/QtGui/5.14.2 -I/usr/include/qt5/QtGui/5.14.2/QtGui -I/usr/include/qt5/QtCore/5.14.2 -I/usr/include/qt5/QtCore/5.14.2/QtCore -isystem /usr/include/qt5 -isystem /usr/include/qt5/QtDBus -isystem /usr/include/qt5/QtCore -isystem /usr/lib64/qt5/mkspecs/linux-g++ -isystem /usr/include/qt5/QtWidgets -isystem /usr/include/qt5/QtGui -isystem /usr/include/qt5/QtQuick -isystem /usr/include/qt5/QtQmlModels -isystem /usr/include/qt5/QtQml -isystem /usr/include/qt5/QtNetwork -isystem /usr/include/KF5/KConfigCore -isystem /usr/include/KF5 -isystem /usr/include/KF5/KCoreAddons -isystem /usr/include/KF5/KWindowSystem -isystem /usr/include/KF5/KDeclarative -isystem /usr/include/KF5/KPackage -isystem /usr/include/qt5/QtConcurrent -isystem /usr/include/qt5/QtScript -isystem /usr/include/qt5/QtSensors -isystem /usr/include/KF5/KConfigWidgets -isystem /usr/include/KF5/KCodecs -isystem /usr/include/KF5/KWidgetsAddons -isystem /usr/include/KF5/KConfigGui -isystem /usr/include/qt5/QtXml -isystem /usr/include/KF5/KAuth -isystem /usr/include/KF5/KGlobalAccel -isystem /usr/include/qt5/QtX11Extras -isystem /usr/include/KF5/KI18n -isystem /usr/include/KF5/KNotifications -isystem /usr/include/KF5/Plasma -isystem /usr/include/KF5/KService -isystem /usr/include/KDecoration2 -isystem /usr/include/KScreenLocker -isystem /usr/include/KF5/KActivities -isystem /usr/include/KF5/KWayland/Client -isystem /usr/include/KF5/KWayland/Server -O2 -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fno-operator-names -fno-exceptions -Wall -Wextra -Wcast-align -Wchar-subscripts -Wformat-security -Wno-long-long -Wpointer-arith -Wundef -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type -Wvla -Wdate-time -Wsuggest-override -Wlogical-op -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -fPIC -std=gnu++14 -o CMakeFiles/ukui-kwin.dir/wayland_server.cpp.o -c /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp
-    /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp: In member function 'void KWin::WaylandServer::initScreenLocker()':
-    /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp:518:36: error: 'class ScreenLocker::KSldApp' has no member named 'setWaylandDisplay'
-      518 |     ScreenLocker::KSldApp::self()->setWaylandDisplay(m_display);
-          |                                    ^~~~~~~~~~~~~~~~~
-    /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp:522:68: error: 'greeterClientConnectionChanged' is not a member of 'ScreenLocker::KSldApp'
-      522 |     connect(ScreenLocker::KSldApp::self(), &ScreenLocker::KSldApp::greeterClientConnectionChanged, this,
-          |                                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp: In lambda function:
-    /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp:524:77: error: 'class ScreenLocker::KSldApp' has no member named 'greeterClientConnection'
-      524 |             m_screenLockerClientConnection = ScreenLocker::KSldApp::self()->greeterClientConnection();
-          |                                                                             ^~~~~~~~~~~~~~~~~~~~~~~
-    /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp: In member function 'quint16 KWin::WaylandServer::createClientId(KWayland::Server::ClientConnection*)':
-    /root/rpmbuild/BUILD/ukui-kwin-master/wayland_server.cpp:740:43: warning: 'QSet<T> QList<T>::toSet() const [with T = short unsigned int]' is deprecated: Use QSet<T>(list.begin(), list.end()) instead. [-Wdeprecated-declarations]
-      740 |     auto ids = m_clientIds.values().toSet();
-    ```
-
-  4. peony-extensions don't have install target in CMake config, thus need to copy it manually
-  5. many repos don't support set the libdir correctly
-  6. ukui-system-monitor missing target to create qm files
-  7. ukui-biometric-auth, ukui-polkit file /etc/xdg/autostart/polkit-ukui-authentication-agent-1.desktop has wrong polkit-ukui-authentication-agent-1 path, it should be /usr/lib64/ukui-polkit/polkit-ukui-authentication-agent-1 instead of /usr/lib//ukui-polkit/polkit-ukui-authentication-agent-1
-  8. monitor resolution can't be restore after logout or reboot, but I can see there is a file ~/.config/monitors.xml which has stored last settings.
+  3. many repos don't support set the libdir correctly
+  4. ukui-system-monitor missing target to create qm files
+  5. ukui-biometric-auth, ukui-polkit file /etc/xdg/autostart/polkit-ukui-authentication-agent-1.desktop has wrong polkit-ukui-authentication-agent-1 path, it should be /usr/lib64/ukui-polkit/polkit-ukui-authentication-agent-1 instead of /usr/lib//ukui-polkit/polkit-ukui-authentication-agent-1
+  6. monitor resolution can't be restore after logout or reboot, but I can see there is a file ~/.config/monitors.xml which has stored last settings.
