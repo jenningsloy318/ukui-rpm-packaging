@@ -15,7 +15,7 @@ all: build
 
 docker-build: 
 	@echo ">> building ${PKG_NAME} rpms in container"
-	$(DOCKER) run  --ulimit=host  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build fedora-release-common && make build"
+	$(DOCKER) run    --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build fedora-release-common && make build"
 
 
 deps:

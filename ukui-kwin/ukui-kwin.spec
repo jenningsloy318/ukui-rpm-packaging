@@ -46,6 +46,7 @@ BuildRequires: kf5-kidletime-devel
 BuildRequires: kf5-kinit-devel
 BuildRequires: kf5-knotifications-devel
 BuildRequires: kf5-kpackage-devel
+BuildRequires: kf5-kguiaddons-devel
 # on fedora, kf5-plasma-devel is conflicted with qt5-qtquickcontrols, already issue a bug, https://bugzilla.redhat.com/show_bug.cgi?id=1849944
 BuildRequires: kf5-plasma-devel 
 
