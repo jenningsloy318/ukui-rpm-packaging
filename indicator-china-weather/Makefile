@@ -21,6 +21,7 @@ docker-build:
 deps:
 	@echo ">> install dependencies for ${PKG_NAME}"
 	dnf -y install git which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-qtbase-devel  qt5-qtscript-devel qt5-qttools-devel GeoIP-devel
+	strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
 
 download-source:
 	@echo "download ${PKG_NAME} source code"

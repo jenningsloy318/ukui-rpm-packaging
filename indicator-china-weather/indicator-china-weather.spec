@@ -51,3 +51,4 @@ gzip -c man/indicator-china-weather.1	 > %{buildroot}/usr/share/man/man1/indicat
 %{_bindir}/indicator-china-weather
 %{_datadir}/applications/indicator-china-weather.desktop
 %{_datadir}/indicator-china-weather/
+%{_datadir}/glib-2.0/schemas/org.china-weather-data.gschema.xml
