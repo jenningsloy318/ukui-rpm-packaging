@@ -49,7 +49,7 @@ popd
 %files
 %doc debian/changelog
 %license  debian/copyright
-%{_libdir}/ukui-notification-daemon/time-shutdown
+%{_bindir}/*
 %{_datadir}/applications/ukui-time-shotdown.desktop
 %{_datadir}/glib-2.0/schemas/org.ukui.time.shutdown.settings.gschema.xml
 %{_datadir}/ukui-time-shutdown/time-shutdown_zh_CN.qm

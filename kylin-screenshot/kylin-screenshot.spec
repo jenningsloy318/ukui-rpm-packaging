@@ -59,12 +59,9 @@ popd
 %doc debian/changelog
 %license  debian/copyright
 %{_bindir}/*
-%{_datadir}/applications/kylinscreenshot.desktop
+%{_datadir}/applications/%{name}.desktop
 %{_datadir}/dbus-1/services/org.dharkael.kylinscreenshot.service
 %{_datadir}/dbus-1/interfaces/org.dharkael.kylinscreenshot.xml
 %{_datadir}/%{name}/
-%{_datadir}/icons/hicolor/*/apps/%{name}.png
-%{_datadir}/icons/hicolor/*/apps/%{name}.svg
-%{_datadir}/icons/hicolor/*/apps/kylin_screenshot.png
-%{_datadir}/icons/hicolor/*/apps/kylin_screenshot.svg
+%{_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_datadir}/metainfo/kylinscreenshot.appdata.xml

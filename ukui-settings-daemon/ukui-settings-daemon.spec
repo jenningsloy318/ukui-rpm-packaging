@@ -131,6 +131,7 @@ fi
 %{_libexecdir}/ukui-settings-daemon
 %{_libexecdir}/usd-datetime-mechanism
 %{_libexecdir}/usd-locate-pointer
+%{_libexecdir}/usd-usb-monitor
 %{_datadir}/dbus-1/services/org.ukui.SettingsDaemon.service
 %{_datadir}/dbus-1/system-services/org.ukui.SettingsDaemon.DateTimeMechanism.service
 %{_datadir}/polkit-1/actions/org.ukui.settingsdaemon.datetimemechanism.policy
@@ -168,6 +169,7 @@ fi
 %{_datadir}/man/man1/ukui-settings-daemon.1.gz
 %{_datadir}/man/man1/usd-datetime-mechanism.1.gz
 %{_datadir}/man/man1/usd-locate-pointer.1.gz
+%{_mandir}/man1/usd-usb-monitor.1.gz
 
 %files devel
 %{_includedir}/ukui-settings-daemon/

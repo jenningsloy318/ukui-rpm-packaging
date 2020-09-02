@@ -247,9 +247,7 @@ export PATH=%{_qt5_bindir}:$PATH
 %{_datadir}/kpackage/kcms/kcm_ukuikwin_effects/
 %{_datadir}/kpackage/kcms/kcm_ukuikwin_virtualdesktops/
 %{_datadir}/kpackage/kcms/kcm_ukuikwindecoration/
-%{_datadir}/kservices5/ukui-kwin/
 %{_datadir}/kservices5/*
-%{_datadir}/kservicetypes5/ukui-kwin/
 %{_datadir}/kservicetypes5/*
 %{_datadir}/ukui-kwin
 %{_datadir}/locale/*/LC_MESSAGES/*
@@ -262,6 +260,7 @@ export PATH=%{_qt5_bindir}:$PATH
 %{_libdir}/libukui-kwin.so.1
 %{_libdir}/libukui-kwin.so.1.0.0
 %{_libdir}/qt5/plugins/kcms/kcm_ukuikwin_virtualdesktops.so
+%{_libdir}/qt5/plugins/org.kde.kdecoration2/libkwin-style-ukui.so
 %{_libdir}/libukui-kwin4_effect_builtins.so.1
 %{_libdir}/libukui-kwin4_effect_builtins.so.1.0.0
 %{_libdir}/libukui-kwineffects.so.1.0.0
