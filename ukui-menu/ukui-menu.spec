@@ -1,5 +1,5 @@
 Name:           ukui-menu
-Version:        2.0.7
+Version:        3.0.0
 Release:        1%{?dist}
 Summary:        Advanced ukui menu
 
