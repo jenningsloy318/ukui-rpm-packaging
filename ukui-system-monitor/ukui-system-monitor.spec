@@ -54,3 +54,4 @@ popd
 %license  debian/copyright
 %{_bindir}/ukui-system-monitor
 %{_datadir}/applications/ukui-system-monitor.desktop
+%{_datadir}/icons/hicolor/ukui-system-monitor.png
