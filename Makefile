@@ -103,6 +103,9 @@ build-apps:
 	make -C kylin-scanner
 	make -C kylin-screenshot
 	make -C kylin-video
+	make -C kylin-calculator
+	make -C kylin-music
+	make -C kylin-recording
 
 clean:
 	rm -rf ~/rpmbuild/{SOURCES,RPMS}
