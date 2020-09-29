@@ -42,6 +42,7 @@ BuildRequires:  gsettings-qt-devel
 BuildRequires:  dconf-devel
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  qt5-qtbase-private-devel
+BuildRequires:  dbusmenu-qt5-devel
 
 Provides: ukui-indicators
 Suggests: ukui-window-switch
