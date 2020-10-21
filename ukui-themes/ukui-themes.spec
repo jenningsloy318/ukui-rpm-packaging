@@ -33,20 +33,14 @@ BuildRequires: sassc
 install -d %{buildroot}/usr/share/mime/packages/ %{buildroot}/usr/share/glib-2.0/schemas/  %{buildroot}/usr/share/icons/
 install -m 644 ukui-custom.xml	%{buildroot}/usr/share/mime/packages/ukui-custom.xml
 install -m 644 debian/25_ukui-themes.gschema.override %{buildroot}/usr/share/glib-2.0/schemas/25_ukui-themes.gschema.override
-cp -r  ukui-icon-theme-basic %{buildroot}/usr/share/icons/
 cp -r  ukui-icon-theme-classical %{buildroot}/usr/share/icons/
 cp -r  ukui-icon-theme-default %{buildroot}/usr/share/icons/
 
 %files
 %doc debian/changelog
 %license  debian/copyright
-%exclude %{_datadir}/icons/ukui-icon-theme-basic/16x16/devices/media-optical-audio.svg
-%exclude %{_datadir}/icons/ukui-icon-theme-basic/16x16/devices/media-cdrom-audio.svg
-%exclude %{_datadir}/icons/ukui-icon-theme-basic/16x16/devices/gnome-dev-disc-audio.svg
-%exclude %{_datadir}/icons/ukui-icon-theme-basic/16x16/devices/gnome-dev-cdrom-audio.svg
 %{_datadir}/mime/packages/ukui-custom.xml
 %{_datadir}/glib-2.0/schemas/25_ukui-themes.gschema.override
-%{_datadir}/icons/ukui-icon-theme-basic
 %{_datadir}/icons/ukui-icon-theme-classical
 %{_datadir}/icons/ukui-icon-theme-default
 %{_datadir}/themes/ukui-black

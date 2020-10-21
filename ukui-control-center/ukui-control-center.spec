@@ -93,10 +93,14 @@ install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{build
 %doc debian/changelog
 %license  debian/copyright 
 %{_sysconfdir}/dbus-1/system.d/com.control.center.qt.systemdbus.conf
+%{_sysconfdir}/dbus-1/system.d/org.ukui.groupmanager.conf
 %{_bindir}/*
+%{_sbindir}/*
 %{_libdir}/ukui-control-center/
 %{_datadir}/glib-2.0/schemas/*
 %{_datadir}/applications/ukui-control-center.desktop
 %{_datadir}/dbus-1/system-services/com.control.center.qt.systemdbus.service
 %{_datadir}/ukui-control-center/
 %{_datadir}/ukui/faces/*
+%{_unitdir}/ukui-group-manager.service
+
