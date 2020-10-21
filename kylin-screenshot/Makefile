@@ -20,7 +20,6 @@ docker-build:
 
 deps:
 	@echo ">> install dependencies for ${PKG_NAME}"
-	dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$$(rpm -E %{fedora}).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$$(rpm -E %{fedora}).noarch.rpm
 	dnf -y install git which gcc gcc-c++ qt5-qtbase-devel qt5-linguist ffmpeg-devel alsa-lib-devel pulseaudio-libs-devel  jack-audio-connection-kit-devel  mesa-libGL-devel mesa-libGLU-devel libX11-devel libXext-devel libXfixes-devel qt5-qttools-devel qt5-qtsvg-devel qt5-qtx11extras-devel libXinerama-devel
 	strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
 
