@@ -2,7 +2,7 @@
 
 
 Name:           ukui-kwin
-Version:        master
+Version:        1.0.0
 Release:        1%{?dist}
 Summary:        UKUI window manager
 
