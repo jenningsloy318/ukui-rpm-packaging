@@ -44,7 +44,7 @@ build-lxqt-build-tools:
 	@echo ">> build lxqt-build-tools"
 	rpm -ivh lxqt-build-tools-0.7.0-1.el8.src.rpm
 	dnf install -y gcc-c++ "pkgconfig(Qt5Core)" glib2-devel
-	sed -i '/Requires/s/%{?fedora:cmake}%{!?fedora:cmake3}/cmake/g'  ~/rpmbuild/SPECS/lxqt-build-tools.spec
+	sed -i '/Requires/s/cmake3/cmake/g'  ~/rpmbuild/SPECS/lxqt-build-tools.spec
 	rpmbuild -ba ~/rpmbuild/SPECS/lxqt-build-tools.spec
 	dnf install -y /root/rpmbuild/RPMS/noarch/lxqt-build-tools-0.7.0-1.el8.noarch.rpm
 
