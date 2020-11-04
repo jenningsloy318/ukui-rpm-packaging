@@ -18,10 +18,10 @@ jobs:
         run: sudo apt-get install -y make curl podman
       - name: build package
         run: make docker-build-fedora-32
-  fedora-rawhide:
-    name: on Fedora rawhide
+  fedora-33:
+    name: on Fedora 33
     runs-on: ubuntu-20.04
-    if: github.event.comment.body == 'build on fedora rawhide'
+    if: github.event.comment.body == 'build on fedora 33'
     steps:
       - name: Checkout  source code
         uses: actions/checkout@v2
@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies 
         run: sudo apt-get install -y make curl podman
       - name: build package
-        run: make docker-build-fedora-rawhide
+        run: make docker-build-fedora-33
   centos-8:
     name: on centos 8
     runs-on: ubuntu-20.04
