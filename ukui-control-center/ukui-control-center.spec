@@ -74,6 +74,7 @@ if ! grep -q "qm_files.CONFIG" /usr/lib64/qt5/mkspecs/features/lrelease.prf; the
   sed -i '/qm_files.path/a qm_files.CONFIG = no_check_exist'  /usr/lib64/qt5/mkspecs/features/lrelease.prf
 fi
 %endif
+sed -i 's|/lib/systemd/system|/usr/lib/systemd/system|g' group-manager-server/group-manager-server.pro
 mkdir qmake-build
 pushd qmake-build
 %{qmake_qt5} ..
