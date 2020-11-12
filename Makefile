@@ -41,35 +41,16 @@ endif
 
 build-on-fedora: 
 	make -C fedora-deps
-	make -C libinput-touch-translator
-	make -C biometric-authentication
-	make -C qt5-ukui-platformtheme
-	make -C peony 
-	make -C peony-extensions 
-	make -C time-shutdown
-	make -C ukui-biometric-auth 
-	make -C ukui-biometric-manager 
-	make -C ukui-control-center
-	make -C ukui-greeter
-	make -C ukui-kwin
-	make -C ukui-media
-	make -C ukui-menu 
-	make -C ukui-notification-daemon
-	make -C ukui-panel 
-	make -C ukui-power-manager
-	make -C ukui-screensaver
-	make -C ukui-session-manager
-	make -C ukui-settings-daemon
-	make -C ukui-sidebar
-	make -C ukui-system-monitor
-	make -C ukui-window-switch
-	make -C ukui-wallpapers
-	make -C ukui-themes
-	
+	make build-ukui	
 
 
 build-on-centos: 
 	make -C centos8-deps
+	make build-ukui
+
+
+
+build-ukui:
 	make -C libinput-touch-translator
 	make -C biometric-authentication
 	make -C qt5-ukui-platformtheme
@@ -94,7 +75,7 @@ build-on-centos:
 	make -C ukui-window-switch
 	make -C ukui-wallpapers
 	make -C ukui-themes
-	
+
 build-apps:
 	make -C indicator-china-weather
 	make -C kylin-display-switch 
@@ -111,4 +92,4 @@ clean:
 	rm -rf ~/rpmbuild/{SOURCES,RPMS}
 
 
-.PHONY:   docker-build build build-on-fedora build-on-centos build-apps  clean
+.PHONY:   docker-build build build-on-fedora build-on-centos build-ukui build-apps  clean
