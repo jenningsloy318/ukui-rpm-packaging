@@ -211,6 +211,8 @@ export PATH=%{_qt5_bindir}:$PATH
 %files common 
 
 %{_sysconfdir}/xdg/ukui-kwinrc 
+%{_sysconfdir}/xdg/LowPerformanceCPU.list
+%{_sysconfdir}/xdg/LowVgaPci.list
 %{_libdir}/qt5/plugins/kcm_ukuikwinoptions.so
 %{_libdir}/qt5/plugins/kcm_ukuikwinrules.so
 %{_libdir}/qt5/plugins/kcm_ukuikwintouchscreen.so
@@ -315,6 +317,7 @@ update-alternatives --install /usr/bin/x-window-manager x-window-manager /usr/bi
 #!/bin/sh
 
 setcap "CAP_SYS_RESOURCE=+ep"   /usr/bin/ukui-kwin_wayland
+update-alternatives --install /usr/bin/x-window-manager x-window-manager /usr/bin/ukui-kwin_wayland 60
 
 
 
@@ -322,3 +325,6 @@ setcap "CAP_SYS_RESOURCE=+ep"   /usr/bin/ukui-kwin_wayland
 #! /bin/sh
 update-alternatives --remove x-window-manager /usr/bin/ukui-kwin_x11
 
+%preun wayland
+#! /bin/sh
+update-alternatives --remove x-window-manager /usr/bin/ukui-kwin_wayland
