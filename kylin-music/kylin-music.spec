@@ -21,6 +21,7 @@ BuildRequires:  libX11-devel
 BuildRequires:  libcrystalhd-devel
 BuildRequires:  qt5-qtsvg-devel
 BuildRequires:  libXext-devel
+BuildRequires:  taglib-devel
 
 
 
@@ -34,6 +35,9 @@ kylin-music
 %build
 
 export PATH=%{_qt5_bindir}:$PATH
+sed -i 's|/usr/lib/libtag.so|/usr/lib64/libtag.so|g' kylin-music.pro
+sed -i 's|/usr/lib/libtag_c.so|/usr/lib64/libtag_c.so|g' kylin-music.pro
+
 mkdir qmake-build
 pushd qmake-build
 %if 0%{?rhel} == 8

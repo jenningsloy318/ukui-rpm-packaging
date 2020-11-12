@@ -1,12 +1,12 @@
-Name:           kylin-recording
+Name:           kylin-recorder
 Version:        1.0.0
 Release:        1%{?dist}
-Summary:        kylin-recording
+Summary:        kylin-recorder
 
 
 
 License:        GPL-3.0 License
-URL:            https://github.com/UbuntuKylin/kylin-recording
+URL:            https://github.com/UbuntuKylin/kylin-recorder
 Source0:        %{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
@@ -21,6 +21,7 @@ BuildRequires:  libX11-devel
 BuildRequires:  libcrystalhd-devel
 BuildRequires:  qt5-qtsvg-devel
 BuildRequires:  libXext-devel
+BuildRequires:  lame-devel
 
 
 
