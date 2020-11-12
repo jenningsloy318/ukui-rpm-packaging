@@ -1,7 +1,7 @@
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
 DIST := $(shell { rpm --eval "%{dist}";} 2>/dev/null)
 
-all: build 
+all: build-ukui
 
 
 docker-build-fedora-32: 
