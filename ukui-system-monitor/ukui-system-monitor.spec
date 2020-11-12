@@ -20,6 +20,7 @@ BuildRequires:  systemd-devel
 BuildRequires:  gsettings-qt-devel
 BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  libpcap-devel
+BuildRequires:  kf5-kwindowsystem-devel
 
 Requires: inotify-tools
 Requires: hdparm
