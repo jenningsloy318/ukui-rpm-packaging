@@ -87,6 +87,7 @@ build-apps:
 	make -C kylin-calculator
 	make -C kylin-music
 	make -C kylin-recorder
+	make -C kylin-camera
 
 clean:
 	rm -rf ~/rpmbuild/{SOURCES,RPMS}
