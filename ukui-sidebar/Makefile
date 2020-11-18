@@ -1,7 +1,7 @@
 
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
 PKG_NAME := ukui-sidebar
-PKG_VERSION := 3.0.0
+PKG_VERSION := 3.1.0
 
 # set the git tag based on the version
 ifneq (,$(filter master,$(PKG_VERSION)))
@@ -12,14 +12,17 @@ endif
 
 all: build 
 
-docker-build: 
+docker-build-f33: 
 	@echo ">> building ${PKG_NAME} rpms in container"
-	$(DOCKER) run    --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
+	$(DOCKER) run    --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:33   /bin/bash -c "dnf install -y make curl rpm-build && make build"
 
+docker-build-centos8: 
+	@echo ">> building ${PKG_NAME} rpms in container"
+	$(DOCKER) run    --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:33   /bin/bash -c "dnf install -y make curl rpm-build && make build"
 
 deps:
 	@echo ">> install dependencies for ${PKG_NAME}"
-	dnf install -y git which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros  qt5-qtbase-devel qt5-qttools-devel glib2-devel qt5-qtbase-devel qt5-qtsvg-devel dconf-devel gsettings-qt-devel qt5-qtmultimedia-devel
+	dnf install -y git which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros  qt5-qtbase-devel qt5-qttools-devel glib2-devel qt5-qtbase-devel qt5-qtsvg-devel dconf-devel gsettings-qt-devel qt5-qtmultimedia-devel libX11-devel  libXtst-devel
 	strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
 
 download-source:
