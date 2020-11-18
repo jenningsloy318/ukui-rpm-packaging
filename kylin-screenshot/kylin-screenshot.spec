@@ -65,3 +65,4 @@ popd
 %{_datadir}/%{name}/
 %{_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_datadir}/metainfo/kylinscreenshot.appdata.xml
+%{_datadir}/glib-2.0/schemas/org.ukui.screenshot.gschema.xml
