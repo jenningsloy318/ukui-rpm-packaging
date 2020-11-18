@@ -13,13 +13,17 @@ endif
 all: build 
 
 
-docker-build: 
+docker-build-f33: 
 	@echo ">> building ${PKG_NAME} rpms in container"
-	$(DOCKER) run    --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
+	$(DOCKER) run    --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:33   /bin/bash -c "dnf install -y make curl rpm-build git  https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$$(rpm -E %{fedora}).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$$(rpm -E %{fedora}).noarch.rpm && make build"
+
+docker-build-centos8: 
+	@echo ">> building ${PKG_NAME} rpms in container"
+	$(DOCKER) run    --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y make curl rpm-build https://mirrors.tuna.tsinghua.edu.cn/epel/epel-release-latest-8.noarch.rpm https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm && make build"
 
 deps:
 	@echo ">> install dependencies for ${PKG_NAME}"
-	dnf -y install git qt5-qtbase-devel qt5-qtscript-devel qt5-qttools-devel qt5-linguist qt5-qtbase-private-devel qt5-qtx11extras-devel zlib-devel libX11-devel libcrystalhd-devel qt5-qtsvg-devel libXext-devel taglib-devel
+	dnf -y install git qt5-qtbase-devel qt5-qtscript-devel qt5-qttools-devel qt5-linguist qt5-qtbase-private-devel qt5-qtx11extras-devel zlib-devel libX11-devel libcrystalhd-devel qt5-qtsvg-devel libXext-devel taglib-devel qt5-qtmultimedia-devel
 	strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
 
 download-source:
@@ -38,4 +42,4 @@ clean:
 	@echo ">> clean up"
 	rm -rf rpmbuild/SOURCES/${PKG_NAME}* rpmbuild/RPMS/x86_64/${PKG_NAME}* ~/rpmbuild/SOURCES/${PKG_NAME}* ~/rpmbuild/RPMS/x86_64/${PKG_NAME}* 
 
-.PHONY: build docker-build deps download-source clean
+.PHONY: build docker-build-f33 docker-build-centos8 deps download-source clean

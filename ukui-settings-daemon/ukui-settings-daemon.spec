@@ -30,6 +30,7 @@ BuildRequires:  libXi-devel
 BuildRequires:  libxklavier-devel
 BuildRequires:  libXrandr-devel
 BuildRequires:  libXt-devel
+BuildRequires:  libusb-devel
 BuildRequires:  xorg-x11-proto-devel
 BuildRequires:  mate-desktop-devel
 BuildRequires:  mate-utils-devel

@@ -1,5 +1,5 @@
 Name:           kylin-calculator
-Version:        1.0.0
+Version:        1.0.9
 Release:        1%{?dist}
 Summary:        kylin-calculator
 
@@ -10,17 +10,19 @@ URL:            https://github.com/UbuntuKylin/kylin-calculator
 Source0:        %{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
-BuildRequires:  qt5-qtbase-devel
-BuildRequires:  qt5-qtscript-devel
-BuildRequires:  qt5-qttools-devel
-BuildRequires:  qt5-linguist
-BuildRequires:  qt5-qtbase-private-devel
-BuildRequires:  qt5-qtx11extras-devel
-BuildRequires:  zlib-devel
-BuildRequires:  libX11-devel
-BuildRequires:  libcrystalhd-devel
-BuildRequires:  qt5-qtsvg-devel
-BuildRequires:  libXext-devel
+BuildRequires: qt5-qtbase-devel
+BuildRequires: qt5-qtscript-devel
+BuildRequires: qt5-qttools-devel
+BuildRequires: qt5-linguist
+BuildRequires: qt5-qtbase-private-devel
+BuildRequires: qt5-qtx11extras-devel
+BuildRequires: zlib-devel
+BuildRequires: libX11-devel
+BuildRequires: libcrystalhd-devel
+BuildRequires: qt5-qtsvg-devel
+BuildRequires: libXext-devel
+BuildRequires: gsl-devel
+BuildRequires: kf5-kwindowsystem-devel
 
 
 

@@ -40,6 +40,7 @@ BuildRequires: kf5-kcoreaddons-devel
 BuildRequires: boost-devel
 BuildRequires: libxcb-devel
 BuildRequires: xcb-util-devel
+BuildRequires: polkit-qt5-1-devel
 
 Requires: redhat-lsb-core
 Requires: qt5-qtquickcontrols

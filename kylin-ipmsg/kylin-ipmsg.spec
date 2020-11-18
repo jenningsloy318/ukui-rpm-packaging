@@ -15,6 +15,7 @@ BuildRequires:  qt5-qtsvg-devel
 BuildRequires:  glib2-devel
 BuildRequires:  gsettings-qt-devel
 BuildRequires:  libX11-devel
+BuildRequires:  qt5-qtquickcontrols2-devel
 Requires:  wmctrl
 
 %description

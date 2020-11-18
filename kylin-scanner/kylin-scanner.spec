@@ -21,7 +21,7 @@ BuildRequires: qt5-qtbase-devel
 BuildRequires: qt5-qttools-devel
 BuildRequires: tesseract-tools
 BuildRequires: tesseract
-
+BuildRequires: gsettings-qt-devel
 
 Requires: tesseract
 Requires: sane-backends

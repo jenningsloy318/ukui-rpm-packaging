@@ -11,9 +11,10 @@ Source0:        %{name}-%{version}.tar.gz
 BuildArch:      x86_64
 
 BuildRequires: libinput-devel
-BuildRequires: libgudev-devel
 BuildRequires: qt5-qtbase-devel
 BuildRequires: kf5-kxmlgui-devel
+BuildRequires: systemd-devel
+
 
 Requires: libinput
 Requires: libgudev

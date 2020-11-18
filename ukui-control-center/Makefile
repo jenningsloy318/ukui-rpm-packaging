@@ -12,13 +12,17 @@ endif
 
 all: build 
 
-docker-build: 
+docker-build-f33: 
 	@echo ">> building ${PKG_NAME} rpms in container"
-	$(DOCKER) run    --rm --privileged -v `pwd`:/root  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y make curl rpm-build && make build"
+	$(DOCKER) run    --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:33   /bin/bash -c "dnf install -y make curl rpm-build git  https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$$(rpm -E %{fedora}).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$$(rpm -E %{fedora}).noarch.rpm && make build"
+
+docker-build-centos8: 
+	@echo ">> building ${PKG_NAME} rpms in container"
+	$(DOCKER) run    --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y make curl rpm-build https://mirrors.tuna.tsinghua.edu.cn/epel/epel-release-latest-8.noarch.rpm https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm && make build"
 
 deps:
 	@echo ">> install dependencies for ${PKG_NAME}"
-	dnf install -y git which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros qt5-qtbase-devel qt5-qtsvg-devel gsettings-qt-devel glib2-devel qt5-qtx11extras-devel libmatekbd-devel libxklavier-devel kf5-kconfigwidgets-devel kf5-kconfig-devel qt5-qtdeclarative-devel dconf-devel edid-decode libmatemixer-devel  qt5-qtmultimedia-devel libxml2-devel libkscreen-qt5-devel kf5-ki18n-devel libcanberra-devel libXi-devel mate-desktop-devel libxkbcommon-devel libxkbfile-devel qt5-linguist kf5-kwindowsystem-devel kf5-kguiaddons-devel kf5-kcoreaddons-devel boost-devel libxcb-devel xcb-util-devel
+	dnf install -y git which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros qt5-qtbase-devel qt5-qtsvg-devel gsettings-qt-devel glib2-devel qt5-qtx11extras-devel libmatekbd-devel libxklavier-devel kf5-kconfigwidgets-devel kf5-kconfig-devel qt5-qtdeclarative-devel dconf-devel edid-decode libmatemixer-devel  qt5-qtmultimedia-devel libxml2-devel libkscreen-qt5-devel kf5-ki18n-devel libcanberra-devel libXi-devel mate-desktop-devel libxkbcommon-devel libxkbfile-devel qt5-linguist kf5-kwindowsystem-devel kf5-kguiaddons-devel kf5-kcoreaddons-devel boost-devel libxcb-devel xcb-util-devel polkit-qt5-1-devel
 	strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
 
 download-source:
@@ -37,4 +41,4 @@ clean:
 	@echo ">> clean up"
 	rm -rf rpmbuild/SOURCES/${PKG_NAME}* rpmbuild/RPMS/x86_64/${PKG_NAME}* ~/rpmbuild/SOURCES/${PKG_NAME}* ~/rpmbuild/RPMS/x86_64/${PKG_NAME}* 
 
-.PHONY: build docker-build deps download-source clean
+.PHONY: build docker-build-f33 docker-build-centos8 deps download-source clean

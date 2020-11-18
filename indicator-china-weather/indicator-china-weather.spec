@@ -15,6 +15,7 @@ BuildRequires: qt5-qtbase-devel
 BuildRequires: qt5-qtscript-devel
 BuildRequires: qt5-qttools-devel
 BuildRequires: GeoIP-devel
+BuildRequires: gsettings-qt-devel
 
 
 %description

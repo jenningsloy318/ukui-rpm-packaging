@@ -26,6 +26,8 @@ BuildRequires: mesa-libGL-devel
 BuildRequires: mesa-libGLU-devel
 BuildRequires: libX11-devel
 BuildRequires: libXext-devel
+BuildRequires: gsettings-qt-devel
+BuildRequires: kf5-kwindowsystem-devel
 
 Requires: qt5-qtsvg
 

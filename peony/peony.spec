@@ -1,5 +1,5 @@
 Name:           peony
-Version:        3.0.1
+Version:        3.0.3
 Release:        1%{?dist}
 Summary:        file Manager for the UKUI desktop
 
@@ -21,7 +21,7 @@ BuildRequires:  qt5-qtbase-private-devel
 BuildRequires:  qt5-linguist
 BuildRequires:  libudisks2-devel
 BuildRequires:  libnotify-devel
-
+BuildRequires:  libcanberra-devel
 
 Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 Requires: %{name}-common%{?_isa}  = %{version}-%{release}

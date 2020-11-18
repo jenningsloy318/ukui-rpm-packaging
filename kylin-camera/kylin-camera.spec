@@ -1,5 +1,5 @@
 Name:           kylin-camera
-Version:        1.0.0
+Version:        1.0.2
 Release:        1%{?dist}
 Summary:        kylin-camera
 

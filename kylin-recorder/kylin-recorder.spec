@@ -10,20 +10,20 @@ URL:            https://github.com/UbuntuKylin/kylin-recorder
 Source0:        %{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
-BuildRequires:  qt5-qtbase-devel
-BuildRequires:  qt5-qtscript-devel
-BuildRequires:  qt5-qttools-devel
-BuildRequires:  qt5-linguist
-BuildRequires:  qt5-qtbase-private-devel
-BuildRequires:  qt5-qtx11extras-devel
-BuildRequires:  zlib-devel
-BuildRequires:  libX11-devel
-BuildRequires:  libcrystalhd-devel
-BuildRequires:  qt5-qtsvg-devel
-BuildRequires:  libXext-devel
-BuildRequires:  lame-devel
-
-
+BuildRequires: qt5-qtbase-devel
+BuildRequires: qt5-qtscript-devel
+BuildRequires: qt5-qttools-devel
+BuildRequires: qt5-linguist
+BuildRequires: qt5-qtbase-private-devel
+BuildRequires: qt5-qtx11extras-devel
+BuildRequires: zlib-devel
+BuildRequires: libX11-devel
+BuildRequires: libcrystalhd-devel
+BuildRequires: qt5-qtsvg-devel
+BuildRequires: libXext-devel
+BuildRequires: lame-devel
+BuildRequires: gsettings-qt-devel
+BuildRequires: qt5-qtmultimedia-devel
 
 %description
 kylin-recording

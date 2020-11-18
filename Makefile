@@ -55,7 +55,6 @@ build-ukui:
 	make -C biometric-authentication
 	make -C qt5-ukui-platformtheme
 	make -C peony 
-	make -C peony-extensions 
 	make -C time-shutdown
 	make -C ukui-biometric-auth 
 	make -C ukui-biometric-manager 

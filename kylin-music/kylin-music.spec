@@ -22,7 +22,7 @@ BuildRequires:  libcrystalhd-devel
 BuildRequires:  qt5-qtsvg-devel
 BuildRequires:  libXext-devel
 BuildRequires:  taglib-devel
-
+BuildRequires:  qt5-qtmultimedia-devel
 
 
 %description
