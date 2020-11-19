@@ -1,5 +1,5 @@
 Name:           libinput-touch-translator
-Version:        0.1
+Version:        1.0.0
 Release:        1%{?dist}
 Summary:        Map actions in touch screen and touchpad to keyboard shortcuts or other input devices.
 

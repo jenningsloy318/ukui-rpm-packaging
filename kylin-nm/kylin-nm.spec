@@ -1,5 +1,5 @@
 Name:           kylin-nm
-Version:        1.2.5
+Version:        3.0.1
 Release:        1%{?dist}
 Summary:        Gui Applet tool for display and edit network simply
 

@@ -1,5 +1,5 @@
 Name:           kylin-ipmsg
-Version:        1.0.0
+Version:        1.1.0
 Release:        1%{?dist}
 Summary:        Kylin Ipmsg is a LAN chat tool with beautiful Gui
 

@@ -1,7 +1,7 @@
 %global __cmake_in_source_build 1
 
 Name:           ukui-session-manager
-Version:        3.0.0
+Version:        3.0.1
 Release:        1%{?dist}
 Summary:        Session manager of the UKUI desktop environment
 

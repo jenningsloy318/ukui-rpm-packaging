@@ -1,7 +1,7 @@
 
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
 PKG_NAME := kylin-video
-PKG_VERSION := 2.1.0
+PKG_VERSION := 2.1.1.1
 
 # set the git tag based on the version
 ifneq (,$(filter master,$(PKG_VERSION)))

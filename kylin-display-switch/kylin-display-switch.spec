@@ -2,7 +2,7 @@
 %define debug_package %{nil}
 
 Name:           kylin-display-switch
-Version:        2.0.3
+Version:        2.0.12
 Release:        1%{?dist}
 Summary:        Gui tool for display switching
 

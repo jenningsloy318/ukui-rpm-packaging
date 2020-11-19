@@ -1,5 +1,5 @@
 Name:           kylin-music
-Version:        1.0.0
+Version:        1.0.4
 Release:        1%{?dist}
 Summary:        kylin-music
 

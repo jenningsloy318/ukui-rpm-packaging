@@ -1,7 +1,7 @@
 
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
 PKG_NAME := ukui-media
-PKG_VERSION := 3.0.0
+PKG_VERSION := 3.0.1
 # set the git tag based on the version
 ifneq (,$(filter master,$(PKG_VERSION)))
 		GitTag=HEAD

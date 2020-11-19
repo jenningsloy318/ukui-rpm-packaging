@@ -1,7 +1,7 @@
 %global __cmake_in_source_build 1
 
 Name:           ukui-biometric-auth
-Version:        1.0.4
+Version:        1.2.0
 Release:        1%{?dist}
 Summary:        ukui-biometric-auth
 

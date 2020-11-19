@@ -1,5 +1,5 @@
 Name:           kylin-video
-Version:        2.1.0
+Version:        2.1.1.1
 Release:        1%{?dist}
 Summary:        Front-end for MPlayer and MPV
 

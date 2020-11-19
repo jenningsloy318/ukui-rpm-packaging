@@ -1,5 +1,5 @@
 Name:           time-shutdown 
-Version:        1.0.0
+Version:        1.1.0
 Release:        1%{?dist}
 Summary:        The time-shutdown is mainly used in the desktop operating system
 
