@@ -45,7 +45,6 @@ build-on-fedora:
 
 
 build-on-centos: 
-	make -C centos8-deps
 	make build-ukui
 
 

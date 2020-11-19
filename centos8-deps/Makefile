@@ -12,13 +12,6 @@ deps:
 
 build: deps build-libfprint build-gsettings-qt build-redshift build-bamf build-lxqt-build-tools build-libstatgrab build-libqtxdg build-sassc
 
-build-libfprint:
-	@echo ">> build libfprint-devel"
-	rpm -ivh libfprint-1.0-1.el8.src.rpm
-	dnf install -y meson gcc gcc-c++ git "pkgconfig(glib-2.0)" "pkgconfig(libusb-1.0)" "pkgconfig(nss)" "pkgconfig(pixman-1)" gtk-doc systemd
-	rpmbuild  -ba /root/rpmbuild/SPECS/libfprint.spec 
-	dnf install -y /root/rpmbuild/RPMS/x86_64/libfprint-1.0-1.el8.x86_64.rpm /root/rpmbuild/RPMS/x86_64/libfprint-devel-1.0-1.el8.x86_64.rpm
-
 build-gsettings-qt:
 	@echo ">> build gsettings-qt"
 	rpm -ivh gsettings-qt-0-0.21.20180723bzr85.el8.src.rpm

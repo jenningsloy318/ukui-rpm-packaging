@@ -17,11 +17,9 @@ docker-build-f33:
 	@echo ">> building ${PKG_NAME} rpms in container"
 	$(DOCKER) run    --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:33   /bin/bash -c "dnf install -y make curl rpm-build git  https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$$(rpm -E %{fedora}).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$$(rpm -E %{fedora}).noarch.rpm && make build"
 
-
-
 docker-build-centos8: 
 	@echo ">> building ${PKG_NAME} rpms in container"
-	$(DOCKER) run    --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y make curl rpm-build https://mirrors.tuna.tsinghua.edu.cn/epel/epel-release-latest-8.noarch.rpm https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm && make build"
+	$(DOCKER) run    --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y make curl rpm-build dnf-plugins-core https://mirrors.tuna.tsinghua.edu.cn/epel/epel-release-latest-8.noarch.rpm https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm &&	dnf config-manager --enable PowerTools && dnf config-manager --enable Stream-PowerTools && dnf install -y rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted && make build"
 
 deps:
 	@echo ">> install dependencies for ${PKG_NAME}"
@@ -35,7 +33,13 @@ download-source:
 	cd ${PKG_NAME} && git archive  --format=tar.gz --prefix=${PKG_NAME}-${PKG_VERSION}/  -o  ~/rpmbuild/SOURCES/${PKG_NAME}-${PKG_VERSION}.tar.gz  HEAD
 	rm -rf ${PKG_NAME} 
 
-build: | deps  download-source
+build-libfprint:
+	@echo ">> build libfprint-devel"
+	dnf install -y meson gcc gcc-c++ git "pkgconfig(glib-2.0)" "pkgconfig(libusb-1.0)" "pkgconfig(nss)" "pkgconfig(pixman-1)" gtk-doc systemd
+	rpmbuild  -ba libfprint.spec
+	dnf install -y /root/rpmbuild/RPMS/x86_64/libfprint-1.0-*.rpm /root/rpmbuild/RPMS/x86_64/libfprint-devel-1.0-*.x86_64.rpm
+
+build: | deps  download-source build-libfprint
 	@echo ">> building rpms"
 	rpmbuild  -ba  ${PKG_NAME}.spec
 	
