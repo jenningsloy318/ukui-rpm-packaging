@@ -26,6 +26,7 @@ BuildRequires:  libcanberra-devel
 Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 Requires: %{name}-common%{?_isa}  = %{version}-%{release}
 Requires: kf5-kwindowsystem
+Requires: mesa-dri-drivers
 
 
 Recommends: gvfs-backends
