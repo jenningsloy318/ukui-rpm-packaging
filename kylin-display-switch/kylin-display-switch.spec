@@ -32,7 +32,7 @@ Requires:  python3-xlib
 %prep
 
 %setup -q
-sed -i 's|../lib/systemd/system/|/lib/systemd/system/|g' setup.py 
+sed -i 's|../lib/systemd/system/|/usr/lib/systemd/system/|g' setup.py 
 %build
 
 %{py3_build} 
