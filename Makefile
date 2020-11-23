@@ -40,11 +40,11 @@ endif
 
 
 build-on-fedora: 
-	make -C fedora-deps
 	make build-ukui	
 
 
 build-on-centos: 
+	make -C centos8-deps
 	make build-ukui
 
 
