@@ -59,8 +59,12 @@ build-peony: | peony-deps download-source-peony
 	rpmbuild -ba ${PKG_NAME}.spec
 	rpm -ihv --force  /root/rpmbuild/RPMS/x86_64/{${PKG_NAME}-common-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm,${PKG_NAME}-devel-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm,${PKG_NAME}-libs-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm}
 
+build-engrampa:
+	@echo ">> rebuilding engrampa rpms"
+	rpmbuild -ba /root/rpmbuild/SPECS/engrampa.spec
+	rpm -ivh --force /root/rpmbuild/RPMS/x86_64/engrampa-1.24.1-2.el8.x86_64.rpm
 
-build-peony-extensions: | peony-extensions-deps download-source-peony-extensions
+build-peony-extensions: | build-engrampa peony-extensions-deps download-source-peony-extensions
 	@echo ">> building ${EXT_PKG_NAME} rpms"
 	rpmbuild -ba ${EXT_PKG_NAME}.spec
 
