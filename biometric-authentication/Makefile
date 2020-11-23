@@ -19,7 +19,7 @@ docker-build-f33:
 
 docker-build-centos8: 
 	@echo ">> building ${PKG_NAME} rpms in container"
-	$(DOCKER) run    --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y make curl rpm-build dnf-plugins-core https://mirrors.tuna.tsinghua.edu.cn/epel/epel-release-latest-8.noarch.rpm https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm &&	dnf config-manager --enable PowerTools && dnf config-manager --enable Stream-PowerTools && dnf install -y rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted && make build"
+	$(DOCKER) run    --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y make curl rpm-build dnf-plugins-core https://mirrors.tuna.tsinghua.edu.cn/epel/epel-release-latest-8.noarch.rpm https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm centos-stream-release &&	dnf config-manager --enable PowerTools && dnf config-manager --enable Stream-PowerTools && dnf install -y rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted && make build"
 
 deps:
 	@echo ">> install dependencies for ${PKG_NAME}"
