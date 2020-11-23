@@ -13,8 +13,6 @@ BuildArch:      x86_64
 BuildRequires: glib2-devel
 BuildRequires: leptonica-devel
 BuildRequires: opencv-devel
-BuildRequires: libinsane
-BuildRequires: libksane-devel
 BuildRequires: sane-backends-devel
 BuildRequires: tesseract-devel
 BuildRequires: qt5-qtbase-devel

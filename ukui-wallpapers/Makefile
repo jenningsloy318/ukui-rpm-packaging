@@ -1,7 +1,7 @@
 
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
 PKG_NAME := ukui-wallpapers
-PKG_VERSION := 20.04.2
+PKG_VERSION := 20.04.4
 
 # set the git tag based on the version
 ifneq (,$(filter master,$(PKG_VERSION)))

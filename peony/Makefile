@@ -37,7 +37,7 @@ peony-extensions-deps:
 	strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
 
 download-source-peony:
-	@echo "download ${PKG_NAME} source code"
+	@echo ">> download ${PKG_NAME} source code"
 	mkdir -p ~/rpmbuild/SOURCES/
 	rm -rf ${PKG_NAME} 
 	git clone https://github.com/ukui/${PKG_NAME}
@@ -45,7 +45,7 @@ download-source-peony:
 	rm -rf ${PKG_NAME}
 
 download-source-peony-extensions:
-	@echo "download ${EXT_PKG_NAME} source code"
+	@echo ">> download ${EXT_PKG_NAME} source code"
 	mkdir -p ~/rpmbuild/SOURCES/
 	rm -rf ${EXT_PKG_NAME}
 	git clone https://github.com/ukui/${PKG_NAME}-extensions
@@ -60,7 +60,7 @@ build-peony: | peony-deps download-source-peony
 	rpm -ihv --force  /root/rpmbuild/RPMS/x86_64/{${PKG_NAME}-common-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm,${PKG_NAME}-devel-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm,${PKG_NAME}-libs-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm}
 
 
-build-peony-extensions: | build-peony peony-extensions-deps download-source-peony-extensions
+build-peony-extensions: | peony-extensions-deps download-source-peony-extensions
 	@echo ">> building ${EXT_PKG_NAME} rpms"
 	rpmbuild -ba ${EXT_PKG_NAME}.spec
 

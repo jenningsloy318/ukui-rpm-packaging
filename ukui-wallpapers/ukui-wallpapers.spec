@@ -2,7 +2,7 @@
 %define debug_package %{nil}
 
 Name:           ukui-wallpapers
-Version:        20.04.2
+Version:        20.04.4
 Release:        1%{?dist}
 Summary:        Wallpapers for UKUI desktop environment
 
