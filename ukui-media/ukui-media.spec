@@ -31,7 +31,10 @@ BuildRequires:  libX11-devel
 
 Requires:  mate-common
 Requires:  %{name}-common%{?_isa} = %{version}-%{release}
+Requires:  glib2
 
+Recommends: sound-theme-freedesktop
+Recommends: alsa-utils
 
 %description
  This package utilizes the libmatemixer library which provides
