@@ -24,6 +24,8 @@ BuildRequires:  libXtst-devel
 BuildRequires:  libqtxdg-devel
 BuildRequires:  systemd-devel
 BuildRequires:  kf5-rpm-macros
+BuildRequires:  libX11-devel
+BuildRequires: xdg-user-dirs
 
 Requires: peony
 Requires: (ukui-kwin or ukwm)
@@ -31,6 +33,8 @@ Requires: ukui-panel
 Requires: ukui-polkit
 Requires: ukui-screensaver
 Requires: ukui-settings-daemon
+Requires: qt5-qtmultimedia
+
 
 Provides: x-session-manager
 

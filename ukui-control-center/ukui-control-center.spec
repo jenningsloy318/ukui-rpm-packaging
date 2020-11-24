@@ -48,6 +48,7 @@ Requires: qt5-qtquickcontrols
 Requires: qt5-qtgraphicaleffects
 Requires: redshift
 Requires: dconf
+Requires: qt5-qtimageformats
 
 Suggests: gsettings-desktop-schemas
 Suggests: mate-common
