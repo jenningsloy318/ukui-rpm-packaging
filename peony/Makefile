@@ -62,6 +62,7 @@ build-peony: | peony-deps download-source-peony
 build-engrampa:
 	@echo ">> rebuilding engrampa rpms"
 	dnf install -y mate-common desktop-file-utils file-devel gtk3-devel json-glib-devel libSM-devel 
+	rpm -ivh engrampa-1.24.1-2.el8.src.rpm
 	rpmbuild -ba /root/rpmbuild/SPECS/engrampa.spec
 	rpm -ivh --force /root/rpmbuild/RPMS/x86_64/engrampa-1.24.1-2.el8.x86_64.rpm
 
