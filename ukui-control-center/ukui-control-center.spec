@@ -41,14 +41,13 @@ BuildRequires: boost-devel
 BuildRequires: libxcb-devel
 BuildRequires: xcb-util-devel
 BuildRequires: polkit-qt5-1-devel
+BuildRequires: pulseaudio-libs-devel
 
 Requires: redhat-lsb-core
 Requires: qt5-qtquickcontrols
 Requires: qt5-qtgraphicaleffects
-
-Recommends: redshift
-Recommends: qt5-qtquickcontrols
-
+Requires: redshift
+Requires: dconf
 
 Suggests: gsettings-desktop-schemas
 Suggests: mate-common
