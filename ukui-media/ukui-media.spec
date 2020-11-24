@@ -87,3 +87,5 @@ gzip -c man/ukui-volume-control.1  > %{buildroot}/usr/share/man/man1/ukui-volume
 %{_mandir}/man1/ukui-volume-control.1.gz
 %{_datadir}/glib-2.0/schemas/org.ukui.media.gschema.xml
 
+%post 
+glib-compile-schemas /usr/share/glib-2.0/schemas/
