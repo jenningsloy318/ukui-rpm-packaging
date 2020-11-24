@@ -1,7 +1,7 @@
 Name:           ukui-system-monitor
-Version:        1.0.0
+Version:        1.0.1
 Release:        1%{?dist}
-Summary:        simple system monitor written in QT
+Summary:        Monitor for UKUI desktop environment
 
 License:         GPL-3.0 License
 URL:            https://github.com/ukui/ukui-system-monitor
@@ -22,16 +22,15 @@ BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  libpcap-devel
 BuildRequires:  kf5-kwindowsystem-devel
 
-Requires: inotify-tools
-Requires: hdparm
-Requires: lm_sensors
-Requires: ethtool 
-Requires: lshw
-Requires: dmidecode
-Requires: CPUFreqUtility
-Requires: pciutils
+Requires: libcap
+Requires: libgtop2
+
+
 %description
- simple system monitor written in QT
+ Monitor for UKUI desktop environment
+ UKUI system monitor allows you to graphically view and manipulate the
+ running processes, It also provides an overview of the resources (such
+ as CPU and memory) and File Systems on your system.
 
 %prep
 %setup -q
