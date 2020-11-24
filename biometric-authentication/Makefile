@@ -1,7 +1,7 @@
 
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
 PKG_NAME := biometric-authentication
-PKG_VERSION := 0.9.63
+PKG_VERSION := 0.9.70
 DIST := $(shell { rpm --eval "%{dist}";} 2>/dev/null)
 
 # set the git tag based on the version
