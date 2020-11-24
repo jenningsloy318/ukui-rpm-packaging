@@ -42,7 +42,7 @@ BuildRequires: yelp-tools
 BuildRequires: libgnome-keyring-devel
 
 Requires: dbus-x11
-Requires: mate-notification-daemon
+Requires: (mate-notification-daemon or ukui-notification-daemon)
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Requires: systemd
 Requires: ukui-polkit
