@@ -35,6 +35,7 @@ Requires:  peony-parchives%{?_isa}  = %{version}-%{release}
 Requires:  peony-open-terminal%{?_isa}  = %{version}-%{release}
 Requires:  peony-set-wallpaper%{?_isa}  = %{version}-%{release}
 Requires:  peony-computer-view%{?_isa}  = %{version}-%{release}
+Requires:  peony-admin%{?_isa}  = %{version}-%{release}
 
 %description
  Peony is the official file manager for the UKUI desktop. This
@@ -83,6 +84,7 @@ Requires:  mate-terminal
 %package -n peony-set-wallpaper
 Summary: Peony plugin for right click a picture to set as wallpaper.
 Requires:  peony-libs
+Requires:  qt5-qtimageformats
 
 %description -n peony-set-wallpaper
 Description: Peony plugin for right click a picture to set as wallpaper.
