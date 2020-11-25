@@ -58,6 +58,7 @@ Summary: UKUI media utilities (common files)
 %setup -q
 
 %build
+export PATH=%{_qt5_bindir}:$PATH
 ./autogen.sh
 %configure
 %{make_build} 
