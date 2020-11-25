@@ -6,15 +6,15 @@ all: build-ukui
 
 docker-build-fedora-32: 
 	@echo ">> building rpms in container"
-	$(DOCKER) run  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y dnf-plugins-core make curl rpm-build && make build"
+	$(DOCKER) run  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y dnf-plugins-core make curl rpm-build && dnf update -y  && make build"
 
 docker-build-fedora-33: 
 	@echo ">> building rpms in container"
-	$(DOCKER) run  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:33   /bin/bash -c "sudo dnf install -y dnf-plugins-core make curl rpm-build && make build"
+	$(DOCKER) run  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:33   /bin/bash -c "sudo dnf install -y dnf-plugins-core make curl rpm-build && dnf update -y && make build"
 
 docker-build-centos-8: 
 	@echo ">> building rpms in container"
-	docker run  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y dnf-plugins-core make curl rpm-build && make build"
+	docker run  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y dnf-plugins-core make curl rpm-build && dnf update -y  && make build"
 
 
 

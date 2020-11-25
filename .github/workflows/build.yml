@@ -18,6 +18,13 @@ jobs:
         run: sudo apt-get install -y make curl podman
       - name: build package
         run: make docker-build-fedora-32
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: upload srpm/rpm packages
+          path: |
+            rpmbuild/RPMS/
+            rpmbuild/SRPMS/        
   fedora-33:
     name: on Fedora 33
     runs-on: ubuntu-20.04
@@ -31,6 +38,13 @@ jobs:
         run: sudo apt-get install -y make curl podman
       - name: build package
         run: make docker-build-fedora-33
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: upload srpm/rpm packages
+          path: |
+            rpmbuild/RPMS/
+            rpmbuild/SRPMS/        
   centos-8:
     name: on centos 8
     runs-on: ubuntu-20.04
@@ -44,3 +58,10 @@ jobs:
         run: sudo apt-get install -y make curl podman
       - name: build package
         run: make docker-build-centos-8        
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: upload srpm/rpm packages
+          path: |
+            rpmbuild/RPMS/
+            rpmbuild/SRPMS/
