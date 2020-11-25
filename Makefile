@@ -52,7 +52,7 @@ build-on-centos:
 
 build-ukui:
 	make -C libinput-touch-translator
-	make -C biometric-authentication
+	#make -C biometric-authentication
 	make -C qt5-ukui-platformtheme
 	make -C peony 
 	make -C time-shutdown

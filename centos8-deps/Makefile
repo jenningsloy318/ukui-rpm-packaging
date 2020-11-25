@@ -22,7 +22,7 @@ build-gsettings-qt:
 build-redshift:
 	@echo ">> build redshift"
 	rpm -ivh redshift-1.12-7.el8.src.rpm
-	dnf install -y GConf2-devel geoclue2-devel  libXxf86vm-devel desktop-file-utils  gettext-devel intltool libXrandr-devel libdrm-devel libtool
+	dnf install -y GConf2-devel geoclue2-devel  libXxf86vm-devel desktop-file-utils  gettext-devel intltool libXrandr-devel libdrm-devel libtool python36-devel
 	rpmbuild -ba ~/rpmbuild/SPECS/redshift.spec
 	dnf install -y  /root/rpmbuild/RPMS/x86_64/redshift-1.12-7.el8.x86_64.rpm
 
