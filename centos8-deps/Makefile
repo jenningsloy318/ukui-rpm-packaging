@@ -29,7 +29,7 @@ build-redshift:
 build-bamf:
 	@echo ">> build bamf"
 	rpm -ivh bamf-0.5.4-4.el8.src.rpm
-	dnf install -y gobject-introspection-devel python3-lxml vala "pkgconfig(libgtop-2.0)" "pkgconfig(libwnck-3.0)"
+	dnf install -y gobject-introspection-devel python3-lxml vala "pkgconfig(libgtop-2.0)" "pkgconfig(libwnck-3.0)" gtk-doc
 	rpmbuild -ba  ~/rpmbuild/SPECS/bamf.spec
 	dnf install -y   /root/rpmbuild/RPMS/x86_64/bamf-0.5.4-4.el8.x86_64.rpm /root/rpmbuild/RPMS/x86_64/bamf-devel-0.5.4-4.el8.x86_64.rpm   /root/rpmbuild/RPMS/x86_64/bamf-daemon-0.5.4-4.el8.x86_64.rpm
 
