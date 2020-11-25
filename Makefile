@@ -92,4 +92,4 @@ clean:
 	rm -rf ~/rpmbuild/{SOURCES,RPMS}
 
 
-.PHONY:   docker-build build build-on-fedora build-on-centos build-ukui build-apps  clean
+.PHONY:   docker-build build build-on-fedora build-on-centos build-ukui build-apps clean
