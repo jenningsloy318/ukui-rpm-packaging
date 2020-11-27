@@ -53,6 +53,8 @@ popd
 %files
 %doc debian/changelog
 %license  debian/copyright 
-%{_bindir}/kylin-recording
-%{_datadir}/applications/kylin-recording.desktop
-%{_datadir}/pixmaps/recording_32.png
+%{_bindir}/kylin-recorder
+%{_datadir}/applications/kylin-recorder.desktop
+%{_datadir}/pixmaps/recording_128.svg 
+%{_datadir}/glib-2.0/schemas/*
+%{_datadir}/kylin-recorder/translations/*
