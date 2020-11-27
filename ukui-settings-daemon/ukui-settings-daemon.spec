@@ -41,6 +41,14 @@ BuildRequires:  mate-common
 BuildRequires:  colord-devel
 BuildRequires:  gnome-desktop3-devel
 BuildRequires:  lcms2-devel
+BuildRequires:  qt5-qtbase-devel
+BuildRequires:  qt5-qttools-devel
+BuildRequires:  gsettings-qt-devel
+BuildRequires:  qt5-qtx11extras-devel
+BuildRequires:  qt5-qtsensors-devel
+BuildRequires:  kf5-kconfig-devel
+
+BuildRequires: qt5-qtsvg-devel
 Requires: mate-common
 Requires: ukui-polkit
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
