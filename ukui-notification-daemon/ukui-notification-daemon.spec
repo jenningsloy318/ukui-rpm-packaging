@@ -56,6 +56,6 @@ popd
 %files
 %doc debian/changelog
 %license  debian/copyright
-%{_libdir}/ukui-notification-daemon/ukui-notification-daemon
+%{_libdir}/ukui-notification-daemon/ukui-notifications
 %{_datadir}/dbus-1/services/org.ukui.freedesktop.Notification.service
 %{_datadir}/glib-2.0/schemas/org.ukui.notification.gschema.xml

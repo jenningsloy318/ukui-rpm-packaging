@@ -1,6 +1,3 @@
-# disable debug package
-%define debug_package %{nil}
-
 Name:           ukui-settings-daemon
 Version:        3.0.0
 Release:        1%{?dist}
