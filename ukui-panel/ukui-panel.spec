@@ -23,7 +23,6 @@ BuildRequires:  pulseaudio-qt-devel
 BuildRequires:  qt5-qtsvg-devel
 BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  lm_sensors-devel
-BuildRequires:  libstatgrab-devel
 BuildRequires:  libX11-devel
 BuildRequires:  libxcb-devel
 BuildRequires:  xcb-util-devel

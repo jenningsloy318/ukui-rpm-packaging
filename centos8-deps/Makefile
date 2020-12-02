@@ -19,13 +19,6 @@ build-gsettings-qt:
 	rpmbuild -ba ~/rpmbuild/SPECS/gsettings-qt.spec
 	dnf install -y  /root/rpmbuild/RPMS/x86_64/gsettings-qt-0-0.21.20180723bzr85.el8.x86_64.rpm  /root/rpmbuild/RPMS/x86_64/gsettings-qt-devel-0-0.21.20180723bzr85.el8.x86_64.rpm
 
-build-redshift:
-	@echo ">> build redshift"
-	rpm -ivh redshift-1.12-7.el8.src.rpm
-	dnf install -y GConf2-devel geoclue2-devel  libXxf86vm-devel desktop-file-utils  gettext-devel intltool libXrandr-devel libdrm-devel libtool python36-devel
-	rpmbuild -ba ~/rpmbuild/SPECS/redshift.spec
-	dnf install -y  /root/rpmbuild/RPMS/x86_64/redshift-1.12-7.el8.x86_64.rpm
-
 build-bamf:
 	@echo ">> build bamf"
 	rpm -ivh bamf-0.5.4-4.el8.src.rpm
@@ -40,14 +33,6 @@ build-lxqt-build-tools:
 	sed -i '/Requires/s/cmake3/cmake/g'  ~/rpmbuild/SPECS/lxqt-build-tools.spec
 	rpmbuild -ba ~/rpmbuild/SPECS/lxqt-build-tools.spec
 	dnf install -y /root/rpmbuild/RPMS/noarch/lxqt-build-tools-0.7.0-1.el8.noarch.rpm
-
-
-build-libstatgrab:
-	@echo ">> build libstatgrab"
-	rpm -ivh libstatgrab-0.92-3.el8.src.rpm
-	dnf install -y log4cplus-devel ncurses-devel "perl(App::Prove)" "perl(IPC::Cmd)" "perl(Test::More)"  perl-generators
-	rpmbuild -ba ~/rpmbuild/SPECS/libstatgrab.spec
-	dnf install -y /root/rpmbuild/RPMS/x86_64/libstatgrab-0.92-3.el8.x86_64.rpm /root/rpmbuild/RPMS/x86_64/libstatgrab-devel-0.92-3.el8.x86_64.rpm
 
 build-libqtxdg:
 	@echo ">> build libqtxdg"
