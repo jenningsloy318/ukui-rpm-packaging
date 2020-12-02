@@ -1,3 +1,4 @@
+%define debug_package %{nil}
 Name:           ukui-settings-daemon
 Version:        3.0.0
 Release:        1%{?dist}
@@ -44,7 +45,7 @@ BuildRequires:  gsettings-qt-devel
 BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  qt5-qtsensors-devel
 BuildRequires:  kf5-kconfig-devel
-
+BuildRequires:  xcb-proto
 BuildRequires: qt5-qtsvg-devel
 Requires: mate-common
 Requires: ukui-polkit
@@ -95,6 +96,7 @@ Summary: daemon handling the UKUI session settings (common files)
 
 %prep
 %setup -q
+sed -i 's|/lib/udev/rules.d/|/usr/lib/udev/rules.d/|g' plugins/mouse/mouse.pro
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
@@ -120,10 +122,10 @@ gzip -c man/usd-locate-pointer.1	 > %{buildroot}/usr/share/man/man1/usd-locate-p
 
 %files
 %{_sysconfdir}/xdg/autostart/ukui-settings-daemon.desktop
-%{_sysconfdir}/udev/rules.d/01-touchpad-state-onmouse.rules
 %{_bindir}/*
 %{_libdir}/ukui-settings-daemon
 %{_datadir}/dbus-1/services/org.ukui.SettingsDaemon.service
+%{_udevrulesdir}/01-touchpad-state-onmouse.rules
 
 %files common -f %name.lang
 %doc debian/changelog
