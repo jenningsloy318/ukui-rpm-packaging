@@ -20,6 +20,7 @@ BuildRequires: qt5-qttools-devel
 BuildRequires: tesseract-tools
 BuildRequires: tesseract
 BuildRequires: gsettings-qt-devel
+BuildRequires: doxygen
 
 Requires: tesseract
 Requires: sane-backends
@@ -40,12 +41,16 @@ export PATH=%{_qt5_bindir}:$PATH
 
 %{qmake_qt5} 
 %{make_build}
+./autodoxygen.sh
+doxygen Doxyfile
 
 %install
 %{make_install} INSTALL_ROOT=%{buildroot}
 
 %files
 %doc debian/changelog
+%doc docs/latex/
+%doc docs/html/
 %license  debian/copyright 
 %{_bindir}/*
 %{_datadir}/applications/kylin-scanner.desktop

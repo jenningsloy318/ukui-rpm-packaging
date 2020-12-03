@@ -19,6 +19,7 @@ BuildRequires: qt5-qtbase-private-devel
 BuildRequires: qt5-qttools-devel
 BuildRequires: gsettings-qt-devel
 BuildRequires: qt5-qtbase-static
+BuildRequires: doxygen
 Requires: %{name}-styles%{?_isa}  = %{version}-%{release}
 Requires: %{name}-styles-libs%{?_isa}  = %{version}-%{release}
 
@@ -83,7 +84,10 @@ mkdir qmake-build
 pushd qmake-build
 %{qmake_qt5} ..
 %{make_build}
-pushd 
+popd 
+
+## generate docs 
+cd doxygen &&  doxygen Doxyfile.in
 
 %install
 pushd qmake-build
@@ -92,6 +96,7 @@ popd
 
 %files
 %doc debian/changelog
+%doc doxygen/out/html/
 %license  debian/copyright 
 %{_libdir}/qt5/plugins/platformthemes/libqt5-ukui-platformtheme.so
 

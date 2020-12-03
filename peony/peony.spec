@@ -22,6 +22,7 @@ BuildRequires:  qt5-linguist
 BuildRequires:  libudisks2-devel
 BuildRequires:  libnotify-devel
 BuildRequires:  libcanberra-devel
+BuildRequires:  doxygen
 
 Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 Requires: %{name}-common%{?_isa}  = %{version}-%{release}
@@ -108,6 +109,10 @@ fi
 %{qmake_qt5} ..
 %{make_build}
 popd
+
+## generate docs
+cd doxygen &&  doxygen Doxyfile.in
+
 
 %install
 pushd qmake-build
