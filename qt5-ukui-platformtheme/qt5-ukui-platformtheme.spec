@@ -20,6 +20,8 @@ BuildRequires: qt5-qttools-devel
 BuildRequires: gsettings-qt-devel
 BuildRequires: qt5-qtbase-static
 BuildRequires: doxygen
+BuildRequires:  graphviz
+
 Requires: %{name}-styles%{?_isa}  = %{version}-%{release}
 Requires: %{name}-styles-libs%{?_isa}  = %{version}-%{release}
 

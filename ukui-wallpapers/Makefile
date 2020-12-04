@@ -22,7 +22,7 @@ docker-build-centos8:
 
 deps:
 	@echo ">> install dependencies for ${PKG_NAME}"
-	dnf install -y git which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros ninja-build meson
+	dnf -y builddep ${PKG_NAME}.spec
 
 download-source:
 	@echo "download ${PKG_NAME} source code"

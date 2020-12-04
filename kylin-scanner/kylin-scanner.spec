@@ -21,6 +21,7 @@ BuildRequires: tesseract-tools
 BuildRequires: tesseract
 BuildRequires: gsettings-qt-devel
 BuildRequires: doxygen
+BuildRequires: graphviz
 
 Requires: tesseract
 Requires: sane-backends

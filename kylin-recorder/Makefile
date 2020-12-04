@@ -23,7 +23,7 @@ docker-build-centos8:
 
 deps:
 	@echo ">> install dependencies for ${PKG_NAME}"
-	dnf -y install git qt5-qtbase-devel qt5-qtscript-devel qt5-qttools-devel qt5-linguist qt5-qtbase-private-devel qt5-qtx11extras-devel zlib-devel libX11-devel libcrystalhd-devel qt5-qtsvg-devel libXext-devel lame-devel gsettings-qt-devel qt5-qtmultimedia-devel
+	dnf -y builddep ${PKG_NAME}.spec
 	export libQt5CoreFile=$$(rpm -ql qt5-qtbase|grep  libQt5Core.so.5.....);if file $${libQt5CoreFile} |grep "GNU/Linux"; then  strip --remove-section=.note.ABI-tag $${libQt5CoreFile}; else echo "already stripped";fi 
 
 download-source:

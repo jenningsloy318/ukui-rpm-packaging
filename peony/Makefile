@@ -28,12 +28,12 @@ docker-build-centos8:
 
 peony-deps:
 	@echo ">> install dependencies for ${PKG_NAME}"
-	dnf -y install git which gcc gcc-c++ make cmake cmake-rpm-macros autoconf automake intltool rpm-build qt5-rpm-macros qt5-qtbase-devel qt5-qttools-devel glib2-devel qt5-qtbase-devel gsettings-qt-devel kf5-kwindowsystem-devel poppler-qt5-devel qt5-qtx11extras-devel qt5-qtbase-private-devel  qt5-linguist libudisks2-devel libnotify-devel libcanberra-devel doxygen
+	dnf -y builddep ${PKG_NAME}.spec
 	export libQt5CoreFile=$$(rpm -ql qt5-qtbase|grep  libQt5Core.so.5.....);if file $${libQt5CoreFile} |grep "GNU/Linux"; then  strip --remove-section=.note.ABI-tag $${libQt5CoreFile}; else echo "already stripped";fi 
 
 peony-extensions-deps:
 	@echo ">> install dependencies for ${PKG_NAME}-extensions"
-	dnf -y install git which gcc gcc-c++ make cmake cmake-rpm-macros kf5-rpm-macros autoconf automake intltool rpm-build qt5-qtsvg-devel qt5-qtx11extras-devel glib2-devel qt5-qtbase-devel qt5-qttools-devel poppler-qt5-devel gsettings-qt-devel peony-devel
+	dnf -y  builddep ${EXT_PKG_NAME}.spec
 	export libQt5CoreFile=$$(rpm -ql qt5-qtbase|grep  libQt5Core.so.5.....)
 	if file "$${libQt5CoreFile}" |grep   "for GNU/Linux" ; then strip --remove-section=.note.ABI-tag $${libQt5CoreFile}; else echo "already stripped";fi 
 

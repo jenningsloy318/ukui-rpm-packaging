@@ -23,7 +23,7 @@ BuildRequires:  libudisks2-devel
 BuildRequires:  libnotify-devel
 BuildRequires:  libcanberra-devel
 BuildRequires:  doxygen
-
+BuildRequires:  graphviz
 Requires: %{name}-libs%{?_isa}  = %{version}-%{release}
 Requires: %{name}-common%{?_isa}  = %{version}-%{release}
 Requires: kf5-kwindowsystem

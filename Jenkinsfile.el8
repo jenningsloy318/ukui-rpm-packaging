@@ -26,36 +26,8 @@ pipeline {
 
              steps { 
               sh '''
-                	make -C libinput-touch-translator
-                  make -C qt5-ukui-platformtheme
-                  make -C peony 
-                  make -C time-shutdown
-                  make -C ukui-control-center
-                  make -C ukui-greeter
-                  make -C ukui-kwin
-                  make -C ukui-media
-                  make -C ukui-menu 
-                  make -C ukui-notification-daemon
-                  make -C ukui-panel 
-                  make -C ukui-power-manager
-                  make -C ukui-screensaver
-                  make -C ukui-session-manager
-                  make -C ukui-settings-daemon
-                  make -C ukui-sidebar
-                  make -C ukui-system-monitor
-                  make -C ukui-window-switch
-                  make -C ukui-wallpapers
-                  make -C ukui-themes
-                  make -C indicator-china-weather
-                  make -C kylin-display-switch 
-                  make -C kylin-ipmsg
-                  make -C kylin-nm
-                  make -C kylin-screenshot
-                  make -C kylin-video
-                  make -C kylin-calculator
-                  make -C kylin-music
-                  make -C kylin-recorder
-              '''
+                make build-on-centos
+                 '''
              }
     }
   }
