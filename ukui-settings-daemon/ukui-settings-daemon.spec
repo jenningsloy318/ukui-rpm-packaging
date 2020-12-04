@@ -46,7 +46,9 @@ BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  qt5-qtsensors-devel
 BuildRequires:  kf5-kconfig-devel
 BuildRequires:  xcb-proto
-BuildRequires: qt5-qtsvg-devel
+BuildRequires:  qt5-qtsvg-devel
+BuildRequires:  geoclue2-devel
+
 Requires: mate-common
 Requires: ukui-polkit
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
