@@ -1,20 +1,20 @@
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
 DIST := $(shell { rpm --eval "%{dist}";} 2>/dev/null)
 
-all: build-ukui
+all: build
 
 
 docker-build-fedora-32: 
 	@echo ">> building rpms in container"
-	$(DOCKER) run  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y dnf-plugins-core make curl rpm-build && dnf update -y  && make build"
+	$(DOCKER) run  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:32   /bin/bash -c "sudo dnf install -y dnf-plugins-core make curl rpm-build && dnf update -y  && make build &&  chmod -R 777 rpmbuild"
 
 docker-build-fedora-33: 
 	@echo ">> building rpms in container"
-	$(DOCKER) run  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:33   /bin/bash -c "sudo dnf install -y dnf-plugins-core make curl rpm-build && dnf update -y && make build"
+	$(DOCKER) run  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/fedora:33   /bin/bash -c "sudo dnf install -y dnf-plugins-core make curl rpm-build && dnf update -y && make build &&  chmod -R 777 rpmbuild"
 
 docker-build-centos-8: 
 	@echo ">> building rpms in container"
-	docker run  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y dnf-plugins-core make curl rpm-build && dnf update -y  && make build"
+	docker run  --rm --privileged -v `pwd`:/root/  -w /root/ docker.io/library/centos:8   /bin/bash -c "dnf install -y dnf-plugins-core make curl rpm-build && dnf update -y  && make build && chmod -R 777 rpmbuild"
 
 
 
