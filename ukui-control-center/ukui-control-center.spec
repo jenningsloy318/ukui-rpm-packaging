@@ -107,3 +107,9 @@ install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{build
 %{_datadir}/ukui-control-center/
 %{_datadir}/ukui/faces/*
 %{_unitdir}/ukui-group-manager.service
+
+
+
+%post 
+chown root:root /usr/bin/checkuserpwd
+chmod u+s /usr/bin/checkuserpwd
