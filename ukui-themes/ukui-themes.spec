@@ -14,6 +14,7 @@ Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 BuildArch:      x86_64
 
 BuildRequires: sassc
+BuildRequires: xorg-x11-apps
 
 
 %description
@@ -33,19 +34,15 @@ BuildRequires: sassc
 install -d %{buildroot}/usr/share/mime/packages/ %{buildroot}/usr/share/glib-2.0/schemas/  %{buildroot}/usr/share/icons/
 install -m 644 ukui-custom.xml	%{buildroot}/usr/share/mime/packages/ukui-custom.xml
 install -m 644 debian/25_ukui-themes.gschema.override %{buildroot}/usr/share/glib-2.0/schemas/25_ukui-themes.gschema.override
-cp -r  ukui-icon-theme-classical %{buildroot}/usr/share/icons/
-cp -r  ukui-icon-theme-default %{buildroot}/usr/share/icons/
 
 %files
 %doc debian/changelog
 %license  debian/copyright
 %{_datadir}/mime/packages/ukui-custom.xml
 %{_datadir}/glib-2.0/schemas/25_ukui-themes.gschema.override
-%{_datadir}/icons/ukui-icon-theme-classical
-%{_datadir}/icons/ukui-icon-theme-default
+%{_datadir}/icons/*
+%{_datadir}/themes/ukui/index.theme
 %{_datadir}/themes/ukui-black
 %{_datadir}/themes/ukui-white
-
-
-%post 
-gsettings set org.ukui.style icon-theme-name  ukui-icon-theme-default
+%{_datadir}/themes/ukui-light
+%{_datadir}/themes/ukui-dark
