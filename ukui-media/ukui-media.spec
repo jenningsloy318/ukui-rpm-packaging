@@ -32,6 +32,7 @@ BuildRequires:  libX11-devel
 Requires:  mate-common
 Requires:  %{name}-common%{?_isa} = %{version}-%{release}
 Requires:  glib2
+Requires:  pulseaudio
 
 Recommends: sound-theme-freedesktop
 Recommends: alsa-utils

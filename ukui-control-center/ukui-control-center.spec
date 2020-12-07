@@ -49,6 +49,7 @@ Requires: qt5-qtgraphicaleffects
 Requires: redshift
 Requires: dconf
 Requires: qt5-qtimageformats
+Requires: (pulseaudio or pipewire)
 
 Suggests: gsettings-desktop-schemas
 Suggests: mate-common
