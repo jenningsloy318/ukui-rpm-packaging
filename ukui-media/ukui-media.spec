@@ -60,9 +60,15 @@ Summary: UKUI media utilities (common files)
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
+sed -i 's/lrelease/qmake-qt5/g' ukui-volume-control-applet-qt/ukui-volume-control-applet-qt.pro
 ./autogen.sh
 %configure
-%{make_build} 
+%{make_build}
+mkdir ukui-volume-control-applet-qt/cmake_build
+pushd ukui-volume-control-applet-qt/cmake_build
+%{qmake_qt5} PREFIX=/usr/share/ukui-media ..
+%{make_build}
+popd
 
 %install
 %{make_install}  INSTALL_ROOT=%{buildroot}
@@ -70,6 +76,10 @@ install -d  %{buildroot}/usr/share/man/man1/
 gzip -c man/ukui-volume-control-applet-qt.1  > %{buildroot}/usr/share/man/man1/ukui-volume-control-applet-qt.1.gz
 gzip -c man/ukui-volume-control-applet.1  > %{buildroot}/usr/share/man/man1/ukui-volume-control-applet.1.gz
 gzip -c man/ukui-volume-control.1  > %{buildroot}/usr/share/man/man1/ukui-volume-control.1.gz
+
+pushd ukui-volume-control-applet-qt/cmake_build
+%{make_install}  INSTALL_ROOT=%{buildroot}
+popd
 
 %find_lang %name
 
