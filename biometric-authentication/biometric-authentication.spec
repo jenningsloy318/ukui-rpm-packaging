@@ -10,6 +10,8 @@ BuildArch:      x86_64
 
 
 BuildRequires: automake
+BuildRequires: gettext-devel
+BuildRequires: intltool
 BuildRequires: python3-devel
 BuildRequires: glib2-devel
 BuildRequires: gtk3-devel 

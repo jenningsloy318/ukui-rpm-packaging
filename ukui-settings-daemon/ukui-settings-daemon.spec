@@ -48,6 +48,8 @@ BuildRequires:  kf5-kconfig-devel
 BuildRequires:  xcb-proto
 BuildRequires:  qt5-qtsvg-devel
 BuildRequires:  geoclue2-devel
+BuildRequires:  libgudev-devel
+BuildRequires:  xorg-x11-server-devel
 
 Requires: mate-common
 Requires: ukui-polkit

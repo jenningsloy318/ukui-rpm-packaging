@@ -23,9 +23,9 @@ ifneq (,$(filter .el%,$(DIST)))
 	@echo ">> build ukui on centos/rhel"
 	dnf install centos-release-stream -y 
 	dnf distro-sync -y
-	dnf install -y https://mirrors.tuna.tsinghua.edu.cn/epel/epel-release-latest-8.noarch.rpm https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm  https://pkgs.dyn.su/el8/base/x86_64/raven-release-1.0-1.el8.noarch.rpm dnf-plugins-core make curl rpm-build  centos-stream-release centos-stream-repos python3 git 
-	sed -i 's/enabled=0/enabled=1/g' /etc/yum.repos.d/CentOS-Stream-PowerTools.repo
+	dnf install --allowerasing -y https://mirrors.tuna.tsinghua.edu.cn/epel/epel-release-latest-8.noarch.rpm https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm  https://pkgs.dyn.su/el8/base/x86_64/raven-release-1.0-1.el8.noarch.rpm https://mirrors.tuna.tsinghua.edu.cn/centos/8-stream/BaseOS/x86_64/os/Packages/centos-stream-release-8.4-1.el8.noarch.rpm https://mirrors.tuna.tsinghua.edu.cn/centos/8-stream/BaseOS/x86_64/os/Packages/centos-stream-repos-8-2.el8.noarch.rpm dnf-plugins-core make curl rpm-build  python3 git 
 	dnf install -y rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted 
+	sed -i 's/enabled=0/enabled=1/g' /etc/yum.repos.d/CentOS-Stream-PowerTools.repo
 	alternatives --set python /usr/bin/python3
 	dnf copr enable -y neonman/MATE
 	dnf copr enable -y neonman/MATE-Dependencies
@@ -33,7 +33,7 @@ ifneq (,$(filter .el%,$(DIST)))
 	
 else 
 	@echo ">> build ukui on fedora"
-	dnf install -y git  https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$$(rpm -E %{fedora}).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$$(rpm -E %{fedora}).noarch.rpm
+	dnf install -y git  https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$$(rpm -E %{fedora}).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$$(rpm -E %{fedora}).noarch.rpm dnf-plugins-core
 	make 	build-on-fedora
 endif
 
