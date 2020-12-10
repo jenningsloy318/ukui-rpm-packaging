@@ -59,4 +59,5 @@ popd
 %license  debian/copyright 
 %{_bindir}/kylin-music
 %{_datadir}/applications/kylin-music.desktop
+%{_datadir}/glib-2.0/schemas/org.kylin-music-data.gschema.xml
 %{_datadir}/pixmaps/kylin-music.png

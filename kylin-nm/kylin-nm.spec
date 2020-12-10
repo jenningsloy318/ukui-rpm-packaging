@@ -3,7 +3,6 @@ Version:        3.0.1
 Release:        1%{?dist}
 Summary:        Gui Applet tool for display and edit network simply
 
-
 License:        GPL-3.0 License
 URL:            https://github.com/ukui/kylin-nm
 Source0:        %{name}-%{version}.tar.gz
@@ -49,5 +48,7 @@ gzip -c man/kylin-nm.1	 > %{buildroot}/usr/share/man/man1/kylin-nm.1.gz
 %doc debian/changelog
 %license  debian/copyright 
 %{_sysconfdir}/xdg/autostart/kylin-nm.desktop
+%{_sysconfdir}/dbus-1/system.d/com.kylin.NetworkManager.qt.systemdbus.conf
 %{_bindir}/kylin-nm
+%{_datadir}/dbus-1/system-services/com.kylin.NetworkManager.qt.systemdbus.service
 %{_mandir}/man1/kylin-nm.1.gz
