@@ -100,4 +100,4 @@ popd
 %{_datadir}/glib-2.0/schemas/org.ukui.media.gschema.xml
 
 %post 
-glib-compile-schemas /usr/share/glib-2.0/schemas/
+glib-compile-schemas /usr/share/glib-2.0/schemas/  2>/dev/null

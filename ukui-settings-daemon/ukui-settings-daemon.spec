@@ -140,4 +140,4 @@ gzip -c man/usd-locate-pointer.1	 > %{buildroot}/usr/share/man/man1/usd-locate-p
 
 
 %post 
-glib-compile-schemas /usr/share/glib-2.0/schemas
+glib-compile-schemas /usr/share/glib-2.0/schemas  2>/dev/null
