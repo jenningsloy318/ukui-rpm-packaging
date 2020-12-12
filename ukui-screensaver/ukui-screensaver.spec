@@ -36,6 +36,8 @@ A simple and lightweight screensaver written by Qt5.
 
 %setup -q
 sed -i 's|lib/ukui-screensaver|lib64/ukui-screensaver|g' screensaver/CMakeLists.txt
+sed -i   -e  '/common-auth/s/^/#/g' -e '/pam_gnome_keyring.so/s/^/#/g' -e  '/system-auth/s/^#//g' data/ukui-screensaver-qt
+
 
 %build
 export PATH=%{_qt5_bindir}:$PATH
