@@ -169,6 +169,7 @@ popd
 
 [ -d /var/lib/samba/usershares  ] || mkdir /var/lib/samba/usershares 
 sed -i '/^\[global/a \\tusershare allow guests = yes\n\tusershare path = /var/lib/samba/usershares\n\tusershare max shares = 100\n\tusershare owner only = yes' /etc/samba/smb.conf
+chmod 0777 /var/lib/samba/usershares
 systemctl restart smb
 systemctl restart nmb
 systemctl enable smb
