@@ -18,6 +18,7 @@ BuildRequires: kf5-kwindowsystem-devel
 BuildRequires: libX11-devel
 BuildRequires: qt5-qtsvg-devel
 Requires: NetworkManager
+Requires: NetworkManager-wifi
 
 %description
  Kylin NM is a Applet tool for managing network settings simply.
