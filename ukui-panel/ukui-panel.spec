@@ -54,7 +54,7 @@ Suggests: ukui-window-switch
 
 %prep
 %setup -q
-sed -i  '/UKUiPreventInSourceBuilds.cmake/d'  panel/common/CMakeLists.txt panel/xdg/CMakeLists.txt CMakeLists.txt
+
 %build
 export PATH=%{_qt5_bindir}:$PATH
 mkdir cmake-build
@@ -90,3 +90,7 @@ gzip -c man/ukui-flash-disk.1 > %{buildroot}/usr/share/man/man1/ukui-flash-disk.
 %{_datadir}/glib-2.0/schemas/org.ukui.flash-disk.autoload.gschema.xml
 %{_datadir}/ukui-panel/
 %{_datadir}/ukui/
+
+
+%post 
+glib-compile-schemas /usr/share/glib-2.0/schemas/ 2>/dev/null

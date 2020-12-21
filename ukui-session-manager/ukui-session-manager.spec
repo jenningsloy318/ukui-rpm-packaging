@@ -60,8 +60,8 @@ fi
 
 %install
 %{make_install} INSTALL_ROOT=%{buildroot}
-install -d   %{buildroot}/usr/share/man/man1/ %{buildroot}/etc/polkit-1/localauthority/50-local.d/
-install -m644 data/com.ubuntu.enable-hibernate.pkla %{buildroot}/etc/polkit-1/localauthority/50-local.d/com.ubuntu.enable-hibernate.pkla
+install -d   %{buildroot}/usr/share/man/man1/
+install -D -m644 data/com.ubuntu.enable-hibernate.pkla -t %{buildroot}/etc/polkit-1/localauthority/50-local.d/
 gzip -c man/ukui-session.1 >  %{buildroot}/usr/share/man/man1/ukui-session.1.gz 
 gzip -c man/ukui-session-tools.1 > %{buildroot}/usr/share/man/man1/ukui-session-tools.1.gz
 
@@ -77,3 +77,6 @@ gzip -c man/ukui-session-tools.1 > %{buildroot}/usr/share/man/man1/ukui-session-
 %{_bindir}/ukui-session-tools
 %{_datadir}/man/man1/ukui-session.1.gz 
 %{_datadir}/man/man1/ukui-session-tools.1.gz
+
+%post 
+glib-compile-schemas /usr/share/glib-2.0/schemas/ 2>/dev/null
