@@ -63,6 +63,7 @@ build-on-centos:
 	make -C ukui-wallpapers
 	make -C ukui-themes
 	make -C indicator-china-weather
+	make -C kylin-burner
 	make -C kylin-display-switch 
 	make -C kylin-ipmsg
 	make -C kylin-nm
@@ -100,6 +101,7 @@ build-on-fedora:
 	make -C ukui-wallpapers
 	make -C ukui-themes
 	make -C indicator-china-weather
+	make -C kylin-burner
 	make -C kylin-display-switch 
 	make -C kylin-ipmsg
 	make -C kylin-nm
