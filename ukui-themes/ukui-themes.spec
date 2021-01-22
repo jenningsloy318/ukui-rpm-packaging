@@ -2,7 +2,7 @@
 %define debug_package %{nil}
 
 Name:           ukui-themes
-Version:        1.4.0
+Version:        1.4.1
 Release:        1%{?dist}
 Summary:        Official themes for the UKUI desktop
 
@@ -13,8 +13,7 @@ Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildArch:      x86_64
 
-BuildRequires: sassc
-BuildRequires: xorg-x11-apps
+BuildRequires: meson
 
 
 %description
@@ -25,14 +24,16 @@ BuildRequires: xorg-x11-apps
 %prep
 
 %setup -q
- 
+
+
+
 %build
-%{make_build} SASS=sassc
+
+%{meson}
+%{meson_build}
 
 %install
-%{make_install} INSTALL_ROOT=%{buildroot}
-install -D -m 644 ukui-custom.xml	-t %{buildroot}/usr/share/mime/packages/
-install -D -m 644 debian/25_ukui-themes.gschema.override -t %{buildroot}/usr/share/glib-2.0/schemas/
+%{meson_install}
 
 %files
 %doc debian/changelog
@@ -40,11 +41,12 @@ install -D -m 644 debian/25_ukui-themes.gschema.override -t %{buildroot}/usr/sha
 %{_datadir}/mime/packages/ukui-custom.xml
 %{_datadir}/glib-2.0/schemas/25_ukui-themes.gschema.override
 %{_datadir}/icons/*
-%{_datadir}/themes/ukui/index.theme
+%exclude %{_datadir}/themes/meson.build
+%{_datadir}/themes/ukui
 %{_datadir}/themes/ukui-black
 %{_datadir}/themes/ukui-white
 %{_datadir}/themes/ukui-light
 %{_datadir}/themes/ukui-dark
 
-%post 
+%post
 gsettings set org.ukui.style icon-theme-name ukui
