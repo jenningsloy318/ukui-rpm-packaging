@@ -106,6 +106,7 @@ install -m644 registeredQDbus/conf/com.control.center.qt.systemdbus.conf %{build
 %{_datadir}/polkit-1/actions/org.ukui.groupmanager.policy
 %{_datadir}/ukui-control-center/
 %{_datadir}/ukui/faces/*
+%{_datadir}/kylin-user-guide/data/guide/ukui-control-center/
 %{_unitdir}/ukui-group-manager.service
 
 

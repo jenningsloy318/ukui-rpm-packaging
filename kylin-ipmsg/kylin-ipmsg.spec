@@ -47,3 +47,4 @@ popd
 %{_bindir}/*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
+%{_datadir}/kylin-user-guide/data/guide/kylin-ipmsg
