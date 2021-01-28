@@ -29,7 +29,7 @@ Requires: %{name}-common%{?_isa}  = %{version}-%{release}
 Requires: kf5-kwindowsystem
 
 
-Recommends: gvfs-backends
+
 Recommends: peony-open-terminal
 Recommends: peony-admin
 Recommends: peony-share
@@ -63,6 +63,7 @@ Summary: file manager for the UKUI desktop (common files)
 
 %package libs
 
+Requires: gvfs
 Summary: libraries for Peony components
 
 

@@ -92,7 +92,7 @@ BuildRequires: libwayland-client-devel
 BuildRequires: libwayland-server-devel
 BuildRequires: libwayland-cursor-devel
 BuildRequires: xorg-x11-server-Xwayland
-
+BuildRequires: kf5-kwayland-devel
 
 BuildRequires: kdecoration-devel
 BuildRequires: kscreenlocker-devel

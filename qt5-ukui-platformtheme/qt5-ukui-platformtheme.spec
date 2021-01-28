@@ -11,6 +11,7 @@ Source0:        %{name}-%{version}.tar.gz
 BuildArch:      x86_64
 
 BuildRequires: glib2-devel
+BuildRequires: kf5-kwayland-devel
 BuildRequires: qt5-qtx11extras-devel
 BuildRequires: kf5-kwindowsystem-devel
 BuildRequires: gsettings-desktop-schemas-devel
@@ -100,6 +101,7 @@ popd
 %doc debian/changelog
 %doc doxygen/out/html/
 %license  debian/copyright 
+%exclude /opt/messagebox/bin/messagebox
 %{_libdir}/qt5/plugins/platformthemes/libqt5-ukui-platformtheme.so
 
 %files styles-devel
