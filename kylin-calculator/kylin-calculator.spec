@@ -56,5 +56,6 @@ popd
 %license  debian/copyright 
 %{_bindir}/kylin-calculator
 %{_datadir}/applications/kylin-calculator.desktop
+%{_datadir}/kylin-calculator
 %{_datadir}/pixmaps/calc.png
 %{_datadir}/glib-2.0/schemas/org.kylin-calculator-data.gschema.xml
