@@ -28,14 +28,15 @@ BuildRequires:  peony-devel
 BuildRequires:  gsettings-qt-devel
 BuildRequires:  kf5-rpm-macros
 
-Requires: peony >= 3.0.0
-Requires: peony-libs >= 3.0.0
+Requires:  peony >= 3.0.0
+Requires:  peony-libs >= 3.0.0
 Requires:  peony-share%{?_isa}  = %{version}-%{release} 
 Requires:  peony-parchives%{?_isa}  = %{version}-%{release}
 Requires:  peony-open-terminal%{?_isa}  = %{version}-%{release}
 Requires:  peony-set-wallpaper%{?_isa}  = %{version}-%{release}
 Requires:  peony-computer-view%{?_isa}  = %{version}-%{release}
 Requires:  peony-admin%{?_isa}  = %{version}-%{release}
+Requires:  peony-send-to-device%{?_isa}  = %{version}-%{release}
 
 %description
  Peony is the official file manager for the UKUI desktop. This
@@ -122,6 +123,16 @@ Requires: mate-terminal
 Peony plugin for open files or directories as admin
 
 
+
+%package -n peony-send-to-device
+Summary: Peony plugin for sending files to device
+Requires: peony
+Requires: peony-libs
+
+
+%description -n peony-send-to-device
+Peony plugin for sending files to device
+
 %prep
 %setup -q
 
@@ -164,6 +175,9 @@ popd
 %files -n peony-admin
 %{_libdir}/peony-extensions/libpeony-admin.so
 %{_datadir}/polkit-1/actions/org.freedesktop.peony-admin.policy
+
+%files -n peony-send-to-device
+%{_libdir}/peony-extensions/libpeony-send-to-device.so
 
 %post -n peony-share
 
