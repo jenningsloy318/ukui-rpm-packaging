@@ -11,7 +11,7 @@ BuildArch:      x86_64
 
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  qt5-qttools-devel
-BuildRequires:  glib2-devel
+BuildRequires:  glib2-devel >= 2.58
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  gsettings-qt-devel
 BuildRequires:  kf5-kwindowsystem-devel
