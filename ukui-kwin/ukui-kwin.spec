@@ -88,9 +88,9 @@ BuildRequires: libXi-devel
 # Wayland 
 BuildRequires: mesa-libEGL-devel
 BuildRequires: wayland-devel
-BuildRequires: libwayland-client-devel
-BuildRequires: libwayland-server-devel
-BuildRequires: libwayland-cursor-devel
+#BuildRequires: libwayland-client-devel
+#BuildRequires: libwayland-server-devel
+#BuildRequires: libwayland-cursor-devel
 BuildRequires: xorg-x11-server-Xwayland
 BuildRequires: kf5-kwayland-devel
 
