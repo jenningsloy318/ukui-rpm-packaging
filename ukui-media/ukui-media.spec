@@ -93,7 +93,6 @@ popd
 %files common -f %name.lang
 %{_sysconfdir}/xdg/autostart/ukui-volume-control-applet.desktop
 %{_datadir}/locale/*/LC_MESSAGES/ukui-media.mo
-%{_datadir}/sounds/ukui/
 %{_mandir}/man1/ukui-volume-control-applet-qt.1.gz
 %{_mandir}/man1/ukui-volume-control-applet.1.gz
 %{_mandir}/man1/ukui-volume-control.1.gz
