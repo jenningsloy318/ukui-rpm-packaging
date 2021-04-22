@@ -72,19 +72,17 @@ gzip -c man/biodrvctl.1 > %{buildroot}/usr/share/man/man1/biodrvctl.1.gz
 %doc debian/changelog
 %license  debian/copyright 
 %{_datadir}/ukui-biometric/images
-%{_datadir}/ukui-biometric/i18n_qm/*
 %{_datadir}/ukui-biometric/i18n_qm/polkit/*
 
 
 %files -n pam-biometric
-%{_bindir}/bioauth
-%{_bindir}/bioctl
-%{_bindir}/biodrvctl
+%{_bindir}/*
 %{_sysconfdir}/biometric-auth/ukui-biometric.conf
 %{_libdir}/security/pam_biometric.so
 %{_datadir}/pam-configs/pam-biometric
 %{_datadir}/polkit-1/actions/*
 %{_datadir}/ukui-biometric/i18n_qm/*
+%{_datadir}/ukui-biometric/i18n_qm/bioauth-bin/*
 %{_mandir}/man1/bioctl.1.gz
 %{_mandir}/man1/bioauth.1.gz
 %{_mandir}/man1/biodrvctl.1.gz
