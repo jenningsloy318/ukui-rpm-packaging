@@ -14,7 +14,7 @@ Source0:        %{name}-%{version}.tar.gz
 BuildArch:      x86_64
 BuildRequires:  kf5-rpm-macros
 BuildRequires:  dbusmenu-qt5-devel
-BuildRequires:  glib2-devel
+BuildRequires:  glib2-devel >= 2.58
 BuildRequires:  libicu-devel
 BuildRequires:  kf5-solid-devel
 BuildRequires:  kf5-kwindowsystem-devel
