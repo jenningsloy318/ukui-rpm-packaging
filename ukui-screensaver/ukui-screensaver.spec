@@ -56,9 +56,7 @@ gzip -c man/ukui-screensaver-command.1 >  %{buildroot}/usr/share/man/man1/ukui-s
 %{_sysconfdir}/pam.d/ukui-screensaver-qt
 %{_sysconfdir}/xdg/autostart/ukui-screensaver.desktop
 %{_sysconfdir}/xdg/menus/ukui-screensavers.menu
-%{_bindir}/ukui-screensaver-backend
-%{_bindir}/ukui-screensaver-command
-%{_bindir}/ukui-screensaver-dialog
+%{_bindir}/*
 %{_libdir}/ukui-screensaver
 %{_datadir}/desktop-directories/ukui-screensaver.directory
 %{_datadir}/glib-2.0/schemas/org.ukui.screensaver.gschema.xml 
