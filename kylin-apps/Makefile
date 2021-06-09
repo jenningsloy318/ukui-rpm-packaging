@@ -11,8 +11,15 @@ docker-build:
 build:
 	@echo ">> build ukui on fedora"
 	dnf install -y git  https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$$(rpm -E %{fedora}).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$$(rpm -E %{fedora}).noarch.rpm dnf-plugins-core
-	make -C ukui
-	make -C kylin-apps
+	make -C indicator-china-weather
+	make -C kylin-burner
+	make -C kylin-ipmsg
+	make -C kylin-screenshot
+	make -C kylin-video
+	make -C kylin-calculator
+	make -C kylin-music
+	make -C kylin-recorder
+	make -C kylin-camera
 
 clean:
 	rm -rf ~/rpmbuild/{SOURCES,RPMS}
