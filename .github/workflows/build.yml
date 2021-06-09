@@ -4,16 +4,16 @@ on:
   workflow_dispatch:
     inputs:
       job:
-        description: 'Which job will be running, build-on-fedora-33 or build-on-centos-8'     
+        description: 'Which job will be running, build-on-fedora or build-on-centos-8'     
         required: true
-        default: 'build-on-centos-8'
+        default: 'build-on-fedora'
 
 jobs:
-  build-on-fedora-33:
-    name: Build on Fedora 33
+  build-on-fedora:
+    name: Build on Fedora
     runs-on: ubuntu-20.04
-    container: docker.io/library/fedora:33
-    if: github.event.inputs.job == 'build-on-fedora-33'
+    container: docker.io/library/fedora:latest
+    if: github.event.inputs.job == 'build-on-fedora'
     steps:
       - name: Checkout  source code
         uses: actions/checkout@v2
