@@ -2,7 +2,6 @@
 DOCKER := $(shell { command -v podman || command -v docker; } 2>/dev/null)
 PKG_NAME := peony
 PKG_VERSION := 3.0.3
-PKG_RELEASE :=$(shell { grep "Release" ${PKG_NAME}.spec| awk '{print $$2}'|sed "s/%{?dist}/${DIST}/g"; } )
 PKG_EXT_NAME := peony-extensions
 PKG_EXT_VERSION := 3.0.1
 
@@ -53,7 +52,7 @@ download-source-peony-extensions:
 build-peony: | peony-deps download-source-peony
 	@echo ">> building ${PKG_NAME} rpms"
 	rpmbuild -ba ${PKG_NAME}.spec
-	rpm -ihv --force $${HOME}/rpmbuild/RPMS/x86_64/{${PKG_NAME}-common-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm,${PKG_NAME}-devel-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm,${PKG_NAME}-libs-${PKG_VERSION}-${PKG_RELEASE}.x86_64.rpm}
+	rpm -ihv --force $${HOME}/rpmbuild/RPMS/x86_64/{${PKG_NAME}-common-${PKG_VERSION}$$(rpm -E %{dist}).x86_64.rpm,${PKG_NAME}-devel-${PKG_VERSION}$(rpm -E %{dist}).x86_64.rpm,${PKG_NAME}-libs-${PKG_VERSION}$$(rpm -E %{dist}).x86_64.rpm}
 
 
 build-peony-extensions: | peony-extensions-deps download-source-peony-extensions
